@@ -1,0 +1,202 @@
+<html>
+<head>
+	<title>Test</title>
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1 id="displayName"></h1>
+	<label for="event">Evenement : </label><input id="event" type="text" onkeydown="enter(event);"/><br/>
+	<label for="param1">Parametre : </label><input id="param1" type="text" onkeydown="enter(event);"/><br/>
+    <input type="button" value="Envoyer" onclick="send();"/><br/><br/>
+    <h2>Messages</h2>
+	<div id="messages" style="border: 1px solid black; overflow: scroll"></div>
+	<script type="text/javascript">
+		
+		var socket = io.connect();
+		
+		var name;
+        var table;
+
+        socket.on('connect', function() {
+            name = prompt("Votre nom ?");
+            if (name == "Table" || name == "table") {
+                table = true;
+            }
+            if (table) {
+                socket.emit('addTable');
+                document.getElementById("displayName").innerHTML = "Table Surface";
+            } else {
+                socket.emit('addPlayer', name);
+                document.getElementById("displayName").innerHTML = name;
+            }
+        });
+
+        function send() {
+            socket.emit(document.getElementById("event").value,
+                    document.getElementById("param1").value);
+        }
+
+        function enter(event) {
+            if (event.keyCode == 13) {
+                send();
+            }
+        }
+
+        socket.on('test', function (data) {
+            alert(data);
+        });
+
+        socket.on('choixPions', function(arg1) {
+           document.getElementById("messages").innerHTML = "choixPions : " + "<br/>"
+                   + JSON.stringify(arg1)
+                   + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('nouveauTag', function(arg1) {
+            document.getElementById("messages").innerHTML = "nouveauTag : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('debutPartie', function(arg1) {
+            document.getElementById("messages").innerHTML = "debutPartie : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('partieTerminee', function() {
+            document.getElementById("messages").innerHTML = "partieTerminee : " + "<br/>"
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('enPrison', function(arg1) {
+            document.getElementById("messages").innerHTML = "enPrison : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('prochainJoueur', function(arg1) {
+            document.getElementById("messages").innerHTML = "prochainJoueur : " + "<br/>"
+                    + arg1
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('passeSonTour', function(arg1) {
+            document.getElementById("messages").innerHTML = "passeSonTour : " + "<br/>"
+                    + arg1
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('caseChangee', function(arg1) {
+            document.getElementById("messages").innerHTML = "caseChangee : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('nouveauArgent', function(arg1) {
+            document.getElementById("messages").innerHTML = "nouveauArgent : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('caseDepart', function(arg1) {
+            document.getElementById("messages").innerHTML = "caseDepart : " + "<br/>"
+                    + arg1 + "<br/>"
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('tourEnExams', function(arg1) {
+            document.getElementById("messages").innerHTML = "tourEnExams : " + "<br/>"
+                    + arg1 + "<br/>"
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('caseCarteChance', function() {
+            document.getElementById("messages").innerHTML = "caseCarteChance : " + "<br/>"
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('carteChance', function(arg1) {
+            document.getElementById("messages").innerHTML = "carteChance : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('casePasseSonTour', function() {
+            document.getElementById("messages").innerHTML = "casePasseSonTour : " + "<br/>"
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('passeTour', function(arg1) {
+            document.getElementById("messages").innerHTML = "passeTour : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('caseRevisions', function() {
+            document.getElementById("messages").innerHTML = "caseRevisions : " + "<br/>"
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('enExams', function(arg1) {
+            document.getElementById("messages").innerHTML = "enExams : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('propositionAchat', function(arg1) {
+            document.getElementById("messages").innerHTML = "propositionAchat : " + "<br/>"
+                    + JSON.stringify(arg1) + "<br/>"
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('propositionVente', function(arg1) {
+            document.getElementById("messages").innerHTML = "propositionVente : " + "<br/>"
+                    + JSON.stringify(arg1) + "<br/>"
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('paiement', function(arg1) {
+            document.getElementById("messages").innerHTML = "paiement : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('caseAchetee', function(arg1) {
+            document.getElementById("messages").innerHTML = "caseAchetee : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('nouvellePropriete', function(arg1) {
+            document.getElementById("messages").innerHTML = "nouvellePropriete : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('caseVendue', function(arg1) {
+            document.getElementById("messages").innerHTML = "caseVendue : " + "<br/>"
+                    + arg1
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('perteCase', function(arg1) {
+            document.getElementById("messages").innerHTML = "perteCase : " + "<br/>"
+                    + JSON.stringify(arg1)
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('debutExamens', function() {
+            document.getElementById("messages").innerHTML = "debutExamens : " + "<br/>"
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+
+        socket.on('nouvelleBourse', function(arg1) {
+            document.getElementById("messages").innerHTML = "Nouvelle Bourse : " + "<br/>"
+                    + arg1
+                    + "<br/>" + document.getElementById("messages").innerHTML + "<br/><br/>";
+        });
+		
+	</script>
+</body>
+</html>
