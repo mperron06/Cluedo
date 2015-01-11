@@ -182,10 +182,10 @@ namespace Cluedo
             instance = this;
 
             // Lance le serveur
-            startServer();
+            //startServer();
 
             // Lance socketIO
-            SocketIO.Execute();
+            //SocketIO.Execute();
             IsConnectToServeur = true;
        }
 
@@ -822,6 +822,7 @@ namespace Cluedo
 
         private void movePion(object sender, TagVisualizerEventArgs e)
         {
+
             string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
             Rectangle zoneCase = getZoneCaseFromName(Convert.ToInt32(idCase));
 

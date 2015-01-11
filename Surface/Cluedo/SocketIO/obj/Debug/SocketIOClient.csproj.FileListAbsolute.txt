@@ -27,6 +27,6 @@ C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\bin\debug\Soc
 C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\bin\debug\SocketIOClient.pdb
 C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\bin\debug\SocketIOClient.dll.CodeAnalysisLog.xml
 C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\bin\debug\SocketIOClient.dll.lastcodeanalysissucceeded
-C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\SocketIO\obj\Debug\SocketIOClient.csprojResolveAssemblyReference.cache
 C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\SocketIO\obj\Debug\SocketIOClient.dll
 C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\SocketIO\obj\Debug\SocketIOClient.pdb
+C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\SocketIO\obj\Debug\SocketIOClient.csprojResolveAssemblyReference.cache

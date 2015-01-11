@@ -68,6 +68,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Page1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SurfaceWindow1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,6 +82,9 @@
     </Compile>
     <Compile Include="InitPion.xaml.cs">
       <DependentUpon>InitPion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
     <Compile Include="SocketIO.cs" />
     <Compile Include="SurfaceWindow1.xaml.cs">
@@ -110,6 +117,11 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\moutarde.jpg" />
+    <Resource Include="Resources\olive.jpg" />
+    <Resource Include="Resources\pervenche.png" />
+    <Resource Include="Resources\rose.jpg" />
+    <Resource Include="Resources\violet.jpg" />
     <Resource Include="Resources\gendarme.png" />
     <Resource Include="Resources\bourse_merite.png" />
     <Resource Include="Resources\chance_top.png" />
@@ -139,6 +151,7 @@
     <Resource Include="Resources\ecoles\orlean_g.png" />
     <Resource Include="Resources\ecoles\tours_g.png" />
     <Resource Include="Resources\ecoles\sophia_g.png" />
+    <Resource Include="Resources\blanc.png" />
     <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

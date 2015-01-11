@@ -121,6 +121,15 @@ namespace Cluedo
             socket.Emit("pionPret", null);
         }
 
+
+        //ajouté par TLF
+        public static void NombreDeJoueurSelecte(int num)
+        {
+            Console.WriteLine("Nombre De Joueur Selecte : " + num);
+            socket.Emit("numJoueur", num);
+        }
+
+
         public static void Execute()
         {
             Console.WriteLine("Starting SocketIO");
@@ -387,11 +396,20 @@ namespace Cluedo
             });
 
 
-            //adjouté
-            socket.On("test", (data) =>
+            //adjouté par TLF
+
+            socket.On("serveurPret", (data) =>
             {
-                Console.WriteLine("serveur connecté hello world");
+                Console.WriteLine("serveur pret");
+                Application surface = System.Windows.Application.Current;
+                surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
+                {
+                    SurfaceWindow1 surfaceMain = new SurfaceWindow1();
+                    surfaceMain.Show();
+                    Page1.getInstance().Close();
+                });
             });
+
 
             // make the socket.io connection
             socket.Connect();

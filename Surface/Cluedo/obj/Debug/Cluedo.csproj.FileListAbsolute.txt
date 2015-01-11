@@ -67,3 +67,5 @@ C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\obj\Debug\Clu
 C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\obj\Debug\Cluedo.g.resources
 C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\obj\Debug\Cluedo.Properties.Resources.resources
 C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\obj\Debug\Cluedo.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\obj\Debug\Page1.baml
+C:\Users\user\Desktop\IHMMultiSupport\Projet\Cluedo\Surface\Cluedo\obj\Debug\Page1.g.cs
