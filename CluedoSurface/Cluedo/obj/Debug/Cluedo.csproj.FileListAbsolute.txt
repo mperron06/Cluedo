@@ -96,3 +96,7 @@ C:\Users\user\Documents\GitHub\Cluedo\Surface\Cluedo\obj\Debug\Cluedo.Properties
 C:\Users\user\Documents\GitHub\Cluedo\Surface\Cluedo\obj\Debug\Cluedo.csproj.GenerateResource.Cache
 C:\Users\user\Documents\GitHub\Cluedo\Surface\Cluedo\bin\Debug\Cluedo.exe.config
 >>>>>>> a828a6c2d915cdb994bb34a2fb8617046a19202b:CluedoSurface/Cluedo/obj/Debug/Cluedo.csproj.FileListAbsolute.txt
+C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\bin\Debug\Cluedo.exe.config
+C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.exe
+C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.pdb
+C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.csprojResolveAssemblyReference.cache
