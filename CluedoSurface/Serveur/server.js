@@ -6,7 +6,7 @@ var io = require('socket.io').listen(httpserver);
 var port = 8080;
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 // launch the http server on given port
@@ -145,12 +145,12 @@ function init() {
     cases.push({ id: "13.3", nom: "Case", type: "couloir" });
     cases.push({ id: "13.4", nom: "Case", type: "couloir" });
 
-    cases.push({ id: "0.4", nom: "EntrÃ©e", type: "piece" });
-    cases.push({ id: "0.5", nom: "EntrÃ©e", type: "piece" });
+    cases.push({ id: "0.4", nom: "Entrée", type: "piece" });
+    cases.push({ id: "0.5", nom: "Entrée", type: "piece" });
     cases.push({ id: "2.0", nom: "Garage", type: "piece" });
     cases.push({ id: "3.9", nom: "Salon", type: "piece" });
     cases.push({ id: "6.0", nom: "Salle de jeux", type: "piece" });
-    cases.push({ id: "7.8", nom: "Salle Ã  manger", type: "piece" });
+    cases.push({ id: "7.8", nom: "Salle à manger", type: "piece" });
     cases.push({ id: "11.9", nom: "Cuisine", type: "piece" });
     cases.push({ id: "12.0", nom: "Chambre", type: "piece" });
     cases.push({ id: "13.5", nom: "Bureau", type: "piece" });
@@ -168,7 +168,7 @@ function init() {
 
     nbCartes = 21;
     cartes = [];
-    cartes.push({ id: 0, nom: "Violet", type: "perso" });
+    cartes.push({ id:0, nom:"Violet", type:"perso" });
     cartes.push({ id: 1, nom: "Leblanc", type: "perso" });
     cartes.push({ id: 2, nom: "Rose", type: "perso" });
     cartes.push({ id: 3, nom: "Olivier", type: "perso" });
@@ -177,16 +177,16 @@ function init() {
 
     cartes.push({ id: 6, nom: "Corde", type: "arme" });
     cartes.push({ id: 7, nom: "Poignard", type: "arme" });
-    cartes.push({ id: 8, nom: "ClÃ© anglaise", type: "arme" });
+    cartes.push({ id: 8, nom: "Clé anglaise", type: "arme" });
     cartes.push({ id: 9, nom: "Revolver", type: "arme" });
     cartes.push({ id: 10, nom: "Chandelier", type: "arme" });
     cartes.push({ id: 11, nom: "Barre de fer", type: "arme" });
 
-
-    cartes.push({ id: 12, nom: "EntrÃ©e", type: "piece" });
+    
+    cartes.push({ id: 12, nom: "Entrée", type: "piece" });
     cartes.push({ id: 13, nom: "Salle de jeux", type: "piece" });
     cartes.push({ id: 14, nom: "Bureau", type: "piece" });
-    cartes.push({ id: 15, nom: "Salle Ã  manger", type: "piece" });
+    cartes.push({ id: 15, nom: "Salle à manger", type: "piece" });
     cartes.push({ id: 16, nom: "Garage", type: "piece" });
     cartes.push({ id: 17, nom: "Salon", type: "piece" });
     cartes.push({ id: 18, nom: "Cuisine", type: "piece" });
@@ -203,7 +203,7 @@ function init() {
     termine = false;
 
 }
-io.on('connection', function (socket) {
+io.on('connection', function(socket){
 
     var myId;
     var name;
@@ -317,7 +317,7 @@ io.on('connection', function (socket) {
         nbAssociations++;
         if (nbAssociations == nbMaxJoueurs) {
             //io.sockets.emit('preparerPions', null);
-            // Le premier joueur est tirï¿½ alï¿½atoirement
+            // Le premier joueur est tiré aléatoirement
             idJoueurDepart = Math.floor(Math.random() * nbMaxJoueurs);
             idJoueurActuel = idJoueurDepart;
             io.sockets.emit('debutPartie', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
@@ -337,11 +337,11 @@ io.on('connection', function (socket) {
     });
 
     socket.on('tourTermine', function () {
-        do {
+        do{
             idJoueurActuel = (idJoueurActuel + 1) % nbMaxJoueurs;
-        } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a ï¿½tï¿½ ï¿½liminï¿½ aprï¿½s une fausse accusation
+        } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a été éliminé après une fausse accusation
 
-
+        
         io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
     });
 
@@ -445,8 +445,8 @@ io.on('connection', function (socket) {
         var idCase = joueurs[idJoueurActuel].numCase;
 
         if (cases[idCase].type == "piece") {
-            io.sockets.emit('nouvelleSupposition', { idJoueur: idJoueurActuel, lieu: joueurs[idJoueurActuel].numCase });
-        }
+                io.sockets.emit('nouvelleSupposition', { idJoueur: idJoueurActuel, lieu: joueurs[idJoueurActuel].numCase });
+            }
     });
 
     socket.on('accusation', function () {
@@ -458,11 +458,11 @@ io.on('connection', function (socket) {
     });
 
 
-    socket.on('disconnect', function () {
+    socket.on('disconnect', function(){
         console.log("Client disconnected : " + socket.id);
     });
 
-    socket.on('error', function (errorData) {
+    socket.on('error', function(errorData){
         console.log("An error occurred during Client connection : " + socket.id);
         console.log(errorData);
     });
