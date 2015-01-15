@@ -1,0 +1,130 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:keepScreenOn="true"
+    tools:context=".LoginActivity" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_weight="1.5"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_gravity="center"
+        android:contentDescription=""
+        android:src="@drawable/ic_launcher" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="0.25"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        />
+    <LinearLayout
+        android:id="@+id/layout_label_pseudo"
+        android:orientation="horizontal"
+        android:layout_weight="0.25"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:text="@string/pseudo" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_input_pseudo"
+        android:orientation="horizontal"
+        android:layout_weight="0.75"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        >
+        <EditText
+            android:id="@+id/pseudo_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:gravity="center"
+            android:singleLine="true"
+            android:nextFocusDown="@+id/ip_editText"
+            android:hint="@string/enterYourPseudo"
+            android:maxLength="30" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_label_ip"
+        android:orientation="horizontal"
+        android:layout_weight="0.25"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:text="@string/ip" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_input_ip"
+        android:orientation="horizontal"
+        android:layout_weight="0.75"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        >
+        <EditText
+            android:id="@+id/ip_editText"
+            android:layout_weight="0.75"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:gravity="center"
+            android:singleLine="true"
+            android:hint="@string/enterYourIP"
+            android:inputType="phone" />
+
+        <com.polytech.custom.layout.SquareLayout
+            android:layout_weight="0.25"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="2dip"
+            android:padding="5dip"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/qr_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/qr_button" />
+        </com.polytech.custom.layout.SquareLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_button_connect"
+        android:orientation="horizontal"
+        android:layout_weight="0.75"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_gravity="bottom"
+
+        >
+        <Button
+            android:id="@+id/connexion_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/connection"
+            android:textSize="20sp"
+            android:textColor="@drawable/button_text_color"
+            android:background="@drawable/connection_button" />
+    </LinearLayout>
+</LinearLayout>
+
