@@ -36,11 +36,11 @@ public class Remote {
 
         @Override
         public void onConnect() {
-            System.out.println("Am i here ?");
+            //System.out.println("Am i here ?");
             if (already_connect) {
                 socket.emit("reconnect", mon_id);
             } else {
-                System.out.println("Where am i ?");
+                //System.out.println("Where am i ?");
                 socket.emit(ADD_PLAYER, pseudo);
                 already_connect = true;
             }
@@ -52,17 +52,24 @@ public class Remote {
 
         @Override
         public void onMessage(String s, IOAcknowledge ioAcknowledge) {
+            // TODO Auto-generated method stub
+            System.out.println("Server Message : " + s);
 
         }
 
         @Override
         public void onMessage(JSONObject jsonObject, IOAcknowledge ioAcknowledge) {
+            // TODO Auto-generated method stub
+            System.out.println("Server JSON Message : " + jsonObject);
 
         }
 
         @Override
-        public void on(String s, IOAcknowledge ioAcknowledge, Object... objects) {
-
+        public void on(String event, IOAcknowledge ioAcknowledge, Object... objects) {
+            			/* ------ RECUP INFOS ------ */
+            if (event.equals(MY_ID)) { // ID
+                mon_id = Long.parseLong(objects[0].toString());
+            }
         }
 
         @Override
@@ -91,7 +98,7 @@ public class Remote {
             // URL pourrie
             e.printStackTrace();
         }
-        System.out.println("Conneting");
+        //System.out.println("Conneting");
         socket.connect(this.ioCallback);
     }
     public static synchronized Remote getInstance() {

@@ -23,6 +23,7 @@ public class Login extends Activity {
 
     private EditText pseudo_editText;
     private EditText ip_editText;
+    private EditText perso_editText;
 
     private Button qr_button;
     private Button connexion_button;
@@ -37,6 +38,7 @@ public class Login extends Activity {
         // FindView
         pseudo_editText = (EditText) findViewById(R.id.pseudo_editText);
         ip_editText = (EditText) findViewById(R.id.ip_editText);
+        perso_editText = (EditText) findViewById(R.id.perso_editText);
         qr_button = (Button) findViewById(R.id.qr_button);
         connexion_button = (Button) findViewById(R.id.connexion_button);
 
@@ -122,7 +124,7 @@ public class Login extends Activity {
         // Tout est bon
         Remote.pseudo = pseudo;
         Remote.url = "http://" + ip + ":" + PORT;
-        System.out.println("All good");
+        //System.out.println("All good");
         Remote.context = this;
         Remote.reset();
         Remote.getInstance();

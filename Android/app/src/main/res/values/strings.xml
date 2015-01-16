@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Monopolytech</string>
+    <string name="app_name">Cluedo</string>
     <string name="action_settings">Settings</string>
     
     <!-- LoginActivity -->
@@ -9,6 +9,7 @@
 	<string name="ip">Adresse IP</string>
 	<string name="enterYourPseudo">Entrez votre pseudo</string>
 	<string name="enterYourIP">Entrez l\'IP de la table</string>
+    <string name="enterYourPerso">Entrez le nom du personnage</string>
 	<string name="pseudoMissed">Pseudo manquant</string>
 	<string name="ipMissed">Adresse IP manquante</string>
 	<string name="qR">QR</string>

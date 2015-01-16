@@ -106,6 +106,24 @@
                 android:background="@drawable/qr_button" />
         </com.polytech.custom.layout.SquareLayout>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_input_perso"
+        android:orientation="horizontal"
+        android:layout_weight="0.75"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        >
+        <EditText
+            android:id="@+id/perso_editText"
+            android:layout_weight="0.75"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:gravity="center"
+            android:singleLine="true"
+            android:hint="@string/enterYourPerso"
+            android:inputType="phone" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_button_connect"
