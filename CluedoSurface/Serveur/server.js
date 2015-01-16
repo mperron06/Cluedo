@@ -183,15 +183,15 @@ function init() {
     cartes.push({ id: 11, nom: "Barre de fer", type: "arme", tag: "L" });
 
     
-    cartes.push({ id: 12, nom: "Entrée", type: "piece" });
-    cartes.push({ id: 13, nom: "Salle de jeux", type: "piece" });
-    cartes.push({ id: 14, nom: "Bureau", type: "piece" });
-    cartes.push({ id: 15, nom: "Salle à manger", type: "piece" });
-    cartes.push({ id: 16, nom: "Garage", type: "piece" });
-    cartes.push({ id: 17, nom: "Salon", type: "piece" });
-    cartes.push({ id: 18, nom: "Cuisine", type: "piece" });
-    cartes.push({ id: 19, nom: "Chambre", type: "piece" });
-    cartes.push({ id: 20, nom: "Salle de bains", type: "piece" });
+    cartes.push({ id: 12, nom: "Entrée", type: "piece", tag: "" });
+    cartes.push({ id: 13, nom: "Salle de jeux", type: "piece", tag: "" });
+    cartes.push({ id: 14, nom: "Bureau", type: "piece", tag: "" });
+    cartes.push({ id: 15, nom: "Salle à manger", type: "piece", tag: "" });
+    cartes.push({ id: 16, nom: "Garage", type: "piece", tag: "" });
+    cartes.push({ id: 17, nom: "Salon", type: "piece", tag: "" });
+    cartes.push({ id: 18, nom: "Cuisine", type: "piece", tag: "" });
+    cartes.push({ id: 19, nom: "Chambre", type: "piece", tag: "" });
+    cartes.push({ id: 20, nom: "Salle de bains", type: "piece", tag: "" });
 
 
     cartes.push({ id: 20, nom: "Hall", type: "hall" });
@@ -247,7 +247,13 @@ io.on('connection', function(socket){
 
         console.log("Joueur connecte : " + playerName);
 
-        //console.log(cartes[persoName].tag);
+        var i;
+        var tagPerso;
+        for (i = 0; i < nbCartes; i++) {
+            if (persoName == cartes[i].nom) {
+                tagPerso = cartes[i].tag;
+            }
+        }
         name = playerName;
 
         if (partieEnCours) {
@@ -267,7 +273,7 @@ io.on('connection', function(socket){
             joueurs[nbJoueurs] = {};
             joueurs[nbJoueurs].id = nbJoueurs;
             joueurs[nbJoueurs].name = name;
-            joueurs[nbJoueurs].tag = "";
+            joueurs[nbJoueurs].tag = tagPerso;
             joueurs[nbJoueurs].numCase = 0;
             joueurs[nbJoueurs].supposition = [];
             joueurs[nbJoueurs].cartes = [];
