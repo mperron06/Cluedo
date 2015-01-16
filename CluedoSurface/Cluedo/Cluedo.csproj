@@ -72,6 +72,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MainWindowCluedo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Page1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,6 +90,9 @@
     </Compile>
     <Compile Include="InitPion.xaml.cs">
       <DependentUpon>InitPion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindowCluedo.xaml.cs">
+      <DependentUpon>MainWindowCluedo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
@@ -157,6 +164,7 @@
     <Resource Include="Resources\ecoles\tours_g.png" />
     <Resource Include="Resources\ecoles\sophia_g.png" />
     <Resource Include="Resources\blanc.png" />
+    <Resource Include="Resources\cluedo.jpg" />
     <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

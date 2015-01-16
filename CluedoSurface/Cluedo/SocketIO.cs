@@ -129,6 +129,10 @@ namespace Cluedo
             socket.Emit("numJoueur", num);
         }
 
+        public static void PionPose(String idCase) {
+            socket.Emit("pionPose", idCase);
+        }
+
 
         public static void Execute()
         {
@@ -404,9 +408,11 @@ namespace Cluedo
                 Application surface = System.Windows.Application.Current;
                 surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
                 {
-                    SurfaceWindow1 surfaceMain = new SurfaceWindow1();
+                    //SurfaceWindow1 surfaceMain = new SurfaceWindow1();
+                    //surfaceMain.Show();
+                    MainWindowCluedo surfaceMain = new MainWindowCluedo();
                     surfaceMain.Show();
-                    Page1.getInstance().Close();
+                    //Page1.getInstance().Hide();
                 });
             });
 
