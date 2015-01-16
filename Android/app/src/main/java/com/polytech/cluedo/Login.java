@@ -46,6 +46,7 @@ public class Login extends Activity {
         // Listener
         qr_button.setOnClickListener(onClick);
         connexion_button.setOnClickListener(onClick);
+
     }
 
     @Override
@@ -57,7 +58,12 @@ public class Login extends Activity {
                 } else {
                     IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
                     if (scanResult != null) {
-                        String ip = scanResult.getContents();
+                        String global = scanResult.getContents();
+                        String[] elements;
+                        elements = global.split("_",2);
+                        String ip = elements[0];
+                        String perso = elements[1];
+                        perso_editText.setText(perso);
                         Log.e("QR_CODE", ip);
                         if (checkIP(ip)){
                             ip_editText.setText(ip);
@@ -105,6 +111,7 @@ public class Login extends Activity {
     private void launchConnection() {
         String pseudo = pseudo_editText.getText().toString().trim();
         String ip = ip_editText.getText().toString().trim();
+        String perso = perso_editText.getText().toString().trim();
 
 
         if (pseudo == null || pseudo.equals("")) {
@@ -118,12 +125,18 @@ public class Login extends Activity {
             Toast.makeText(getApplicationContext(), "IP mal ecrite", Toast.LENGTH_SHORT).show();
             return;
         }
+        if (perso == null || perso.equals("")) {
+            Toast.makeText(getApplicationContext(), "Pas de personnage", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         connexion_progressDialog = ProgressDialog.show(Login.this, "", "Loading. Please wait...", true);
         connexion_progressDialog .setCancelable(true);
         // Tout est bon
         Remote.pseudo = pseudo;
         Remote.url = "http://" + ip + ":" + PORT;
+        Remote.perso = perso;
         //System.out.println("All good");
         Remote.context = this;
         Remote.reset();

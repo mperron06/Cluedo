@@ -23,6 +23,7 @@ public class Remote {
     private static SocketIO socket;
     public static String url;
     public static String pseudo;
+    public static String perso;
     public static Context context;
     public static boolean already_connect;
     public static long mon_id;
