@@ -24,3 +24,6 @@ C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.Prop
 C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.csproj.GenerateResource.Cache
 C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.exe
 C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.pdb
+C:\Users\user\Desktop\IHMMultiSupport\ProjetCluedo\Cluedo\CluedoSurface\Cluedo\bin\Debug\Cluedo.exe.config
+C:\Users\user\Desktop\IHMMultiSupport\ProjetCluedo\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.exe
+C:\Users\user\Desktop\IHMMultiSupport\ProjetCluedo\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.pdb

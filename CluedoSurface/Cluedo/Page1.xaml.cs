@@ -30,7 +30,7 @@ namespace Cluedo
     /// Logique d'interaction pour Page1.xaml
     /// </summary>
     public partial class Page1 : SurfaceWindow
-    {
+    {//
         private int numPlayer;
         private String ipAddress;
 
