@@ -27,10 +27,15 @@ public class Remote {
     public static Context context;
     public static boolean already_connect;
     public static long mon_id;
+    public static String mon_perso;
+
 
     private static final String MY_ID = "myId";
+    private static final String PLAYER_READY = "joueursPrets";
 
     private static final String ADD_PLAYER = "addPlayer";
+
+    private static final String PERVENCHE = "Madame Pervenche";
 
 
     final IOCallback ioCallback = new IOCallback() {
@@ -42,7 +47,7 @@ public class Remote {
                 socket.emit("reconnect", mon_id);
             } else {
                 //System.out.println("Where am i ?");
-                socket.emit(ADD_PLAYER, pseudo);
+                socket.emit(ADD_PLAYER, pseudo, perso);
                 already_connect = true;
             }
             // Login to Waiting
@@ -71,6 +76,13 @@ public class Remote {
             if (event.equals(MY_ID)) { // ID
                 mon_id = Long.parseLong(objects[0].toString());
             }
+            /*if (event.equals(PLAYER_READY)){
+                Intent intent = new Intent(context, WaitingActivity.class);
+                if (mon_perso.equals(PERVENCHE)){
+                    intent.putExtra("MESSAGE", R.string.waitingForPlayers);
+                }
+                context.startActivity(intent);
+            }*/
         }
 
         @Override
