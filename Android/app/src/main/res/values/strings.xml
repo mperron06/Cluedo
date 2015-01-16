@@ -17,6 +17,7 @@
 	
 	<!-- WaitingActivity -->
 	<string name="waitingForPlayers">Attente de joueurs&#8230;</string>
+    <string name="welcomePlayer">Bienvenue&#8230;</string>
 	<string name="putThePiece">Veuillez choisir un pion et le poser dans la zone qui vous est attribuée.</string>
 	<string name="tagSaved">Tag associé.\nEn attente des autres joueurs&#8230;</string>
 <!-- 	<string name="preparePiece">Veuillez placer votre pion sur la case RENTREE.</string> -->

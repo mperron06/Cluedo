@@ -31,6 +31,7 @@ public class Remote {
 
 
     private static final String MY_ID = "myId";
+    private static final String MY_PERSO = "myPerso";
     private static final String PLAYER_READY = "joueursPrets";
 
     private static final String ADD_PLAYER = "addPlayer";
@@ -76,8 +77,11 @@ public class Remote {
             if (event.equals(MY_ID)) { // ID
                 mon_id = Long.parseLong(objects[0].toString());
             }
+            /*if (event.equals(MY_PERSO)){
+
+            }*/
             /*if (event.equals(PLAYER_READY)){
-                Intent intent = new Intent(context, WaitingActivity.class);
+                Intent intent = new Intent(context, WelcomeActivity.class);
                 if (mon_perso.equals(PERVENCHE)){
                     intent.putExtra("MESSAGE", R.string.waitingForPlayers);
                 }
