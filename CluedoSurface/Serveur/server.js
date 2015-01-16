@@ -217,8 +217,9 @@ io.on('connection', function(socket){
 
 
     socket.on('numJoueur', function (s) {
-        console.log("Nombre joueurs : " + s);
-        io.sockets.emit('serveurPret', "hello");
+        console.log("Nombre joueurs maximum : " + s);
+        nbMaxJoueurs = s;
+        //io.sockets.emit('serveurPret', "hello");
     });
 
     socket.on('addTable', function () {
@@ -287,7 +288,9 @@ io.on('connection', function(socket){
             //socket.emit('cartes', cartes);
 
             if (nbJoueurs == nbMaxJoueurs && tableSocket != null) {
-                io.sockets.emit('choixPions', joueurs);
+                //io.sockets.emit('choixPions', joueurs);
+                console.log("joueurs prets");
+                io.sockets.emit('joueursPrets', null);
             }
         }
     });

@@ -398,7 +398,7 @@ namespace Cluedo
 
             //adjouté par TLF
 
-            socket.On("serveurPret", (data) =>
+            socket.On("joueursPrets", (data) =>
             {
                 Console.WriteLine("serveur pret");
                 Application surface = System.Windows.Application.Current;
