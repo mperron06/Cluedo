@@ -168,19 +168,19 @@ function init() {
 
     nbCartes = 21;
     cartes = [];
-    cartes.push({ id:0, nom:"Violet", type:"perso" });
-    cartes.push({ id: 1, nom: "Leblanc", type: "perso" });
-    cartes.push({ id: 2, nom: "Rose", type: "perso" });
-    cartes.push({ id: 3, nom: "Olivier", type: "perso" });
-    cartes.push({ id: 4, nom: "Moutarde", type: "perso" });
-    cartes.push({ id: 5, nom: "Pervenche", type: "perso" });
+    cartes.push({ id:0, nom:"Violet", type:"perso", tag:"A" });
+    cartes.push({ id: 1, nom: "Leblanc", type: "perso", tag: "B" });
+    cartes.push({ id: 2, nom: "Rose", type: "perso", tag: "C" });
+    cartes.push({ id: 3, nom: "Olivier", type: "perso", tag: "D" });
+    cartes.push({ id: 4, nom: "Moutarde", type: "perso", tag:"E" });
+    cartes.push({ id: 5, nom: "Pervenche", type: "perso", tag:"F" });
 
-    cartes.push({ id: 6, nom: "Corde", type: "arme" });
-    cartes.push({ id: 7, nom: "Poignard", type: "arme" });
-    cartes.push({ id: 8, nom: "Clé anglaise", type: "arme" });
-    cartes.push({ id: 9, nom: "Revolver", type: "arme" });
-    cartes.push({ id: 10, nom: "Chandelier", type: "arme" });
-    cartes.push({ id: 11, nom: "Barre de fer", type: "arme" });
+    cartes.push({ id: 6, nom: "Corde", type: "arme", tag: "G" });
+    cartes.push({ id: 7, nom: "Poignard", type: "arme", tag: "H" });
+    cartes.push({ id: 8, nom: "Clé anglaise", type: "arme", tag: "I" });
+    cartes.push({ id: 9, nom: "Revolver", type: "arme", tag: "J" });
+    cartes.push({ id: 10, nom: "Chandelier", type: "arme", tag: "K" });
+    cartes.push({ id: 11, nom: "Barre de fer", type: "arme", tag: "L" });
 
     
     cartes.push({ id: 12, nom: "Entrée", type: "piece" });
@@ -239,7 +239,7 @@ io.on('connection', function(socket){
         }
     });
 
-    socket.on('addPlayer', function (playerName) {
+    socket.on('addPlayer', function (playerName, persoName) {
 
         if (termine == true) {
             init();
@@ -247,6 +247,7 @@ io.on('connection', function(socket){
 
         console.log("Joueur connecte : " + playerName);
 
+        //console.log(cartes[persoName].tag);
         name = playerName;
 
         if (partieEnCours) {
