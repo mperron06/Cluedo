@@ -17,7 +17,6 @@ public class WelcomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Remote.context = this;
-
         Intent intent = getIntent();
         int message = intent.getIntExtra("MESSAGE", -1);
 

@@ -53,7 +53,28 @@ public class Remote {
             }
             // Login to Waiting
             Intent intent = new Intent(context, WaitingActivity.class);
-            intent.putExtra("MESSAGE", R.string.waitingForPlayers);
+            if (perso.equals("Pervenche")){
+                intent.putExtra("PERVENCHE", 1);
+                //intent.putExtra("MESSAGE", R.string.madamePervenche);
+            }
+            if (perso.equals("Moutarde")){
+                intent.putExtra("MOUTARDE", 1);
+            }
+            if (perso.equals("Leblanc")){
+                intent.putExtra("LEBLANC", 1);
+            }
+            if (perso.equals("Rose")){
+                intent.putExtra("ROSE", 1);
+            }
+
+            if (perso.equals("Olive")){
+                intent.putExtra("OLIVE", 1);
+            }
+
+            if (perso.equals("Violet")){
+                intent.putExtra("VIOLET", 1);
+            }
+            //intent.putExtra("MESSAGE", R.string.waitingForPlayers);
             context.startActivity(intent);
         }
 
@@ -81,9 +102,11 @@ public class Remote {
 
             }*/
             /*if (event.equals(PLAYER_READY)){
+                System.out.println("Ready");
                 Intent intent = new Intent(context, WelcomeActivity.class);
-                if (mon_perso.equals(PERVENCHE)){
-                    intent.putExtra("MESSAGE", R.string.waitingForPlayers);
+                if (perso.equals("Pervenche")){
+                    System.out.println("Miss Pervenche");
+                    intent.putExtra("MESSAGE", R.string.madamePervenche);
                 }
                 context.startActivity(intent);
             }*/

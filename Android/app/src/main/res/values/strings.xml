@@ -18,6 +18,12 @@
 	<!-- WaitingActivity -->
 	<string name="waitingForPlayers">Attente de joueurs&#8230;</string>
     <string name="welcomePlayer">Bienvenue&#8230;</string>
+    <string name="madamePervenche">Bonjour Madame Pervenche, attendez les autres joueurs&#8230;</string>
+    <string name="colonelMoutarde">Bonjour Colonel Moutarde, attendez les autres joueurs&#8230;</string>
+    <string name="docteurOlive">Bonjour Docteur Olive, attendez les autres joueurs&#8230;</string>
+    <string name="profViolet">Bonjour Professeur Violet, attendez les autres joueurs&#8230;</string>
+    <string name="madameLeblanc">Bonjour Madame Leblanc, attendez les autres joueurs&#8230;</string>
+    <string name="mlleRose">Bonjour Mlle Rose, attendez les autres joueurs&#8230;</string>
 	<string name="putThePiece">Veuillez choisir un pion et le poser dans la zone qui vous est attribuée.</string>
 	<string name="tagSaved">Tag associé.\nEn attente des autres joueurs&#8230;</string>
 <!-- 	<string name="preparePiece">Veuillez placer votre pion sur la case RENTREE.</string> -->
