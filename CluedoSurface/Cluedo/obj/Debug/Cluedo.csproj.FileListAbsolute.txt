@@ -100,3 +100,6 @@ C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\bin\Debug\Cluedo.exe.
 C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.exe
 C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.pdb
 C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.csprojResolveAssemblyReference.cache
+C:\Users\Alexia\Downloads\GitHub\Cluedo\CluedoSurface\Cluedo\bin\Debug\Cluedo.exe.config
+C:\Users\Alexia\Downloads\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.exe
+C:\Users\Alexia\Downloads\GitHub\Cluedo\CluedoSurface\Cluedo\obj\Debug\Cluedo.pdb

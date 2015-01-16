@@ -54,10 +54,12 @@ public class Login extends Activity {
         switch(requestCode) {
             case IntentIntegrator.REQUEST_CODE: {
                 if (resultCode == RESULT_CANCELED){
+                    System.out.println("Erreur");
                     Log.e("QR_CODE", "RESULT_CANCELED");
                 } else {
                     IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
                     if (scanResult != null) {
+                        System.out.println("Scan ok");
                         String global = scanResult.getContents();
                         String[] elements;
                         elements = global.split("_",2);
@@ -125,10 +127,10 @@ public class Login extends Activity {
             Toast.makeText(getApplicationContext(), "IP mal ecrite", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (perso == null || perso.equals("")) {
+        /*if (perso == null || perso.equals("")) {
             Toast.makeText(getApplicationContext(), "Pas de personnage", Toast.LENGTH_SHORT).show();
             return;
-        }
+        }*/
 
 
         connexion_progressDialog = ProgressDialog.show(Login.this, "", "Loading. Please wait...", true);
