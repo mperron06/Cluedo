@@ -290,6 +290,7 @@ io.on('connection', function(socket){
 
             socket.emit('myId', myId);
             socket.emit('cases', cases);
+            socket.emit('griserTag', persoName);
             //socket.emit('cartes', cartes);
 
             if (nbJoueurs == nbMaxJoueurs && tableSocket != null) {
