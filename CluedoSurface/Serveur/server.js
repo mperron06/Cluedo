@@ -215,6 +215,12 @@ io.on('connection', function(socket){
         io.sockets.emit('test', s);
     });
 
+
+    socket.on('numJoueur', function (s) {
+        console.log("Nombre joueurs : " + s);
+        io.sockets.emit('serveurPret', "hello");
+    });
+
     socket.on('addTable', function () {
 
         if (termine == true) {
