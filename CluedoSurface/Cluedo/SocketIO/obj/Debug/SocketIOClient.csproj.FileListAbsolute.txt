@@ -1,8 +1,0 @@
-C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\bin\debug\SocketIOClient.xml
-C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\bin\debug\SocketIOClient.dll
-C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\bin\debug\SocketIOClient.pdb
-C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\bin\debug\SocketIOClient.dll.CodeAnalysisLog.xml
-C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\bin\debug\SocketIOClient.dll.lastcodeanalysissucceeded
-C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\SocketIO\obj\Debug\SocketIOClient.csprojResolveAssemblyReference.cache
-C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\SocketIO\obj\Debug\SocketIOClient.dll
-C:\Users\user\Documents\GitHub\Cluedo\CluedoSurface\Cluedo\SocketIO\obj\Debug\SocketIOClient.pdb
