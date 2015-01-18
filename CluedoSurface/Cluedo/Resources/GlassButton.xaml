@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="Button">
+    <Style
+        x:Key="StartButtonStyle" TargetType="{x:Type Button}">
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                    <Ellipse Stroke="Black"
+                         StrokeThickness="2">
+                        <Ellipse.Fill>
+                                <ImageBrush ImageSource="castle.jpg">
+                                    <ImageBrush.Transform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleY="0.65" />
+                                    </TransformGroup>
+                                </ImageBrush.Transform>
+                            </ImageBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center" Content="Start" TextBlock.FontSize="40" TextBlock.FontFamily="Kabel" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red"/>
+                    </Grid>
+                    <!--ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#ADADAD"/>
+                        </Trigger>
+                    </-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

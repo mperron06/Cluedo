@@ -46,7 +46,6 @@ namespace Cluedo
             ShowQrcode(ipAddress, this.qrCodeMoutarde, "Moutarde");
             ShowQrcode(ipAddress, this.qrCodePervenche, "Pervenche");
 
-
             // Initialise le singleton
             instance = this;
 
@@ -77,14 +76,11 @@ namespace Cluedo
             myProcess.Start();
         }
 
-        private void numPlayerBtn_Click(object sender, RoutedEventArgs e)
+        private void goToMainPage(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
-            btn.Background = Brushes.Red;
-            String str = btn.Content as String;
-            numPlayer = int.Parse(str);
-
-            SocketIO.NombreDeJoueurSelecte(numPlayer);
+            MainWindowCluedo mainWindow = new MainWindowCluedo();
+            mainWindow.Show();
+            this.Close();
         }
 
 
@@ -99,6 +95,13 @@ namespace Cluedo
             qrMatrix = qrCode.GetQrMatrix(); //Qr bit matrix for input string "QrCode.Net".
             qrCode.QuietZoneModule = QuietZoneModules.Zero;  //Control will recreate image, but Bitmatrix is still for "QrCode.Net" input string. 
             qrCode.Unlock(); //Unlock class, re-encode and repaint. 
+            hideQrcode("Pervenche");
+        }
+
+        private void hideQrcode(String qr) {
+            UIElement ele = personGrid.FindName(qr) as UIElement;
+            Image img = ele as Image;
+            img.Visibility = System.Windows.Visibility.Visible;
         }
 
         private string LocalIPAddress()

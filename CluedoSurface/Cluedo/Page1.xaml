@@ -6,113 +6,82 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
 	Title="Page1"  Height="371" Width="835">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.Column="0">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\GlassButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Background="MediumSeaGreen">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Source="Resources/newTitle.jpg" Grid.Column="1" Stretch="Fill" Margin="10"></Image>
+            <Image Source="Resources/persons.jpg" Grid.Column="0" Stretch="Fill" Margin="40 50 40 5"></Image>
+            <TextBlock TextWrapping="Wrap" FontSize="40" Foreground="SeaShell" HorizontalAlignment="Center" Text="Choose character by scanning the correspond QR code" Margin="50,60"></TextBlock>
+        </Grid>
+        
+        <Grid Grid.Row="1" Name="personGrid">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Red" Content="Please choose the number of players:" Margin="30,46,27,0" FontFamily="Kabel" FontSize="20"  FontWeight="Bold"  RenderTransformOrigin="0.497,0.879"/>
-            <Button Content="2" Grid.Row="1" Grid.Column="0" Margin="56,21,45,19" FontSize="20" Click="numPlayerBtn_Click"></Button>
-            <Button Content="3" Grid.Row="1" Grid.Column="1" Margin="56,21,45,19" FontSize="20" Click="numPlayerBtn_Click"></Button>
-            <Button Content="4" Grid.Row="2" Grid.Column="0" Margin="56,21,45,19" FontSize="20" Click="numPlayerBtn_Click"></Button>
-            <Button Content="5" Grid.Row="2" Grid.Column="1" Margin="56,21,45,19" FontSize="20" Click="numPlayerBtn_Click"></Button>
-            <Button Content="6" Grid.Row="3" Grid.Column="0" Margin="56,21,45,19" FontSize="20" Click="numPlayerBtn_Click"></Button>
-            <TextBox Grid.Row="3" Grid.Column="1" Name="test"></TextBox>
+            
+            <Label Content="Violet" Grid.Row="0" Grid.Column="0" Foreground="Violet" FontSize="30" FontFamily="Kabel" VerticalAlignment="Center" Padding="50"></Label>
+            <q:QrCodeImgControl Name="qrCodeViolet" Grid.Row="0" Grid.Column="0" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>
+            <Image Name="Violet" Source="Resources/X.png" Grid.Row="0" Grid.Column="0" Width="60" Height="60" Visibility="Hidden"/>
+            <Image Source="Resources/persons/violet.jpg" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="0,5,0,5" Width="100"></Image>
+
+            <Label Content="Leblanc" Grid.Row="1" Grid.Column="0" Foreground="White" FontSize="30" FontFamily="Kabel" VerticalAlignment="Center" Padding="50"></Label>
+            <q:QrCodeImgControl Name="qrCodeBlanc" Grid.Row="1" Grid.Column="0" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>
+            <Image Name="Leblanc" Source="Resources/X.png" Grid.Row="1" Grid.Column="0" Width="60" Height="60" Visibility="Hidden"/>
+            <Image Source="Resources/persons/blanc.jpg" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="0,5,0,5"></Image>
+
+            <Label Content="Rose" Grid.Row="2" Grid.Column="0" Foreground="Red" FontSize="30" FontFamily="Kabel" VerticalAlignment="Center" Padding="50"></Label>
+            <q:QrCodeImgControl Name="qrCodeRose" Grid.Row="2" Grid.Column="0" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>
+            <Image Name="Rose" Source="Resources/X.png" Grid.Row="2" Grid.Column="0" Width="60" Height="60" Visibility="Hidden"/>
+            <Image Source="Resources/persons/rose.jpg" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="0,5,0,5"></Image>
+
+            <Label Content="Olive" Grid.Row="0" Grid.Column="4" Foreground="Olive" FontSize="30" FontFamily="Kabel" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,60,0" ></Label>
+            <q:QrCodeImgControl Name="qrCodeOlive" Grid.Row="0" Grid.Column="4" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>
+            <Image Name="Olive" Source="Resources/X.png" Grid.Row="0" Grid.Column="4" Width="60" Height="60" Visibility="Hidden"/>
+            <Image Source="Resources/persons/olive.jpg" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" Margin="0,5,0,5"></Image>
+
+            <Label Content="Moutarde" Grid.Row="1" Grid.Column="4" Foreground="Yellow" FontSize="30" FontFamily="Kabel" VerticalAlignment="Center" HorizontalAlignment="Right" ></Label>
+            <q:QrCodeImgControl Name="qrCodeMoutarde" Grid.Row="1" Grid.Column="4" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>
+            <Image Name="Moutarde" Source="Resources/X.png" Grid.Row="1" Grid.Column="4" Width="60" Height="60" Visibility="Hidden"/>
+            <Image Source="Resources/persons/moutarde.jpg" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Margin="0,5,0,5"></Image>
+
+            <Label Content="Pervenche" Grid.Row="2" Grid.Column="4" Foreground="SkyBlue" FontSize="30" FontFamily="Kabel" VerticalAlignment="Center" HorizontalAlignment="Right" ></Label>
+            <q:QrCodeImgControl Name="qrCodePervenche" Grid.Row="2" Grid.Column="4" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>
+            <Image Name="Pervenche" Source="Resources/X.png" Grid.Row="2" Grid.Column="4" Width="60" Height="60" Visibility="Hidden"/>
+            <Image Source="Resources/persons/pervenche.jpg" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Margin="0,5,0,5"></Image>          
         </Grid>
-        <Grid Grid.Row="0" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Content="Choose character by scanning the correspond&#xD;&#xA; QR code with your tablet/telephone:" Foreground="Red" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontFamily="Kabel" FontSize="18" FontWeight="Bold" Margin="10, 30, 0, 0"></Label>
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="20, 5, 5, 0">
-                <Grid Height="85" VerticalAlignment="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="5*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Image Source="Resources/violet.jpg"></Image>
-                    <Label Content="Violet" Grid.Row="1" Foreground="black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"></Label>
-                </Grid>
-                <q:QrCodeImgControl Name="qrCodeViolet" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>              
-            </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="20, 5, 5, 0">
-                <Grid Height="85" VerticalAlignment="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="5*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Image Source="Resources/blanc.png" Margin="0,0,10,0"></Image>
-                    <Label Content="Leblanc" Foreground="black" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"></Label>
-                </Grid>
-                <q:QrCodeImgControl Name="qrCodeBlanc" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="20, 5, 5, 0">
-                <Grid Height="85" VerticalAlignment="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="5*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Image Source="Resources/rose.jpg"></Image>
-                    <Label Content="Rose" Foreground="Black" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"></Label>
-                </Grid>
-                <q:QrCodeImgControl Name="qrCodeRose" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="20, 5, 5, 0">
-                <Grid Height="85" VerticalAlignment="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="5*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Image Source="Resources/olive.jpg" ></Image>
-                    <Label Content="Olive" Foreground="Black" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"></Label>
-                </Grid>
-                <q:QrCodeImgControl Name="qrCodeOlive" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Margin="20, 5, 5, 0">
-                <Grid Height="85" VerticalAlignment="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="5*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Image Source="Resources/moutarde.jpg"></Image>
-                    <Label Content="Moutarde" Foreground="Black" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"></Label>
-                </Grid>
-                <q:QrCodeImgControl Name="qrCodeMoutarde" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Margin="20, 5, 5, 0">
-                <Grid Height="85" VerticalAlignment="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="5*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Image Source="Resources/pervenche.png"></Image>
-                    <Label Content="Pervenche" Foreground="Black" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"></Label>
-                </Grid>
-                <q:QrCodeImgControl Name="qrCodePervenche" Width="60" Height="60" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="20"/>
-            </StackPanel>
-        </Grid>
+        <Button Style="{StaticResource StartButtonStyle}"  Click="goToMainPage" MaxWidth="150" MaxHeight="150" Grid.Row="0" Grid.RowSpan="3">
+        </Button>
+        <Button MaxHeight="80" MaxWidth="100" Grid.Row="2">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/rules.jpg"></ImageBrush>
+            </Button.Background>
+        </Button>
+        
     </Grid>
 </s:SurfaceWindow>

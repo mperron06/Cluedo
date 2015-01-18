@@ -80,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\GlassButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SurfaceWindow1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -129,11 +133,16 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\moutarde.jpg" />
-    <Resource Include="Resources\olive.jpg" />
-    <Resource Include="Resources\pervenche.png" />
-    <Resource Include="Resources\rose.jpg" />
-    <Resource Include="Resources\violet.jpg" />
+    <Resource Include="Resources\X.png" />
+    <Resource Include="Resources\newTitle.jpg" />
+    <Resource Include="Resources\persons.jpg" />
+    <Resource Include="Resources\rules.jpg" />
+    <Resource Include="Resources\persons\blanc.jpg" />
+    <Resource Include="Resources\persons\moutarde.jpg" />
+    <Resource Include="Resources\persons\olive.jpg" />
+    <Resource Include="Resources\persons\pervenche.jpg" />
+    <Resource Include="Resources\persons\rose.jpg" />
+    <Resource Include="Resources\persons\violet.jpg" />
     <Resource Include="Resources\gendarme.png" />
     <Resource Include="Resources\bourse_merite.png" />
     <Resource Include="Resources\chance_top.png" />
@@ -163,8 +172,8 @@
     <Resource Include="Resources\ecoles\orlean_g.png" />
     <Resource Include="Resources\ecoles\tours_g.png" />
     <Resource Include="Resources\ecoles\sophia_g.png" />
-    <Resource Include="Resources\blanc.png" />
     <Resource Include="Resources\cluedo.jpg" />
+    <Resource Include="Resources\castle.jpg" />
     <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

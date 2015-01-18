@@ -55,37 +55,7 @@
         <!--Contour des murs-->
         <Rectangle Grid.Row="15" Grid.RowSpan="4" Grid.Column="1" Stroke="Red" StrokeThickness="3"></Rectangle>
         <Label Content="GARAGE" Foreground="Black"  Grid.Row="15" Grid.RowSpan="4" Grid.Column="1"></Label> <!--à remplacer par une image de garage-->
-        <Line HorizontalAlignment="Right" Stretch="Fill" Grid.Row="16" X1="110" Y1="0" X2="110" Y2="20" Grid.Column="1" Stroke="White" StrokeThickness="8"></Line>
-        <!--Path Stretch="Fill" Grid.Row="17" Grid.Column="2" Data="m0,20 h40 v20 h20 m100,20 h20 v-20 h40" Grid.RowSpan="2" Grid.ColumnSpan="3" Style="{StaticResource MurContourStyle}"></-->
-        <Polyline Stretch="Fill" Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="3" Stroke="Red" StrokeThickness="3" Points="0 0 40 0 40 20 60 20"></Polyline>
-        <!--Path Grid.Row="17" Grid.Column="7" Grid.ColumnSpan="3" Data="m0,20 h20 v-20 h40" Style="{StaticResource MurContourStyle}"></-->
-        <Polyline Stretch="Fill" Grid.Row="17" Grid.Column="7" Grid.ColumnSpan="3" Points="0 20 20 20 20 0 60 0" Stroke="Red" StrokeThickness="3"></Polyline>
-        <Rectangle Grid.Row="14" Grid.RowSpan="5" Grid.Column="10" Stroke="Red" StrokeThickness="3"></Rectangle>  
-        <Line Stretch="Fill" HorizontalAlignment="Left" Grid.Row="15" Grid.Column="10" X1="0" Y1="0" X2="0" Y2="20" Stroke="White" StrokeThickness="8"></Line>
-        <Label Content="SALON" Foreground="Black" Grid.Row="14" Grid.RowSpan="5" Grid.Column="10"></Label> <!--à remplacer par une image de salon-->
-        <Rectangle Grid.Row="9" Grid.RowSpan="6" Grid.Column="1" Stroke="Red" StrokeThickness="3"></Rectangle>
-        <Line Stretch="Fill" HorizontalAlignment="Right" Grid.Row="12" X1="110" Y1="0" X2="110" Y2="20" Grid.Column="1" Stroke="White" StrokeThickness="8"></Line>
-        <Label Content="SALLE DE JEUX" Foreground="Black" Grid.Row="9" Grid.RowSpan="6" Grid.Column="1"></Label><!--à remplacer par une image de salle de jeux-->
-        <Path Stretch="Fill" Grid.Row="3" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="2" Data="m110,0 h-110 v120 h130 v-40 h-20 M110,60 v-20" Style="{StaticResource MurContourStyle}"></Path>
-        <Label Content="CHAMBRE" Foreground="Black" Grid.Row="3" Grid.Column="1" Grid.RowSpan="6"></Label> <!--à remplacer par une image de chambre-->
-        <Path Stretch="Fill" Grid.Row="1" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Data="M0,60 v-60 h80 v80 h-20 M40,80 h-40" Style="{StaticResource MurContourStyle}"></Path>
-        <Label Content="SALLE DE BAIN" Foreground="Black" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="4"></Label><!--à remplacer par une image de salle de bain-->
-        <Rectangle Grid.Row="2" Grid.Column="6" Grid.RowSpan="5" Grid.ColumnSpan="4" Stroke="Red" StrokeThickness="3"></Rectangle>
-        <Line Stretch="Fill" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="6" X1="0" Y1="0" X2="0" Y2="20" Stroke="White" StrokeThickness="8"></Line>
-        <Label Grid.Row="2" Foreground="Black" Grid.Column="6" Grid.RowSpan="5" Grid.ColumnSpan="4" Content="BUREAU"></Label><!--à remplacer par une image de bureau-->
-        <Rectangle Grid.Row="2" Grid.Column="10" Grid.RowSpan="7" Stroke="Red" StrokeThickness="3"></Rectangle>
-        <Line Stretch="Fill" HorizontalAlignment="Left" Grid.Row="7" Grid.Column="10" X1="0" Y1="0" X2="0" Y2="20" Stroke="White" StrokeThickness="8"></Line>
-        <Label Content="CUISINE" Foreground="Black" Grid.Row="2" Grid.Column="10" Grid.RowSpan="7"></Label><!--à remplacer par une image de cuisine-->
-        <Rectangle Grid.Row="9" Grid.Column="9" Grid.RowSpan="5" Grid.ColumnSpan="2" Stroke="Red" StrokeThickness="3"></Rectangle>
-        <Line HorizontalAlignment="Left" Stretch="Fill" Grid.Row="11" Grid.Column="9" X1="0" Y1="0" X2="0" Y2="20" Stroke="White" StrokeThickness="8"></Line>
-        <Label Content="SALLE A MANGER" Foreground="Black" Grid.Row="9" Grid.Column="9" Grid.RowSpan="5" Grid.ColumnSpan="2"></Label><!--à remplacer par une image de salle à manger-->
-        <Label Grid.Row="18" Foreground="Black" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Content="ENTREE"></Label>
-        <Path Stretch="Fill" Grid.Row="11" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="4" Data="M0,20 v-20 h40 M60,0 h20 v20 M80,40 v20 h-20 M0,40 v20 h40" Style="{StaticResource MurContourStyle}"></Path>
-        <Image Source="Resources/cluedo.jpg" Grid.Row="11" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="4" Margin="5"></Image>
-        
-        <!--Zone de case-->
-        <Rectangle Name="N13" Grid.Row="17" Grid.Column="4" Style="{StaticResource CaseStyle}"></Rectangle>
-        <s:TagVisualizer Grid.Column="4" Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="putPion" Panel.ZIndex="10000" DataContext="13" >
+        <s:TagVisualizer Grid.Column="1" Grid.Row="15" Grid.RowSpan="4"  VisualizationAdded="entrerDansPiece"  Panel.ZIndex="10000" DataContext="GARAGE" >
             <s:TagVisualizer.Definitions>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
@@ -95,78 +65,839 @@
         </s:TagVisualizer>
         
         
+        <Line HorizontalAlignment="Right" Stretch="Fill" Grid.Row="16" X1="110" Y1="0" X2="110" Y2="20" Grid.Column="1" Stroke="White" StrokeThickness="8"></Line>
+        <!--Path Stretch="Fill" Grid.Row="17" Grid.Column="2" Data="m0,20 h40 v20 h20 m100,20 h20 v-20 h40" Grid.RowSpan="2" Grid.ColumnSpan="3" Style="{StaticResource MurContourStyle}"></-->
+        <Polyline Stretch="Fill" Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="3" Stroke="Red" StrokeThickness="3" Points="0 0 40 0 40 20 60 20"></Polyline>
+        <!--Path Grid.Row="17" Grid.Column="7" Grid.ColumnSpan="3" Data="m0,20 h20 v-20 h40" Style="{StaticResource MurContourStyle}"></-->
+        <Polyline Stretch="Fill" Grid.Row="17" Grid.Column="7" Grid.ColumnSpan="3" Points="0 20 20 20 20 0 60 0" Stroke="Red" StrokeThickness="3"></Polyline>
+        <Rectangle Grid.Row="14" Grid.RowSpan="5" Grid.Column="10" Stroke="Red" StrokeThickness="3"></Rectangle>  
+        <Line Stretch="Fill" HorizontalAlignment="Left" Grid.Row="15" Grid.Column="10" X1="0" Y1="0" X2="0" Y2="20" Stroke="White" StrokeThickness="8"></Line>
+        <Label Content="SALON" Foreground="Black" Grid.Row="14" Grid.RowSpan="5" Grid.Column="10"></Label> <!--à remplacer par une image de salon-->
+        <s:TagVisualizer Grid.Column="10" Grid.Row="14" Grid.RowSpan="5"  VisualizationAdded="entrerDansPiece"  Panel.ZIndex="10000" DataContext="SALON" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
+        
+        <Rectangle Grid.Row="9" Grid.RowSpan="6" Grid.Column="1" Stroke="Red" StrokeThickness="3"></Rectangle>
+        <Line Stretch="Fill" HorizontalAlignment="Right" Grid.Row="12" X1="110" Y1="0" X2="110" Y2="20" Grid.Column="1" Stroke="White" StrokeThickness="8"></Line>
+        <Label Content="SALLE DE JEUX" Foreground="Black" Grid.Row="9" Grid.RowSpan="6" Grid.Column="1"></Label><!--à remplacer par une image de salle de jeux-->
+        <s:TagVisualizer Grid.Column="1" Grid.Row="9" Grid.RowSpan="6"  VisualizationAdded="entrerDansPiece"  Panel.ZIndex="10000" DataContext="SALLEDEJEUX" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
+        <Path Stretch="Fill" Grid.Row="3" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="2" Data="m110,0 h-110 v120 h130 v-40 h-20 M110,60 v-20" Style="{StaticResource MurContourStyle}"></Path>
+        <Label Content="CHAMBRE" Foreground="Black" Grid.Row="3" Grid.Column="1" Grid.RowSpan="6"></Label> <!--à remplacer par une image de chambre-->
+        <s:TagVisualizer Grid.Column="1" Grid.Row="3" Grid.RowSpan="6"  VisualizationAdded="entrerDansPiece"  Panel.ZIndex="10000" DataContext="CHAMBRE" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
+        <Path Stretch="Fill" Grid.Row="1" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" Data="M0,60 v-60 h80 v80 h-20 M40,80 h-40" Style="{StaticResource MurContourStyle}"></Path>
+        <Label Content="SALLE DE BAIN" Foreground="Black" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="4"></Label><!--à remplacer par une image de salle de bain-->
+        <s:TagVisualizer Grid.Column="2" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="4" VisualizationAdded="entrerDansPiece"  Panel.ZIndex="10000" DataContext="SALLEDEBAIN" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
+        
+        <Rectangle Grid.Row="2" Grid.Column="6" Grid.RowSpan="5" Grid.ColumnSpan="4" Stroke="Red" StrokeThickness="3"></Rectangle>
+        <s:TagVisualizer Grid.Column="6" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="4" VisualizationAdded="entrerDansPiece"  Panel.ZIndex="10000" DataContext="BUREAU" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
+        <Line Stretch="Fill" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="6" X1="0" Y1="0" X2="0" Y2="20" Stroke="White" StrokeThickness="8"></Line>
+        <Label Grid.Row="2" Foreground="Black" Grid.Column="6" Grid.RowSpan="5" Grid.ColumnSpan="4" Content="BUREAU"></Label><!--à remplacer par une image de bureau-->
+        <Rectangle Grid.Row="2" Grid.Column="10" Grid.RowSpan="7" Stroke="Red" StrokeThickness="3"></Rectangle>
+        <s:TagVisualizer Grid.Column="10" Grid.Row="2" Grid.RowSpan="7"  VisualizationAdded="entrerDansPiece"  Panel.ZIndex="10000" DataContext="CUSINE" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
+        <Line Stretch="Fill" HorizontalAlignment="Left" Grid.Row="7" Grid.Column="10" X1="0" Y1="0" X2="0" Y2="20" Stroke="White" StrokeThickness="8"></Line>
+        <Label Content="CUISINE" Foreground="Black" Grid.Row="2" Grid.Column="10" Grid.RowSpan="7"></Label><!--à remplacer par une image de cuisine-->
+        <Rectangle Grid.Row="9" Grid.Column="9" Grid.RowSpan="5" Grid.ColumnSpan="2" Stroke="Red" StrokeThickness="3"></Rectangle>
+        <Line HorizontalAlignment="Left" Stretch="Fill" Grid.Row="11" Grid.Column="9" X1="0" Y1="0" X2="0" Y2="20" Stroke="White" StrokeThickness="8"></Line>
+        <Label Content="SALLE A MANGER" Foreground="Black" Grid.Row="9" Grid.Column="9" Grid.RowSpan="5" Grid.ColumnSpan="2"></Label><!--à remplacer par une image de salle à manger-->
+        <s:TagVisualizer Grid.Column="9" Grid.Row="9" Grid.RowSpan="5" Grid.ColumnSpan="2" VisualizationAdded="entrerDansPiece"  Panel.ZIndex="10000" DataContext="SALLEAMANGER" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
+        <Label Grid.Row="18" Foreground="Black" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Content="ENTREE"></Label>
+        <Path Stretch="Fill" Grid.Row="11" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="4" Data="M0,20 v-20 h40 M60,0 h20 v20 M80,40 v20 h-20 M0,40 v20 h40" Style="{StaticResource MurContourStyle}"></Path>
+        <s:TagVisualizer Grid.Column="5" Grid.Row="18" Grid.RowSpan="2" Grid.ColumnSpan="3" VisualizationAdded="entrerDansPiece"  Panel.ZIndex="10000" DataContext="ENTREE" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
+        <Image Source="Resources/cluedo.jpg" Grid.Row="11" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="4" Margin="5"></Image>
+        
+        <!--Zone de case-->
+        <Rectangle Name="N13" Grid.Row="17" Grid.Column="4" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="4" Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="1.3" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N14" Grid.Row="17" Grid.Column="5" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="5" Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="1.4" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N15" Grid.Row="17" Grid.Column="6" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="6" Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="1.5" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N16" Grid.Row="17" Grid.Column="7" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="7" Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="1.6" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N21" Grid.Row="16" Grid.Column="2" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="2" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="2.1" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N22" Grid.Row="16" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="2.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N23" Grid.Row="16" Grid.Column="4" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="4" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="2.3" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N24" Grid.Row="16" Grid.Column="5" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="5" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="2.4" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N25" Grid.Row="16" Grid.Column="6" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="6" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="2.5" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N26" Grid.Row="16" Grid.Column="7" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="7" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="2.6" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N27" Grid.Row="16" Grid.Column="8" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="8" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="2.7" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N28" Grid.Row="16" Grid.Column="9" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="9" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="2.8" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N31" Grid.Row="15" Grid.Column="2" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="2" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="3.1" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N32" Grid.Row="15" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="3.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N33" Grid.Row="15" Grid.Column="4" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="4" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="3.3" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N34" Grid.Row="15" Grid.Column="5" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="5" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="3.4" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N35" Grid.Row="15" Grid.Column="6" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="6" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="3.5" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N36" Grid.Row="15" Grid.Column="7" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="7" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="3.6" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N37" Grid.Row="15" Grid.Column="8" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="8" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="3.7" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N38" Grid.Row="15" Grid.Column="9" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="9" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="3.8" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N41" Grid.Row="14" Grid.Column="2" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="2" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="4.1" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N42" Grid.Row="14" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="4.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N43" Grid.Row="14" Grid.Column="4" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="4" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="4.3" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N44" Grid.Row="14" Grid.Column="5" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="5" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="4.4" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N45" Grid.Row="14" Grid.Column="6" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="6" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="4.5" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N46" Grid.Row="14" Grid.Column="7" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="7" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="4.6" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N47" Grid.Row="14" Grid.Column="8" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="8" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="4.7" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N48" Grid.Row="14" Grid.Column="9" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="9" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="4.8" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N51" Grid.Row="13" Grid.Column="2" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="2" Grid.Row="13" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="5.1" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N52" Grid.Row="13" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="13" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="5.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N57" Grid.Row="13" Grid.Column="8" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="8" Grid.Row="13" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="5.7" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N61" Grid.Row="12" Grid.Column="2" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="2" Grid.Row="12" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="6.1" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N62" Grid.Row="12" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="12" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="6.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N67" Grid.Row="12" Grid.Column="8" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="8" Grid.Row="12" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="6.7" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N71" Grid.Row="11" Grid.Column="2" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="2" Grid.Row="11" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="7.1" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N72" Grid.Row="11" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="11" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="7.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N77" Grid.Row="11" Grid.Column="8" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="8" Grid.Row="11" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="7.7" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N81" Grid.Row="10" Grid.Column="2" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="2" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="8.1" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N82" Grid.Row="10" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="8.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N83" Grid.Row="10" Grid.Column="4" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="4" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="8.3" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N84" Grid.Row="10" Grid.Column="5" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="5" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="8.4" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N85" Grid.Row="10" Grid.Column="6" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="6" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="8.5" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N86" Grid.Row="10" Grid.Column="7" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="7" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="8.6" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N87" Grid.Row="10" Grid.Column="8" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="8" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="8.7" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N91" Grid.Row="9" Grid.Column="2" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="2" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="9.1" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N92" Grid.Row="9" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="9.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N93" Grid.Row="9" Grid.Column="4" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="4" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="9.3" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N94" Grid.Row="9" Grid.Column="5" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="5" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="9.4" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N95" Grid.Row="9" Grid.Column="6" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="6" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="9.5" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N96" Grid.Row="9" Grid.Column="7" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="7" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="9.6" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N97" Grid.Row="9" Grid.Column="8" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="8" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="9.7" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N102" Grid.Row="8" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="10.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N103" Grid.Row="8" Grid.Column="4" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="4" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="10.3" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N104" Grid.Row="8" Grid.Column="5" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="5" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="10.4" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N105" Grid.Row="8" Grid.Column="6" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="6" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="10.5" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N106" Grid.Row="8" Grid.Column="7" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="7" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="10.6" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N107" Grid.Row="8" Grid.Column="8" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="8" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="10.7" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N108" Grid.Row="8" Grid.Column="9" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="9" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="10.8" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N112" Grid.Row="7" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="11.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N113" Grid.Row="7" Grid.Column="4" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="4" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="11.3" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N114" Grid.Row="7" Grid.Column="5" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="5" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="11.4" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N115" Grid.Row="7" Grid.Column="6" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="6" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="11.5" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N116" Grid.Row="7" Grid.Column="7" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="7" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="11.6" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N117" Grid.Row="7" Grid.Column="8" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="8" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="11.7" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N118" Grid.Row="7" Grid.Column="9" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="9" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="11.8" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N121" Grid.Row="6" Grid.Column="2" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="2" Grid.Row="6" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="12.1" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N122" Grid.Row="6" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="6" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="12.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N123" Grid.Row="6" Grid.Column="4" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="4" Grid.Row="6" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="12.3" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N124" Grid.Row="6" Grid.Column="5" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="5" Grid.Row="6" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="12.4" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N131" Grid.Row="5" Grid.Column="2" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="2" Grid.Row="5" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="13.1" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N132" Grid.Row="5" Grid.Column="3" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="3" Grid.Row="5" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="13.2" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N133" Grid.Row="5" Grid.Column="4" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="4" Grid.Row="5" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="13.3" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         <Rectangle Name="N134" Grid.Row="5" Grid.Column="5" Style="{StaticResource CaseStyle}"></Rectangle>
+        <s:TagVisualizer Grid.Column="5" Grid.Row="5" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationMoved="cleanColor" Panel.ZIndex="10000" DataContext="13.4" >
+            <s:TagVisualizer.Definitions>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x01" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x20" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xB5" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0xA6" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+            </s:TagVisualizer.Definitions>
+        </s:TagVisualizer>
+        
         
     </Grid>
 </s:SurfaceWindow>
