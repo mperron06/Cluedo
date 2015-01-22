@@ -65,7 +65,7 @@ function init() {
 
     cartesMilieu = [];
 
-    nbMaxJoueurs = 4;
+    nbMaxJoueurs = 6;
 
     nbCases = 24;
     cases = [];
@@ -215,31 +215,7 @@ io.on('connection', function(socket){
         io.sockets.emit('test', s);
     });
 
-
-    socket.on('numJoueur', function (s) {
-        console.log("Nombre joueurs maximum : " + s);
-        nbMaxJoueurs = s;
-        //io.sockets.emit('serveurPret', "hello");
-    });
-
-    socket.on('addTable', function () {
-
-        if (termine == true) {
-            init();
-        }
-
-        console.log("Table Connectee");
-
-        tableSocket = socket;
-
-        console.log(nbJoueurs);
-
-        if (nbJoueurs == nbMaxJoueurs) {
-            //io.sockets.emit('choixPions', joueurs);
-            console.log("joueurs prets");
-            io.sockets.emit('joueursPrets', null);
-        }
-    });
+    /***** FIN EMIT ANDROID *****/
 
     socket.on('addPlayer', function (playerName, persoName) {
 
@@ -289,6 +265,7 @@ io.on('connection', function(socket){
             nbJoueurs++;
 
             socket.emit('myId', myId);
+            socket.emit('joueurReady', null);
             socket.emit('cases', cases);
             socket.emit('griserTag', persoName);
             //socket.emit('cartes', cartes);
@@ -296,10 +273,150 @@ io.on('connection', function(socket){
             if (nbJoueurs == nbMaxJoueurs && tableSocket != null) {
                 //io.sockets.emit('choixPions', joueurs);
                 console.log("joueurs prets");
-                io.sockets.emit('joueursPrets', null);
+                io.sockets.emit('joueursPrets', nbJoueurs);
             }
         }
     });
+
+    socket.on('tourTermine', function () {
+        do {
+            idJoueurActuel = (idJoueurActuel + 1) % nbMaxJoueurs;
+        } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a été éliminé après une fausse accusation
+
+
+        io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
+    });
+
+
+    socket.on('lanceDe', function (value) {
+        var val = parseInt(value);
+        tableSocket.emit('choixMouvement', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase, value: val });
+    });
+
+    socket.on('supposition', function (perso, arme, lieu) {
+        var idCase = joueurs[idJoueurActuel].numCase;
+        //changement du moved pour l'accusé
+    });
+
+    socket.on('accusation', function (perso, arme, lieu) {
+        var idCase = joueurs[idJoueurActuel].numCase;
+        //changement du moved pour l'accusé
+        
+    });
+    socket.on('choixCarte', function (perso, arme, lieu) {
+
+    });
+
+    /***** FIN EMIT ANDROID *****/
+
+
+    /***** EMIT TABLE *****/
+
+    socket.on('addTable', function () {
+
+        if (termine == true) {
+            init();
+        }
+
+        console.log("Table Connectee");
+
+        tableSocket = socket;
+
+        console.log(nbJoueurs);
+
+        if (nbJoueurs == nbMaxJoueurs) {
+            //io.sockets.emit('choixPions', joueurs);
+            console.log("joueurs prets");
+            io.sockets.emit('joueursPrets', nbJoueurs);
+        }
+    });
+
+    socket.on('numJoueur', function (s) {
+        console.log("Nombre joueurs maximum : " + s);
+        nbMaxJoueurs = s;
+        //io.sockets.emit('serveurPret', "hello");
+    });
+
+    /** si bouton 'lancement partie' et non pas préciser le nombre de joueurs' */
+    socket.on('lancementDebutPartie', function (arg) {
+        console.log(arg);
+        nbMaxJoueurs = nbJoueurs;
+        io.sockets.emit('joueursPrets', nbJoueurs);
+        //io.sockets.emit('choixPions', joueurs);
+    });
+
+    /* Changement de tour avec ancien appel dans une piece */
+    socket.on('nextTourChange', function (arg) {
+        console.log(arg);
+        joueurs[idJoueurActuel].moved = false;
+        jSockets[idJoueurActuel].emit('tourChange', joueurs[idJoueurActuel].numCase );
+    });
+
+    /* Changement de tour avec possibilité de prendre un raccourci */
+    socket.on('nextTourRaccourci', function (arg) {
+        console.log(arg);
+        jSockets[idJoueurActuel].emit('tourRaccourci', joueurs[idJoueurActuel].numCase );
+    });
+
+    /* Changement de tour avec lancé de dé */
+    socket.on('nextTourLanceDe', function (arg) {
+        console.log(arg);
+        jSockets[idJoueurActuel].emit('tourLancerDe', null);
+    });
+
+    /* Choix de la supposition si dans une pièce */
+    socket.on('tourChoixSupposition', function (arg) {
+        console.log(arg);
+        joueurs[idJoueurActuel].numCase = arg; // nouvelle case
+        jSockets[idJoueurActuel].emit('tourSupposition', joueurs[idJoueurActuel].numCase );
+    });
+
+    /* Choix de l'accusation si dans une pièce */
+    socket.on('tourChoixAccusation', function (arg) {
+        console.log(arg);
+        var idCase = arg;
+        joueurs[idJoueurActuel].numCase = idCase; // nouvelle case
+        jSockets[idJoueurActuel].emit('tourAccusation', joueurs[idJoueurActuel].numCase);
+    });
+
+    /* Demande des déplacements de l'accusation */
+    socket.on('tourAttenteDeplacement', function (arg) {
+        console.log(arg);
+        jSockets[idJoueurActuel].emit('attenteDeplacement', null);
+    });
+
+    /* Attente de la supposition */
+    socket.on('tourAttenteSupposition', function (arg) {
+        console.log(arg);
+        jSockets[idJoueurActuel].emit('attenteSupposition', null);
+    });
+
+    /* Attente de l'accusation */
+    socket.on('tourAttenteAccusation', function (arg) {
+        console.log(arg);
+        jSockets[idJoueurActuel].emit('attenteAccusation', null);
+    });
+
+    /* Choix de la carte d'accusationn */
+    socket.on('tourChoixCarteAccusation', function (arg) {
+        console.log(arg);
+        // COMMENT FAIRE................???????????????,
+        io.sockets.emit('choixCarteAccusation', null);
+    });
+
+    /* Reception de la carte de l'accusation */
+    socket.on('tourReceptionCarte', function (arg) {
+        console.log(arg);
+        jSockets[idJoueurActuel].emit('receptionCarteAccusation', arg); //envoie de la carte
+    });
+
+    /* Reception de la carte de l'accusation */
+    socket.on('tourFinJeu', function (arg) {
+        console.log(arg);
+        io.sockets.emit('partieTerminee', arg); //affichage du vainqueur et des accusés
+    });
+
+    /***** EMIT TABLE *****/
 
     socket.on('reconnect', function (arg) {
 
@@ -317,12 +434,6 @@ io.on('connection', function(socket){
         }
     });
 
-    socket.on('forcerDebutPartie', function (arg) {
-        console.log(arg);
-        nbMaxJoueurs = nbJoueurs;
-        //io.sockets.emit('choixPions', joueurs);
-    });
-
     socket.on('pionPret', function () {
         nbJoueursPrets++;
         console.log(nbJoueursPrets);
@@ -332,127 +443,6 @@ io.on('connection', function(socket){
             //io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase});
             //tableSocket.emit('debutPartie', idJoueurActuel);
             io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
-        }
-    });
-
-    socket.on('tourTermine', function () {
-        do{
-            idJoueurActuel = (idJoueurActuel + 1) % nbMaxJoueurs;
-        } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a été éliminé après une fausse accusation
-
-        
-        io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
-    });
-
-
-    socket.on('lanceDe', function (value) {
-        var val = parseInt(value);
-        io.sockets.emit('choixMouvement', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase, value: val });
-    });
-
-    socket.on('pionDeplace', function () {
-
-        var idCase = joueurs[idJoueurActuel].numCase;
-
-        switch (idCase) {
-            // si case de lieu -> supposition, si case d'accusation -> accusation
-            case 0: joueurs[idJoueurActuel].argent += cases[0].valeur;
-                io.sockets.emit('nouveauArgent', { idJoueur: idJoueurActuel, argent: joueurs[idJoueurActuel].argent });
-
-                jSockets[idJoueurActuel].emit('caseDepart', cases[0].valeur);
-                break;
-
-            case 2:
-            case 7:
-            case 15:
-            case 19: jSockets[idJoueurActuel].emit('caseCarteChance', null);
-                break;
-
-            case 4:
-            case 13: joueurs[idJoueurActuel].passeTour = true;
-                io.sockets.emit('passeTour', { idJoueur: idJoueurActuel, passeTour: joueurs[idJoueurActuel].passeTour });
-
-                jSockets[idJoueurActuel].emit('casePasseSonTour', null);
-                break;
-
-            case 6: jSockets[idJoueurActuel].emit('caseRevisions', null);
-                break;
-
-            case 10: joueurs[idJoueurActuel].argent += cases[10].valeur;
-                io.sockets.emit('nouveauArgent', { idJoueur: idJoueurActuel, argent: joueurs[idJoueurActuel].argent });
-                jSockets[idJoueurActuel].emit('nuitDeLinfo', cases[10].valeur);
-                break;
-
-            case 12: joueurs[idJoueurActuel].argent += argentMilieu;
-                io.sockets.emit('nouveauArgent', { idJoueur: idJoueurActuel, argent: joueurs[idJoueurActuel].argent });
-                jSockets[idJoueurActuel].emit('bourseAuMerite', argentMilieu);
-
-                argentMilieu = 0;
-                tableSocket.emit('nouvelleBourse', argentMilieu);
-
-                break;
-
-            case 18: joueurs[idJoueurActuel].enExams = true;
-                joueurs[idJoueurActuel].nbToursExams = 0;
-                io.sockets.emit('enExams', { idJoueur: idJoueurActuel, enExams: true });
-                joueurs[idJoueurActuel].numCase = 6;
-                io.sockets.emit('caseChangee', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
-                jSockets[idJoueurActuel].emit('sessionExams', null);
-                break;
-
-            case 22: joueurs[idJoueurActuel].argent -= cases[22].valeur;
-                io.sockets.emit('nouveauArgent', { idJoueur: idJoueurActuel, argent: joueurs[idJoueurActuel].argent });
-                jSockets[idJoueurActuel].emit('fraisScolarite', cases[22].valeur);
-                argentMilieu += cases[22].valeur;
-                tableSocket.emit('nouvelleBourse', argentMilieu);
-                break;
-
-            default: if (cases[idCase].proprietaire == null) {
-                jSockets[idJoueurActuel].emit('propositionAchat', idCase);
-            } else {
-                if (cases[idCase].proprietaire == idJoueurActuel) {
-                    jSockets[idJoueurActuel].emit('propositionVente', idCase);
-                } else {
-                    var idProprio = cases[idCase].proprietaire;
-
-                    var nbProprietes = 0;
-                    var somme = 0;
-                    var tab = joueurs[idProprio].proprietes;
-
-                    for (var i = 0; i < tab.length; i++) {
-                        if (cases[tab[i]].couleur == cases[idCase].couleur) {
-                            nbProprietes++;
-                        }
-                    }
-
-                    somme = (cases[idCase].valeur / 4) * nbProprietes;
-                    joueurs[idJoueurActuel].argent -= somme;
-                    io.sockets.emit('nouveauArgent', { idJoueur: idJoueurActuel, argent: joueurs[idJoueurActuel].argent });
-                    jSockets[idJoueurActuel].emit('paiement', { idCase: idCase, nbProprietes: nbProprietes, somme: somme });
-
-                    joueurs[idProprio].argent += somme;
-                    io.sockets.emit('nouveauArgent', { idJoueur: idProprio, argent: joueurs[idProprio].argent });
-                    jSockets[idProprio].emit('gainPropriete', { idCase: idCase, somme: somme });
-                }
-            }
-
-                break;
-        }
-    });
-
-    socket.on('supposition', function () {
-        var idCase = joueurs[idJoueurActuel].numCase;
-
-        if (cases[idCase].type == "piece") {
-                io.sockets.emit('nouvelleSupposition', { idJoueur: idJoueurActuel, lieu: joueurs[idJoueurActuel].numCase });
-            }
-    });
-
-    socket.on('accusation', function () {
-        var idCase = joueurs[idJoueurActuel].numCase;
-
-        if (cases[idCase].type == "hall") {
-            io.sockets.emit('nouvelleAccusation', { idJoueur: idJoueurActuel, lieu: joueurs[idJoueurActuel].numCase });
         }
     });
 
