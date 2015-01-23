@@ -38,6 +38,10 @@ namespace Cluedo
             socket.Emit("lancementDebutPartie", "on passe à la page suivante");
         }
 
+        public static void lancementPionsPrets() {
+            socket.Emit("lancementPionsPrets", null);
+        }
+
 
         public static void Execute()
         {
@@ -87,6 +91,8 @@ namespace Cluedo
                     Joueur joueur = data.Json.GetFirstArgAs<Joueur>();
                     Console.WriteLine("nouveauJoueur " + joueur.persoName);
                     Page1.getInstance().hideQrcode(joueur.persoName);
+                    MainWindowCluedo.joueurs.Add(joueur.persoName);
+                    Console.WriteLine(MainWindowCluedo.joueurs.Count);
                 });
             });
             

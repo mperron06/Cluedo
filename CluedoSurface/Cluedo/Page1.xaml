@@ -25,7 +25,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock TextWrapping="Wrap" FontSize="40" Foreground="SeaShell" HorizontalAlignment="Center" Text="Choisissez votre personnage et lancez la partie" Margin="50,70"></TextBlock>
+            <TextBlock TextWrapping="Wrap" FontSize="40" Foreground="SeaShell" HorizontalAlignment="Center" Text="Choisissez chacun un personnage, puis lancez la partie" Margin="50,70"></TextBlock>
             <Image Grid.Row="0" Grid.Column="1" Source="Resources/icon2.png" HorizontalAlignment="Left" Margin="20,60"></Image>
             <TextBlock Text="Cluedo" Grid.Row="0" Grid.Column="1" Margin="200, 40, 30, 10" FontFamily="Tahoma" FontSize="128" FontWeight="ExtraBold" Foreground="White"></TextBlock>
         </Grid>
