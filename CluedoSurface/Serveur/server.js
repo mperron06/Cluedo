@@ -168,19 +168,19 @@ function init() {
 
     nbCartes = 21;
     cartes = [];
-    cartes.push({ id:0, nom:"Violet", type:"perso", tag:"A" });
-    cartes.push({ id: 1, nom: "Leblanc", type: "perso", tag: "B" });
-    cartes.push({ id: 2, nom: "Rose", type: "perso", tag: "C" });
-    cartes.push({ id: 3, nom: "Olivier", type: "perso", tag: "D" });
-    cartes.push({ id: 4, nom: "Moutarde", type: "perso", tag:"E" });
-    cartes.push({ id: 5, nom: "Pervenche", type: "perso", tag:"F" });
+    cartes.push({ id:0, nom:"Violet", type:"perso", tag: 3 });
+    cartes.push({ id: 1, nom: "Leblanc", type: "perso", tag: 6 });
+    cartes.push({ id: 2, nom: "Rose", type: "perso", tag: 10 });
+    cartes.push({ id: 3, nom: "Olivier", type: "perso", tag: 11 });
+    cartes.push({ id: 4, nom: "Moutarde", type: "perso", tag: 12 });
+    cartes.push({ id: 5, nom: "Pervenche", type: "perso", tag: 13 });
 
-    cartes.push({ id: 6, nom: "Corde", type: "arme", tag: "G" });
-    cartes.push({ id: 7, nom: "Poignard", type: "arme", tag: "H" });
-    cartes.push({ id: 8, nom: "Clé anglaise", type: "arme", tag: "I" });
-    cartes.push({ id: 9, nom: "Revolver", type: "arme", tag: "J" });
-    cartes.push({ id: 10, nom: "Chandelier", type: "arme", tag: "K" });
-    cartes.push({ id: 11, nom: "Barre de fer", type: "arme", tag: "L" });
+    cartes.push({ id: 6, nom: "Corde", type: "arme", tag: 14 });
+    cartes.push({ id: 7, nom: "Poignard", type: "arme", tag: 15 });
+    cartes.push({ id: 8, nom: "Clé anglaise", type: "arme", tag: 16 });
+    cartes.push({ id: 9, nom: "Revolver", type: "arme", tag: 21 });
+    cartes.push({ id: 10, nom: "Chandelier", type: "arme", tag: 22 });
+    cartes.push({ id: 11, nom: "Barre de fer", type: "arme", tag: 25 });
 
     
     cartes.push({ id: 12, nom: "Entrée", type: "piece", tag: "" });
@@ -259,7 +259,7 @@ io.on('connection', function(socket){
             joueurs[nbJoueurs].moved = false;
 
             if (tableSocket != null) {
-                tableSocket.emit("nouveauJoueur", { idJoueur: nbJoueurs, pseudoJoueur: name });
+                tableSocket.emit("nouveauJoueur", { idJoueur: nbJoueurs, persoName: persoName });
             }
 
             nbJoueurs++;
@@ -267,7 +267,6 @@ io.on('connection', function(socket){
             socket.emit('myId', myId);
             socket.emit('joueurReady', null);
             socket.emit('cases', cases);
-            socket.emit('griserTag', persoName);
             //socket.emit('cartes', cartes);
 
             if (nbJoueurs == nbMaxJoueurs && tableSocket != null) {
@@ -338,16 +337,27 @@ io.on('connection', function(socket){
     });
 
     /** si bouton 'lancement partie' et non pas préciser le nombre de joueurs' */
-    socket.on('lancementDebutPartie', function (arg) {
+    socket.on('lancementDebutPartie', function () {
         console.log(arg);
-        nbMaxJoueurs = nbJoueurs;
         io.sockets.emit('joueursPrets', nbJoueurs);
-        //io.sockets.emit('choixPions', joueurs);
+    });
+
+    /** Pions dans le hall */
+    socket.on('lancementPionsPrets', function () {
+        nbJoueursPrets++;
+        console.log(nbJoueursPrets);
+        if (nbJoueursPrets == nbMaxJoueurs) {
+            idJoueurDepart = Math.floor(Math.random() * nbMaxJoueurs);
+            idJoueurActuel = idJoueurDepart;
+            //io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase});
+            //tableSocket.emit('debutPartie', idJoueurActuel);
+            io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
+        }
     });
 
     /* Changement de tour avec ancien appel dans une piece */
-    socket.on('nextTourChange', function (arg) {
-        console.log(arg);
+    socket.on('nextTourChange', function (prochainJoueur) {
+        console.log(prochainJoueur);
         joueurs[idJoueurActuel].moved = false;
         jSockets[idJoueurActuel].emit('tourChange', joueurs[idJoueurActuel].numCase );
     });
@@ -433,19 +443,6 @@ io.on('connection', function(socket){
             io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
         }
     });
-
-    socket.on('pionPret', function () {
-        nbJoueursPrets++;
-        console.log(nbJoueursPrets);
-        if (nbJoueursPrets == nbMaxJoueurs) {
-            idJoueurDepart = Math.floor(Math.random() * nbMaxJoueurs);
-            idJoueurActuel = idJoueurDepart;
-            //io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase});
-            //tableSocket.emit('debutPartie', idJoueurActuel);
-            io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
-        }
-    });
-
 
     socket.on('disconnect', function(){
         console.log("Client disconnected : " + socket.id);
