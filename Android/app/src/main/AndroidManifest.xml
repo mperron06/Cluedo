@@ -26,9 +26,9 @@
             android:label="@string/title_activity_menu" >
         </activity>
         <activity
-            android:name="com.polytech.cluedo.LoginActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name" >
+            android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,34 +36,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.polytech.cluedo.WaitingLogActivity"
+            android:name=".WaitingLogActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.polytech.cluedo.ProfilActivity"
+            android:name=".ProfilActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.polytech.cluedo.MovedActivity"
+            android:name=".MovedActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.polytech.cluedo.ShortcutActivity"
+            android:name=".ShortcutActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.polytech.cluedo.DiceActivity"
+            android:name=".DiceActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.polytech.cluedo.SuppositionActivity"
+            android:name=".SuppositionActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.polytech.cluedo.WaitingMoveActivity"
+            android:name=".WaitingMoveActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.polytech.cluedo.WaitingSuppositionActivity"
+            android:name=".WaitingSuppositionActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -77,6 +77,10 @@
         <activity
             android:name=".EndGameActivity"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".PionsActivity"
+            android:label="@string/title_activity_pions" >
         </activity>
     </application>
 

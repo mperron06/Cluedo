@@ -162,8 +162,9 @@ public class Remote {
                 /*id_joueur_actuel = JSONUtils.extractLong(FIELD_ID_JOUEUR, args[0].toString());
                 initAttributes();*/
 
-                Intent intent = new Intent(context, ProfilActivity.class);
+                Intent intent = new Intent(context, PionsActivity.class);
                 context.startActivity(intent);
+
             }
             if (event.equals(MOVED_TURN)) { // DEBUT DE LA PARTIE
                 Intent intent = new Intent(context, MovedActivity.class);

@@ -52,5 +52,6 @@
     <string name="title_activity_end_game">EndGameActivity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_pions">PionsActivity</string>
 
 </resources>
