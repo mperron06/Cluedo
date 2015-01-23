@@ -445,7 +445,7 @@ var cartesMilieu;
             socket.emit('reconnected', joueurs);
             socket.emit('cases', cases);
 
-            io.sockets.emit('prochainJoueur', idJoueurActuel) ;
+            io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
         }
     });
 
