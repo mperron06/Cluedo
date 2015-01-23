@@ -3,38 +3,54 @@
 
     <string name="app_name">Cluedo</string>
     <string name="action_settings">Settings</string>
-    
+
     <!-- LoginActivity -->
     <string name="pseudo">Pseudo</string>
-	<string name="ip">Adresse IP</string>
-	<string name="enterYourPseudo">Entrez votre pseudo</string>
-	<string name="enterYourIP">Entrez l\'IP de la table</string>
+    <string name="ip">Adresse IP</string>
+    <string name="enterYourPseudo">Entrez votre pseudo</string>
+    <string name="enterYourIP">Entrez l\'IP de la table</string>
     <string name="enterYourPerso">Entrez le nom du personnage</string>
-	<string name="pseudoMissed">Pseudo manquant</string>
-	<string name="ipMissed">Adresse IP manquante</string>
-	<string name="qR">QR</string>
-	<string name="connection">Connexion</string>
-	
-	<!-- WaitingActivity -->
-	<string name="waitingForPlayers">Attente de joueurs&#8230;</string>
-    <string name="welcomePlayer">Bienvenue&#8230;</string>
-    <string name="madamePervenche">Bonjour Madame Pervenche, attendez les autres joueurs&#8230;</string>
-    <string name="colonelMoutarde">Bonjour Colonel Moutarde, attendez les autres joueurs&#8230;</string>
-    <string name="docteurOlive">Bonjour Docteur Olive, attendez les autres joueurs&#8230;</string>
-    <string name="profViolet">Bonjour Professeur Violet, attendez les autres joueurs&#8230;</string>
-    <string name="madameLeblanc">Bonjour Madame Leblanc, attendez les autres joueurs&#8230;</string>
-    <string name="mlleRose">Bonjour Mlle Rose, attendez les autres joueurs&#8230;</string>
-	<string name="putThePiece">Veuillez choisir un pion et le poser dans la zone qui vous est attribuée.</string>
-	<string name="tagSaved">Tag associé.\nEn attente des autres joueurs&#8230;</string>
-<!-- 	<string name="preparePiece">Veuillez placer votre pion sur la case RENTREE.</string> -->
-	
-	<!-- MenuActivity -->
-	<string-array name="menu_item_titles">
+    <string name="pseudoMissed">Pseudo manquant</string>
+    <string name="ipMissed">Adresse IP manquante</string>
+    <string name="qR">QR</string>
+    <string name="connection">Connexion</string>
+
+    <!-- WaitingActivity -->
+    <string name="waitingForPlayers">Attente de joueurs…</string>
+    <string name="welcomePlayer">Bienvenue…</string>
+    <string name="madamePervenche">Bonjour Madame Pervenche, attendez les autres joueurs…</string>
+    <string name="colonelMoutarde">Bonjour Colonel Moutarde, attendez les autres joueurs…</string>
+    <string name="docteurOlive">Bonjour Docteur Olive, attendez les autres joueurs…</string>
+    <string name="profViolet">Bonjour Professeur Violet, attendez les autres joueurs…</string>
+    <string name="madameLeblanc">Bonjour Madame Leblanc, attendez les autres joueurs…</string>
+    <string name="mlleRose">Bonjour Mlle Rose, attendez les autres joueurs…</string>
+    <string name="putThePiece">Veuillez choisir un pion et le poser dans la zone qui vous est attribuée.</string>
+    <string name="tagSaved">Tag associé.\nEn attente des autres joueurs…</string>
+    <!-- <string name="preparePiece">Veuillez placer votre pion sur la case RENTREE.</string> -->
+
+
+    <!-- MenuActivity -->
+    <string-array name="menu_item_titles">
         <item>Ma partie</item>
         <item>Patrimoines</item>
         <item>Joueurs</item>
         <item>Ecoles</item>
     </string-array>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="title_activity_profil">ProfilActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_moved">MovedActivity</string>
+    <string name="title_activity_shortcut">ShortcutActivity</string>
+    <string name="title_activity_dice">DiceActivity</string>
+    <string name="title_activity_supposition">SuppositionActivity</string>
+    <string name="title_activity_waiting_move">WaitingMoveActivity</string>
+    <string name="title_activity_waiting_supposition">WaitingSuppositionActivity</string>
+    <string name="title_activity_accused">AccusedActivity</string>
+    <string name="title_activity_receive_card">ReceiveCardActivity</string>
+    <string name="title_activity_end_game">EndGameActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
 </resources>
