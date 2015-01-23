@@ -265,8 +265,8 @@ io.on('connection', function(socket){
             nbJoueurs++;
 
             socket.emit('myId', myId);
-            socket.emit('joueurReady', null);
-            socket.emit('cases', cases);
+            //socket.emit('joueurReady', null);
+            //socket.emit('cases', cases);
             //socket.emit('cartes', cartes);
 
             if (nbJoueurs == nbMaxJoueurs && tableSocket != null) {
@@ -338,6 +338,11 @@ io.on('connection', function(socket){
 
     /** si bouton 'lancement partie' et non pas préciser le nombre de joueurs' */
     socket.on('lancementDebutPartie', function (arg) {
+        /** Distribuer les cartes 
+var nbCartes;
+var cartes;
+var cartesMilieu;
+*/
         console.log(arg);
         io.sockets.emit('joueursPrets', nbJoueurs); /* mettre écran poser les pions */
     });
