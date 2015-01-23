@@ -337,9 +337,9 @@ io.on('connection', function(socket){
     });
 
     /** si bouton 'lancement partie' et non pas préciser le nombre de joueurs' */
-    socket.on('lancementDebutPartie', function () {
+    socket.on('lancementDebutPartie', function (arg) {
         console.log(arg);
-        io.sockets.emit('joueursPrets', nbJoueurs);
+        io.sockets.emit('joueursPrets', nbJoueurs); /* mettre écran poser les pions */
     });
 
     /** Pions dans le hall */
