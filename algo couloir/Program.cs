@@ -15,7 +15,8 @@ namespace MaPremiereApplication
             int de = rnd.Next(2, 13); // creates a number between 2 and 12
             Console.WriteLine(de);
             // deux sorties de la pièce
-            string[] list = {"0.4", "0.5"};
+            //string[] list = {"0.4", "0.5"};
+            string [] list = { "10.3" };
             List<String> tab = seDeplacer(list, de);
 
             foreach (string caseMvt in tab)
@@ -98,8 +99,21 @@ namespace MaPremiereApplication
                     cheminParcouru.Add(temp);
                     tab.AddRange(choixDeplacement(temp, de - 1, cheminParcouru));
                 }
+                // en arrière
+                temp = (x - 1) + "." + y;
+                // si pièce, retourner la case
+                if (isRoom(temp))
+                {
+                    tab.Add(temp);
+                    cheminParcouru.Add(temp);
+                }
+                else if (cases.Contains(temp) && !cheminParcouru.Contains(temp))
+                {
+                    cheminParcouru.Add(temp);
+                    tab.AddRange(choixDeplacement(temp, de - 1, cheminParcouru));
+                }
             }
-            // sinon, de=0, retourne la case actuelle
+            // sinon,  retourne la case actuelle
             else
             {
                 tab.Add(pos);
