@@ -66,11 +66,10 @@ namespace Cluedo
             //SocketIO.PionPose(idCase);
             //1. get last location from server by sending joueur id, if in a room, get all doors
             //String[] list = { "6.3","6.6","5.5","7.5" };
-            String[] list = getDoors("CHAMBRE");
-
+            String[] list = getDoors("HALL");
 
             //2. get "dé" number
-            int de = 1;
+            int de = 3;
 
             List<String> tab = seDeplacer(list, de);
 

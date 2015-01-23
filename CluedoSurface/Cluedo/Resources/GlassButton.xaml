@@ -7,20 +7,14 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
-                    <Ellipse Stroke="Black"
+                        <Ellipse Stroke="Transparent"
                          StrokeThickness="2">
-                        <Ellipse.Fill>
-                                <ImageBrush ImageSource="castle.jpg">
-                                    <ImageBrush.Transform>
-                                    <TransformGroup>
-                                        <ScaleTransform ScaleY="0.65" />
-                                    </TransformGroup>
-                                </ImageBrush.Transform>
-                            </ImageBrush>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                    <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center" Content="Start" TextBlock.FontSize="40" TextBlock.FontFamily="Kabel" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red"/>
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="start.png">
+                               
+                                </ImageBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
                     </Grid>
                     <!--ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">

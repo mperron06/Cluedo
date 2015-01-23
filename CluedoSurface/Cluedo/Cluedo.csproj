@@ -80,14 +80,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\GlassButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SurfaceWindow1.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -102,10 +94,10 @@
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
     <Compile Include="SocketIO.cs" />
-    <Compile Include="SurfaceWindow1.xaml.cs">
-      <DependentUpon>SurfaceWindow1.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Resources\GlassButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -133,55 +125,20 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\icon2.png" />
+    <Resource Include="Resources\start.png" />
     <Resource Include="Resources\X.png" />
-    <Resource Include="Resources\newTitle.jpg" />
-    <Resource Include="Resources\persons.jpg" />
-    <Resource Include="Resources\rules.jpg" />
     <Resource Include="Resources\persons\blanc.jpg" />
     <Resource Include="Resources\persons\moutarde.jpg" />
     <Resource Include="Resources\persons\olive.jpg" />
     <Resource Include="Resources\persons\pervenche.jpg" />
     <Resource Include="Resources\persons\rose.jpg" />
     <Resource Include="Resources\persons\violet.jpg" />
-    <Resource Include="Resources\gendarme.png" />
-    <Resource Include="Resources\bourse_merite.png" />
-    <Resource Include="Resources\chance_top.png" />
-    <Resource Include="Resources\chance_bottom.png" />
-    <Resource Include="Resources\chance_left.png" />
-    <Resource Include="Resources\chance_right.png" />
-    <Resource Include="Resources\go.png" />
-    <Resource Include="Resources\ecoles\paris.png" />
-    <Resource Include="Resources\ecoles\orlean.png" />
-    <Resource Include="Resources\ecoles\clermont.png" />
-    <Resource Include="Resources\ecoles\lyon.png" />
-    <Resource Include="Resources\ecoles\tours.png" />
-    <Resource Include="Resources\ecoles\marseille.png" />
-    <Resource Include="Resources\ecoles\annecy.png" />
-    <Resource Include="Resources\ecoles\grenoble.png" />
-    <Resource Include="Resources\ecoles\lille.png" />
-    <Resource Include="Resources\ecoles\montpellier.png" />
-    <Resource Include="Resources\ecoles\nantes.png" />
-    <Resource Include="Resources\ecoles\sophia.png" />
-    <Resource Include="Resources\ecoles\annecy_g.png" />
-    <Resource Include="Resources\ecoles\clermont_g.png" />
-    <Resource Include="Resources\ecoles\grenoble_g.png" />
-    <Resource Include="Resources\ecoles\lille_g.png" />
-    <Resource Include="Resources\ecoles\lyon_g.png" />
-    <Resource Include="Resources\ecoles\marseille_g.png" />
-    <Resource Include="Resources\ecoles\montpellier_g.png" />
-    <Resource Include="Resources\ecoles\orlean_g.png" />
-    <Resource Include="Resources\ecoles\tours_g.png" />
-    <Resource Include="Resources\ecoles\sophia_g.png" />
     <Resource Include="Resources\cluedo.jpg" />
-    <Resource Include="Resources\castle.jpg" />
-    <Content Include="Resources\icon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Cluedo.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Resource Include="Resources\go_arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

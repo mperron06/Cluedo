@@ -81,6 +81,8 @@ namespace Cluedo
             MainWindowCluedo mainWindow = new MainWindowCluedo();
             mainWindow.Show();
             this.Close();
+
+            SocketIO.start();
         }
 
 
@@ -95,10 +97,9 @@ namespace Cluedo
             qrMatrix = qrCode.GetQrMatrix(); //Qr bit matrix for input string "QrCode.Net".
             qrCode.QuietZoneModule = QuietZoneModules.Zero;  //Control will recreate image, but Bitmatrix is still for "QrCode.Net" input string. 
             qrCode.Unlock(); //Unlock class, re-encode and repaint. 
-            hideQrcode("Pervenche");
         }
 
-        private void hideQrcode(String qr) {
+        public void hideQrcode(String qr) {
             UIElement ele = personGrid.FindName(qr) as UIElement;
             Image img = ele as Image;
             img.Visibility = System.Windows.Visibility.Visible;
