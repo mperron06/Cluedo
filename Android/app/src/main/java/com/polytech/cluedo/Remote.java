@@ -121,6 +121,7 @@ public class Remote {
             			/* ------ RECUP INFOS ------ */
             if (event.equals(MY_ID)) { // ID
                 mon_id = Long.parseLong(objects[0].toString());
+                System.out.println(mon_id);
                 /*
                 Intent intent = new Intent(context, WaitingActivity.class);
                 intent.putExtra("MESSAGE", R.string.putThePiece);
@@ -212,15 +213,20 @@ public class Remote {
                 context.startActivity(intent);
             }
             if (event.equals(NEXT_PLAYER)){
+                System.out.println("Entering here");
+                //System.out.println(objects[0]);
+                /*String temp = objects[0].toString();
+                System.out.println(temp);
                 id_joueur_actuel = Long.parseLong(objects[0].toString());
-                if (id_joueur_actuel == mon_id){
+                System.out.println(id_joueur_actuel);
+                if (id_joueur_actuel == mon_id){*/
                     Intent intent = new Intent(context, MenuActivity.class);
                     context.startActivity(intent);
-                }
+                /*}
                 else {
                     Intent intent = new Intent(context, WaitingActivity.class);
                     context.startActivity(intent);
-                }
+                }*/
             }
         }
 

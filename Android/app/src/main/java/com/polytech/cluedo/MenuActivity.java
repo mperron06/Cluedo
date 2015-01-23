@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -14,6 +15,10 @@ public class MenuActivity extends Activity {
 
 
     private Button rollDice_button;
+    private String myPseudo = Remote.pseudo;
+    private String myPerso = Remote.perso;
+    private TextView pseudo;
+    private TextView perso;
 
 
     @Override
@@ -22,6 +27,11 @@ public class MenuActivity extends Activity {
         setContentView(R.layout.activity_menu);
         rollDice_button = (Button) findViewById(R.id.rollDice_button);
         rollDice_button.setOnClickListener(onClick);
+        pseudo = (TextView) findViewById(R.id.pseudoText);
+        perso = (TextView) findViewById(R.id.persoText);
+        pseudo.setText(myPseudo);
+        perso.setText(myPerso);
+
     }
 
 

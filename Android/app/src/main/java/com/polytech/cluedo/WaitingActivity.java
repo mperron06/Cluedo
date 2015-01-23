@@ -12,6 +12,10 @@ import android.widget.TextView;
 
 public class WaitingActivity extends Activity {
     private TextView info_textView;
+    private String myPseudo = Remote.pseudo;
+    private String myPerso = Remote.perso;
+    private TextView pseudo;
+    private TextView perso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,10 @@ public class WaitingActivity extends Activity {
         info_textView.setTextSize(12);
 
         this.addContentView(info_textView, params);
+        pseudo = (TextView) findViewById(R.id.pseudoText);
+        perso = (TextView) findViewById(R.id.persoText);
+        pseudo.setText(myPseudo);
+        perso.setText(myPerso);
     }
 
     @Override
