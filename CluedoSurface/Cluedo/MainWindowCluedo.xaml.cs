@@ -35,10 +35,11 @@ namespace Cluedo
         public static MainWindowCluedo instance;
         public int nbJoueurs = 0;
         public static List<String> joueurs = new List<String>();
+        public string idCaseCourant = "5.5";     //dans hall
 
         static List<String> cases = new List<String> { "0.4", "0.5", "1.3", "1.4", "1.5", "1.6", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "3.1", "3.2", "3.3", "3.4", "3.5", "3.6", "3.7", "3.8", "3.9", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6", "4.7", "4.8", "5.1", "5.2", "5.5", "5.7", "6.0", "6.1", "6.2", "6.3", "6.6", "6.7", "7.1", "7.2", "7.5", "7.7", "7.8", "8.1", "8.2", "8.3", "8.4", "8.5", "8.6", "8.7", "9.1", "9.2", "9.3", "9.4", "9.5", "9.6", "9.7", "10.2", "10.3", "10.4", "10.5", "10.6", "10.7", "10.8", "11.2", "11.3", "11.4", "11.5", "11.6", "11.7", "11.8", "11.9", "12.0", "12.1", "12.2", "12.3", "12.4", "13.1", "13.2", "13.3", "13.4", "13.5", "14.3" };
         static String[] GARAGE = { "2.0" };
-        static String[] SALLEDEJEU = { "6.0" };
+        static String[] SALLEDEJEUX = { "6.0" };
         static String[] CHAMBRE = { "12.0","14.0" };                      //???? 14.0
         static String[] SALLEDEBAIN = { "14.3","14.0" };
         static String[] BUREAU = { "13.5" };
@@ -63,34 +64,175 @@ namespace Cluedo
 
         private void verifyPlace(object sender, TagVisualizerEventArgs e)
         {
-            //string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
-            //Rectangle zoneCase = getZoneCaseFromName(Convert.ToInt32(idCase));
-            //SocketIO.PionPose(idCase);
-            //1. get last location from server by sending joueur id, if in a room, get all doors
-            //String[] list = { "6.3","6.6","5.5","7.5" };
-            String[] list = getDoors("HALL");
+            String[] list;
+            String salleName = getSalleFromCase(idCaseCourant);
+            if (salleName != null)
+            {
+                list = getDoors(salleName);
+            }
+            else {
+               String[] list2 = {idCaseCourant};
+               list = list2;
+            }
+            
+            //get "dé" number
+            int de = int.Parse(this.points1.Content.ToString());
 
-            //2. get "dé" number
-            int de = 3;
+            //récupérer le tag
+            string tag = "0x" + Convert.ToString(e.TagVisualization.VisualizedTag.Value, 16);
+            Console.WriteLine("tag: " + tag);
 
             List<String> tab = seDeplacer(list, de);
 
             string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
-            Console.WriteLine(((TagVisualizer)e.OriginalSource).DataContext.ToString());
-            Console.WriteLine(int.Parse((float.Parse(idCase)*10).ToString()) );
-
-            Rectangle zoneCase = getZoneCaseFromName(int.Parse((float.Parse(idCase) * 10).ToString()));
-
+            Rectangle zoneCase = getZoneCaseFromName(idCase);
+            Rectangle zoneCaseUp = getZoneCaseFromName((float.Parse(idCase) + 1).ToString());
+            Rectangle zoneCaseDown = getZoneCaseFromName((float.Parse(idCase) - 1).ToString());
+            Rectangle zoneCaseLeft = getZoneCaseFromName(((float.Parse(idCase) - 0.1)).ToString("0.0"));
+            Rectangle zoneCaseRight = getZoneCaseFromName(((float.Parse(idCase) + 0.1)).ToString("0.0"));
+ 
             Boolean positionCorrect = false;
             foreach (string caseMvt in tab) {
                 if (idCase.Equals(caseMvt)) {
                     zoneCase.Fill = Brushes.Green;
+                    if (zoneCaseUp != null) {
+                        zoneCaseUp.Fill = Brushes.Green;
+                    }
+                    if (zoneCaseDown != null)
+                    {
+                        zoneCaseDown.Fill = Brushes.Green;
+                    }
+                    if (zoneCaseLeft != null)
+                    {
+                        zoneCaseLeft.Fill = Brushes.Green;
+                    }
+                    if (zoneCaseRight != null)
+                    {
+                        zoneCaseRight.Fill = Brushes.Green;
+                    }
+
                     positionCorrect = true;
                     //4. if position correct send current position   
                 }
             }
             if (!positionCorrect) {
                 zoneCase.Fill = Brushes.Red;
+                if (zoneCaseUp != null)
+                {
+                    zoneCaseUp.Fill = Brushes.Red;
+                }
+                if (zoneCaseDown != null)
+                {
+                    zoneCaseDown.Fill = Brushes.Red;
+                }
+                if (zoneCaseLeft != null)
+                {
+                    zoneCaseLeft.Fill = Brushes.Red;
+                }
+                if (zoneCaseRight != null)
+                {
+                    zoneCaseRight.Fill = Brushes.Red;
+                }
+            }
+        }
+
+        private void verifySalle(string idCase)
+        {
+            String[] list;
+            String salleName = getSalleFromCase(idCaseCourant);
+            if (salleName != null)
+            {
+                list = getDoors(salleName);
+            }
+            else
+            {
+                String[] list2 = { idCaseCourant };
+                list = list2;
+            }
+
+            //get "dé" number
+            int de = int.Parse(this.points1.Content.ToString());
+
+            List<String> tab = seDeplacer(list, de);
+
+            
+            Rectangle zoneCase = getZoneCaseFromName(idCase);
+
+            Boolean positionCorrect = false;
+            string[] doorList = getDoors(idCase);
+            
+            foreach (string caseMvt in tab)
+            {
+                for(int i=0; i<doorList.Length; i++)
+                {
+                    if (doorList[i].Equals(caseMvt))
+                    {
+                        zoneCase.Fill = Brushes.Green;
+
+                        positionCorrect = true;
+                        //4. if position correct send current position   
+                    }
+                }
+            }
+            if (!positionCorrect)
+            {
+                zoneCase.Fill = Brushes.Red;
+            }
+        }
+
+        private string getJoueurFromTag(String tag) {
+            switch (tag) { 
+                case "0x3":
+                    return  "Violet";
+                case "0x6":
+                    return "Leblanc";
+                case "0x10":
+                    return "Rose";
+                case "0x11":
+                    return "Olivier";
+                case "0x12":
+                    return "Moutarde";
+                case "0x13":
+                    return "Pervenche";
+                default :
+                    return null;
+
+            }
+        }
+
+        private string getSalleFromCase(string idcase) {
+            switch (idcase) { 
+                case "0.4":
+                    return "ENTREE";
+                case "0.5":
+                    return "ENTREE";
+                case "2.0":
+                    return "GARAGE";
+                case "3.9":
+                    return "SALON";
+                case "6.0":
+                    return "SALLEDEJEUX";
+                case "7.8":
+                    return "SALLEAMANGE";
+                case "11.9":
+                    return "CUSINE";
+                case "12.0":
+                    return "CHAMBRE";
+                case "13.5":
+                    return "BUREAU";
+                case "14.3":
+                    return "SALLEDEBAIN";
+                case "5.5": 
+                    return "HALL";
+                case "6.3":
+                    return "HALL";
+                case "6.6":
+                    return "HALL";
+                case "7.5":
+                    return "HALL";
+                default:
+                    return null;
+
             }
         }
 
@@ -108,6 +250,8 @@ namespace Cluedo
         {
             string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
             Console.WriteLine("entrer dans " + idCase);
+            verifySalle(idCase);
+      
         }
 
         private String[] getDoors(String room) {
@@ -115,8 +259,8 @@ namespace Cluedo
             {
                 case "GARAGE":
                     return GARAGE;
-                case "SALLEDEJEU":
-                    return SALLEDEJEU;
+                case "SALLEDEJEUX":
+                    return SALLEDEJEUX;
                 case "CHAMBRE":
                     return CHAMBRE;
                 case "SALLEDEBAIN":
@@ -125,7 +269,7 @@ namespace Cluedo
                     return BUREAU;
                 case "CUSINE":
                     return CUSINE;
-                case "SALLEAMANGE":
+                case "SALLEAMANGER":
                     return SALLEAMANGER;
                 case "SALON":
                     return SALON;
@@ -142,160 +286,206 @@ namespace Cluedo
 
         private void cleanColor(object sender, TagVisualizerEventArgs e){
             string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
-            Rectangle zoneCase = getZoneCaseFromName(int.Parse((float.Parse(idCase) * 10).ToString()));
-            zoneCase.Fill = Brushes.Beige;
+            Rectangle zoneCase = getZoneCaseFromName(idCase);
+            Rectangle zoneCaseUp = getZoneCaseFromName((float.Parse(idCase) + 1).ToString());
+            Rectangle zoneCaseDown = getZoneCaseFromName((float.Parse(idCase) - 1).ToString());
+            Rectangle zoneCaseLeft = getZoneCaseFromName(((float.Parse(idCase) - 0.1)).ToString("0.0"));
+            Rectangle zoneCaseRight = getZoneCaseFromName(((float.Parse(idCase) + 0.1)).ToString("0.0"));
+
+            zoneCase.Fill = Brushes.Transparent;
+            if (zoneCaseUp != null)
+            {
+                zoneCaseUp.Fill = Brushes.Transparent;
+            }
+            if (zoneCaseDown != null)
+            {
+                zoneCaseDown.Fill = Brushes.Transparent;
+            }
+            if (zoneCaseLeft != null)
+            {
+                zoneCaseLeft.Fill = Brushes.Transparent;
+            }
+            if (zoneCaseRight != null)
+            {
+                zoneCaseRight.Fill = Brushes.Transparent;
+            }
         }
 
-        public Rectangle getZoneCaseFromName(int idCase)
+        private void sortirDePiece(object sender, TagVisualizerEventArgs e)
+        {
+            string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
+            Rectangle zoneCase = getZoneCaseFromName(idCase);
+            zoneCase.Fill = Brushes.Transparent;
+        }
+
+        public Rectangle getZoneCaseFromName(string idCase)
         {
             switch (idCase)
             {
-                case 13:
+                case "1.3":
                     return this.N13;
-                case 14:
+                case "1.4":
                     return this.N14;
-                case 15:
+                case "1.5":
                     return this.N15;
-                case 16:
+                case "1.6":
                     return this.N16;
-                case 21:
+                case "2.1":
                     return this.N21;
-                case 22:
+                case "2.2":
                     return this.N22;
-                case 23:
+                case "2.3":
                     return this.N23;
-                case 24:
+                case "2.4":
                     return this.N24;
-                case 25:
+                case "2.5":
                     return this.N25;
-                case 26:
+                case "2.6":
                     return this.N26;
-                case 27:
+                case "2.7":
                     return this.N27;
-                case 28:
+                case "2.8":
                     return this.N28;
-                case 31:
+                case "3.1":
                     return this.N31;
-                case 32:
+                case "3.2":
                     return this.N32;
-                case 33:
+                case "3.3":
                     return this.N33;
-                case 34:
+                case "3.4":
                     return this.N34;
-                case 35:
+                case "3.5":
                     return this.N35;
-                case 36:
+                case "3.6":
                     return this.N36;
-                case 37:
+                case "3.7":
                     return this.N37;
-                case 38:
+                case "3.8":
                     return this.N38;
-                case 41:
+                case "4.1":
                     return this.N41;
-                case 42:
+                case "4.2":
                     return this.N42;
-                case 43:
+                case "4.3":
                     return this.N43;
-                case 44:
+                case "4.4":
                     return this.N44;
-                case 45:
+                case "4.5":
                     return this.N45;
-                case 46:
+                case "4.6":
                     return this.N46;
-                case 47:
+                case "4.7":
                     return this.N47;
-                case 48:
+                case "4.8":
                     return this.N48;
-                case 51:
+                case "5.1":
                     return this.N51;
-                case 52:
+                case "5.2":
                     return this.N52;
-                case 57:
+                case "5.7":
                     return this.N57;
-                case 61:
+                case "6.1":
                     return this.N61;
-                case 62:
+                case "6.2":
                     return this.N62;
-                case 67:
+                case "6.7":
                     return this.N67;
-                case 71:
+                case "7.1":
                     return this.N71;
-                case 72:
+                case "7.2":
                     return this.N72;
-                case 77:
+                case "7.7":
                     return this.N77;
-                case 81:
+                case "8.1":
                     return this.N81;
-                case 82:
+                case "8.2":
                     return this.N82;
-                case 83:
+                case "8.3":
                     return this.N83;
-                case 84:
+                case "8.4":
                     return this.N84;
-                case 85:
+                case "8.5":
                     return this.N85;
-                case 86:
+                case "8.6":
                     return this.N86;
-                case 87:
+                case "8.7":
                     return this.N87;
-                case 91:
+                case "9.1":
                     return this.N91;
-                case 92:
+                case "9.2":
                     return this.N92;
-                case 93:
+                case "9.3":
                     return this.N93;
-                case 94:
+                case "9.4":
                     return this.N94;
-                case 95:
+                case "9.5":
                     return this.N95;
-                case 96:
+                case "9.6":
                     return this.N96;
-                case 97:
+                case "9.7":
                     return this.N97;
-                case 102:
+                case "10.2":
                     return this.N102;
-                case 103:
+                case "10.3":
                     return this.N103;
-                case 104:
+                case "10.4":
                     return this.N104;
-                case 105:
+                case "10.5":
                     return this.N105;
-                case 106:
+                case "10.6":
                     return this.N106;
-                case 107:
+                case "10.7":
                     return this.N107;
-                case 108:
+                case "10.8":
                     return this.N108;
-                case 112:
+                case "11.2":
                     return this.N112;
-                case 113:
+                case "11.3":
                     return this.N113;
-                case 114:
+                case "11.4":
                     return this.N114;
-                case 115:
+                case "11.5":
                     return this.N115;
-                case 116:
+                case "11.6":
                     return this.N116;
-                case 117:
+                case "11.7":
                     return this.N117;
-                case 118:
+                case "11.8":
                     return this.N118;
-                case 121:
+                case "12.1":
                     return this.N121;
-                case 122:
+                case "12.2":
                     return this.N122;
-                case 123:
+                case "12.3":
                     return this.N123;
-                case 124:
+                case "12.4":
                     return this.N124;
-                case 131:
+                case "13.1":
                     return this.N131;
-                case 132:
+                case "13.2":
                     return this.N132;
-                case 133:
+                case "13.3":
                     return this.N133;
-                case 134:
+                case "13.4":
                     return this.N134;
+                case "GARAGE":
+                    return this.NGARAGE;
+                case "SALLEDEJEUX":
+                    return this.NSALLEDEJEUX;
+                case "CHAMBRE":
+                    return this.NCHAMBRE;
+                case "SALLEDEBAIN":
+                    return this.NSALLEDEBAIN;
+                case "BUREAU":
+                    return this.NBUREAU;
+                case "CUSINE":
+                    return this.NCUSINE;
+                case "SALLEAMANGER":
+                    return this.NSALLEAMANGER;
+                case "SALON":
+                    return this.NSALON;
+                case "ENTREE":
+                    return this.NENTREE;
 
             }
 
@@ -398,6 +588,12 @@ namespace Cluedo
             }
 
             return tab;
+        }
+
+        public void choixMouvement(int idJoueur, string numCase, int de) {
+            this.jouerCourant1.Content = idJoueur.ToString();
+            this.points1.Content = de;
+            idCaseCourant = numCase;
         }
     }
 }

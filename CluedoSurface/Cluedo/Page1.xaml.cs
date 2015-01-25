@@ -30,11 +30,12 @@ namespace Cluedo
     /// Logique d'interaction pour Page1.xaml
     /// </summary>
     public partial class Page1 : SurfaceWindow
-    {//
+    {
         private int numPlayer;
         private String ipAddress;
 
         public static Page1 instance;
+      
         public Page1()
         {
             InitializeComponent();
@@ -54,10 +55,10 @@ namespace Cluedo
 
             // Lance socketIO
             SocketIO.Execute();
-            //IsConnectToServeur = true;
+            //IsConnectToServeur = true;*/
         }
-
-        public static Page1 getInstance()
+        
+       public static Page1 getInstance()
         {
             if (instance == null)
                 instance = new Page1();

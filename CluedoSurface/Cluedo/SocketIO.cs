@@ -16,6 +16,13 @@ public class Joueur
     public string persoName { get; set; }
 }
 
+public class ChoixMovement
+{
+    public int idJoueur { get; set; }
+    public string idCase { get; set; }
+    public int value { get; set; }
+}
+
 
 namespace Cluedo
 {
@@ -93,6 +100,16 @@ namespace Cluedo
                     Page1.getInstance().hideQrcode(joueur.persoName);
                     MainWindowCluedo.joueurs.Add(joueur.persoName);
                     Console.WriteLine(MainWindowCluedo.joueurs.Count);
+                });
+            });
+
+            socket.On("choixMouvement", (data) =>
+            {
+                Application surface = System.Windows.Application.Current;
+                surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
+                {
+                    ChoixMovement mouvement = data.Json.GetFirstArgAs<ChoixMovement>();
+                    MainWindowCluedo.getInstance().choixMouvement(mouvement.idJoueur, mouvement.idCase, mouvement.value);
                 });
             });
             

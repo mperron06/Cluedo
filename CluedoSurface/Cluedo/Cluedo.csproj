@@ -125,6 +125,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\castle.jpg" />
+    <Resource Include="Resources\frame.png" />
+    <Resource Include="Resources\bg.jpg" />
+    <Resource Include="Resources\border.jpg" />
     <Resource Include="Resources\icon2.png" />
     <Resource Include="Resources\start.png" />
     <Resource Include="Resources\X.png" />

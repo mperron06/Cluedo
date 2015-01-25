@@ -13,80 +13,124 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-
-    <Grid Background="ForestGreen">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/castle.jpg"></ImageBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="3*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock TextWrapping="Wrap" FontSize="40" Foreground="SeaShell" HorizontalAlignment="Center" Text="Choisissez chacun un personnage, puis lancez la partie" Margin="50,70"></TextBlock>
+            <TextBlock TextWrapping="Wrap" FontSize="40"  FontFamily="Old English Text MT" Foreground="RosyBrown" HorizontalAlignment="Center" Text="Choisissez chacun un personnage, puis lancez la partie" Margin="50,70"></TextBlock>
             <Image Grid.Row="0" Grid.Column="1" Source="Resources/icon2.png" HorizontalAlignment="Left" Margin="20,60"></Image>
             <TextBlock Text="Cluedo" Grid.Row="0" Grid.Column="1" Margin="200, 40, 30, 10" FontFamily="Tahoma" FontSize="128" FontWeight="ExtraBold" Foreground="White"></TextBlock>
         </Grid>
 
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="1" TextWrapping="Wrap" FontSize="40" FontFamily="Old English Text MT" Foreground="RosyBrown" HorizontalAlignment="Center" Text="Choisissez chacun un personnage, puis lancez la partie" Margin="50,70">
+                <TextBlock.RenderTransform>
+                    <RotateTransform CenterX="300" CenterY="60" Angle="180"></RotateTransform>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <Image Grid.Column="0" Source="Resources/icon2.png" HorizontalAlignment="Right" Margin="20,60">
+                <Image.RenderTransform>
+                    <RotateTransform CenterX="70" CenterY="60" Angle="180"></RotateTransform>
+                </Image.RenderTransform>
+            </Image>
+            <TextBlock Text="Cluedo" Grid.Column="0" Margin="200, 40, 30, 10" FontFamily="Tahoma" FontSize="128" FontWeight="ExtraBold" Foreground="White">
+                <TextBlock.RenderTransform>
+                    <RotateTransform CenterX="200" CenterY="90" Angle="180"></RotateTransform>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </Grid>
+        
         <Grid Grid.Row="1" Name="personGrid">
-            <Grid.RowDefinitions>
+            <!--Grid.RowDefinitions>
                 <RowDefinition ></RowDefinition>
                 <RowDefinition ></RowDefinition>
                 <RowDefinition ></RowDefinition>
-            </Grid.RowDefinitions>
+            </>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0" Margin="100, 0, 30, 0" Background="Violet" MaxWidth="250" MaxHeight="300">
-                <Image Source="Resources/persons/violet.jpg"  HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
-                <q:QrCodeImgControl Name="qrCodeViolet" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="100, 10, 10, 30"/>
-                <Image Name="Violet" Source="Resources/X.png" Width="100" Height="100" Visibility="Hidden" Margin="100, 10, 10, 30"/>
-                <Label Content="Violet" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="125, 110, 20, 5"></Label>
-            </Grid>
+            </Grid.ColumnDefinitions-->
+            <s:ScatterView  >
+                <s:ScatterViewItem ShowsActivationEffects="True" CanRotate="True" CanMove="True" CanScale="True" Width="250" Height="150" Margin="-51,63,51,-63">
+                    <Grid Grid.Row="0" Grid.Column="0"  Background="Violet" MaxWidth="250" MaxHeight="300">
+                        <Image Source="Resources/persons/violet.jpg"  HorizontalAlignment="Left" Margin="20,5,0,5"  Width="100" Height="100"></Image>
+                        <q:QrCodeImgControl Name="qrCodeViolet" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="100, 10, 10, 30"/>
+                        <Image Name="Violet" Source="Resources/X.png" Width="120" Height="100" Visibility="Hidden" Margin="100, 10, 10, 30"/>
+                        <Label Content="Violet" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="125, 110, 20, 5"></Label>
+                    </Grid>
+                </s:ScatterViewItem>   
+            
+                <s:ScatterViewItem ShowsActivationEffects="True" CanRotate="True" CanMove="True" CanScale="True" Width="250" Height="150" Margin="29,-67,-29,67">
+                    <Grid Grid.Row="2" Grid.Column="0"  Background="White" MaxWidth="250" MaxHeight="300">
+                        <Image Source="Resources/persons/blanc.jpg"  HorizontalAlignment="Left" Margin="20,5,0,5" Width="100" Height="100"></Image>
+                        <q:QrCodeImgControl Name="qrCodeBlanc" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="110, 10, 10, 30"/>
+                        <Image Name="Leblanc" Source="Resources/X.png" Width="100" Height="100" Visibility="Hidden" Margin="100, 10, 10, 30"/>
+                        <Label Content="Leblanc" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="110, 110, 20, 5"></Label>
+                    </Grid>
+                </s:ScatterViewItem>
+            
+            
+            <s:ScatterViewItem ShowsActivationEffects="True" CanRotate="True" CanMove="True" CanScale="True" Width="250" Height="150" Margin="-132,59,132,-59">
+                    <Grid Grid.Row="0" Grid.Column="1"  Background="Red" MaxWidth="250" MaxHeight="300">
+                        <Image Source="Resources/persons/rose.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
+                        <q:QrCodeImgControl Name="qrCodeRose" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="140, 10, 10, 30"/>
+                        <Image Name="Rose" Source="Resources/X.png" Width="100" Height="100" Visibility="Hidden" Margin="140, 10, 10, 30"/>
+                        <Label Content="Rose" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="145, 110, 20, 5"></Label>
+                    </Grid>
+                </s:ScatterViewItem>
+            
 
-            <Grid Grid.Row="2" Grid.Column="0" Margin="100, 0, 30, 0" Background="White" MaxWidth="250" MaxHeight="300">
-                <Image Source="Resources/persons/blanc.jpg"  HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
-                <q:QrCodeImgControl Name="qrCodeBlanc" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="110, 10, 10, 30"/>
-                <Image Name="Leblanc" Source="Resources/X.png" Width="100" Height="100" Visibility="Hidden" Margin="100, 10, 10, 30"/>
-                <Label Content="Leblanc" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="110, 110, 20, 5"></Label>
-            </Grid>
+            <s:ScatterViewItem ShowsActivationEffects="True" CanRotate="True" CanMove="True" CanScale="True" Width="250" Height="150" Margin="59,-39,-59,39">
+                <Grid Grid.Row="2" Grid.Column="1"  Background="Olive" MaxWidth="250" MaxHeight="300">
+                    <Image Source="Resources/persons/olive.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
+                    <q:QrCodeImgControl Name="qrCodeOlive" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="140, 10, 10, 30"/>
+                    <Image Name="Olive" Source="Resources/X.png" Width="100" Height="100" Visibility="Hidden" Margin="140, 10, 10, 30"/>
+                    <Label Content="Olive" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="150, 110, 0, 5"></Label>
+                </Grid>
+            </s:ScatterViewItem>
 
-            <Grid Grid.Row="0" Grid.Column="1" Margin="30, 0, 0, 0" Background="Red" MaxWidth="250" MaxHeight="300">
-                <Image Source="Resources/persons/rose.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
-                <q:QrCodeImgControl Name="qrCodeRose" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="140, 10, 10, 30"/>
-                <Image Name="Rose" Source="Resources/X.png" Width="100" Height="100" Visibility="Hidden" Margin="140, 10, 10, 30"/>
-                <Label Content="Rose" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="145, 110, 20, 5"></Label>
-            </Grid>
+            <s:ScatterViewItem ShowsActivationEffects="True" CanRotate="True" CanMove="True" CanScale="True" Width="250" Height="150" Margin="122,66,-122,-66">
+                <Grid Grid.Row="0" Grid.Column="2" Margin="0, 0, 0, 0" Background="Yellow" MaxWidth="250" MaxHeight="300">
+                    <Image Source="Resources/persons/moutarde.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
+                    <q:QrCodeImgControl Name="qrCodeMoutarde" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="120, 10, 10, 30"/>
+                    <Image Name="Moutarde" Source="Resources/X.png" Width="100" Height="100" Visibility="Hidden" Margin="120, 10, 10, 30"/>
+                    <Label Content="Moutarde" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="105, 110, 0, 5"></Label>
+                </Grid>
+            </s:ScatterViewItem>
 
-            <Grid Grid.Row="2" Grid.Column="1" Margin="30, 0, 0, 0" Background="Olive" MaxWidth="250" MaxHeight="300">
-                <Image Source="Resources/persons/olive.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
-                <q:QrCodeImgControl Name="qrCodeOlive" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="140, 10, 10, 30"/>
-                <Image Name="Olive" Source="Resources/X.png" Width="100" Height="100" Visibility="Hidden" Margin="140, 10, 10, 30"/>
-                <Label Content="Olive" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="150, 110, 0, 5"></Label>
-            </Grid>
-
-            <Grid Grid.Row="0" Grid.Column="2" Margin="30, 0, 0, 0" Background="Yellow" MaxWidth="250" MaxHeight="300">
-                <Image Source="Resources/persons/moutarde.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
-                <q:QrCodeImgControl Name="qrCodeMoutarde" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="120, 10, 10, 30"/>
-                <Image Name="Moutarde" Source="Resources/X.png" Width="100" Height="100" Visibility="Hidden" Margin="120, 10, 10, 30"/>
-                <Label Content="Moutarde" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="105, 110, 0, 5"></Label>
-            </Grid>
-
-            <Grid Grid.Row="2" Grid.Column="2" Margin="30, 0, 0, 0" Background="SkyBlue" MaxWidth="250" MaxHeight="300">
-                <Image Source="Resources/persons/pervenche.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
-                <q:QrCodeImgControl Name="qrCodePervenche" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="105, 10, 10, 30"/>
-                <Image Name="Pervenche" Source="Resources/X.png" Width="100" Height="100" Visibility="Hidden" Margin="105, 10, 10, 30"/>
-                <Label Content="Pervenche" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="95, 110, 0, 5"></Label>
-            </Grid>
+            <s:ScatterViewItem ShowsActivationEffects="True" CanRotate="True" CanMove="True" CanScale="True" Width="250" Height="150" Margin="-13,-96,13,96">
+                <Grid Grid.Row="2" Grid.Column="2" Margin="0, 0, 0, 0" Background="SkyBlue" MaxWidth="250" MaxHeight="300">
+                    <Image Source="Resources/persons/pervenche.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
+                    <q:QrCodeImgControl Name="qrCodePervenche" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="105, 10, 10, 30"/>
+                    <Image Name="Pervenche" Source="Resources/X.png" Width="100" Height="100" Visibility="Hidden" Margin="105, 10, 10, 30"/>
+                    <Label Content="Pervenche" Foreground="Black" FontSize="30" FontFamily="Kabel" Margin="95, 110, 0, 5"></Label>
+                </Grid>
+            </s:ScatterViewItem>
+                <s:ScatterViewItem ShowsActivationEffects="True" CanRotate="True" CanMove="True" CanScale="True" Width="120" Height="120">
+                    <Grid  Background="SkyBlue" MaxWidth="250" MaxHeight="300">
+                        <Button Style="{StaticResource StartButtonStyle}"  TouchDown="goToMainPage" MaxWidth="100" MaxHeight="100" Grid.Row="2" ></Button>
+                    </Grid>
+                </s:ScatterViewItem>
+            </s:ScatterView>
         </Grid>
+                <!--Grid Grid.Row="2">
+            <Button Style="{StaticResource StartButtonStyle}"  TouchDown="goToMainPage" MaxWidth="100" MaxHeight="100" Grid.Row="2" Margin="650, 0, 0, 0" ></Button>
+        </-->
 
-        <Grid Grid.Row="2">
-            <Button Style="{StaticResource StartButtonStyle}"  Click="goToMainPage" MaxWidth="100" MaxHeight="100" Grid.Row="2" Margin="650, 0, 0, 0" ></Button>
-        </Grid>
-        
     </Grid>
 </s:SurfaceWindow>
