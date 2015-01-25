@@ -217,35 +217,6 @@ function init() {
 
     //cartes.push({ id: 21, nom: "Hall", type: "hall", tag:"" });
     
-    /*
-    var cartesTemp = cartes;
-    console.log(cartesTemp);
-    var persoMilieu = randomInt(0, 5);
-    cartesMilieu.push(cartesTemp[persoMilieu]); // perso random
-    cartesTemp.splice(persoMilieu, 1); // on le supprime de la liste des cartes
-
-    var armeMilieu = randomInt(6, 11);
-    cartesMilieu.push(cartesTemp[armeMilieu]); // arme random
-    cartesTemp.splice(armeMilieu, 1);// on le supprime de la liste des cartes
-
-    var pieceMilieu = randomInt(12, 20);
-    cartesMilieu.push(cartesTemp[pieceMilieu]); // piece random
-    cartesTemp.splice(pieceMilieu, 1);// on le supprime de la liste des cartes
-    console.log(cartesTemp);
-
-    var cartesShuffle = cartesTemp;
-    cartesShuffle.shuffle();     // on mélange le tableau
-    cartesShuffle.join();
-    console.log(cartesShuffle);
-    nbJoueurs = 3; // -------------------------- temporaire (a/b)-(a%b)      joueurs[nbJoueurs].cartes = [];
-
-    var nbCarteByPerso = (cartesShuffle.length / nbJoueurs) - (cartesShuffle.length % nbJoueurs);
-    var i;
-    for (i = 0; i < nbJoueurs; i++) {
-        joueurs[i].cartes = cartesShuffle.slice(nbCarteByPerso * i, nbCarteByPerso);
-        console.log(joueurs[i].cartes);
-    }*/
-
 
     nbCartes = cartes.length;
 
@@ -318,7 +289,7 @@ io.on('connection', function(socket){
             nbJoueurs++;
 
             socket.emit('myId', myId);
-            //socket.emit('joueurReady', null);
+            socket.emit('joueurReady', null);
             //socket.emit('cases', cases);
             //socket.emit('cartes', cartes);
 
@@ -342,6 +313,7 @@ io.on('connection', function(socket){
 
     socket.on('lanceDe', function (value) {
         var val = parseInt(value);
+        console.log(val);
         tableSocket.emit('choixMouvement', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase, value: val });
     });
 
@@ -392,38 +364,13 @@ io.on('connection', function(socket){
     /** si bouton 'lancement partie' et non pas préciser le nombre de joueurs' */
     socket.on('lancementDebutPartie', function (arg) {
         /** Distribuer les cartes 
-           cartes.push({ id: 0, nom: "Violet", type: "perso", tag: "A" });
-    cartes.push({ id: 1, nom: "Leblanc", type: "perso", tag: "B" });
-    cartes.push({ id: 2, nom: "Rose", type: "perso", tag: "C" });
-    cartes.push({ id: 3, nom: "Olivier", type: "perso", tag: "D" });
-    cartes.push({ id: 4, nom: "Moutarde", type: "perso", tag: "E" });
-    cartes.push({ id: 5, nom: "Pervenche", type: "perso", tag: "F" });
-
-    cartes.push({ id: 6, nom: "Corde", type: "arme", tag: "G" });
-    cartes.push({ id: 7, nom: "Poignard", type: "arme", tag: "H" });
-    cartes.push({ id: 8, nom: "Clé anglaise", type: "arme", tag: "I" });
-    cartes.push({ id: 9, nom: "Revolver", type: "arme", tag: "J" });
-    cartes.push({ id: 10, nom: "Chandelier", type: "arme", tag: "K" });
-    cartes.push({ id: 11, nom: "Barre de fer", type: "arme", tag: "L" });
-
-    
-    cartes.push({ id: 12, nom: "Entrée", type: "piece", tag: "" });
-    cartes.push({ id: 13, nom: "Salle de jeux", type: "piece", tag: "" });
-    cartes.push({ id: 14, nom: "Bureau", type: "piece", tag: "" });
-    cartes.push({ id: 15, nom: "Salle à manger", type: "piece", tag: "" });
-    cartes.push({ id: 16, nom: "Garage", type: "piece", tag: "" });
-    cartes.push({ id: 17, nom: "Salon", type: "piece", tag: "" });
-    cartes.push({ id: 18, nom: "Cuisine", type: "piece", tag: "" });
-    cartes.push({ id: 19, nom: "Chambre", type: "piece", tag: "" });
-    cartes.push({ id: 20, nom: "Salle de bains", type: "piece", tag: "" });
 var nbCartes;
 var cartes;
-var cartesMilieu;
+var cartesMilieu; */
 
-delete tab[tab.indexOf('John')]
 
         var cartesTemp = cartes;
-        console.log(cartesTemp);
+        //console.log(cartesTemp);
         var persoMilieu = randomInt(0, 5);
         cartesMilieu.push(cartesTemp[persoMilieu]); // perso random
         cartesTemp.splice(persoMilieu, 1); // on le supprime de la liste des cartes
@@ -435,12 +382,36 @@ delete tab[tab.indexOf('John')]
         var pieceMilieu = randomInt(12, 20);
         cartesMilieu.push(cartesTemp[pieceMilieu]); // piece random
         cartesTemp.splice(pieceMilieu, 1);// on le supprime de la liste des cartes
-        console.log(cartesTemp);
+        //console.log(cartesTemp);
 
         var cartesShuffle = cartesTemp;
         cartesShuffle.shuffle();     // on mélange le tableau
         cartesShuffle.join();
-        console.log(cartesShuffle); */
+        console.log(cartesShuffle);
+
+        var moduloNbCartesByPerso = (cartesShuffle.length / nbJoueurs) % nbJoueurs;
+        var nbCartesByPerso = (cartesShuffle.length / nbJoueurs) - (moduloNbCartesByPerso);
+        var nbResteCartes = cartesShuffle.length - nbCartesByPerso * nbJoueurs;
+        console.log(cartesShuffle.length);
+        console.log(moduloNbCartesByPerso);
+        console.log(nbCartesByPerso);
+        console.log(nbResteCartes);
+        var i;
+        for (i = 0; i < nbJoueurs; i++) {
+            joueurs[i].cartes = cartesShuffle.slice(nbCartesByPerso * i, (nbCartesByPerso * i)+nbCartesByPerso);
+            console.log(joueurs[i].cartes);
+        }
+        if (nbResteCartes > 0) {
+            console.log('ici');
+            for (i = 0; i < nbResteCartes; i++) {
+                joueurs[i].cartes.push(cartesShuffle[nbResteCartes + i]);
+                console.log(joueurs[i].cartes);
+            }
+        }
+        for (i = 0; i < nbJoueurs; i++) {
+            jSockets[idJoueurActuel].emit('myCards', joueurs[i].cartes);
+        }
+
         
         console.log(arg);
         io.sockets.emit('joueursPrets', nbJoueurs); /* mettre écran poser les pions */
@@ -452,9 +423,9 @@ delete tab[tab.indexOf('John')]
         
         idJoueurDepart = Math.floor(Math.random() * nbJoueursPrets);
         idJoueurActuel = idJoueurDepart;
-        //io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase});
+        //io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase}); 
         //tableSocket.emit('debutPartie', idJoueurActuel);
-        io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
+        io.sockets.emit('debutPartie', idJoueurActuel);
 
     });
 
