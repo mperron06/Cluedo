@@ -53,6 +53,11 @@
         </LinearLayout>
     </LinearLayout>
 
+    <View android:id="@+id/primerdivisor"
+        android:layout_height="2dp"
+        android:layout_width="fill_parent"
+        android:background="#000000" />
+
     <LinearLayout
         android:id="@+id/bodyProfil"
         android:orientation="vertical"
@@ -64,72 +69,14 @@
         android:layout_gravity="center_vertical"
         >
 
-        <TextView android:text="Votre Tour"
+        <TextView android:text="Merci de poser chacun votre personnage au milieu du plateau, dans le Hall."
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
             android:textSize="22dp"
-            android:layout_weight="1"
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:background="@drawable/dotted"/>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:padding="@dimen/activity_vertical_margin"
-            android:layout_weight="1"
-            android:background="#ffffff"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:id='@+id/choice_container'>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_margin="10dp"
-                android:text="Voulez-vous aller dans :"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-            <RadioButton
-                android:id="@+id/open_door"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Cuisine" />
-
-            <RadioButton
-                android:id="@+id/short_cut"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Garage" />
-
-            <RadioButton
-                android:id="@+id/none"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Non" />
-
-            <Button
-                android:id="@+id/validerRadioButton"
-                android:layout_width="138dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="20dp"
-                android:paddingLeft="20dip"
-                android:paddingRight="20dip"
-                android:textColor="@drawable/button_text_color"
-                android:background="@drawable/connection_button"
-                android:onClick="valider"
-                android:text="Valider" />
-              </RadioGroup>
-        </LinearLayout>
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
     </LinearLayout>
 
 </LinearLayout>

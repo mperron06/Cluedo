@@ -322,6 +322,13 @@ io.on('connection', function(socket){
         //changement du moved pour l'accusé
     });
 
+    socket.on('notSuppose', function () {
+        joueurs[idJoueurActuel].moved = false;
+        //if salle avec raccourcis
+        //else lancede
+        //changement du moved pour l'accusé
+    });
+
     socket.on('accusation', function (perso, arme, lieu) {
         var idCase = joueurs[idJoueurActuel].numCase;
         //changement du moved pour l'accusé
@@ -409,7 +416,7 @@ var cartesMilieu; */
             }
         }
         for (i = 0; i < nbJoueurs; i++) {
-            jSockets[idJoueurActuel].emit('myCards', joueurs[i].cartes);
+            jSockets[idJoueurActuel].emit('myCards', joueurs[i].cartes); // envoyer les cartes de tous les joueurs
         }
 
         
@@ -423,9 +430,8 @@ var cartesMilieu; */
         
         idJoueurDepart = Math.floor(Math.random() * nbJoueursPrets);
         idJoueurActuel = idJoueurDepart;
-        //io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase}); 
+        io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase}); 
         //tableSocket.emit('debutPartie', idJoueurActuel);
-        io.sockets.emit('debutPartie', idJoueurActuel);
 
     });
 

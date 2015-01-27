@@ -6,20 +6,40 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class ProfilActivity extends Activity implements ActionBar.TabListener{
-
+    private TextView pseudo_editText;
+    private TextView perso_editText;
+    private ImageView profil_picture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
 
+        // FindView
+        pseudo_editText = (TextView) findViewById(R.id.pseudoText);
+        perso_editText = (TextView) findViewById(R.id.persoText);
+        profil_picture = (ImageView) findViewById(R.id.imageView1);
+
+        pseudo_editText.setText(Remote.mon_pseudo);
+        perso_editText.setText("personnage : "+Remote.mon_perso);
+        profil_picture.setImageResource((getResources().getIdentifier( Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
+
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        if (actionBar != null) {
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+            actionBar.addTab(actionBar.newTab().setText("Cartes")
+                    .setTabListener(this));
+            actionBar.addTab(actionBar.newTab().setText("Feuille Enquête")
+                    .setTabListener(this));
+            actionBar.addTab(actionBar.newTab().setText("Historique")
+                    .setTabListener(this));
+        }
 
     }
 
@@ -46,6 +66,18 @@ public class ProfilActivity extends Activity implements ActionBar.TabListener{
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         //mViewPager.setCurrentItem(tab.getPosition());
+        // Créez une transaction pour changer le fragment courant
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        if (tab.getPosition() == 0) {
+            transaction.replace(R.id.fragment_container, new CartesFragment());
+        } else if (tab.getPosition() == 1) {
+            transaction.replace(R.id.fragment_container, new FeuilleFragment());
+        } else {
+            transaction.replace(R.id.fragment_container, new HistoriqueFragment());
+        }
+        // A MODIFIER POUR AJOUTER LES AUTRES ONGLETS
+        // Appliquez les changements
+        transaction.commit();
     }
 
     @Override

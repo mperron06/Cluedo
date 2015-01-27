@@ -111,7 +111,7 @@
         android:orientation="horizontal"
         android:layout_weight="0.75"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
+       android:layout_height="0dip"
         >
         <EditText
             android:id="@+id/perso_editText"
