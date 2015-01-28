@@ -35,13 +35,14 @@ namespace Cluedo
         public static MainWindowCluedo instance;
         public int nbJoueurs = 0;
         public static List<String> joueurs = new List<String>();
-        public string idCaseCourant = "5.5";     //dans hall
-
+        public string idCaseCourant = "2.0";  
+        //public string idCaseCourant = "11.4";     
+        //public string idCaseCourant = "5.5";    //dans hall
         static List<String> cases = new List<String> { "0.4", "0.5", "1.3", "1.4", "1.5", "1.6", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "3.1", "3.2", "3.3", "3.4", "3.5", "3.6", "3.7", "3.8", "3.9", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6", "4.7", "4.8", "5.1", "5.2", "5.5", "5.7", "6.0", "6.1", "6.2", "6.3", "6.6", "6.7", "7.1", "7.2", "7.5", "7.7", "7.8", "8.1", "8.2", "8.3", "8.4", "8.5", "8.6", "8.7", "9.1", "9.2", "9.3", "9.4", "9.5", "9.6", "9.7", "10.2", "10.3", "10.4", "10.5", "10.6", "10.7", "10.8", "11.2", "11.3", "11.4", "11.5", "11.6", "11.7", "11.8", "11.9", "12.0", "12.1", "12.2", "12.3", "12.4", "13.1", "13.2", "13.3", "13.4", "13.5", "14.3" };
         static String[] GARAGE = { "2.0" };
         static String[] SALLEDEJEUX = { "6.0" };
-        static String[] CHAMBRE = { "12.0","14.0" };                      //???? 14.0
-        static String[] SALLEDEBAIN = { "14.3","14.0" };
+        static String[] CHAMBRE = { "12.0" };                      //???? 14.0
+        static String[] SALLEDEBAIN = { "14.3" };
         static String[] BUREAU = { "13.5" };
         static String[] CUSINE = { "11.9" };
         static String[] SALLEAMANGER = { "7.8" };
@@ -78,11 +79,12 @@ namespace Cluedo
             //get "dé" number
             int de = int.Parse(this.points1.Content.ToString());
 
+            string joueurCourant = this.jouerCourant1.Content.ToString();
+
             //récupérer le tag
             string tag = "0x" + Convert.ToString(e.TagVisualization.VisualizedTag.Value, 16);
             Console.WriteLine("tag: " + tag);
-
-            List<String> tab = seDeplacer(list, de);
+            string joueurActuel = getJoueurFromTag(tag);
 
             string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
             Rectangle zoneCase = getZoneCaseFromName(idCase);
@@ -90,56 +92,87 @@ namespace Cluedo
             Rectangle zoneCaseDown = getZoneCaseFromName((float.Parse(idCase) - 1).ToString());
             Rectangle zoneCaseLeft = getZoneCaseFromName(((float.Parse(idCase) - 0.1)).ToString("0.0"));
             Rectangle zoneCaseRight = getZoneCaseFromName(((float.Parse(idCase) + 0.1)).ToString("0.0"));
- 
-            Boolean positionCorrect = false;
-            foreach (string caseMvt in tab) {
-                if (idCase.Equals(caseMvt)) {
-                    zoneCase.Fill = Brushes.Green;
-                    if (zoneCaseUp != null) {
-                        zoneCaseUp.Fill = Brushes.Green;
+
+            if (joueurCourant.Equals(joueurActuel))
+            {
+                List<String> tab = seDeplacer(list, de);
+
+                Boolean positionCorrect = false;
+                foreach (string caseMvt in tab)
+                {
+                    if (idCase.Equals(caseMvt))
+                    {
+                        zoneCase.Fill = Brushes.Green;
+                        if (zoneCaseUp != null)
+                        {
+                            zoneCaseUp.Fill = Brushes.Green;
+                        }
+                        if (zoneCaseDown != null)
+                        {
+                            zoneCaseDown.Fill = Brushes.Green;
+                        }
+                        if (zoneCaseLeft != null)
+                        {
+                            zoneCaseLeft.Fill = Brushes.Green;
+                        }
+                        if (zoneCaseRight != null)
+                        {
+                            zoneCaseRight.Fill = Brushes.Green;
+                        }
+
+                        positionCorrect = true;
+                        //4. if position correct send current position   
+                    }
+                }
+                if (!positionCorrect)
+                {
+                    zoneCase.Fill = Brushes.Red;
+                    if (zoneCaseUp != null)
+                    {
+                        zoneCaseUp.Fill = Brushes.Red;
                     }
                     if (zoneCaseDown != null)
                     {
-                        zoneCaseDown.Fill = Brushes.Green;
+                        zoneCaseDown.Fill = Brushes.Red;
                     }
                     if (zoneCaseLeft != null)
                     {
-                        zoneCaseLeft.Fill = Brushes.Green;
+                        zoneCaseLeft.Fill = Brushes.Red;
                     }
                     if (zoneCaseRight != null)
                     {
-                        zoneCaseRight.Fill = Brushes.Green;
+                        zoneCaseRight.Fill = Brushes.Red;
                     }
-
-                    positionCorrect = true;
-                    //4. if position correct send current position   
                 }
             }
-            if (!positionCorrect) {
-                zoneCase.Fill = Brushes.Red;
+            else {
+                zoneCase.Fill = Brushes.Orange;
                 if (zoneCaseUp != null)
                 {
-                    zoneCaseUp.Fill = Brushes.Red;
+                    zoneCaseUp.Fill = Brushes.Orange;
                 }
                 if (zoneCaseDown != null)
                 {
-                    zoneCaseDown.Fill = Brushes.Red;
+                    zoneCaseDown.Fill = Brushes.Orange;
                 }
                 if (zoneCaseLeft != null)
                 {
-                    zoneCaseLeft.Fill = Brushes.Red;
+                    zoneCaseLeft.Fill = Brushes.Orange;
                 }
                 if (zoneCaseRight != null)
                 {
-                    zoneCaseRight.Fill = Brushes.Red;
+                    zoneCaseRight.Fill = Brushes.Orange;
                 }
             }
+
+            
         }
 
-        private void verifySalle(string idCase)
+        private void verifySalle(string idCase, string tag)
         {
             String[] list;
             String salleName = getSalleFromCase(idCaseCourant);
+
             if (salleName != null)
             {
                 list = getDoors(salleName);
@@ -153,30 +186,68 @@ namespace Cluedo
             //get "dé" number
             int de = int.Parse(this.points1.Content.ToString());
 
-            List<String> tab = seDeplacer(list, de);
-
             
+            Console.WriteLine("tag: " + tag);
+            string joueurActuel = getJoueurFromTag(tag);
+            string joueurCourant = this.jouerCourant1.Content.ToString();
+
             Rectangle zoneCase = getZoneCaseFromName(idCase);
 
-            Boolean positionCorrect = false;
-            string[] doorList = getDoors(idCase);
-            
-            foreach (string caseMvt in tab)
+            if (joueurActuel.Equals(joueurCourant))
             {
-                for(int i=0; i<doorList.Length; i++)
-                {
-                    if (doorList[i].Equals(caseMvt))
+                //get possible cases to go
+                List<String> tab = seDeplacer(list, de);
+                //check if the player is in a room now
+                if (salleName != null) {
+                    //if the player is in the chambre, he can go to sallon, if the player is in the cusine, he can go to the garage, vice-versa
+                    if (salleName.Equals("CUSINE"))
                     {
-                        zoneCase.Fill = Brushes.Green;
-
-                        positionCorrect = true;
-                        //4. if position correct send current position   
+                        //cusine->garage
+                        tab.Add("2.0");
+                    }
+                    if (salleName.Equals("GARAGE"))
+                    {
+                        //garage->cusine
+                        tab.Add("11.9");
+                    }
+                    if (salleName.Equals("SALON"))
+                    {
+                        //salon->chambre
+                        tab.Add("12.0");
+                    }
+                    if (salleName.Equals("CHAMBRE"))
+                    {
+                        //chambre->salon
+                        tab.Add("3.9");
                     }
                 }
+
+
+                Boolean positionCorrect = false;
+
+                //if any door of the room is in the doorList, the player can go into that room
+                string[] doorList = getDoors(idCase);
+
+                foreach (string caseMvt in tab)
+                {
+                    for (int i = 0; i < doorList.Length; i++)
+                    {
+                        if (doorList[i].Equals(caseMvt))
+                        {
+                            zoneCase.Fill = Brushes.Green;
+
+                            positionCorrect = true;
+                            //4. if position correct send current position   
+                        }
+                    }
+                }
+                if (!positionCorrect)
+                {
+                    zoneCase.Fill = Brushes.Red;
+                }
             }
-            if (!positionCorrect)
-            {
-                zoneCase.Fill = Brushes.Red;
+            else {
+                zoneCase.Fill = Brushes.Orange;
             }
         }
 
@@ -250,7 +321,9 @@ namespace Cluedo
         {
             string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
             Console.WriteLine("entrer dans " + idCase);
-            verifySalle(idCase);
+
+            string tag = "0x" + Convert.ToString(e.TagVisualization.VisualizedTag.Value, 16);
+            verifySalle(idCase, tag);
       
         }
 
@@ -593,6 +666,8 @@ namespace Cluedo
         public void choixMouvement(int idJoueur, string numCase, int de) {
             this.jouerCourant1.Content = idJoueur.ToString();
             this.points1.Content = de;
+            this.jouerCourant2.Content = idJoueur.ToString();
+            this.points2.Content = de;
             idCaseCourant = numCase;
         }
     }
