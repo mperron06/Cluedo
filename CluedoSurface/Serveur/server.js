@@ -295,7 +295,7 @@ io.on('connection', function(socket){
             //socket.emit('cases', cases);
             //socket.emit('cartes', cartes);
 
-            if (nbJoueurs == nbMaxJoueurs && tableSocket != null) {
+            if (nbJoueurs < nbMaxJoueurs && tableSocket != null) {
                 //io.sockets.emit('choixPions', joueurs);
                 console.log("joueurs prets");
                 io.sockets.emit('joueursPrets', nbJoueurs);
@@ -305,7 +305,7 @@ io.on('connection', function(socket){
 
     socket.on('tourTermine', function () {
         do {
-            idJoueurActuel = (idJoueurActuel + 1) % nbMaxJoueurs;
+            idJoueurActuel = (idJoueurActuel + 1) % nbJoueurs;
         } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a été éliminé après une fausse accusation
         console.log("joueur tour : " + idJoueurActuel);
 
@@ -357,18 +357,18 @@ io.on('connection', function(socket){
 
         console.log(nbJoueurs);
 
-        if (nbJoueurs == nbMaxJoueurs) {
+        /*if (nbJoueurs == nbMaxJoueurs) {
             //io.sockets.emit('choixPions', joueurs);
             console.log("joueurs prets");
             io.sockets.emit('joueursPrets', nbJoueurs);
-        }
+        }*/
     });
 
-    socket.on('numJoueur', function (s) {
+    /*socket.on('numJoueur', function (s) {
         console.log("Nombre joueurs maximum : " + s);
         nbMaxJoueurs = s;
         //io.sockets.emit('serveurPret', "hello");
-    });
+    });*/
 
     /** si bouton 'lancement partie' et non pas préciser le nombre de joueurs' */
     socket.on('lancementDebutPartie', function (arg) {
