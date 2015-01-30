@@ -275,6 +275,7 @@ io.on('connection', function(socket){
             joueurs[nbJoueurs] = {};
             joueurs[nbJoueurs].id = nbJoueurs;
             joueurs[nbJoueurs].name = name;
+            joueurs[nbJoueurs].persoName = persoName;
             joueurs[nbJoueurs].tag = tagPerso;
             joueurs[nbJoueurs].numCase = ["5.5", "6.3", "6.6", "7.5"]; //hall
             joueurs[nbJoueurs].supposition = [];
@@ -316,7 +317,7 @@ io.on('connection', function(socket){
     socket.on('lanceDe', function (value) {
         var val = parseInt(value);
         console.log(val);
-        tableSocket.emit('choixMouvement', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase, value: val });
+        tableSocket.emit('choixMouvement', { persoName: joueurs[idJoueurActuel].persoName, idCase: joueurs[idJoueurActuel].numCase, value: val });
     });
 
     socket.on('supposition', function (perso, arme, lieu) {
