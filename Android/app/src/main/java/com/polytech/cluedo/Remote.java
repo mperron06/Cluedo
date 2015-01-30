@@ -5,6 +5,7 @@ package com.polytech.cluedo;
  */
 import android.content.Context;
 import android.content.Intent;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -42,7 +43,6 @@ public class Remote {
     private static final String END_GAME = "partieTerminee";
     private static final String NEXT_PLAYER = "prochainJoueur";
 
-    // ACTIONS CASES
     private static final String SUPPOSITION = "supposition";
     private static final String ACCUSATION = "accusation";
 

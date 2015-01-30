@@ -3,6 +3,9 @@
 
     <string name="app_name">Cluedo</string>
     <string name="action_settings">Settings</string>
+    <string name="keyPseudo">a</string>
+    <string name="keyPersoName">b</string>
+    <string name="preference_file_key">com.polytech.cluedo.PREFERENCE_FILE_KEY</string>
 
     <!-- LoginActivity -->
     <string name="pseudo">Pseudo</string>
@@ -53,5 +56,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_pions">PionsActivity</string>
+    <string name="title_activity_global">GlobalActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_enquete">EnqueteActivity</string>
 
 </resources>

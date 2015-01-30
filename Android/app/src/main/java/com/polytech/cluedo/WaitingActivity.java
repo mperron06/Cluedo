@@ -12,15 +12,15 @@ import android.widget.TextView;
 
 public class WaitingActivity extends Activity {
     private TextView info_textView;
-    private String myPseudo = Remote.pseudo;
-    private String myPerso = Remote.perso;
+    //private String myPseudo = Remote.pseudo;
+    //private String myPerso = Remote.perso;
     private TextView pseudo;
     private TextView perso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Remote.context = this;
+        //Remote.context = this;
 
         Intent intent = getIntent();
 
@@ -33,12 +33,12 @@ public class WaitingActivity extends Activity {
         this.addContentView(info_textView, params);
         pseudo = (TextView) findViewById(R.id.pseudoText);
         perso = (TextView) findViewById(R.id.persoText);
-        pseudo.setText(myPseudo);
-        perso.setText(myPerso);
+        /*pseudo.setText(myPseudo);
+        perso.setText(myPerso);*/
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         // Do Nothing
-    }
+    }*/
 }

@@ -1,5 +1,7 @@
 package com.polytech.cluedo;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,8 +29,14 @@ public class LoginActivity extends Activity {
 
     private Button qr_button;
     private Button connexion_button;
+    private Button hs_button;
 
     private ProgressDialog connexion_progressDialog;
+
+    private static final String DEBUG = "Cluedo";
+    final Context context = this;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +49,14 @@ public class LoginActivity extends Activity {
         perso_editText = (EditText) findViewById(R.id.perso_editText);
         qr_button = (Button) findViewById(R.id.qr_button);
         connexion_button = (Button) findViewById(R.id.connexion_button);
+        hs_button = (Button) findViewById(R.id.hs_button);
 
 
         // Listener
         qr_button.setOnClickListener(onClick);
         connexion_button.setOnClickListener(onClick);
+        hs_button.setOnClickListener(onClick);
+
 
     }
 
@@ -103,6 +114,9 @@ public class LoginActivity extends Activity {
                 case R.id.connexion_button:
                     launchConnection();
                     break;
+                case R.id.hs_button:
+                    launchHorsConnectionMode();
+                    break;
                 default:
                     break;
             }
@@ -154,5 +168,18 @@ public class LoginActivity extends Activity {
             return true;
         }
         return false;
+    }
+
+    private void launchHorsConnectionMode(){
+        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        String pseudo = pseudo_editText.getText().toString().trim();
+        String persoName = perso_editText.getText().toString().trim();
+        editor.putString(getString(R.string.keyPseudo), pseudo);
+        editor.commit();
+        editor.putString(getString(R.string.keyPersoName), persoName);
+        editor.commit();
+        Intent intent = new Intent(context, GlobalActivity.class);
+        startActivity(intent);
     }
 }

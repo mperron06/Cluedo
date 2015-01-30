@@ -121,8 +121,7 @@
             android:layout_gravity="top"
             android:gravity="center"
             android:singleLine="true"
-            android:hint="@string/enterYourPerso"
-            android:inputType="phone" />
+            android:hint="@string/enterYourPerso" />
     </LinearLayout>
 
     <LinearLayout
@@ -144,5 +143,15 @@
             android:textColor="@drawable/button_text_color"
             android:background="@drawable/connection_button" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/hs_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="Hors Connexion"
+        android:textSize="20sp"
+        android:textColor="@drawable/button_text_color"
+        android:background="@drawable/connection_button" />
 </LinearLayout>
 
