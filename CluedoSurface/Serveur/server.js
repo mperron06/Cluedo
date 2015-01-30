@@ -295,11 +295,11 @@ io.on('connection', function(socket){
             //socket.emit('cases', cases);
             //socket.emit('cartes', cartes);
 
-            if (nbJoueurs < nbMaxJoueurs && tableSocket != null) {
+            /*if (nbJoueurs < nbMaxJoueurs && tableSocket != null) {
                 //io.sockets.emit('choixPions', joueurs);
                 console.log("joueurs prets");
                 io.sockets.emit('joueursPrets', nbJoueurs);
-            }
+            }*/
         }
     });
 
