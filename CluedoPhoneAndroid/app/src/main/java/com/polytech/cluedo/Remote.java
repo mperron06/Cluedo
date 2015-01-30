@@ -3,6 +3,7 @@ package com.polytech.cluedo;
 import android.content.Context;
 import android.content.Intent;
 
+import com.polytech.utils.ArrayCarte;
 import com.polytech.utils.ArrayCase;
 import com.polytech.utils.ArrayPlayer;
 import com.polytech.utils.JSONUtils;
@@ -52,6 +53,10 @@ public class Remote {
 
     public static ArrayCase les_cases;
     public static ArrayPlayer les_joueurs;
+    public static ArrayCarte my_cards;
+    public static ArrayCarte my_suppose;
+    public static ArrayCarte my_accused;
+    public static ArrayCarte my_historic;
 
     // CASES
     private static final String CASE_BEGIN = "caseDepart";
@@ -69,14 +74,7 @@ public class Remote {
     private static final String FIELD_ID_JOUEUR = "idJoueur";
     private static final String FIELD_TAG = "tag";
     private static final String FIELD_ID_CASE = "idCase";
-    //	private static final String FIELD_ID_CARTE = "carteId";
-    private static final String FIELD_IN_EXAMS = "enExams";
-    private static final String FIELD_MONEY = "argent";
-    private static final String FIELD_TURN_IN_EXAMS = "nbToursExams";
-    //	private static final String FIELD_NUMBER_OF_PROPERTIES = "nbProprietes";
-    private static final String FIELD_SUM = "somme";
-    private static final String FIELD_PASS_YOUR_TURN = "passeTour";
-    private static final String FIELD_CARD_DESCRIPTION = "description";
+    private static final String FIELD_CARDS = "cartes";
 
 
     public static String url;
@@ -107,13 +105,19 @@ public class Remote {
         public void on(String event, IOAcknowledge ioAcknowledge, Object... objects) {
             			/* ------ RECUP INFOS ------ */
             if (event.equals(MY_ID)) { // ID
+                System.out.println("my_id");
                 mon_id = Long.parseLong(objects[0].toString());
+                System.out.println(mon_id);
             }
             if (event.equals(CASES)) { // CASES
                 les_cases = new ArrayCase(objects[0].toString());
             }
             if (event.equals(MY_CARDS)){
-
+                id_joueur_actuel = JSONUtils.extractLong(FIELD_ID_JOUEUR, objects[0].toString());
+                if (mon_id == id_joueur_actuel) {
+                    System.out.println(objects[0].toString());
+                    my_cards = JSONUtils.extractCards(FIELD_CARDS, objects[0].toString());
+                }
             }
             /* ------ CHANGEMENT DE SCREEN ------ */
             if (event.equals(PLAYER_READY)){
@@ -126,7 +130,7 @@ public class Remote {
                 context.startActivity(intent);
             }
             if(event.equals(BEGIN_GAME)){
-                id_joueur_actuel = JSONUtils.extractLong(FIELD_ID_JOUEUR, objects[0].toString());
+                long id_joueur_actuel = JSONUtils.extractLong(FIELD_ID_JOUEUR, objects[0].toString());
                 System.out.println("id reçu "+id_joueur_actuel+" mon id "+id_joueur_actuel);
                 case_actuel = (int) JSONUtils.extractLong(FIELD_ID_CASE, objects[0].toString());
                 initAttributes();
@@ -274,5 +278,6 @@ public class Remote {
     private void initAttributes() {
         mon_tour = (mon_id == id_joueur_actuel);
         turn_moved = false;
+        valeur_de = 0;
     }
 }

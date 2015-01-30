@@ -427,9 +427,10 @@ io.on('connection', function(socket){
 
     /** Pions dans le hall */
     socket.on('lancementPionsPrets', function () {
-        console.log(nbJoueursPrets);
+        console.log(nbJoueurs);
         
-        idJoueurDepart = Math.floor(Math.random() * nbJoueursPrets);
+        idJoueurDepart = randomInt(0, nbJoueurs);
+        console.log(idJoueurDepart);
         idJoueurActuel = idJoueurDepart;
         io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase}); 
         //tableSocket.emit('debutPartie', idJoueurActuel);

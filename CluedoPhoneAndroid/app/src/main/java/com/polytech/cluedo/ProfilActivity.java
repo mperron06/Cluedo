@@ -75,7 +75,6 @@ public class ProfilActivity extends Activity implements ActionBar.TabListener{
         } else {
             transaction.replace(R.id.fragment_container, new HistoriqueFragment());
         }
-        // A MODIFIER POUR AJOUTER LES AUTRES ONGLETS
         // Appliquez les changements
         transaction.commit();
     }

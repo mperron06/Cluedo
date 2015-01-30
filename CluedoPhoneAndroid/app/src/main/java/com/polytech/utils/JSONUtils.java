@@ -37,4 +37,16 @@ public class JSONUtils {
         }
         return null;
     }
+
+    public static ArrayCarte extractCards(String key, String json) {
+        JSONParser parser = new JSONParser();
+        try {
+            org.json.simple.JSONObject jsonObject = (org.json.simple.JSONObject) parser.parse(json);
+            return (ArrayCarte) jsonObject.get(key);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
