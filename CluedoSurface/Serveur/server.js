@@ -304,15 +304,6 @@ io.on('connection', function(socket){
         }
     });
 
-    socket.on('tourTermine', function () {
-        do {
-            idJoueurActuel = (idJoueurActuel + 1) % nbJoueurs;
-        } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a été éliminé après une fausse accusation
-        console.log("joueur tour : " + idJoueurActuel);
-
-        io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
-    });
-
 
     socket.on('lanceDe', function (value) {
         var val = parseInt(value);
@@ -321,14 +312,8 @@ io.on('connection', function(socket){
     });
 
     socket.on('supposition', function (perso, arme, lieu) {
-        var idCase = joueurs[idJoueurActuel].numCase;
-        //changement du moved pour l'accusé
-    });
-
-    socket.on('notSuppose', function () {
-        joueurs[idJoueurActuel].moved = false;
-        //if salle avec raccourcis
-        //else lancede
+        tableSocket.emit('showSupposition', { perso: perso, arme: arme, lieu: lieu });
+        //var idCase = joueurs[idJoueurActuel].numCase;
         //changement du moved pour l'accusé
     });
 
@@ -370,6 +355,15 @@ io.on('connection', function(socket){
         nbMaxJoueurs = s;
         //io.sockets.emit('serveurPret', "hello");
     });*/
+
+    socket.on('newObject', function (object_tag) {
+        var i;
+        for (i = 0; i < nbCartes; i++) {
+            if (object_tag == cartes[i].tag) {
+                io.sockets.emit('interObject', {idJoueur: joueurs[idJoueurActuel].persoName, idCarte: cartes[i]} );
+            }
+        }
+    });
 
     /** si bouton 'lancement partie' et non pas préciser le nombre de joueurs' */
     socket.on('lancementDebutPartie', function () {
@@ -430,7 +424,7 @@ io.on('connection', function(socket){
     socket.on('lancementPionsPrets', function () {
         console.log(nbJoueurs);
         
-        idJoueurDepart = randomInt(0, nbJoueurs);
+        idJoueurDepart = randomInt(0, nbJoueurs-1);
         console.log(idJoueurDepart);
         idJoueurActuel = idJoueurDepart;
         io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase[0]}); 
@@ -438,29 +432,100 @@ io.on('connection', function(socket){
 
     });
 
+
+
+    socket.on('tourTermine', function (newNumCase) {
+        joueurs[idJoueurActuel].numCase[0] = newNumCase;
+        io.sockets.emit('waitTurn', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] }); // fin de tour
+
+        do {
+            idJoueurActuel = (idJoueurActuel + 1) % nbJoueurs;
+        } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a été éliminé après une fausse accusation
+        console.log("joueur tour : " + idJoueurActuel);
+       
+        var case_rac = [];
+        if (joueurs[idJoueurActuel].moved == true) {
+            joueurs[idJoueurActuel].moved = false;
+            io.sockets.emit('tourChange', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
+        } else if (joueurs[idJoueurActuel].numCase[0] == "14.3") { // salle de bain -> chambre
+            case_rac.push(cases[82]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase:  case_rac});
+        } else if (joueurs[idJoueurActuel].numCase[0] == "7.8") { // salle à manger -> cuisine
+            case_rac.push(cases[81]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+        } else if (joueurs[idJoueurActuel].numCase[0] == "11.9") { // cuisine -> salle à manger et garage
+            case_rac.push(cases[80]);
+            case_rac.push(cases[76]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+        } else if (joueurs[idJoueurActuel].numCase[0] == "12.0") { // chambre -> salle de bain, salon
+            case_rac.push(cases[84]);
+            case_rac.push(cases[77]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+        } else if (joueurs[idJoueurActuel].numCase[0] == "2.0") { // garage -> cuisine
+            case_rac.push(cases[81]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+        } else if (joueurs[idJoueurActuel].numCase[0] == "3.9") { // salon -> chambre
+            case_rac.push(cases[82]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+        } else { // salle sans raccourcis ou dans le couloir
+            io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
+        }
+
+    });
+
+    socket.on('notSuppose', function () { // tel / tablette
+        var case_rac = [];
+        if (joueurs[idJoueurActuel].numCase[0] == "14.3") { // salle de bain -> chambre
+            case_rac.push(cases[82]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+        } else if (joueurs[idJoueurActuel].numCase[0] == "7.8") { // salle à manger -> cuisine
+            case_rac.push(cases[81]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+        } else if (joueurs[idJoueurActuel].numCase[0] == "11.9") { // cuisine -> salle à manger et garage
+            case_rac.push(cases[80]);
+            case_rac.push(cases[76]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+        } else if (joueurs[idJoueurActuel].numCase[0] == "12.0") { // chambre -> salle de bain, salon
+            case_rac.push(cases[84]);
+            case_rac.push(cases[77]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+        } else if (joueurs[idJoueurActuel].numCase[0] == "2.0") { // garage -> cuisine
+            case_rac.push(cases[81]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+        } else if (joueurs[idJoueurActuel].numCase[0] == "3.9") { // salon -> chambre
+            case_rac.push(cases[82]);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+        } else { // salle sans raccourcis ou dans le couloir
+            io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
+        }
+
+    });
+
     /* Changement de tour avec ancien appel dans une piece */
-    socket.on('nextTourChange', function (prochainJoueur) {
+    socket.on('nextTourChange', function (prochainJoueur, newNumCase) {
+        joueurs[idJoueurActuel].numCase[0] = newNumCase;
         console.log(prochainJoueur);
         joueurs[idJoueurActuel].moved = false;
-        jSockets[idJoueurActuel].emit('tourChange', joueurs[idJoueurActuel].numCase );
+        jSockets[idJoueurActuel].emit('tourChange', joueurs[idJoueurActuel].numCase[0] );
     });
 
     /* Changement de tour avec possibilité de prendre un raccourci */
-    socket.on('nextTourRaccourci', function (arg) {
-        console.log(arg);
-        jSockets[idJoueurActuel].emit('tourRaccourci', joueurs[idJoueurActuel].numCase );
+    socket.on('nextTourRaccourci', function (prochainJoueur, newNumCase) {
+        joueurs[idJoueurActuel].numCase[0] = newNumCase;
+        console.log(prochainJoueur);
+        jSockets[idJoueurActuel].emit('tourRaccourci', joueurs[idJoueurActuel].numCase[0] );
     });
 
     /* Changement de tour avec lancé de dé */
-    socket.on('nextTourLanceDe', function (arg) {
-        console.log(arg);
+    socket.on('nextTourLanceDe', function (prochainJoueur, newNumCase) {
+        joueurs[idJoueurActuel].numCase[0] = newNumCase;
+        console.log(prochainJoueur);
         jSockets[idJoueurActuel].emit('tourLancerDe', null);
     });
 
     /* Choix de la supposition si dans une pièce */
-    socket.on('tourChoixSupposition', function (arg) {
-        console.log(arg);
-        joueurs[idJoueurActuel].numCase = arg; // nouvelle case
+    socket.on('tourChoixSupposition', function (newNumCase) {
+        joueurs[idJoueurActuel].numCase[0] = newNumCase;
         jSockets[idJoueurActuel].emit('tourSupposition', joueurs[idJoueurActuel].numCase );
     });
 
