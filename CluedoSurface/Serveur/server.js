@@ -416,7 +416,8 @@ io.on('connection', function(socket){
             }
         }
         for (i = 0; i < nbJoueurs; i++) {
-            jSockets[idJoueurActuel].emit('myCards', joueurs[i].cartes); // envoyer les cartes de tous les joueurs
+            //jSockets[idJoueurActuel].emit('myCards', joueurs[i].cartes); // envoyer les cartes de tous les joueurs
+            io.sockets.emit('myCards', { idJoueur: idJoueurActuel, cartes: joueurs[i].cartes });
         }
 
         
