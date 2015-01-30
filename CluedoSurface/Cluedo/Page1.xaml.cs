@@ -51,7 +51,7 @@ namespace Cluedo
             instance = this;
 
             // Lance le serveur
-            startServer();
+            //startServer();
 
             // Lance socketIO
             SocketIO.Execute();

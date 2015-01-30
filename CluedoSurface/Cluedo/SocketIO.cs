@@ -42,6 +42,7 @@ namespace Cluedo
         }
 
         public static void start() {
+            Console.WriteLine("start !!!");
             socket.Emit("lancementDebutPartie", "on passe à la page suivante");
         }
 
