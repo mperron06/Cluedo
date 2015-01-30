@@ -317,7 +317,7 @@ io.on('connection', function(socket){
     socket.on('lanceDe', function (value) {
         var val = parseInt(value);
         console.log(val);
-        tableSocket.emit('choixMouvement', { persoName: joueurs[idJoueurActuel].persoName, idCase: joueurs[idJoueurActuel].numCase, value: val });
+        tableSocket.emit('choixMouvement', { idJoueur: joueurs[idJoueurActuel].persoName, idCase: joueurs[idJoueurActuel].numCase[0], value: val });
     });
 
     socket.on('supposition', function (perso, arme, lieu) {
@@ -433,7 +433,7 @@ io.on('connection', function(socket){
         idJoueurDepart = randomInt(0, nbJoueurs);
         console.log(idJoueurDepart);
         idJoueurActuel = idJoueurDepart;
-        io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase}); 
+        io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase[0]}); 
         //tableSocket.emit('debutPartie', idJoueurActuel);
 
     });
