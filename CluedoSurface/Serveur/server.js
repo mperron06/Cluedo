@@ -282,11 +282,13 @@ io.on('connection', function(socket){
             joueurs[nbJoueurs].inline = true;
             joueurs[nbJoueurs].moved = false;
 
+
             if (tableSocket != null) {
                 tableSocket.emit("nouveauJoueur", { idJoueur: nbJoueurs, persoName: persoName });
             }
 
             nbJoueurs++;
+            console.log(nbJoueurs);
 
             socket.emit('myId', myId);
             socket.emit('joueurReady', null);
@@ -305,7 +307,7 @@ io.on('connection', function(socket){
         do {
             idJoueurActuel = (idJoueurActuel + 1) % nbMaxJoueurs;
         } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a été éliminé après une fausse accusation
-
+        console.log("joueur tour : " + idJoueurActuel);
 
         io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
     });
