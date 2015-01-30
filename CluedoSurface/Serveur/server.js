@@ -371,11 +371,9 @@ io.on('connection', function(socket){
     });*/
 
     /** si bouton 'lancement partie' et non pas préciser le nombre de joueurs' */
-    socket.on('lancementDebutPartie', function (arg) {
-        /** Distribuer les cartes 
-var nbCartes;
-var cartes;
-var cartesMilieu; */
+    socket.on('lancementDebutPartie', function () {
+
+        console.log("début");
 
 
         var cartesTemp = cartes;
@@ -422,7 +420,7 @@ var cartesMilieu; */
         }
 
         
-        console.log(arg);
+        console.log("Lancement début de partie");
         io.sockets.emit('joueursPrets', nbJoueurs); /* mettre écran poser les pions */
     });
 
