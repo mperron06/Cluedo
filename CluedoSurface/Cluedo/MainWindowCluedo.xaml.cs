@@ -35,6 +35,10 @@ namespace Cluedo
         public static MainWindowCluedo instance;
         public int nbJoueurs = 0;
         public static List<String> joueurs = new List<String>();
+        public int de = 0;
+        public Boolean joueurPret = false;
+
+        //sortir de hall, 7, en haut 4 souis
         //public string idCaseCourant = "2.0";  
         //public string idCaseCourant = "3.5";
        // public string idCaseCourant = "11.4";    
@@ -57,6 +61,8 @@ namespace Cluedo
             instance = this;
 
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+
+            //jouerImage1.Source = new BitmapImage(new Uri("Resources/personHead/leblanc.jpg", UriKind.Relative));/////////////////////////////////////////////////
         }
 
         public static MainWindowCluedo getInstance()
@@ -80,7 +86,7 @@ namespace Cluedo
             }
             
             //get "dé" number
-            int de = int.Parse(this.points1.Content.ToString());
+            //int de = int.Parse(this.points1.Content.ToString());
 
             string joueurCourant = this.jouerCourant1.Content.ToString();
 
@@ -90,11 +96,7 @@ namespace Cluedo
             string joueurActuel = getJoueurFromTag(tag);
 
             string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
-            Rectangle zoneCase = getZoneCaseFromName(idCase);
-            Rectangle zoneCaseUp = getZoneCaseFromName((float.Parse(idCase) + 1).ToString());
-            Rectangle zoneCaseDown = getZoneCaseFromName((float.Parse(idCase) - 1).ToString());
-            Rectangle zoneCaseLeft = getZoneCaseFromName(((float.Parse(idCase) - 0.1)).ToString("0.0"));
-            Rectangle zoneCaseRight = getZoneCaseFromName(((float.Parse(idCase) + 0.1)).ToString("0.0"));
+            Ellipse zoneCase = getZoneCaseFromName(idCase);
 
             if (joueurCourant.Equals(joueurActuel))
             {
@@ -105,74 +107,31 @@ namespace Cluedo
                 {
                     if (idCase.Equals(caseMvt))
                     {
+                        zoneCase.Opacity = 0.5;
                         zoneCase.Fill = Brushes.Green;
-                        if (zoneCaseUp != null)
-                        {
-                            zoneCaseUp.Fill = Brushes.Green;
-                        }
-                        if (zoneCaseDown != null)
-                        {
-                            zoneCaseDown.Fill = Brushes.Green;
-                        }
-                        if (zoneCaseLeft != null)
-                        {
-                            zoneCaseLeft.Fill = Brushes.Green;
-                        }
-                        if (zoneCaseRight != null)
-                        {
-                            zoneCaseRight.Fill = Brushes.Green;
-                        }
 
                         positionCorrect = true;
-                        //4. if position correct send current position   
+
+                        SocketIO.tourTermine(idCase);
+
                     }
                 }
                 if (!positionCorrect)
                 {
+                    zoneCase.Opacity = 0.5;
                     zoneCase.Fill = Brushes.Red;
-                    if (zoneCaseUp != null)
-                    {
-                        zoneCaseUp.Fill = Brushes.Red;
-                    }
-                    if (zoneCaseDown != null)
-                    {
-                        zoneCaseDown.Fill = Brushes.Red;
-                    }
-                    if (zoneCaseLeft != null)
-                    {
-                        zoneCaseLeft.Fill = Brushes.Red;
-                    }
-                    if (zoneCaseRight != null)
-                    {
-                        zoneCaseRight.Fill = Brushes.Red;
-                    }
                 }
             }
             else {
+                zoneCase.Opacity = 0.5;
                 zoneCase.Fill = Brushes.Orange;
-                if (zoneCaseUp != null)
-                {
-                    zoneCaseUp.Fill = Brushes.Orange;
-                }
-                if (zoneCaseDown != null)
-                {
-                    zoneCaseDown.Fill = Brushes.Orange;
-                }
-                if (zoneCaseLeft != null)
-                {
-                    zoneCaseLeft.Fill = Brushes.Orange;
-                }
-                if (zoneCaseRight != null)
-                {
-                    zoneCaseRight.Fill = Brushes.Orange;
-                }
             }
 
-            
         }
 
         private void verifySalle(string idCase, string tag)
         {
+            
             String[] list;
             String salleName = getSalleFromCase(idCaseCourant);
 
@@ -187,14 +146,14 @@ namespace Cluedo
             }
 
             //get "dé" number
-            int de = int.Parse(this.points1.Content.ToString());
+            //int de = int.Parse(this.points1.Content.ToString());
 
             
             Console.WriteLine("tag: " + tag);
             string joueurActuel = getJoueurFromTag(tag);
             string joueurCourant = this.jouerCourant1.Content.ToString();
 
-            Rectangle zoneCase = getZoneCaseFromName(idCase);
+            Rectangle zoneCase = getRoomCaseFromName(idCase);
 
             if (joueurActuel.Equals(joueurCourant))
             {
@@ -237,21 +196,27 @@ namespace Cluedo
                     {
                         if (doorList[i].Equals(caseMvt))
                         {
+                            zoneCase.Opacity = 0.5;
                             zoneCase.Fill = Brushes.Green;
 
                             positionCorrect = true;
-                            //4. if position correct send current position   
+                            //4. if position correct send current position 
+
+                            SocketIO.tourChoixSupposition(idCase);
                         }
                     }
                 }
                 if (!positionCorrect)
                 {
+                    zoneCase.Opacity = 0.5;
                     zoneCase.Fill = Brushes.Red;
                 }
             }
             else {
+                zoneCase.Opacity = 0.5;
                 zoneCase.Fill = Brushes.Orange;
             }
+            
         }
 
         private string getJoueurFromTag(String tag) {
@@ -312,12 +277,42 @@ namespace Cluedo
 
         private void verifyJoueurPret(object sender, TagVisualizerEventArgs e)
         {
-            nbJoueurs++;
-            if (joueurs.Count == nbJoueurs) {
-                Console.WriteLine("joueurs sont prets!");
-                SocketIO.lancementPionsPrets();
+            //c'est la deuxième fois qu'il entre dans hall pour faire accusation
+            if (joueurPret)
+            {
+                string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
+                string tag = "0x" + Convert.ToString(e.TagVisualization.VisualizedTag.Value, 16);
+                Rectangle zoneCase = getRoomCaseFromName(idCase);
+
+                string joueurActuel = getJoueurFromTag(tag);
+                string joueurCourant = this.jouerCourant1.Content.ToString();
+                if (joueurActuel.Equals(joueurCourant))
+                {
+                    zoneCase.Opacity = 0.5;
+                    zoneCase.Fill = Brushes.Green;
+                    SocketIO.tourChoixAccusation(idCase);
+                }
+                else
+                {
+                    zoneCase.Opacity = 0.5;
+                    zoneCase.Fill = Brushes.Orange;
+                }
             }
-            
+            else {
+
+                nbJoueurs++;
+                if (joueurs.Count == nbJoueurs)
+                {
+                    Console.WriteLine("joueurs sont prets!");
+                    SocketIO.lancementPionsPrets();
+
+                    joueurPret = true;
+                }
+                //SocketIO.lancementPionsPrets();
+            }
+
+
+           
         }
 
         private void entrerDansPiece(object sender, TagVisualizerEventArgs e)
@@ -362,39 +357,56 @@ namespace Cluedo
 
         private void cleanColor(object sender, TagVisualizerEventArgs e){
             string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
-            Rectangle zoneCase = getZoneCaseFromName(idCase);
-            Rectangle zoneCaseUp = getZoneCaseFromName((float.Parse(idCase) + 1).ToString());
-            Rectangle zoneCaseDown = getZoneCaseFromName((float.Parse(idCase) - 1).ToString());
-            Rectangle zoneCaseLeft = getZoneCaseFromName(((float.Parse(idCase) - 0.1)).ToString("0.0"));
-            Rectangle zoneCaseRight = getZoneCaseFromName(((float.Parse(idCase) + 0.1)).ToString("0.0"));
+            Ellipse zoneCase = getZoneCaseFromName(idCase);
 
             zoneCase.Fill = Brushes.Transparent;
-            if (zoneCaseUp != null)
-            {
-                zoneCaseUp.Fill = Brushes.Transparent;
-            }
-            if (zoneCaseDown != null)
-            {
-                zoneCaseDown.Fill = Brushes.Transparent;
-            }
-            if (zoneCaseLeft != null)
-            {
-                zoneCaseLeft.Fill = Brushes.Transparent;
-            }
-            if (zoneCaseRight != null)
-            {
-                zoneCaseRight.Fill = Brushes.Transparent;
-            }
+
         }
 
         private void sortirDePiece(object sender, TagVisualizerEventArgs e)
         {
             string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
-            Rectangle zoneCase = getZoneCaseFromName(idCase);
+            Rectangle zoneCase = getRoomCaseFromName(idCase);
             zoneCase.Fill = Brushes.Transparent;
         }
 
-        public Rectangle getZoneCaseFromName(string idCase)
+        private void sortirDeHall(object sender, TagVisualizerEventArgs e)
+        {
+            if (joueurPret) {
+                string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
+                Rectangle zoneCase = getRoomCaseFromName(idCase);
+                zoneCase.Fill = Brushes.Transparent;
+            }
+        }
+
+        public Rectangle getRoomCaseFromName(string idCase) {
+            switch (idCase)
+            {
+                case "GARAGE":
+                    return this.NGARAGE;
+                case "SALLEDEJEUX":
+                    return this.NSALLEDEJEUX;
+                case "CHAMBRE":
+                    return this.NCHAMBRE;
+                case "SALLEDEBAIN":
+                    return this.NSALLEDEBAIN;
+                case "BUREAU":
+                    return this.NBUREAU;
+                case "CUSINE":
+                    return this.NCUSINE;
+                case "SALLEAMANGER":
+                    return this.NSALLEAMANGER;
+                case "SALON":
+                    return this.NSALON;
+                case "ENTREE":
+                    return this.NENTREE;
+                case "HALL":
+                    return this.NHALL;
+            }
+            return null;
+        }
+
+        public Ellipse getZoneCaseFromName(string idCase)
         {
             switch (idCase)
             {
@@ -544,24 +556,7 @@ namespace Cluedo
                     return this.N133;
                 case "13.4":
                     return this.N134;
-                case "GARAGE":
-                    return this.NGARAGE;
-                case "SALLEDEJEUX":
-                    return this.NSALLEDEJEUX;
-                case "CHAMBRE":
-                    return this.NCHAMBRE;
-                case "SALLEDEBAIN":
-                    return this.NSALLEDEBAIN;
-                case "BUREAU":
-                    return this.NBUREAU;
-                case "CUSINE":
-                    return this.NCUSINE;
-                case "SALLEAMANGER":
-                    return this.NSALLEAMANGER;
-                case "SALON":
-                    return this.NSALON;
-                case "ENTREE":
-                    return this.NENTREE;
+                
 
             }
 
@@ -657,12 +652,35 @@ namespace Cluedo
             return tab;
         }
 
-        public void choixMouvement(int idJoueur, string numCase, int de) {
-            this.jouerCourant1.Content = idJoueur.ToString();
-            this.points1.Content = de;
-            this.jouerCourant2.Content = idJoueur.ToString();
-            this.points2.Content = de;
+        public void choixMouvement(string nomJoueur, string numCase, int de) {
+            
+            this.jouerCourant1.Content = nomJoueur;
+            this.jouerCourant2.Content = nomJoueur;
+            jouerImage1.Source = getJoueurImage(nomJoueur);
+            jouerImage2.Source = getJoueurImage(nomJoueur);
+            //this.points1.Content = de;
+            // affichier l'image de de !!!
+            //this.points2.Content = de;
             idCaseCourant = numCase;
+            this.de = de;
+        }
+
+        private BitmapImage getJoueurImage(string nomJoueur) {
+            switch (nomJoueur) { 
+                case "Violet":
+                    return new BitmapImage(new Uri("Resources/personHead/violet.jpg", UriKind.Relative));
+                case "Leblanc":
+                    return new BitmapImage(new Uri("Resources/personHead/leblanc.jpg", UriKind.Relative));
+                case "Moutarde":
+                    return new BitmapImage(new Uri("Resources/personHead/moutarde.jpg", UriKind.Relative));
+                case "Olive":
+                    return new BitmapImage(new Uri("Resources/personHead/Olive.jpg", UriKind.Relative));
+                case "Rose":
+                    return new BitmapImage(new Uri("Resources/personHead/Rose.jpg", UriKind.Relative));
+                case "Pervenche":
+                    return new BitmapImage(new Uri("Resources/personHead/Pervenche.jpg", UriKind.Relative));
+            }
+            return null;
         }
     }
 }

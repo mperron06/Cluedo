@@ -18,7 +18,7 @@ public class Joueur
 
 public class ChoixMovement
 {
-    public int idJoueur { get; set; }
+    public string idJoueur { get; set; }
     public string idCase { get; set; }
     public int value { get; set; }
 }
@@ -36,10 +36,23 @@ namespace Cluedo
             socket.Emit("forcerDebutPartie",null);
         }
 
-       
-        public static void PionPose(String idCase) {
-            socket.Emit("pionPose", idCase);
+
+        public static void tourChoixSupposition(String idCase)
+        {
+            socket.Emit("tourChoixSupposition", idCase);
         }
+
+        public static void tourChoixAccusation(String idCase)
+        {
+            socket.Emit("tourChoixAccusation", idCase);
+        }
+
+        public static void tourTermine(String idCase)
+        {
+            socket.Emit("tourTermine", idCase);
+        }
+
+
 
         public static void start() {
             Console.WriteLine("start !!!");
@@ -111,6 +124,7 @@ namespace Cluedo
                 {
                     ChoixMovement mouvement = data.Json.GetFirstArgAs<ChoixMovement>();
                     MainWindowCluedo.getInstance().choixMouvement(mouvement.idJoueur, mouvement.idCase, mouvement.value);
+                    Console.WriteLine("Test: " + mouvement.idJoueur + " " + mouvement.idCase + " " + mouvement.value);
                 });
             });
             

@@ -295,8 +295,11 @@
         </s:TagVisualizer>
 
         <Image Source="Resources/cluedo.jpg" Grid.Row="11" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="4" Margin="5"></Image>
+        <Rectangle Name="NHALL" Grid.Row="11" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="4" Stroke="Red" StrokeThickness="6">
+        </Rectangle>
+        
         <Path Stretch="Fill" Grid.Row="11" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="4" Data="M0,20 v-20 h40 M60,0 h20 v20 M80,40 v20 h-20 M0,40 v20 h40" Stroke="Red" StrokeThickness="8"></Path>
-        <s:TagVisualizer Grid.Column="4" Grid.Row="11" Grid.RowSpan="3" Grid.ColumnSpan="4" VisualizationAdded="verifyJoueurPret"  Panel.ZIndex="10000" DataContext="1.3" >
+        <s:TagVisualizer Grid.Column="4" Grid.Row="11" Grid.RowSpan="3" Grid.ColumnSpan="4" VisualizationAdded="verifyJoueurPret" VisualizationRemoved="sortirDeHall" Panel.ZIndex="10000" DataContext="HALL" >
             <s:TagVisualizer.Definitions>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x03" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x06" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
@@ -311,8 +314,6 @@
             <Rectangle.Fill>
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
-        </Rectangle>
-        <Rectangle Name="N13" Grid.Row="17" Grid.Column="4" Style="{StaticResource CaseStyle}">
         </Rectangle>
         
         <s:TagVisualizer Grid.Column="4" Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="1.3" >
@@ -331,8 +332,6 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N14" Grid.Row="17" Grid.Column="5" Style="{StaticResource CaseStyle}">
-        </Rectangle>
         
         <s:TagVisualizer Grid.Column="5" Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="1.4" >
             <s:TagVisualizer.Definitions>
@@ -350,8 +349,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N15" Grid.Row="17" Grid.Column="6" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="6" Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="1.5" >
             <s:TagVisualizer.Definitions>
@@ -369,8 +367,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N16" Grid.Row="17" Grid.Column="7" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="7" Grid.Row="17" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="1.6" >
             <s:TagVisualizer.Definitions>
@@ -388,9 +385,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N21" Grid.Row="16" Grid.Column="2" Style="{StaticResource CaseStyle}">
 
-        </Rectangle>
 
         <s:TagVisualizer Grid.Column="2" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="2.1" >
             <s:TagVisualizer.Definitions>
@@ -408,8 +403,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N22" Grid.Row="16" Grid.Column="3" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="3" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="2.2" Height="20" VerticalAlignment="Top" >
             <s:TagVisualizer.Definitions>
@@ -427,9 +421,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N23" Grid.Row="16" Grid.Column="4" Style="{StaticResource CaseStyle}">
 
-        </Rectangle>
         
         <s:TagVisualizer Grid.Column="4" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="2.3" >
             <s:TagVisualizer.Definitions>
@@ -447,8 +439,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N24" Grid.Row="16" Grid.Column="5" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="5" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="2.4" >
             <s:TagVisualizer.Definitions>
@@ -466,8 +457,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N25" Grid.Row="16" Grid.Column="6" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="6" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="2.5" >
             <s:TagVisualizer.Definitions>
@@ -485,8 +475,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N26" Grid.Row="16" Grid.Column="7" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="7" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="2.6" >
             <s:TagVisualizer.Definitions>
@@ -504,9 +493,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N27" Grid.Row="16" Grid.Column="8" Style="{StaticResource CaseStyle}">
 
-        </Rectangle>
         <s:TagVisualizer Grid.Column="8" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="2.7" >
             <s:TagVisualizer.Definitions>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x03" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
@@ -523,9 +510,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N28" Grid.Row="16" Grid.Column="9" Style="{StaticResource CaseStyle}">
 
-        </Rectangle>
 
         <s:TagVisualizer Grid.Column="9" Grid.Row="16" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="2.8" >
             <s:TagVisualizer.Definitions>
@@ -543,9 +528,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N31" Grid.Row="15" Grid.Column="2" Style="{StaticResource CaseStyle}">
-           
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="2" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="3.1" >
             <s:TagVisualizer.Definitions>
@@ -563,9 +546,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N32" Grid.Row="15" Grid.Column="3" Style="{StaticResource CaseStyle}">
-          
-        </Rectangle>
+
         <s:TagVisualizer Grid.Column="3" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="3.2" >
             <s:TagVisualizer.Definitions>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x03" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
@@ -582,8 +563,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N33" Grid.Row="15" Grid.Column="4" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="4" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="3.3" >
             <s:TagVisualizer.Definitions>
@@ -601,8 +581,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N34" Grid.Row="15" Grid.Column="5" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="5" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="3.4" >
             <s:TagVisualizer.Definitions>
@@ -620,8 +599,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N35" Grid.Row="15" Grid.Column="6" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="6" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="3.5" >
             <s:TagVisualizer.Definitions>
@@ -639,8 +617,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N36" Grid.Row="15" Grid.Column="7" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="7" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="3.6" >
             <s:TagVisualizer.Definitions>
@@ -658,8 +635,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N37" Grid.Row="15" Grid.Column="8" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="8" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="3.7" >
             <s:TagVisualizer.Definitions>
@@ -677,8 +653,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N38" Grid.Row="15" Grid.Column="9" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="9" Grid.Row="15" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="3.8" >
             <s:TagVisualizer.Definitions>
@@ -696,8 +671,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N41" Grid.Row="14" Grid.Column="2" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="2" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="4.1" >
             <s:TagVisualizer.Definitions>
@@ -715,8 +689,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N42" Grid.Row="14" Grid.Column="3" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="3" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="4.2" >
             <s:TagVisualizer.Definitions>
@@ -734,8 +707,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N43" Grid.Row="14" Grid.Column="4" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         <s:TagVisualizer Grid.Column="4" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="4.3" >
             <s:TagVisualizer.Definitions>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x03" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
@@ -752,8 +724,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N44" Grid.Row="14" Grid.Column="5" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="5" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="4.4" >
             <s:TagVisualizer.Definitions>
@@ -771,8 +742,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N45" Grid.Row="14" Grid.Column="6" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="6" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="4.5" >
             <s:TagVisualizer.Definitions>
@@ -790,8 +760,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N46" Grid.Row="14" Grid.Column="7" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="7" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="4.6" >
             <s:TagVisualizer.Definitions>
@@ -809,8 +778,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N47" Grid.Row="14" Grid.Column="8" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="8" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="4.7" >
             <s:TagVisualizer.Definitions>
@@ -828,8 +796,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N48" Grid.Row="14" Grid.Column="9" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="9" Grid.Row="14" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="4.8" >
             <s:TagVisualizer.Definitions>
@@ -847,8 +814,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N51" Grid.Row="13" Grid.Column="2" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="2" Grid.Row="13" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="5.1" >
             <s:TagVisualizer.Definitions>
@@ -866,8 +832,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N52" Grid.Row="13" Grid.Column="3" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+ 
         
         <s:TagVisualizer Grid.Column="3" Grid.Row="13" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="5.2" >
             <s:TagVisualizer.Definitions>
@@ -885,8 +850,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N57" Grid.Row="13" Grid.Column="8" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="8" Grid.Row="13" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="5.7" >
             <s:TagVisualizer.Definitions>
@@ -904,8 +868,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N61" Grid.Row="12" Grid.Column="2" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="2" Grid.Row="12" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="6.1" >
             <s:TagVisualizer.Definitions>
@@ -923,8 +886,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N62" Grid.Row="12" Grid.Column="3" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="3" Grid.Row="12" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="6.2" >
             <s:TagVisualizer.Definitions>
@@ -942,8 +904,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N67" Grid.Row="12" Grid.Column="8" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="8" Grid.Row="12" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="6.7" >
             <s:TagVisualizer.Definitions>
@@ -961,8 +922,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N71" Grid.Row="11" Grid.Column="2" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="2" Grid.Row="11" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="7.1" >
             <s:TagVisualizer.Definitions>
@@ -980,8 +940,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N72" Grid.Row="11" Grid.Column="3" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="3" Grid.Row="11" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="7.2" >
             <s:TagVisualizer.Definitions>
@@ -999,8 +958,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N77" Grid.Row="11" Grid.Column="8" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="8" Grid.Row="11" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="7.7" >
             <s:TagVisualizer.Definitions>
@@ -1018,8 +976,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N81" Grid.Row="10" Grid.Column="2" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="2" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="8.1" >
             <s:TagVisualizer.Definitions>
@@ -1037,8 +994,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N82" Grid.Row="10" Grid.Column="3" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="3" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="8.2" >
             <s:TagVisualizer.Definitions>
@@ -1056,8 +1012,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N83" Grid.Row="10" Grid.Column="4" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="4" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="8.3" >
             <s:TagVisualizer.Definitions>
@@ -1075,8 +1030,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N84" Grid.Row="10" Grid.Column="5" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="5" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="8.4" >
             <s:TagVisualizer.Definitions>
@@ -1094,8 +1048,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N85" Grid.Row="10" Grid.Column="6" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="6" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="8.5" >
             <s:TagVisualizer.Definitions>
@@ -1113,8 +1066,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N86" Grid.Row="10" Grid.Column="7" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="7" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="8.6" >
             <s:TagVisualizer.Definitions>
@@ -1132,8 +1084,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N87" Grid.Row="10" Grid.Column="8" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="8" Grid.Row="10" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="8.7" >
             <s:TagVisualizer.Definitions>
@@ -1151,8 +1102,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N91" Grid.Row="9" Grid.Column="2" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="2" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="9.1" >
             <s:TagVisualizer.Definitions>
@@ -1170,8 +1120,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N92" Grid.Row="9" Grid.Column="3" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="3" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="9.2" >
             <s:TagVisualizer.Definitions>
@@ -1189,8 +1138,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N93" Grid.Row="9" Grid.Column="4" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="4" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace"  VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="9.3" >
             <s:TagVisualizer.Definitions>
@@ -1208,8 +1156,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N94" Grid.Row="9" Grid.Column="5" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="5" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="9.4" >
             <s:TagVisualizer.Definitions>
@@ -1227,8 +1174,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N95" Grid.Row="9" Grid.Column="6" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="6" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="9.5" >
             <s:TagVisualizer.Definitions>
@@ -1246,8 +1192,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N96" Grid.Row="9" Grid.Column="7" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="7" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="9.6" >
             <s:TagVisualizer.Definitions>
@@ -1265,8 +1210,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N97" Grid.Row="9" Grid.Column="8" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="8" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="9.7" >
             <s:TagVisualizer.Definitions>
@@ -1284,8 +1228,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N102" Grid.Row="8" Grid.Column="3" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="3" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="10.2" >
             <s:TagVisualizer.Definitions>
@@ -1303,8 +1246,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N103" Grid.Row="8" Grid.Column="4" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="4" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="10.3" >
             <s:TagVisualizer.Definitions>
@@ -1322,8 +1264,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N104" Grid.Row="8" Grid.Column="5" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="5" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="10.4" >
             <s:TagVisualizer.Definitions>
@@ -1341,8 +1282,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N105" Grid.Row="8" Grid.Column="6" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="6" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="10.5" >
             <s:TagVisualizer.Definitions>
@@ -1360,8 +1300,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N106" Grid.Row="8" Grid.Column="7" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="7" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="10.6" >
             <s:TagVisualizer.Definitions>
@@ -1379,8 +1318,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N107" Grid.Row="8" Grid.Column="8" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="8" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="10.7" >
             <s:TagVisualizer.Definitions>
@@ -1398,8 +1336,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N108" Grid.Row="8" Grid.Column="9" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="9" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="10.8" >
             <s:TagVisualizer.Definitions>
@@ -1417,8 +1354,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N112" Grid.Row="7" Grid.Column="3" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="3" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="11.2" >
             <s:TagVisualizer.Definitions>
@@ -1436,8 +1372,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N113" Grid.Row="7" Grid.Column="4" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="4" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="11.3" >
             <s:TagVisualizer.Definitions>
@@ -1455,8 +1390,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N114" Grid.Row="7" Grid.Column="5" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="5" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="11.4" >
             <s:TagVisualizer.Definitions>
@@ -1474,8 +1408,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N115" Grid.Row="7" Grid.Column="6" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="6" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="11.5" >
             <s:TagVisualizer.Definitions>
@@ -1493,8 +1426,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N116" Grid.Row="7" Grid.Column="7" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="7" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="11.6" >
             <s:TagVisualizer.Definitions>
@@ -1512,8 +1444,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N117" Grid.Row="7" Grid.Column="8" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="8" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="11.7" >
             <s:TagVisualizer.Definitions>
@@ -1531,8 +1462,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N118" Grid.Row="7" Grid.Column="9" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
         
         <s:TagVisualizer Grid.Column="9" Grid.Row="7" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="11.8" >
             <s:TagVisualizer.Definitions>
@@ -1549,8 +1479,6 @@
             <Rectangle.Fill>
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
-        </Rectangle>
-        <Rectangle Name="N121" Grid.Row="6" Grid.Column="2" Style="{StaticResource CaseStyle}">
         </Rectangle>
         
         <s:TagVisualizer Grid.Column="2" Grid.Row="6" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="12.1" >
@@ -1569,8 +1497,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N122" Grid.Row="6" Grid.Column="3" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="3" Grid.Row="6" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="12.2" >
             <s:TagVisualizer.Definitions>
@@ -1588,8 +1515,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N123" Grid.Row="6" Grid.Column="4" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="4" Grid.Row="6" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="12.3" >
             <s:TagVisualizer.Definitions>
@@ -1607,8 +1533,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N124" Grid.Row="6" Grid.Column="5" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="5" Grid.Row="6" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="12.4" >
             <s:TagVisualizer.Definitions>
@@ -1626,10 +1551,10 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N131" Grid.Row="5" Grid.Column="2" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+        
 
-        <s:TagVisualizer Grid.Column="2" Grid.Row="5" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="13.1" >
+
+                <s:TagVisualizer Grid.Column="2" Grid.Row="5" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="13.1" >
             <s:TagVisualizer.Definitions>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x03" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x06" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
@@ -1645,8 +1570,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N132" Grid.Row="5" Grid.Column="3" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="3" Grid.Row="5" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="13.2" >
             <s:TagVisualizer.Definitions>
@@ -1664,8 +1588,7 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N133" Grid.Row="5" Grid.Column="4" Style="{StaticResource CaseStyle}">
-        </Rectangle>
+
 
         <s:TagVisualizer Grid.Column="4" Grid.Row="5" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="13.3" >
             <s:TagVisualizer.Definitions>
@@ -1683,8 +1606,6 @@
                 <ImageBrush ImageSource="Resources/pieces/rectangle.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="N134" Grid.Row="5" Grid.Column="5" Style="{StaticResource CaseStyle}">
-        </Rectangle>
 
         <s:TagVisualizer Grid.Column="5" Grid.Row="5" Grid.RowSpan="1" Grid.ColumnSpan="1" VisualizationAdded="verifyPlace" VisualizationRemoved="cleanColor" Panel.ZIndex="10000" DataContext="13.4" >
             <s:TagVisualizer.Definitions>
@@ -1696,6 +1617,82 @@
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x13" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
+        
+        
+        <!-->3 ème couche circle</-->
+        <Ellipse Name="N13" Grid.Row="17" Grid.Column="4" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N14" Grid.Row="17" Grid.Column="5" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N15" Grid.Row="17" Grid.Column="6" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N16" Grid.Row="17" Grid.Column="7" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N21" Grid.Row="16" Grid.Column="2" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N22" Grid.Row="16" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N23" Grid.Row="16" Grid.Column="4" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N24" Grid.Row="16" Grid.Column="5" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N25" Grid.Row="16" Grid.Column="6" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N26" Grid.Row="16" Grid.Column="7" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N27" Grid.Row="16" Grid.Column="8" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N28" Grid.Row="16" Grid.Column="9" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N31" Grid.Row="15" Grid.Column="2" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N32" Grid.Row="15" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N33" Grid.Row="15" Grid.Column="4" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N34" Grid.Row="15" Grid.Column="5" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N35" Grid.Row="15" Grid.Column="6" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N36" Grid.Row="15" Grid.Column="7" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N37" Grid.Row="15" Grid.Column="8" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N38" Grid.Row="15" Grid.Column="9" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N41" Grid.Row="14" Grid.Column="2" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N42" Grid.Row="14" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N43" Grid.Row="14" Grid.Column="4" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N44" Grid.Row="14" Grid.Column="5" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N45" Grid.Row="14" Grid.Column="6" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N46" Grid.Row="14" Grid.Column="7" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N47" Grid.Row="14" Grid.Column="8" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N48" Grid.Row="14" Grid.Column="9" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N51" Grid.Row="13" Grid.Column="2" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N52" Grid.Row="13" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N57" Grid.Row="13" Grid.Column="8" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N61" Grid.Row="12" Grid.Column="2" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N62" Grid.Row="12" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N67" Grid.Row="12" Grid.Column="8" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N71" Grid.Row="11" Grid.Column="2" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N72" Grid.Row="11" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N77" Grid.Row="11" Grid.Column="8" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N81" Grid.Row="10" Grid.Column="2" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N82" Grid.Row="10" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N83" Grid.Row="10" Grid.Column="4" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N84" Grid.Row="10" Grid.Column="5" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N85" Grid.Row="10" Grid.Column="6" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N86" Grid.Row="10" Grid.Column="7" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N87" Grid.Row="10" Grid.Column="8" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N91" Grid.Row="9" Grid.Column="2" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N92" Grid.Row="9" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N93" Grid.Row="9" Grid.Column="4" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N94" Grid.Row="9" Grid.Column="5" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N95" Grid.Row="9" Grid.Column="6" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N96" Grid.Row="9" Grid.Column="7" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N97" Grid.Row="9" Grid.Column="8" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N102" Grid.Row="8" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N103" Grid.Row="8" Grid.Column="4" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N104" Grid.Row="8" Grid.Column="5" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N105" Grid.Row="8" Grid.Column="6" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N106" Grid.Row="8" Grid.Column="7" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N107" Grid.Row="8" Grid.Column="8" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N108" Grid.Row="8" Grid.Column="9" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N112" Grid.Row="7" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N113" Grid.Row="7" Grid.Column="4" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N114" Grid.Row="7" Grid.Column="5" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N115" Grid.Row="7" Grid.Column="6" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N116" Grid.Row="7" Grid.Column="7" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N117" Grid.Row="7" Grid.Column="8" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N118" Grid.Row="7" Grid.Column="9" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N121" Grid.Row="6" Grid.Column="2" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N122" Grid.Row="6" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N123" Grid.Row="6" Grid.Column="4" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N124" Grid.Row="6" Grid.Column="5" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N131" Grid.Row="5" Grid.Column="2" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N132" Grid.Row="5" Grid.Column="3" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N133" Grid.Row="5" Grid.Column="4" Margin="-20, -20,-20,-20" ></Ellipse>
+        <Ellipse Name="N134" Grid.Row="5" Grid.Column="5" Margin="-20, -20,-20,-20" ></Ellipse>
 
         <Polyline Stretch="Fill" Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="3" Stroke="Red" StrokeThickness="6" Points="0 0 40 0 40 20 60 20"></Polyline>
         <!--Path Grid.Row="17" Grid.Column="7" Grid.ColumnSpan="3" Data="m0,20 h20 v-20 h40" Style="{StaticResource MurContourStyle}"></-->
@@ -1712,15 +1709,40 @@
                     <ImageBrush ImageSource="Resources/frame.png" Opacity="0.4"></ImageBrush>
                 </Grid.Background>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="1.5*"></RowDefinition>
                     <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="4*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Content="   Tableau d'Annonces" FontFamily="Old English Text MT"  Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown"></Label>
-                <Label Name="jouerCourant1" Grid.Row="1" Foreground="OrangeRed" FontWeight="Bold" Content="Violet" FontSize="32" Margin="40,0,0,0"></Label>
-                <Label Content="Lance le dé:" FontSize="25" Grid.Row="1" FontFamily="Algerian" Foreground="OrangeRed" Margin="60,50,0,0"></Label>
-                <Label Name="points1" Content="3" BorderBrush="HotPink" BorderThickness="2" Foreground="Red" FontSize="30" Grid.Row="1" Height="5" Width="40" Margin="180,50,0,0"></Label>
-                <Label Content="Pose des suppositions:" FontFamily="Algerian" FontSize="25" Grid.Row="2" Foreground="Orange" Margin="60,0,0,0" VerticalAlignment="Top"></Label>
+                <Label Content="Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,70,30,0"></Label>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Name="jouerCourant1" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="Violet" FontSize="30" Margin="40,20,0,0"></Label>
+                    <Image Name="jouerImage1" Grid.Row="0" Grid.Column="1" Margin="0,0,20,5" Width="60" Height="60"></Image><!--fill with jouer image-->
+                    <Label Content="lance le dé:" FontSize="24" Grid.Row="1" Grid.Column="0" FontFamily="Algerian" Foreground="OrangeRed" Margin="70,0,0,0"></Label>
+                    <Image Name="points1" Grid.Row="1" Grid.Column="1" Margin="10,0,10,5" Width="80" Height="60"></Image><!--fill with dé points image-->
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Pose des suppositions:" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="Algerian" FontSize="25" Foreground="Orange" Margin="60,0,0,0"></Label>
+                    <Image Name="suppoPerson1" Source="Resources/guessCard/person.png" Grid.Row="1" Grid.Column="0" Width="90" Height="200" HorizontalAlignment="Right" VerticalAlignment="Top"></Image>
+                    <Image Name="suppoArm1" Source="Resources/guessCard/arm.png" Grid.Row="1" Grid.Column="1" Width="90" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+                    <Image Name="suppoPiece1" Source="Resources/guessCard/piece.png" Grid.Row="1" Grid.Column="2" Width="90" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
+                </Grid>
             </Grid>
         </Grid>
 
@@ -1739,6 +1761,52 @@
                     <ImageBrush ImageSource="Resources/frame.png" Opacity="0.4"></ImageBrush>
                 </Grid.Background>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,70,30,0"></Label>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Name="jouerCourant2" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="Violet" FontSize="30" Margin="40,20,0,0"></Label>
+                    <Image Name="jouerImage2" Grid.Row="0" Grid.Column="1" Margin="0,0,20,5" Width="60" Height="60"></Image>
+                    <!--fill with jouer image-->
+                    <Label Content="lance le dé:" FontSize="24" Grid.Row="1" Grid.Column="0" FontFamily="Algerian" Foreground="OrangeRed" Margin="70,0,0,0"></Label>
+                    <Image Name="points2" Grid.Row="1" Grid.Column="1" Margin="10,0,10,5" Width="80" Height="60"></Image>
+                    <!--fill with dé points image-->
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Pose des suppositions:" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="Algerian" FontSize="25" Foreground="Orange" Margin="60,0,0,0"></Label>
+                    <Image Name="suppoPerson2" Source="Resources/guessCard/person.png" Grid.Row="1" Grid.Column="0" Width="90" Height="200" HorizontalAlignment="Right" VerticalAlignment="Top"></Image>
+                    <Image Name="suppoArm2" Source="Resources/guessCard/arm.png" Grid.Row="1" Grid.Column="1" Width="90" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+                    <Image Name="suppoPiece2" Source="Resources/guessCard/piece.png" Grid.Row="1" Grid.Column="2" Width="90" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
+                </Grid>
+                <!--Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </>
+            <Grid Grid.Column="1">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/frame.png" Opacity="0.4"></ImageBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
                     <RowDefinition Height="2*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="4*"></RowDefinition>
@@ -1746,37 +1814,10 @@
                 <Label Content="   Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown"></Label>
                 <Label Name="jouerCourant2" Grid.Row="1" Foreground="OrangeRed" FontWeight="Bold" Content="Violet" FontSize="32" Margin="40,0,0,0"></Label>
                 <Label Content="Lance le dé:" FontSize="25" Grid.Row="1" FontFamily="Algerian" Foreground="OrangeRed" Margin="60,50,0,0"></Label>
-                <Label Name="points2" Content="3" BorderBrush="HotPink" BorderThickness="2" Foreground="Red" FontSize="30" Grid.Row="1" Height="5" Width="40" Margin="180,50,0,0"></Label>
+                <Label Name="points2" Content="3" BorderBrush="HotPink" BorderThickness="2" Foreground="Red" FontSize="30" Grid.Row="1" Height="15" Width="60" Margin="180,50,0,0"></Label>
                 <Label Content="Pose des suppositions:" FontFamily="Algerian" FontSize="25" Grid.Row="2" Foreground="Orange" Margin="60,0,0,0" VerticalAlignment="Top"></Label>
-            </Grid>
-            <!--Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </>
-            <Grid Grid.Column="1">
-                <Grid.Background>
-                    <ImageBrush ImageSource="Resources/border.jpg"></ImageBrush>
-                </Grid.Background>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="4*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Label Content="   Tableau d'Annonces" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="38" Foreground="Black">
-                    <Label.RenderTransform>
-                        <RotateTransform CenterX="100" CenterY="60" Angle="180"></RotateTransform>
-                    </Label.RenderTransform>
-                </Label>
-                <Grid Grid.Row="1">
-                    <Grid.RenderTransform>
-                        <RotateTransform CenterX="100" CenterY="60" Angle="180"></RotateTransform>
-                    </Grid.RenderTransform>
-                    <Label Name="jouerCourant2" Foreground="OrangeRed" FontWeight="Bold" Content="xxx" FontSize="32" Margin="40,0,0,0"></Label>
-                    <Label Content="lance le dé:" FontSize="30" Foreground="Blue" Margin="60,50,0,0"></Label>
-                    <Label Name="points2" BorderBrush="HotPink" BorderThickness="2" Foreground="Red" FontSize="30" Height="5" Width="40" Margin="180,50,0,0"></Label>
-                </Grid>
             </Grid-->
+            </Grid>
         </Grid>
     </Grid>
 </s:SurfaceWindow>

@@ -79,6 +79,7 @@ namespace Cluedo
 
         private void goToMainPage(object sender, RoutedEventArgs e)
         {
+            Sounds.Play(EnumSound.START);
             MainWindowCluedo mainWindow = new MainWindowCluedo();
             mainWindow.Show();
             this.Close();

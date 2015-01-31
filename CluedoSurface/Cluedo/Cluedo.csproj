@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Sounds.cs" />
     <Page Include="InitPion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +126,39 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\personHead\leblanc.jpg" />
+    <Resource Include="Resources\personHead\moutarde.jpg" />
+    <Resource Include="Resources\personHead\olive.jpg" />
+    <Resource Include="Resources\personHead\pervenche.jpg" />
+    <Resource Include="Resources\personHead\rose.jpg" />
+    <Resource Include="Resources\personHead\violet.jpg" />
+    <Resource Include="Resources\armCard\barredefer.png" />
+    <Resource Include="Resources\armCard\chandelier.png" />
+    <Resource Include="Resources\armCard\cleanglaise.png" />
+    <Resource Include="Resources\armCard\corde.png" />
+    <Resource Include="Resources\armCard\poignard.png" />
+    <Resource Include="Resources\armCard\revolver.png" />
+    <Resource Include="Resources\dos.png" />
+    <Resource Include="Resources\personCard\leblanc.png" />
+    <Resource Include="Resources\personCard\moutarde.png" />
+    <Resource Include="Resources\personCard\olive.png" />
+    <Resource Include="Resources\personCard\pervenche.png" />
+    <Resource Include="Resources\personCard\rose.png" />
+    <Resource Include="Resources\personCard\violet.png" />
+    <Resource Include="Resources\pieceCard\bureau.png" />
+    <Resource Include="Resources\pieceCard\chambre.png" />
+    <Resource Include="Resources\pieceCard\cuisine.png" />
+    <Resource Include="Resources\pieceCard\entree.png" />
+    <Resource Include="Resources\pieceCard\garage.png" />
+    <Resource Include="Resources\pieceCard\salleamanger.png" />
+    <Resource Include="Resources\pieceCard\salledebains.png" />
+    <Resource Include="Resources\pieceCard\salledejeux.png" />
+    <Resource Include="Resources\pieceCard\salon.png" />
+    <Resource Include="Resources\guessCard\arm.png" />
+    <Resource Include="Resources\guessCard\dos.png" />
+    <Resource Include="Resources\guessCard\person.png" />
+    <Resource Include="Resources\guessCard\piece.png" />
+    <Content Include="Resources\start.wav" />
     <Resource Include="Resources\pieces\toChambre.png" />
     <Resource Include="Resources\pieces\toSalon.png" />
     <Resource Include="Resources\pieces\toCuisine.png" />
