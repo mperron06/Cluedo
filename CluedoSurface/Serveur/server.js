@@ -313,8 +313,59 @@ io.on('connection', function(socket){
 
     socket.on('supposition', function (perso, arme, lieu) {
         tableSocket.emit('showSupposition', { perso: perso, arme: arme, lieu: lieu });
-        //var idCase = joueurs[idJoueurActuel].numCase;
-        //changement du moved pour l'accusé
+        var verif = false;
+        var idJoueurSuppos;
+        var cartesSuppos = [];
+        if (nbJoueurs - idJoueurActuel != 0){
+            for (i = idJoueurActuel + 1; i <= nbJoueurs; i++) {
+                for (j = 0; j < joueurs[i].cartes.length; j++) {
+                    if (joueurs[i].cartes[j].nom == perso) {
+                        verif = true;
+                        cartesSuppos.push({ card : perso });
+                    }
+                    if (joueurs[i].cartes[j].nom == arme) {
+                        verif = true;
+                        cartesSuppos.push({ card : arme });
+                    }
+                    if (joueurs[i].cartes[j].nom == lieu) {
+                        verif = true;
+                        cartesSuppos.push({ card : lieu });
+                    }
+                }
+                if (verif) {
+                    idJoueurSuppos = i;
+                    break
+                }
+            }
+        }
+        if (idJoueurActuel != 0 && !verif) {
+            for (i = 0; i < idJoueurActuel; i++) {
+                for (j = 0; j < joueurs[i].cartes.length; j++) {
+                    if (joueurs[i].cartes[j].nom == perso) {
+                        verif = true;
+                        cartesSuppos.push({ card : perso });
+                    }
+                    if (joueurs[i].cartes[j].nom == arme) {
+                        verif = true;
+                        cartesSuppos.push({ card : arme });
+                    }
+                    if (joueurs[i].cartes[j].nom == lieu) {
+                        verif = true;
+                        cartesSuppos.push({ card : lieu });
+                    }
+                }
+                if (verif) {
+                    idJoueurSuppos = i;
+                    break
+                }
+            }
+        }
+        if(verif){
+            jSockets[idJoueurSuppos].emit('choixCarteSupposition',cartesSuppos );
+        }
+        else {
+            jSockets[idJoueurActuel].emit('noCarteSupposition');
+        }
     });
 
     socket.on('accusation', function (perso, arme, lieu) {
