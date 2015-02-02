@@ -372,7 +372,7 @@ io.on('connection', function(socket){
         jSockets[idJoueurActuel].emit('envoiCarteSupposition',nomCarte);
     });
     //envoi d'une demande de confirmation aupres du joueur qui a emis la supposition
-    //onSareponse, tour suivant (fonction joueur suivant ?)
+    //sa reponse = tourTermine, tour suivant 
 
 
     socket.on('accusation', function (perso, arme, lieu) {
