@@ -367,6 +367,13 @@ io.on('connection', function(socket){
             jSockets[idJoueurActuel].emit('noCarteSupposition');
         }
     });
+	
+	socket.on('receptionChoixCarteSupposition', function (nomCarte) {
+        jSockets[idJoueurActuel].emit('envoiCarteSupposition',nomCarte);
+    });
+    //envoi d'une demande de confirmation aupres du joueur qui a emis la supposition
+    //onSareponse, tour suivant (fonction joueur suivant ?)
+
 
     socket.on('accusation', function (perso, arme, lieu) {
         var idCase = joueurs[idJoueurActuel].numCase;
