@@ -198,7 +198,7 @@ function init() {
 
     cartes.push({ id: 6, nom: "Corde", type: "arme", tag: 14 });
     cartes.push({ id: 7, nom: "Poignard", type: "arme", tag: 15 });
-    cartes.push({ id: 8, nom: "Clé anglaise", type: "arme", tag: 16 });
+    cartes.push({ id: 8, nom: "Cle anglaise", type: "arme", tag: 16 });
     cartes.push({ id: 9, nom: "Revolver", type: "arme", tag: 21 });
     cartes.push({ id: 10, nom: "Chandelier", type: "arme", tag: 22 });
     cartes.push({ id: 11, nom: "Barre de fer", type: "arme", tag: 25 });
@@ -295,12 +295,6 @@ io.on('connection', function(socket){
             socket.emit('joueurReady', null);
             //socket.emit('cases', cases);
             //socket.emit('cartes', cartes);
-
-            /*if (nbJoueurs < nbMaxJoueurs && tableSocket != null) {
-                //io.sockets.emit('choixPions', joueurs);
-                console.log("joueurs prets");
-                io.sockets.emit('joueursPrets', nbJoueurs);
-            }*/
         }
     });
 
@@ -470,7 +464,18 @@ io.on('connection', function(socket){
         }
         for (i = 0; i < nbJoueurs; i++) {
             //jSockets[idJoueurActuel].emit('myCards', joueurs[i].cartes); // envoyer les cartes de tous les joueurs
-            io.sockets.emit('myCards', { idJoueur: idJoueurActuel, cartes: joueurs[i].cartes });
+            //io.sockets.emit('myCards', { idJoueur: i, cartes: joueurs[i].cartes });
+            var j;
+            for (j = 0; j < joueurs[i].cartes.length; j++) {
+                io.sockets.emit('myCards', { idJoueur: i, cartes: joueurs[i].cartes[j].name });
+                if (joueurs[i].cartes[j].type == "perso") {
+                    io.sockets.emit('myCardsPerso', { idJoueur: i, cartes: joueurs[i].cartes[j].name });
+                } else if (joueurs[i].cartes[j].type == "arme") {
+                    io.sockets.emit('myCardsArme', { idJoueur: i, cartes: joueurs[i].cartes[j].name });
+                } else {
+                    io.sockets.emit('myCardsPiece', { idJoueur: i, cartes: joueurs[i].cartes[j].name });
+                }
+            }
         }
 
         
@@ -486,7 +491,6 @@ io.on('connection', function(socket){
         console.log(idJoueurDepart);
         idJoueurActuel = idJoueurDepart;
         io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase[0]}); 
-        //tableSocket.emit('debutPartie', idJoueurActuel);
 
     });
 
@@ -581,18 +585,23 @@ io.on('connection', function(socket){
         jSockets[idJoueurActuel].emit('tourLancerDe', null);
     });
 
+    socket.on('newPionSupposition', function (idNewPion) { // envoie des pions un à la fois
+        if (cartes[idNewPion].type == "perso") {
+            jSockets[idJoueurActuel].emit('addPersoSupposition', { idJoueur: idJoueurActuel, cartes: cartes[idNewPion].nom });
+        } else if (cartes[idNewPion].type == "arme") {
+            jSockets[idJoueurActuel].emit('addArmeSupposition', { idJoueur: idJoueurActuel, cartes: cartes[idNewPion].nom });
+        }
+    });
     /* Choix de la supposition si dans une pièce */
     socket.on('tourChoixSupposition', function (newNumCase) {
         joueurs[idJoueurActuel].numCase[0] = newNumCase;
-        jSockets[idJoueurActuel].emit('tourSupposition', joueurs[idJoueurActuel].numCase );
+        jSockets[idJoueurActuel].emit('tourSupposition', joueurs[idJoueurActuel].numCase[0] );
     });
 
     /* Choix de l'accusation si dans une pièce */
-    socket.on('tourChoixAccusation', function (arg) {
-        console.log(arg);
-        var idCase = arg;
-        joueurs[idJoueurActuel].numCase = idCase; // nouvelle case
-        jSockets[idJoueurActuel].emit('tourAccusation', joueurs[idJoueurActuel].numCase);
+    socket.on('tourChoixAccusation', function (newNumCase) {
+        joueurs[idJoueurActuel].numCase[0] = newNumCase;
+        jSockets[idJoueurActuel].emit('tourAccusation', joueurs[idJoueurActuel].numCase[0]);
     });
 
     /* Demande des déplacements de l'accusation */
@@ -621,9 +630,8 @@ io.on('connection', function(socket){
     });
 
     /* Reception de la carte de l'accusation */
-    socket.on('tourReceptionCarte', function (arg) {
-        console.log(arg);
-        jSockets[idJoueurActuel].emit('receptionCarteAccusation', arg); //envoie de la carte
+    socket.on('tourReceptionCarte', function (pseudo, idCarteRecu) {
+        jSockets[idJoueurActuel].emit('receptionCarteAccusation', { idJoueur: idJoueurActuel, pseudo: pseudo, cartes: cartes[idCarteRecu].nom }); //envoie de la carte
     });
 
     /* Reception de la carte de l'accusation */
