@@ -311,7 +311,7 @@ io.on('connection', function(socket){
         var idJoueurSuppos;
         var cartesSuppos = [];
         if (nbJoueurs - idJoueurActuel != 0){
-            for (i = idJoueurActuel + 1; i < idJoueurActuel + nbJoueurs; i++) {
+            for (i = idJoueurActuel + 1; i < idJoueurActuel; i++) {
                 for (j = 0; j < joueurs[i].cartes.length; j++) {
                     if (joueurs[i].cartes[j].nom == perso) {
                         verif = true;
@@ -332,7 +332,7 @@ io.on('connection', function(socket){
                 }
             }
         }
-        /*
+
         if (idJoueurActuel != 0 && !verif) {
             for (i = 0; i < idJoueurActuel; i++) {
                 for (j = 0; j < joueurs[i].cartes.length; j++) {
@@ -354,7 +354,7 @@ io.on('connection', function(socket){
                     break
                 }
             }
-        }*/
+        }
         if(verif){
             jSockets[idJoueurSuppos].emit('choixCarteSupposition',cartesSuppos );
         }
