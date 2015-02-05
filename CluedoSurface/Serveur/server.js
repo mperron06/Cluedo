@@ -467,13 +467,14 @@ io.on('connection', function(socket){
             //io.sockets.emit('myCards', { idJoueur: i, cartes: joueurs[i].cartes });
             var j;
             for (j = 0; j < joueurs[i].cartes.length; j++) {
-                io.sockets.emit('myCards', { idJoueur: i, cartes: joueurs[i].cartes[j].name });
+			console.log(joueurs[i].cartes[j].nom);
+                io.sockets.emit('myCards', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
                 if (joueurs[i].cartes[j].type == "perso") {
-                    io.sockets.emit('myCardsPerso', { idJoueur: i, cartes: joueurs[i].cartes[j].name });
+                    io.sockets.emit('myCardsPerso', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
                 } else if (joueurs[i].cartes[j].type == "arme") {
-                    io.sockets.emit('myCardsArme', { idJoueur: i, cartes: joueurs[i].cartes[j].name });
+                    io.sockets.emit('myCardsArme', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
                 } else {
-                    io.sockets.emit('myCardsPiece', { idJoueur: i, cartes: joueurs[i].cartes[j].name });
+                    io.sockets.emit('myCardsPiece', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
                 }
             }
         }
