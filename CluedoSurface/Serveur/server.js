@@ -204,10 +204,10 @@ function init() {
     cartes.push({ id: 11, nom: "Barre de fer", type: "arme", tag: 25 });
 
     
-    cartes.push({ id: 12, nom: "Entrée", type: "piece", tag: "" });
+    cartes.push({ id: 12, nom: "Entree", type: "piece", tag: "" });
     cartes.push({ id: 13, nom: "Salle de jeux", type: "piece", tag: "" });
     cartes.push({ id: 14, nom: "Bureau", type: "piece", tag: "" });
-    cartes.push({ id: 15, nom: "Salle à manger", type: "piece", tag: "" });
+    cartes.push({ id: 15, nom: "Salle a manger", type: "piece", tag: "" });
     cartes.push({ id: 16, nom: "Garage", type: "piece", tag: "" });
     cartes.push({ id: 17, nom: "Salon", type: "piece", tag: "" });
     cartes.push({ id: 18, nom: "Cuisine", type: "piece", tag: "" });
