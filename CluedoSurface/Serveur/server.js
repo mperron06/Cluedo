@@ -428,7 +428,7 @@ io.on('connection', function(socket){
         console.log("début");
 
 
-        var cartesTemp = cartes;
+        var cartesTemp = cartes.slice();
         //console.log(cartesTemp);
         var persoMilieu = randomInt(0, 5);
         cartesMilieu.push(cartesTemp[persoMilieu]); // perso random
@@ -600,6 +600,10 @@ io.on('connection', function(socket){
     });
 
     socket.on('newPionSupposition', function (idNewPion) { // envoie des pions un à la fois
+        console.log(idNewPion);
+        console.log(cartes);
+        console.log(cartes[idNewPion]);
+        console.log(cartes[idNewPion].nom);
         if (cartes[idNewPion].type == "perso") {
             jSockets[idJoueurActuel].emit('addPersoSupposition', cartes[idNewPion].nom );
         } else if (cartes[idNewPion].type == "arme") {

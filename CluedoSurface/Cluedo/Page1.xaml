@@ -33,6 +33,19 @@
         </Grid>
 
         <Grid Grid.Row="2">
+            <Grid.RenderTransform>
+                <RotateTransform CenterX="420" CenterY="70" Angle="180"></RotateTransform>
+            </Grid.RenderTransform>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock TextWrapping="Wrap" FontSize="40"  FontFamily="Old English Text MT" Foreground="RosyBrown" HorizontalAlignment="Center" Text="Choisissez chacun un personnage, puis lancez la partie" Margin="50,70"></TextBlock>
+            <Image Grid.Row="0" Grid.Column="1" Source="Resources/icon2.png" HorizontalAlignment="Left" Margin="20,60"></Image>
+            <TextBlock Text="Cluedo" Grid.Row="0" Grid.Column="1" Margin="200, 40, 30, 10" FontFamily="Tahoma" FontSize="128" FontWeight="ExtraBold" Foreground="White"></TextBlock>
+        </Grid>
+
+        <!--Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -52,7 +65,7 @@
                     <RotateTransform CenterX="200" CenterY="90" Angle="180"></RotateTransform>
                 </TextBlock.RenderTransform>
             </TextBlock>
-        </Grid>
+        </-->
         
         <Grid Grid.Row="1" Name="personGrid">
             <!--Grid.RowDefinitions>
@@ -65,8 +78,8 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions-->
-            <s:ScatterView  >
-                <s:ScatterViewItem ShowsActivationEffects="True" Center="900,400" Orientation="20" CanRotate="True" CanMove="True"  Width="250" Height="150" Margin="-51,63,51,-63">
+            <s:ScatterView x:Name="scatter_main" s:SurfaceDragDrop.Drop="ScatterViewDrop" AllowDrop="True"><!--added-->
+                <s:ScatterViewItem ShowsActivationEffects="True" Center="900,400" Orientation="20" CanRotate="True" CanMove="True"  Width="250" Height="150" Margin="-51,63,51,-63" CanScale="False">
                     <Grid Grid.Row="0" Grid.Column="0"  Background="Violet" MaxWidth="250" MaxHeight="300">
                         <Image Source="Resources/persons/violet.jpg"  HorizontalAlignment="Left" Margin="20,5,0,5"  Width="100" Height="100"></Image>
                         <q:QrCodeImgControl Name="qrCodeViolet" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="100, 10, 10, 30"/>
@@ -75,7 +88,7 @@
                     </Grid>
                 </s:ScatterViewItem>
 
-                <s:ScatterViewItem ShowsActivationEffects="True" Center="300,500" Orientation="20" CanRotate="True" CanMove="True"  Width="250" Height="150" Margin="29,-67,-29,67">
+                <s:ScatterViewItem ShowsActivationEffects="True" Center="300,500" Orientation="20" CanRotate="True" CanMove="True"  Width="250" Height="150" Margin="29,-67,-29,67" CanScale="False">
                     <Grid Grid.Row="2" Grid.Column="0"  Background="White" MaxWidth="250" MaxHeight="300">
                         <Image Source="Resources/persons/blanc.jpg"  HorizontalAlignment="Left" Margin="20,5,0,5" Width="100" Height="100"></Image>
                         <q:QrCodeImgControl Name="qrCodeBlanc" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="110, 10, 10, 30"/>
@@ -85,7 +98,7 @@
                 </s:ScatterViewItem>
 
 
-                <s:ScatterViewItem ShowsActivationEffects="True" Center="1400,400" Orientation="-20" CanRotate="True" CanMove="True"  Width="250" Height="150" Margin="-132,59,132,-59">
+                <s:ScatterViewItem ShowsActivationEffects="True" Center="1400,400" Orientation="-20" CanRotate="True" CanMove="True"  Width="250" Height="150" Margin="-132,59,132,-59" CanScale="False">
                     <Grid Grid.Row="0" Grid.Column="1"  Background="Red" MaxWidth="250" MaxHeight="300">
                         <Image Source="Resources/persons/rose.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
                         <q:QrCodeImgControl Name="qrCodeRose" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="140, 10, 10, 30"/>
@@ -95,7 +108,7 @@
                 </s:ScatterViewItem>
 
 
-                <s:ScatterViewItem ShowsActivationEffects="True" Center="300,150" Orientation="170" CanRotate="True" CanMove="True"  Width="250" Height="150" Margin="59,-39,-59,39">
+                <s:ScatterViewItem ShowsActivationEffects="True" Center="300,150" Orientation="170" CanRotate="True" CanMove="True"  Width="250" Height="150" Margin="59,-39,-59,39" CanScale="False">
                 <Grid Grid.Row="2" Grid.Column="1"  Background="Olive" MaxWidth="250" MaxHeight="300">
                     <Image Source="Resources/persons/olive.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
                     <q:QrCodeImgControl Name="qrCodeOlive" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="140, 10, 10, 30"/>
@@ -104,7 +117,7 @@
                 </Grid>
             </s:ScatterViewItem>
 
-                <s:ScatterViewItem ShowsActivationEffects="True" Center="800,100" Orientation="190" CanRotate="True" CanMove="True"  Width="250" Height="150" Margin="122,66,-122,-66">
+                <s:ScatterViewItem ShowsActivationEffects="True" Center="800,100" Orientation="190" CanRotate="True" CanMove="True"  Width="250" Height="150" Margin="122,66,-122,-66" CanScale="False">
                 <Grid Grid.Row="0" Grid.Column="2" Margin="0, 0, 0, 0" Background="Yellow" MaxWidth="250" MaxHeight="300">
                     <Image Source="Resources/persons/moutarde.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
                     <q:QrCodeImgControl Name="qrCodeMoutarde" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="120, 10, 10, 30"/>
@@ -113,7 +126,7 @@
                 </Grid>
             </s:ScatterViewItem>
 
-                <s:ScatterViewItem ShowsActivationEffects="True" CanRotate="True" Center="1400,150" Orientation="185" CanMove="True"  Width="250" Height="150" Margin="-13,-96,13,96">
+                <s:ScatterViewItem ShowsActivationEffects="True" CanRotate="True" Center="1400,150" Orientation="185" CanMove="True"  Width="250" Height="150" Margin="-13,-96,13,96" CanScale="False">
                 <Grid Grid.Row="2" Grid.Column="2" Margin="0, 0, 0, 0" Background="SkyBlue" MaxWidth="250" MaxHeight="300">
                     <Image Source="Resources/persons/pervenche.jpg" HorizontalAlignment="Left" Margin="20,5,0,5" Width="100"></Image>
                     <q:QrCodeImgControl Name="qrCodePervenche" Width="100" Height="100" QuietZoneModule="Zero" IsGrayImage="True" LightColor="#FFFFCCFF" DarkColor="#FF910000" Margin="105, 10, 10, 30"/>
@@ -126,11 +139,29 @@
                         <Button Style="{StaticResource StartButtonStyle}"  TouchDown="goToMainPage" MaxWidth="100" MaxHeight="100" Grid.Row="2" ></Button>
                     </Grid>
                 </s:ScatterViewItem>
+
+                <!--added-->
+                <s:ScatterViewItem Height="200" Width="300">
+                    <s:LibraryBar Name="library">
+                        <s:LibraryBar.ItemTemplate>
+                            <DataTemplate>
+                                <Viewbox Stretch="Uniform">
+                                    <Image Source="{Binding}" />
+                                </Viewbox>
+                            </DataTemplate>
+                        </s:LibraryBar.ItemTemplate>
+                    </s:LibraryBar>
+                </s:ScatterViewItem>
+
+                <s:ScatterViewItem x:Name="scatter_Rules" s:SurfaceDragDrop.Drop="ScatterViewDrop" AllowDrop="True" Width="200" Height="300">
+                    <s:ScatterViewItem.Background>
+                        <ImageBrush ImageSource="Resources/knowRules.jpg"></ImageBrush>
+                    </s:ScatterViewItem.Background>
+                </s:ScatterViewItem>
+                <!--added-->
             </s:ScatterView>
+            
         </Grid>
-                <!--Grid Grid.Row="2">
-            <Button Style="{StaticResource StartButtonStyle}"  TouchDown="goToMainPage" MaxWidth="100" MaxHeight="100" Grid.Row="2" Margin="650, 0, 0, 0" ></Button>
-        </-->
 
     </Grid>
 </s:SurfaceWindow>

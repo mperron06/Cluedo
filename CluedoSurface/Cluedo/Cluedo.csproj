@@ -68,6 +68,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sounds.cs" />
     <Page Include="InitPion.xaml">
       <SubType>Designer</SubType>
@@ -90,9 +93,6 @@
     </Compile>
     <Compile Include="MainWindowCluedo.xaml.cs">
       <DependentUpon>MainWindowCluedo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
     <Compile Include="SocketIO.cs" />
     <Page Include="Resources\GlassButton.xaml">
@@ -161,7 +161,6 @@
     <Resource Include="Resources\dices\2.png" />
     <Resource Include="Resources\dices\3.png" />
     <Resource Include="Resources\dices\4.png" />
-    <Resource Include="Resources\dices\5.png" />
     <Resource Include="Resources\dices\6.png" />
     <Resource Include="Resources\dices\7.png" />
     <Resource Include="Resources\dices\8.png" />
@@ -170,6 +169,17 @@
     <Resource Include="Resources\guessCard\dos.png" />
     <Resource Include="Resources\guessCard\person.png" />
     <Resource Include="Resources\guessCard\piece.png" />
+    <Resource Include="Resources\knowRules.jpg" />
+    <Resource Include="Resources\rules\a.jpg" />
+    <Resource Include="Resources\rules\b.jpg" />
+    <Resource Include="Resources\rules\c.jpg" />
+    <Resource Include="Resources\rules\d.jpg" />
+    <Resource Include="Resources\rules\e.jpg" />
+    <Resource Include="Resources\rules\f.jpg" />
+    <Resource Include="Resources\rules\g.jpg" />
+    <Resource Include="Resources\dices\5.png" />
+    <Resource Include="Resources\bg.jpg" />
+    <Resource Include="Resources\pieces\entree.png" />
     <Content Include="Resources\start.wav" />
     <Resource Include="Resources\pieces\toChambre.png" />
     <Resource Include="Resources\pieces\toSalon.png" />
@@ -178,7 +188,6 @@
     <Resource Include="Resources\pieces\bureau.png" />
     <Resource Include="Resources\pieces\chambre.png" />
     <Resource Include="Resources\pieces\cuisine.png" />
-    <Resource Include="Resources\pieces\entree.png" />
     <Resource Include="Resources\pieces\garage.png" />
     <Resource Include="Resources\pieces\rectangle.png" />
     <Resource Include="Resources\pieces\salleDeBain.png" />
@@ -188,7 +197,6 @@
     <Resource Include="Resources\plateau.png" />
     <Resource Include="Resources\castle.jpg" />
     <Resource Include="Resources\frame.png" />
-    <Resource Include="Resources\bg.jpg" />
     <Resource Include="Resources\icon2.png" />
     <Resource Include="Resources\start.png" />
     <Resource Include="Resources\persons\blanc.jpg" />

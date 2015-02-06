@@ -338,8 +338,6 @@ namespace Cluedo
 
             string tag = "0x" + Convert.ToString(e.TagVisualization.VisualizedTag.Value, 16);
 
-
-            Console.WriteLine("haha   fd"+getIdFromTag(tag)+" eee");
             getTagsDansPiece(idCase).Add(getIdFromTag(tag));
 
             

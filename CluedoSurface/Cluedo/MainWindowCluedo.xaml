@@ -80,6 +80,13 @@
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x11" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x12" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x13" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x14" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x15" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x16" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x21" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x22" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x25" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
 
@@ -112,6 +119,13 @@
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x11" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x12" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x13" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x14" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x15" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x16" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x21" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x22" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x25" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
 
@@ -139,6 +153,13 @@
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x11" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x12" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x13" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x14" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x15" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x16" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x21" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x22" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x25" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
 
@@ -163,6 +184,13 @@
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x11" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x12" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x13" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x14" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x15" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x16" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x21" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x22" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x25" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
 
@@ -185,6 +213,13 @@
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x11" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x12" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x13" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x14" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x15" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x16" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x21" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x22" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x25" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
 
@@ -205,6 +240,13 @@
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x11" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x12" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x13" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x14" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x15" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x16" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x21" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x22" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x25" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
 
@@ -230,6 +272,13 @@
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x11" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x12" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x13" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x14" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x15" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x16" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x21" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x22" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x25" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
 
@@ -265,17 +314,24 @@
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x11" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x12" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x13" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x14" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x15" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x16" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x21" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x22" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x25" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
-
-        <Rectangle Name="NENTREE1" Grid.Row="18" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="2" Stroke="Red" StrokeThickness="6">
+        <!--à modifier-->
+        <Rectangle Name="NENTREE1" Grid.Row="17" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="8">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="Resources/pieces/entree.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="NENTREE" Grid.Row="18" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="2" Stroke="Red" StrokeThickness="6">
-        </Rectangle>
-
+        <Rectangle Name="NENTREE" Grid.Row="18" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="8" ></Rectangle>
+        <Path Grid.Row="17" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="8" Stroke="Red" StrokeThickness="6" Data="M0,0 v60 h160 v-60" Stretch="Fill"></Path>
+        <!--end-->
         <Line Grid.Row="18" Grid.Column="5" Grid.ColumnSpan="2" Style="{StaticResource MurContourStyle}" X1="0" Y1="0" X2="40" Y2="0" Stretch="Fill" VerticalAlignment="Top"></Line>
         <Label Grid.Row="18" Foreground="Yellow" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Content="ENTREE">
             <Label.RenderTransform>
@@ -291,6 +347,13 @@
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x11" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x12" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x13" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x14" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x15" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x16" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x21" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x22" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x25" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
 

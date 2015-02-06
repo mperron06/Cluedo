@@ -61,8 +61,10 @@ namespace Cluedo
         }
 
         public static void tagsDansPiece(ArrayList tags) {
+            Console.WriteLine("tags dans pieces");
             for (int i = 0; i < tags.Count; i++)
             {
+                Console.WriteLine("haha tags dans piece " + tags[i]+" fini");
                 socket.Emit("newPionSupposition", tags[i]);
             }
         }

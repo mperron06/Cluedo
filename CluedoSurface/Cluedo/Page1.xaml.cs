@@ -35,6 +35,8 @@ namespace Cluedo
         private String ipAddress;
 
         public static Page1 instance;
+
+        System.Collections.ObjectModel.ObservableCollection<String> items;/*************************added****************************/
       
         public Page1()
         {
@@ -50,9 +52,10 @@ namespace Cluedo
             // Initialise le singleton
             instance = this;
 
-            // Lance le serveur
-            startServer();
+            //Populate LibraryBar
+            LoadLibraryBarContent();/*******************************added********************************************/
 
+            startServer();
             // Lance socketIO
             SocketIO.Execute();
             //IsConnectToServeur = true;*/
@@ -76,6 +79,51 @@ namespace Cluedo
             myProcess.EnableRaisingEvents = true;
             myProcess.Start();
         }
+        
+        /******************************************added*************************************************************/
+        private void LoadLibraryBarContent()
+        {
+            try
+            {
+                string imagesFolderPath = "../../Resources/rules";
+                /*
+                string publicFoldersPath = Environment.GetEnvironmentVariable("public");
+                // These are default OS folders. 
+                string publicImagesPath = publicFoldersPath + @"\Pictures\Sample Pictures\rules";
+                */
+                String[] files = System.IO.Directory.GetFiles(imagesFolderPath, "*.jpg");
+
+                items = new System.Collections.ObjectModel.ObservableCollection<String>();
+
+                foreach (String file in files)
+                {
+                    items.Add(file);
+                }
+
+                library.ItemsSource = items;
+
+            }
+            catch (System.IO.DirectoryNotFoundException)
+            {
+
+            }
+        }
+
+        private void ScatterViewDrop(object sender, SurfaceDragDropEventArgs e)
+        {
+            //Retrieve the index of the dragged object
+            int position = items.IndexOf(e.Cursor.Data as String);
+
+            //Set the background of the ScatterView
+            ImageSource i = new BitmapImage(new Uri(e.Cursor.Data as String, UriKind.Relative));
+            scatter_Rules.Background = new ImageBrush(i);
+
+            //Remove the item from the Library source and add it again (to be able to use it again)
+            items.Remove(e.Cursor.Data as String);
+            items.Insert(position, e.Cursor.Data as String);
+
+        }
+        /*************************************************end***************************************************************/
 
         private void goToMainPage(object sender, RoutedEventArgs e)
         {
