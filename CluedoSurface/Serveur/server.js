@@ -192,7 +192,7 @@ function init() {
     cartes.push({ id: 0, nom: "Violet", type: "perso", tag: 3 });
     cartes.push({ id: 1, nom: "Leblanc", type: "perso", tag: 6 });
     cartes.push({ id: 2, nom: "Rose", type: "perso", tag: 10 });
-    cartes.push({ id: 3, nom: "Olivier", type: "perso", tag: 11 });
+    cartes.push({ id: 3, nom: "Olive", type: "perso", tag: 11 });
     cartes.push({ id: 4, nom: "Moutarde", type: "perso", tag: 12 });
     cartes.push({ id: 5, nom: "Pervenche", type: "perso", tag: 13 });
 
