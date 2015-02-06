@@ -602,6 +602,7 @@ io.on('connection', function(socket){
     });
     /* Choix de la supposition si dans une pièce */
     socket.on('tourChoixSupposition', function (newNumCase) {
+        tableSocket.emit("retourTourChoixSupposition");
         joueurs[idJoueurActuel].numCase[0] = newNumCase;
         jSockets[idJoueurActuel].emit('tourSupposition', joueurs[idJoueurActuel].numCase[0] );
     });
