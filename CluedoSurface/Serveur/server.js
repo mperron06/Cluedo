@@ -438,17 +438,24 @@ io.on('connection', function(socket){
         cartesMilieu.push(cartesTemp[pieceMilieu]); // piece random
         cartesTemp.splice(pieceMilieu, 1);// on le supprime de la liste des cartes
         //console.log(cartesTemp);
+		console.log('securite');
 
         var cartesShuffle = cartesTemp;
         cartesShuffle.shuffle();     // on mélange le tableau
         cartesShuffle.join();
         console.log(cartesShuffle);
-
+		console.log(nbJoueurs);
         var moduloNbCartesByPerso = (cartesShuffle.length / nbJoueurs) % nbJoueurs;
-        var nbCartesByPerso = (cartesShuffle.length / nbJoueurs) - (moduloNbCartesByPerso);
+		console.log(moduloNbCartesByPerso);
+        var nbCartesByPerso;
+		if (moduloNbCartesByPerso != 0) {
+			nbCartesByPerso = (cartesShuffle.length / nbJoueurs) - (moduloNbCartesByPerso);
+		}
+		if (moduloNbCartesByPerso == 0) {
+			nbCartesByPerso = cartesShuffle.length / nbJoueurs;
+		}
         var nbResteCartes = cartesShuffle.length - nbCartesByPerso * nbJoueurs;
         console.log(cartesShuffle.length);
-        console.log(moduloNbCartesByPerso);
         console.log(nbCartesByPerso);
         console.log(nbResteCartes);
         var i;
@@ -459,13 +466,12 @@ io.on('connection', function(socket){
         if (nbResteCartes > 0) {
             console.log('ici');
             for (i = 0; i < nbResteCartes; i++) {
-                joueurs[i].cartes.push(cartesShuffle[nbResteCartes + i]);
+                joueurs[i].cartes.push(cartesShuffle[cartesShuffle.length - (i + 1)]);
                 console.log(joueurs[i].cartes);
             }
         }
         for (i = 0; i < nbJoueurs; i++) {
-            //jSockets[idJoueurActuel].emit('myCards', joueurs[i].cartes); // envoyer les cartes de tous les joueurs
-            //io.sockets.emit('myCards', { idJoueur: i, cartes: joueurs[i].cartes });
+			jSockets[i].emit('myCardsTab', joueurs[i].cartes);
             var j;
             for (j = 0; j < joueurs[i].cartes.length; j++) {
 			console.log(joueurs[i].cartes[j].nom);
@@ -656,7 +662,7 @@ io.on('connection', function(socket){
             socket.emit('reconnected', joueurs);
             socket.emit('cases', cases);
 
-            io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
+            //io.sockets.emit('prochainJoueur', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase });
         }
     });
 
