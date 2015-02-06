@@ -213,16 +213,16 @@
         <!--à remplacer par une image de bureau-->
 
         
-        <Rectangle Name="NCUSINE1" Grid.Row="2" Grid.Column="10" Grid.RowSpan="7" Stroke="Red" StrokeThickness="6">
+        <Rectangle Name="NCUISINE1" Grid.Row="2" Grid.Column="10" Grid.RowSpan="7" Stroke="Red" StrokeThickness="6">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="Resources/pieces/cuisine.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="NCUSINE" Grid.Row="2" Grid.Column="10"   Grid.RowSpan="7" Stroke="Red" StrokeThickness="6">
+        <Rectangle Name="NCUISINE" Grid.Row="2" Grid.Column="10"   Grid.RowSpan="7" Stroke="Red" StrokeThickness="6">
         </Rectangle>
         
 
-        <s:TagVisualizer Grid.Column="10" Grid.Row="2" Grid.RowSpan="7"  VisualizationAdded="entrerDansPiece" VisualizationRemoved="sortirDePiece"  Panel.ZIndex="10000" DataContext="CUSINE" >
+        <s:TagVisualizer Grid.Column="10" Grid.Row="2" Grid.RowSpan="7"  VisualizationAdded="entrerDansPiece" VisualizationRemoved="sortirDePiece"  Panel.ZIndex="10000" DataContext="CUISINE" >
             <s:TagVisualizer.Definitions>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x03" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x06" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>

@@ -23,6 +23,7 @@ using Gma.QrCodeNet.Encoding;
 using Gma.QrCodeNet.Encoding.Windows.WPF;
 using System.IO;
 using System.Diagnostics;
+using System.Collections;
 
 
 namespace Cluedo
@@ -49,11 +50,26 @@ namespace Cluedo
         static String[] CHAMBRE = { "12.0" };                      //???? 14.0
         static String[] SALLEDEBAIN = { "14.3" };
         static String[] BUREAU = { "13.5" };
-        static String[] CUSINE = { "11.9" };
+        static String[] CUISINE = { "11.9" };
         static String[] SALLEAMANGER = { "7.8" };
         static String[] SALON = { "3.9" };
         static String[] ENTREE = { "0.4", "0.5" };
         static String[] HALL = { "5.5", "6.6", "7.5", "6.3" };
+
+        static public ArrayList tagsGarage = new ArrayList();
+        static public ArrayList tagsSalledejeu = new ArrayList();
+        static public ArrayList tagsChambre = new ArrayList();
+        static public ArrayList tagsSalledebain = new ArrayList();
+        static public ArrayList tagsBureau = new ArrayList();
+        static public ArrayList tagsCuisine = new ArrayList();
+        static public ArrayList tagsSalleamanger = new ArrayList();
+        static public ArrayList tagsSalon = new ArrayList();
+        static public ArrayList tagsEntree = new ArrayList();
+        static public ArrayList tagsHall = new ArrayList();
+
+        public static Boolean tagListEnvoye = false;
+        public static Boolean lancementSupposition = false;
+
         public MainWindowCluedo()
         {
             InitializeComponent();
@@ -161,15 +177,15 @@ namespace Cluedo
                 List<String> tab = seDeplacer(list, de);
                 //check if the player is in a room now
                 if (salleName != null) {
-                    //if the player is in the chambre, he can go to sallon, if the player is in the cusine, he can go to the garage, vice-versa
-                    if (salleName.Equals("CUSINE"))
+                    //if the player is in the chambre, he can go to sallon, if the player is in the cuisine, he can go to the garage, vice-versa
+                    if (salleName.Equals("CUISINE"))
                     {
-                        //cusine->garage
+                        //cuisine->garage
                         tab.Add("2.0");
                     }
                     if (salleName.Equals("GARAGE"))
                     {
-                        //garage->cusine
+                        //garage->cuisine
                         tab.Add("11.9");
                     }
                     if (salleName.Equals("SALON"))
@@ -254,7 +270,7 @@ namespace Cluedo
                 case "7.8":
                     return "SALLEAMANGE";
                 case "11.9":
-                    return "CUSINE";
+                    return "CUISINE";
                 case "12.0":
                     return "CHAMBRE";
                 case "13.5":
@@ -321,8 +337,95 @@ namespace Cluedo
             Console.WriteLine("entrer dans " + idCase);
 
             string tag = "0x" + Convert.ToString(e.TagVisualization.VisualizedTag.Value, 16);
-            verifySalle(idCase, tag);
-      
+
+
+            Console.WriteLine("haha   fd"+getIdFromTag(tag)+" eee");
+            getTagsDansPiece(idCase).Add(getIdFromTag(tag));
+
+            
+            if (!lancementSupposition)
+            {
+                verifySalle(idCase, tag);
+            }
+            //entrain de faire supposition, ne verifie plus si joueur est entré dans une salle correcte
+            else {
+                //si la liste est déjà envoyé, après, il faut juste envoyer ce qui est ajouté de nouveau
+                Console.WriteLine("lancement supposition " + lancementSupposition);
+                if (tagListEnvoye)
+                {
+                    ArrayList al = new ArrayList();
+                    al.Add(getIdFromTag(tag));
+                    SocketIO.tagsDansPiece(al);
+                    Console.WriteLine("envoyer le nouveau tag");
+                }
+                else {
+                    SocketIO.tagsDansPiece(getTagsDansPiece(idCase));
+                    tagListEnvoye = true;
+                    Console.WriteLine("envoyer la liste des tags");
+                }
+            }
+        }
+
+        private string getIdFromTag(string tag) {
+            switch (tag)
+            {
+                case "0x3":
+                    return "0";
+                case "0x6":
+                    return "1";
+                case "0x10":
+                    //Console.WriteLine("return 2");
+                    return "2";
+                case "0x11":
+                    return "3";
+                case "0x12":
+                    return "4";
+                case "0x13":
+                    return "5";
+                case "0x14":
+                    return "6";
+                case "0x15":
+                    return "7";
+                case "0x16":
+                    return "8";
+                case "0x21":
+                    return "9";
+                case "0x22":
+                    return "10";
+                case "0x25":
+                    return "11";
+                default:
+                    return null;
+
+            }
+        }
+
+        private ArrayList getTagsDansPiece(string idcase){
+             switch (idcase)
+            {
+                case "GARAGE":
+                    return tagsGarage;
+                case "SALLEDEJEUX":
+                    return tagsSalledejeu;
+                case "CHAMBRE":
+                    return tagsChambre;
+                case "SALLEDEBAIN":
+                    return tagsSalledebain;
+                case "BUREAU":
+                    return tagsBureau;
+                case "CUISINE":
+                    return tagsCuisine;
+                case "SALLEAMANGER":
+                    return tagsSalleamanger;
+                case "SALON":
+                    return tagsSalon;
+                case "ENTREE":
+                    return tagsEntree;
+                case "HALL":
+                    return tagsHall;
+                default:
+                    return null;
+            }   
         }
 
         private String[] getDoors(String room) {
@@ -338,8 +441,8 @@ namespace Cluedo
                     return SALLEDEBAIN;
                 case "BUREAU":
                     return BUREAU;
-                case "CUSINE":
-                    return CUSINE;
+                case "CUISINE":
+                    return CUISINE;
                 case "SALLEAMANGER":
                     return SALLEAMANGER;
                 case "SALON":
@@ -368,6 +471,23 @@ namespace Cluedo
             string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
             Rectangle zoneCase = getRoomCaseFromName(idCase);
             zoneCase.Fill = Brushes.Transparent;
+
+            string tag = "0x" + Convert.ToString(e.TagVisualization.VisualizedTag.Value, 16);
+
+            
+            for (int i = 0; i < getTagsDansPiece(idCase).Count; i++)
+            {
+                string value = getTagsDansPiece(idCase)[i] as string;
+                if (value == getIdFromTag(tag))
+                {
+                    getTagsDansPiece(idCase).RemoveAt(i);
+                     Console.WriteLine("attention! tag supprimé");
+                }
+                else {
+                    Console.WriteLine("attention! " + tag + " n'est pas trouvé");
+                }
+            }
+
         }
 
         private void sortirDeHall(object sender, TagVisualizerEventArgs e)
@@ -392,8 +512,8 @@ namespace Cluedo
                     return this.NSALLEDEBAIN;
                 case "BUREAU":
                     return this.NBUREAU;
-                case "CUSINE":
-                    return this.NCUSINE;
+                case "CUISINE":
+                    return this.NCUISINE;
                 case "SALLEAMANGER":
                     return this.NSALLEAMANGER;
                 case "SALON":
@@ -663,6 +783,10 @@ namespace Cluedo
             //this.points2.Content = de;
             idCaseCourant = numCase;
             this.de = de;
+
+            Uri ude = new Uri("Resources/dices/"+de+".png", UriKind.Relative);
+            points1.Source = new BitmapImage(ude);
+            points2.Source = new BitmapImage(ude);
         }
 
         private BitmapImage getJoueurImage(string nomJoueur) {

@@ -126,6 +126,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\X.png" />
     <Resource Include="Resources\personHead\leblanc.jpg" />
     <Resource Include="Resources\personHead\moutarde.jpg" />
     <Resource Include="Resources\personHead\olive.jpg" />
@@ -154,6 +155,17 @@
     <Resource Include="Resources\pieceCard\salledebains.png" />
     <Resource Include="Resources\pieceCard\salledejeux.png" />
     <Resource Include="Resources\pieceCard\salon.png" />
+    <Resource Include="Resources\dices\10.png" />
+    <Resource Include="Resources\dices\11.png" />
+    <Resource Include="Resources\dices\12.png" />
+    <Resource Include="Resources\dices\2.png" />
+    <Resource Include="Resources\dices\3.png" />
+    <Resource Include="Resources\dices\4.png" />
+    <Resource Include="Resources\dices\5.png" />
+    <Resource Include="Resources\dices\6.png" />
+    <Resource Include="Resources\dices\7.png" />
+    <Resource Include="Resources\dices\8.png" />
+    <Resource Include="Resources\dices\9.png" />
     <Resource Include="Resources\guessCard\arm.png" />
     <Resource Include="Resources\guessCard\dos.png" />
     <Resource Include="Resources\guessCard\person.png" />
@@ -179,7 +191,6 @@
     <Resource Include="Resources\bg.jpg" />
     <Resource Include="Resources\icon2.png" />
     <Resource Include="Resources\start.png" />
-    <Resource Include="Resources\X.png" />
     <Resource Include="Resources\persons\blanc.jpg" />
     <Resource Include="Resources\persons\moutarde.jpg" />
     <Resource Include="Resources\persons\olive.jpg" />

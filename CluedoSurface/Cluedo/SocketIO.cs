@@ -8,6 +8,8 @@ using System.Windows.Media;
 using SocketIOClient;
 using SocketIOClient.Messages;
 using Newtonsoft.Json;
+using System.Collections;
+using System.Windows.Media.Imaging;
 
 /*definition of the class used to convert to json objet, which is passed between the client and the server*/
 public class Joueur
@@ -23,6 +25,12 @@ public class ChoixMovement
     public int value { get; set; }
 }
 
+public class Supposition 
+{
+    public string perso{ get; set; }
+    public string arme{ get; set; }
+    public string lieu{ get; set; }
+}
 
 namespace Cluedo
 {
@@ -52,6 +60,9 @@ namespace Cluedo
             socket.Emit("tourTermine", idCase);
         }
 
+        public static void tagsDansPiece(ArrayList tags) {
+            socket.Emit("tagsDansPiece", tags);
+        }
 
 
         public static void start() {
@@ -127,7 +138,39 @@ namespace Cluedo
                     Console.WriteLine("Test: " + mouvement.idJoueur + " " + mouvement.idCase + " " + mouvement.value);
                 });
             });
-            
+
+            socket.On("showSupposition", (data) =>
+            {
+                Application surface = System.Windows.Application.Current;
+                surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
+                {
+                    Supposition supposition = data.Json.GetFirstArgAs<Supposition>();
+                    MainWindowCluedo.lancementSupposition = false;
+
+                    //carte
+                    Uri personne = new Uri("Resources/personHead/" + supposition.perso.ToLower()+".jpg", UriKind.Relative);
+                    Uri arme = new Uri("Resources/armCard/" + supposition.arme.ToLower()+".png", UriKind.Relative);
+                    Uri lieu = new Uri("Resources/pieceCard/" + supposition.lieu.ToLower()+".png", UriKind.Relative);
+                    MainWindowCluedo.getInstance().suppoPerson1.Source = new BitmapImage(personne);
+                    MainWindowCluedo.getInstance().suppoArm1.Source = new BitmapImage(arme);
+                    MainWindowCluedo.getInstance().suppoPiece1.Source = new BitmapImage(lieu);
+
+                    MainWindowCluedo.getInstance().suppoPerson2.Source = new BitmapImage(personne);
+                    MainWindowCluedo.getInstance().suppoArm2.Source = new BitmapImage(arme);
+                    MainWindowCluedo.getInstance().suppoPiece2.Source = new BitmapImage(lieu);
+                });
+            });
+
+            socket.On("retourTourChoixSupposition", (data) =>
+            {
+                Application surface = System.Windows.Application.Current;
+                surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
+                {
+                    MainWindowCluedo.lancementSupposition = true;
+                    MainWindowCluedo.tagListEnvoye = false;
+                });
+            });
+
 
             // make the socket.io connection
             socket.Connect();
