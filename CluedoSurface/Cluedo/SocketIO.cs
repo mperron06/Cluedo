@@ -61,7 +61,10 @@ namespace Cluedo
         }
 
         public static void tagsDansPiece(ArrayList tags) {
-            socket.Emit("tagsDansPiece", tags);
+            for (int i = 0; i < tags.Count; i++)
+            {
+                socket.Emit("newPionSupposition", tags[i]);
+            }
         }
 
 
