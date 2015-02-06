@@ -7,14 +7,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.TextView;
 
+import com.polytech.utils.ArrayCarte;
+import com.polytech.utils.JSONUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.socket.IOAcknowledge;
 import io.socket.IOCallback;
 import io.socket.SocketIO;
 import io.socket.SocketIOException;
+
+import static com.polytech.cluedo.R.string.regex;
 
 public class Remote {
 
@@ -29,7 +38,8 @@ public class Remote {
     /* ------ CHANGEMENT DE SCREEN ------ */
     private static final String NEW_TAG = "nouveauTag";
     private static final String PLAYER_READY = "joueurReady";
-    private static final String BEGIN_GAME = "joueursPrets";
+    private static final String WAITING_INIT = "joueursPrets";
+    private static final String BEGIN_GAME = "debutPartie";
     private static final String MOVED_TURN = "tourChange";
     private static final String SHORTCUT_TURN = "tourRaccourci";
     private static final String DICE_TURN = "tourLancerDe";
@@ -46,8 +56,6 @@ public class Remote {
     private static final String SUPPOSITION = "supposition";
     private static final String ACCUSATION = "accusation";
 
-    // CASES
-    private static final String CASE_BEGIN = "caseDepart";
 
     // EMIT
     private static final String ADD_PLAYER = "addPlayer";
@@ -62,18 +70,17 @@ public class Remote {
     private static final String FIELD_TAG = "tag";
     private static final String FIELD_ID_CASE = "idCase";
     //	private static final String FIELD_ID_CARTE = "carteId";
-    private static final String FIELD_IN_EXAMS = "enExams";
-    private static final String FIELD_MONEY = "argent";
-    private static final String FIELD_TURN_IN_EXAMS = "nbToursExams";
-    //	private static final String FIELD_NUMBER_OF_PROPERTIES = "nbProprietes";
-    private static final String FIELD_SUM = "somme";
-    private static final String FIELD_PASS_YOUR_TURN = "passeTour";
-    private static final String FIELD_CARD_DESCRIPTION = "description";
 
+    private static final String FIELD_CARDS = "cartes";
+
+
+
+    private static final String MY_CARDS = "myCardsTab";
 
 
     public static String url;
-    public static String pseudo;
+    //public static String pseudo;
+    public static String mon_pseudo;
     public static String perso;
     public static Context context;
     public static boolean already_connect;
@@ -81,6 +88,10 @@ public class Remote {
     public static long mon_id;
     public static String mon_perso;
     public static long id_joueur_actuel;
+
+    public static boolean turn_moved;
+
+    public static int case_actuel;
     //public static ArrayCase les_cases;
     //public static ArrayPlayer les_joueurs;
 
@@ -89,29 +100,34 @@ public class Remote {
     public static boolean de_lance_exam;
     public static int valeur_de;
 
-    public static boolean proposition_achat;
-    public static boolean achat_impossible;
-    public static boolean proposition_vente;
+	
+	public static boolean myTurn;
+    public static boolean displayRaccourci;
+    public static boolean displayPassage;
+    public static boolean displayDice;
+    public static boolean displaySupposition;
 
-    public static boolean carte_chance;
-    public static boolean carte_chance_tiree;
-    public static boolean secher_cours;
-
-    public static boolean rentree;
-    public static boolean revisions;
-    public static boolean session_exams;
-    public static boolean nuit_info;
-    public static boolean bourse_merite;
-    //	public static boolean en_exam;
-    public static boolean tour_en_exam;
-    public static boolean frais_scolarite;
-
-    public static boolean paiement;
-    public static boolean nouvelle_propriete;
-    public static String texte;
+    public static String persoHypo;
+    public static String armeHypo;
+    public static String lieuHypo;
 
 
     private static final String PERVENCHE = "Madame Pervenche";
+
+    public static String test;
+
+    //public static ArrayCarte cards;
+
+    private static final String TAG_CARTES = "cartes";
+    private static final String TAG_ID = "id";
+    private static final String TAG_NOM = "nom";
+    private static final String TAG_TYPE = "type";
+    private static final String TAG_TAG = "tag";
+
+    static JSONArray cards = null;
+    //static JSONObject cards = null;
+
+    public static String myRoom = "HALL";
 
 
     final IOCallback ioCallback = new IOCallback() {
@@ -135,38 +151,63 @@ public class Remote {
             if (event.equals(PLAYER_READY)){
                 System.out.println("Ready");
                 Intent intent = new Intent(context, WaitingLogActivity.class);
-                if (perso.equals("Pervenche")){
-                intent.putExtra("PERVENCHE", 1);
-                //intent.putExtra("MESSAGE", R.string.madamePervenche);
-            }
-            if (perso.equals("Moutarde")){
-                intent.putExtra("MOUTARDE", 1);
-            }
-            if (perso.equals("Leblanc")){
-                intent.putExtra("LEBLANC", 1);
-            }
-            if (perso.equals("Rose")){
-                intent.putExtra("ROSE", 1);
-            }
-
-            if (perso.equals("Olive")){
-                intent.putExtra("OLIVE", 1);
-            }
-
-            if (perso.equals("Violet")){
-                intent.putExtra("VIOLET", 1);
-            }
                 context.startActivity(intent);
+                System.out.println("Waiting");
 
             }
+
+            if (event.equals(WAITING_INIT)) { // MISE EN PLACE DES PIONS
+                System.out.println("Waiting");
+                Intent intent = new Intent(context, WaitingPionsActivity.class);
+                context.startActivity(intent);
+            }
+
             if (event.equals(BEGIN_GAME)) { // DEBUT DE LA PARTIE
-                /*id_joueur_actuel = JSONUtils.extractLong(FIELD_ID_JOUEUR, args[0].toString());
+
+
+                id_joueur_actuel = JSONUtils.extractLong(FIELD_ID_JOUEUR, objects[0].toString());
+                /*System.out.println("id recu "+id_joueur_actuel+" mon id "+id_joueur_actuel);
+                case_actuel = (int) JSONUtils.extractLong(FIELD_ID_CASE, objects[0].toString());
                 initAttributes();*/
 
-                Intent intent = new Intent(context, PionsActivity.class);
-                context.startActivity(intent);
+                if (mon_id == id_joueur_actuel) {
+					myTurn = true;
+                    Intent intent = new Intent(context, GlobalActivity.class);
+                    context.startActivity(intent);
+                } else {
+					myTurn = false;
+                    Intent intent = new Intent(context, GlobalActivity.class);
+                    context.startActivity(intent);
+                }
 
             }
+
+            if (event.equals(MY_CARDS)) {
+                    //cards = new ArrayCarte(objects[0].toString());
+                    try{
+                System.out.println(objects[0].toString());
+                //JSONArray jsonArr = new JSONArray(objects[0].toString());
+                        //JSONObject jsonObj = jsonArr.getJSONObject(0);
+
+                        cards = new JSONArray(objects[0].toString());
+                        JSONObject jsonObj = cards.getJSONObject(0);
+                        //String nom = (String) jsonObj.get(TAG_NOM);
+                        //System.out.println(nom);
+
+                    //JSONObject jsonObj = new JSONObject(objects[0].toString());
+                    //cards = jsonObj.getJSONArray(TAG_CARTES);
+                    //cards = jsonObj.getJSONObject(TAG_CARTES);
+
+                    /*for(int i = 0; i < cards.length(); i++){
+
+                    }*/
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
             if (event.equals(MOVED_TURN)) { // DEBUT DE LA PARTIE
                 Intent intent = new Intent(context, MovedActivity.class);
                 context.startActivity(intent);
@@ -175,11 +216,14 @@ public class Remote {
                 Intent intent = new Intent(context, ShortcutActivity.class);
                 context.startActivity(intent);
             }
-            if (event.equals(DICE_TURN)) { // DEBUT DE LA PARTIE
-                Intent intent = new Intent(context, DiceActivity.class);
+            if (event.equals(DICE_TURN)) {
+                myTurn = true;
+                Intent intent = new Intent(context, GlobalActivity.class);
                 context.startActivity(intent);
             }
-            if (event.equals(SUPPOSITION_TURN)) { // DEBUT DE LA PARTIE
+            if (event.equals(SUPPOSITION_TURN)) {
+                System.out.println(objects[0].toString());
+                myRoom = objects[0].toString();
                 Intent intent = new Intent(context, SuppositionActivity.class);
                 context.startActivity(intent);
             }
@@ -220,8 +264,8 @@ public class Remote {
                 id_joueur_actuel = Long.parseLong(objects[0].toString());
                 System.out.println(id_joueur_actuel);
                 if (id_joueur_actuel == mon_id){*/
-                    Intent intent = new Intent(context, MenuActivity.class);
-                    context.startActivity(intent);
+                    /*Intent intent = new Intent(context, MenuActivity.class);
+                    context.startActivity(intent);*/
                 /*}
                 else {
                     Intent intent = new Intent(context, WaitingActivity.class);
@@ -237,32 +281,11 @@ public class Remote {
                 socket.emit("reconnect", mon_id);
             } else {
                 //System.out.println("Where am i ?");
-                socket.emit(ADD_PLAYER, pseudo, perso);
+                socket.emit(ADD_PLAYER, mon_pseudo, perso);
                 already_connect = true;
             }
             // Login to Waiting
             Intent intent = new Intent(context, WaitingLogActivity.class);
-            if (perso.equals("Pervenche")){
-                intent.putExtra("PERVENCHE", 1);
-            }
-            if (perso.equals("Moutarde")){
-                intent.putExtra("MOUTARDE", 1);
-            }
-            if (perso.equals("Leblanc")){
-                intent.putExtra("LEBLANC", 1);
-            }
-            if (perso.equals("Rose")){
-                intent.putExtra("ROSE", 1);
-            }
-
-            if (perso.equals("Olive")){
-                intent.putExtra("OLIVE", 1);
-            }
-
-            if (perso.equals("Violet")){
-                intent.putExtra("VIOLET", 1);
-            }
-            //intent.putExtra("MESSAGE", R.string.waitingForPlayers);
             context.startActivity(intent);
         }
 
@@ -327,16 +350,25 @@ public class Remote {
     // EMIT
     public static void emit_lance_de() { socket.emit(DICE_ROLL, valeur_de);
     System.out.println("Youpi");}
+
+
+    public static void emit_supposition() {
+        socket.emit(EMIT_SUPPOSITION, persoHypo, armeHypo, lieuHypo);
+    }
+
     public static void emit_accusation() {
         socket.emit(EMIT_ACCUSATION);
     }
-    public static void emit_supposition() {
-        socket.emit(EMIT_SUPPOSITION);
-    }
+
     public static void emit_choix_carte() {
         socket.emit(CHOIX_CARTE);
     }
     public static void emit_tour_termine() {
         socket.emit(END_TURN);
+    }
+	
+	    private void initAttributes() {
+        mon_tour = (mon_id == id_joueur_actuel);
+        turn_moved = false;
     }
 }

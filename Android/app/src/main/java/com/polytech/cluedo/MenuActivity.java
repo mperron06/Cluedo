@@ -15,7 +15,7 @@ public class MenuActivity extends Activity {
 
 
     private Button rollDice_button;
-    private String myPseudo = Remote.pseudo;
+    private String myPseudo = Remote.mon_pseudo;
     private String myPerso = Remote.perso;
     private TextView pseudo;
     private TextView perso;

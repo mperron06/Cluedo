@@ -37,7 +37,8 @@
                     android:text="Main"
                     android:textSize="15sp"
                     android:textColor="@drawable/button_text_color"
-                    android:background="@drawable/connection_button" />
+                    android:background="@drawable/connection_button"
+                    />
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -66,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -86,20 +88,59 @@
                                 android:textColor="@drawable/button_text_color"
                                 android:background="@drawable/connection_button" />
                             </RelativeLayout>
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1">
-                            </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:id="@+id/shortcutLayout">
+                            <Button
+                                android:id="@+id/shortcut_button"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:paddingTop="@dimen/activity_vertical_margin"
+                                android:text="Emprunter le raccourci"
+                                android:textSize="15sp"
+                                android:textColor="@drawable/button_text_color"
+                                android:background="@drawable/connection_button" />
+
                         </RelativeLayout>
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:id="@+id/asideLayout">
+                            <Button
+                                android:id="@+id/aside_button"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:paddingTop="@dimen/activity_vertical_margin"
+                                android:text="Aller dans la pièce à côté"
+                                android:textSize="15sp"
+                                android:textColor="@drawable/button_text_color"
+                                android:background="@drawable/connection_button" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:id="@+id/supposeLayout">
+                            <Button
+                                android:id="@+id/suppose_button"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:paddingTop="@dimen/activity_vertical_margin"
+                                android:text="Je soupçonne..."
+                                android:textSize="15sp"
+                                android:textColor="@drawable/button_text_color"
+                                android:background="@drawable/connection_button" />
+
                         </RelativeLayout>
                         </LinearLayout>
 

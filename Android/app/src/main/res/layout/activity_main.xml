@@ -31,6 +31,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rowCards"
+                        android:orientation="horizontal"></LinearLayout>
+                    </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/rowCardsBonus">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rowCardsLayout2"
+                        android:orientation="horizontal"></LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 >
                 <RelativeLayout
@@ -113,8 +140,13 @@
                     </LinearLayout></RelativeLayout>
 
 
-                </LinearLayout>
-
+                </LinearLayout>-->
+        <!--<GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rowCount="2"
+            android:columnCount="6"
+            android:id="@+id/gridLayout"></GridLayout>-->
 
         </RelativeLayout>
 

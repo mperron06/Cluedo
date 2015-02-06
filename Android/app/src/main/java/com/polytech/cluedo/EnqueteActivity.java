@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -43,10 +44,13 @@ public class EnqueteActivity extends Activity {
     public void instantiateBandeau(){
         TextView hello = (TextView) findViewById(R.id.Hello);
         TextView persoName = (TextView) findViewById(R.id.persoName);
+
+        ImageView profil_picture = (ImageView) findViewById(R.id.imageView1);
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         String pseud = sharedPref.getString(getString(R.string.keyPseudo),"b");
         String persName = sharedPref.getString(getString(R.string.keyPersoName), "c");
         hello.setText(pseud);
+        //profil_picture.setImageResource((getResources().getIdentifier( Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
         persoName.setText(persName);
     }
 

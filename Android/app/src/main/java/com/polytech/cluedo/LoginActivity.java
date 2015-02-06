@@ -148,10 +148,10 @@ public class LoginActivity extends Activity {
         connexion_progressDialog = ProgressDialog.show(LoginActivity.this, "", "Loading. Please wait...", true);
         connexion_progressDialog .setCancelable(true);
         // Tout est bon
-        Remote.pseudo = pseudo;
+        Remote.mon_pseudo = pseudo;
         Remote.url = "http://" + ip + ":" + PORT;
         Remote.perso = perso;
-        //System.out.println("All good");
+        System.out.println("All good");
         Remote.context = this;
         Remote.reset();
         Remote.getInstance();

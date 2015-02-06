@@ -17,6 +17,7 @@
     <string name="ipMissed">Adresse IP manquante</string>
     <string name="qR">QR</string>
     <string name="connection">Connexion</string>
+    <string name="regex">idJoueur":</string>
 
     <!-- WaitingActivity -->
     <string name="waitingForPlayers">Attente de joueurs…</string>
@@ -59,5 +60,6 @@
     <string name="title_activity_global">GlobalActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_enquete">EnqueteActivity</string>
+    <string name="title_activity_wainting_pions">WaintingPionsActivity</string>
 
 </resources>
