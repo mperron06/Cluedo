@@ -153,7 +153,7 @@ namespace Cluedo
                     MainWindowCluedo.lancementSupposition = false;
 
                     //carte
-                    Uri personne = new Uri("Resources/personHead/" + supposition.perso.ToLower()+".jpg", UriKind.Relative);
+                    Uri personne = new Uri("Resources/personCard/" + supposition.perso.ToLower()+".jpg", UriKind.Relative);
                     Uri arme = new Uri("Resources/armCard/" + supposition.arme.ToLower()+".png", UriKind.Relative);
                     Uri lieu = new Uri("Resources/pieceCard/" + supposition.lieu.ToLower()+".png", UriKind.Relative);
                     MainWindowCluedo.getInstance().suppoPerson1.Source = new BitmapImage(personne);

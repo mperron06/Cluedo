@@ -358,7 +358,7 @@
         </s:TagVisualizer>
 
         <Image Source="Resources/cluedo.jpg" Grid.Row="11" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="4" Margin="5"></Image>
-        <Rectangle Name="NHALL" Grid.Row="11" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="4" Stroke="Red" StrokeThickness="6">
+        <Rectangle Name="NHALL" Grid.Row="11" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="4" >
         </Rectangle>
         
         <Path Stretch="Fill" Grid.Row="11" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="4" Data="M0,20 v-20 h40 M60,0 h20 v20 M80,40 v20 h-20 M0,40 v20 h40" Stroke="Red" StrokeThickness="8"></Path>
