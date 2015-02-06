@@ -428,14 +428,15 @@ io.on('connection', function(socket){
         //console.log(cartesTemp);
         var persoMilieu = randomInt(0, 5);
         cartesMilieu.push(cartesTemp[persoMilieu]); // perso random
-        cartesTemp.splice(persoMilieu, 1); // on le supprime de la liste des cartes
 
         var armeMilieu = randomInt(6, 11);
         cartesMilieu.push(cartesTemp[armeMilieu]); // arme random
-        cartesTemp.splice(armeMilieu, 1);// on le supprime de la liste des cartes
 
         var pieceMilieu = randomInt(12, 20);
         cartesMilieu.push(cartesTemp[pieceMilieu]); // piece random
+		
+		cartesTemp.splice(persoMilieu, 1); // on le supprime de la liste des cartes
+        cartesTemp.splice(armeMilieu, 1);// on le supprime de la liste des cartes
         cartesTemp.splice(pieceMilieu, 1);// on le supprime de la liste des cartes
         //console.log(cartesTemp);
 		console.log('securite');
