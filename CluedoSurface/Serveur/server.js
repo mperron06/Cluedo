@@ -315,15 +315,18 @@ io.on('connection', function(socket){
                 for (j = 0; j < joueurs[i].cartes.length; j++) {
                     if (joueurs[i].cartes[j].nom == perso) {
                         verif = true;
-                        cartesSuppos.push({ card : perso });
+                        cartesSuppos.push({ card: perso });
+                        jSockets[idJoueurSuppos].emit('choixTextSupposition', perso);
                     }
                     if (joueurs[i].cartes[j].nom == arme) {
                         verif = true;
-                        cartesSuppos.push({ card : arme });
+                        cartesSuppos.push({ card: arme });
+                        jSockets[idJoueurSuppos].emit('choixTextSupposition', arme);
                     }
                     if (joueurs[i].cartes[j].nom == lieu) {
                         verif = true;
-                        cartesSuppos.push({ card : lieu });
+                        cartesSuppos.push({ card: lieu });
+                        jSockets[idJoueurSuppos].emit('choixTextSupposition', lieu);
                     }
                 }
                 if (verif) {
@@ -339,17 +342,17 @@ io.on('connection', function(socket){
                     if (joueurs[i].cartes[j].nom == perso) {
                         verif = true;
                         cartesSuppos.push({ card: perso });
-                        jSockets[idJoueurSuppos].emit('choixCarteSupposition', perso);
+                        jSockets[idJoueurSuppos].emit('choixTextSupposition', perso);
                     }
                     if (joueurs[i].cartes[j].nom == arme) {
                         verif = true;
                         cartesSuppos.push({ card: arme });
-                        jSockets[idJoueurSuppos].emit('choixCarteSupposition', arme);
+                        jSockets[idJoueurSuppos].emit('choixTextSupposition', arme);
                     }
                     if (joueurs[i].cartes[j].nom == lieu) {
                         verif = true;
                         cartesSuppos.push({ card: lieu });
-                        jSockets[idJoueurSuppos].emit('choixCarteSupposition', lieu);
+                        jSockets[idJoueurSuppos].emit('choixTextSupposition', lieu);
                     }
                 }
                 if (verif) {
