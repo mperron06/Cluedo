@@ -338,15 +338,18 @@ io.on('connection', function(socket){
                 for (j = 0; j < joueurs[i].cartes.length; j++) {
                     if (joueurs[i].cartes[j].nom == perso) {
                         verif = true;
-                        cartesSuppos.push({ card : perso });
+                        cartesSuppos.push({ card: perso });
+                        jSockets[idJoueurSuppos].emit('choixCarteSupposition', perso);
                     }
                     if (joueurs[i].cartes[j].nom == arme) {
                         verif = true;
-                        cartesSuppos.push({ card : arme });
+                        cartesSuppos.push({ card: arme });
+                        jSockets[idJoueurSuppos].emit('choixCarteSupposition', arme);
                     }
                     if (joueurs[i].cartes[j].nom == lieu) {
                         verif = true;
-                        cartesSuppos.push({ card : lieu });
+                        cartesSuppos.push({ card: lieu });
+                        jSockets[idJoueurSuppos].emit('choixCarteSupposition', lieu);
                     }
                 }
                 if (verif) {
@@ -355,11 +358,12 @@ io.on('connection', function(socket){
                 }
             }
         }
-        if(verif){
+        if (verif) {
             jSockets[idJoueurSuppos].emit('choixCarteSupposition',cartesSuppos );
         }
         else {
             jSockets[idJoueurActuel].emit('noCarteSupposition');
+            jSockets[idJoueurActuel].emit('receptionCarteAccusation', { pseudo: "", cartes: "" }); //pas de carte
         }
     });
 	
@@ -374,9 +378,6 @@ io.on('connection', function(socket){
         var idCase = joueurs[idJoueurActuel].numCase;
         //changement du moved pour l'accusé
         
-    });
-    socket.on('choixCarte', function (perso, arme, lieu) {
-
     });
 
     /***** FIN EMIT ANDROID *****/
@@ -596,9 +597,9 @@ io.on('connection', function(socket){
 
     socket.on('newPionSupposition', function (idNewPion) { // envoie des pions un à la fois
         if (cartes[idNewPion].type == "perso") {
-            jSockets[idJoueurActuel].emit('addPersoSupposition', { idJoueur: idJoueurActuel, cartes: cartes[idNewPion].nom });
+            jSockets[idJoueurActuel].emit('addPersoSupposition', cartes[idNewPion].nom );
         } else if (cartes[idNewPion].type == "arme") {
-            jSockets[idJoueurActuel].emit('addArmeSupposition', { idJoueur: idJoueurActuel, cartes: cartes[idNewPion].nom });
+            jSockets[idJoueurActuel].emit('addArmeSupposition', cartes[idNewPion].nom );
         }
     });
     /* Choix de la supposition si dans une pièce */
@@ -641,7 +642,7 @@ io.on('connection', function(socket){
 
     /* Reception de la carte de l'accusation */
     socket.on('tourReceptionCarte', function (pseudo, idCarteRecu) {
-        jSockets[idJoueurActuel].emit('receptionCarteAccusation', { idJoueur: idJoueurActuel, pseudo: pseudo, cartes: cartes[idCarteRecu].nom }); //envoie de la carte
+        jSockets[idJoueurActuel].emit('receptionCarteAccusation', { pseudo: pseudo, cartes: cartes[idCarteRecu].nom }); //envoie de la carte
     });
 
     /* Reception de la carte de l'accusation */
