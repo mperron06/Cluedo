@@ -512,7 +512,7 @@ io.on('connection', function(socket){
     socket.on('tourTermine', function (newNumCase) {
         joueurs[idJoueurActuel].numCase[0] = newNumCase;
         io.sockets.emit('waitTurn', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] }); // fin de tour
-
+		jSockets[idJoueurActuel].emit('waitTurnTab', joueurs[idJoueurActuel].numCase[0]);
         do {
             idJoueurActuel = (idJoueurActuel + 1) % nbJoueurs;
         } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a été éliminé après une fausse accusation
@@ -572,6 +572,7 @@ io.on('connection', function(socket){
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else { // salle sans raccourcis ou dans le couloir
             io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
+			jSockets[idJoueurActuel].emit('tourLanceDeTab', joueurs[idJoueurActuel].numCase[0]);
         }
 
     });
