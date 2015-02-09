@@ -310,31 +310,42 @@ io.on('connection', function(socket){
     socket.on('lanceDe', function (value) {
         var val = parseInt(value);
         console.log(val);
+		console.log(joueurs[idJoueurActuel].numCase[0]);
         tableSocket.emit('choixMouvement', { idJoueur: joueurs[idJoueurActuel].persoName, idCase: joueurs[idJoueurActuel].numCase[0], value: val });
     });
 
     socket.on('supposition', function (perso, arme, lieu) {
+		console.log(perso);
+		console.log(arme);
+		console.log(lieu);
         tableSocket.emit('showSupposition', { perso: perso, arme: arme, lieu: lieu });
         var verif = false;
         var idJoueurSuppos;
         var cartesSuppos = [];
         if (nbJoueurs - (idJoueurActuel + 1) != 0){
+			console.log('premier if');
             for (i = idJoueurActuel + 1; i < nbJoueurs; i++) {
                 for (j = 0; j < joueurs[i].cartes.length; j++) {
-                    if (joueurs[i].cartes[j].nom == perso) {
+			console.log('for 1');
+                    if (joueurs[i].cartes[j].nom.toLowerCase() == perso.toLowerCase()) {
+			console.log('if 1');
                         verif = true;
                         cartesSuppos.push({ card: perso });
-                        jSockets[idJoueurSuppos].emit('choixTextSupposition', perso);
+                        //jSockets[idJoueurSuppos].emit('choixTextSupposition', perso);
                     }
-                    if (joueurs[i].cartes[j].nom == arme) {
+                    if (joueurs[i].cartes[j].nom.toLowerCase().replace(/ /g,"") == arme.toLowerCase().replace(/ /g,"")) {
+			console.log('if 2');
                         verif = true;
                         cartesSuppos.push({ card: arme });
-                        jSockets[idJoueurSuppos].emit('choixTextSupposition', arme);
+                        //jSockets[idJoueurSuppos].emit('choixTextSupposition', arme);
                     }
-                    if (joueurs[i].cartes[j].nom == lieu) {
+					console.log(joueurs[i].cartes[j].nom.toLowerCase().replace(" ",""));
+					console.log(lieu);
+                    if (joueurs[i].cartes[j].nom.toLowerCase().replace(/ /g,"") == lieu.toLowerCase().replace(/ /g,"")) {
+			console.log('if 3');
                         verif = true;
                         cartesSuppos.push({ card: lieu });
-                        jSockets[idJoueurSuppos].emit('choixTextSupposition', lieu);
+                        //jSockets[idJoueurSuppos].emit('choixTextSupposition', lieu);
                     }
                 }
                 if (verif) {
@@ -345,22 +356,29 @@ io.on('connection', function(socket){
         }
         
         if (idJoueurActuel != 0 && !verif) {
+			console.log('deuxieme if');
             for (i = 0; i < idJoueurActuel; i++) {
                 for (j = 0; j < joueurs[i].cartes.length; j++) {
-                    if (joueurs[i].cartes[j].nom == perso) {
+			console.log('for 2');
+                    if (joueurs[i].cartes[j].nom.toLowerCase() == perso.toLowerCase()) {
+			console.log('if 1');
                         verif = true;
                         cartesSuppos.push({ card: perso });
-                        jSockets[idJoueurSuppos].emit('choixTextSupposition', perso);
+                        //jSockets[idJoueurSuppos].emit('choixTextSupposition', perso);
                     }
-                    if (joueurs[i].cartes[j].nom == arme) {
+                    if (joueurs[i].cartes[j].nom.toLowerCase().replace(/ /g,"") == arme.toLowerCase().replace(/ /g,"")) {
+			console.log('if 2');
                         verif = true;
                         cartesSuppos.push({ card: arme });
-                        jSockets[idJoueurSuppos].emit('choixTextSupposition', arme);
+                        //jSockets[idJoueurSuppos].emit('choixTextSupposition', arme);
                     }
-                    if (joueurs[i].cartes[j].nom == lieu) {
+					console.log(joueurs[i].cartes[j].nom.toLowerCase().replace(" ",""));
+					console.log(lieu);
+                    if (joueurs[i].cartes[j].nom.toLowerCase().replace(/ /g,"") == lieu.toLowerCase().replace(/ /g,"")) {
+			console.log('if 3');
                         verif = true;
                         cartesSuppos.push({ card: lieu });
-                        jSockets[idJoueurSuppos].emit('choixTextSupposition', lieu);
+                        //jSockets[idJoueurSuppos].emit('choixTextSupposition', lieu);
                     }
                 }
                 if (verif) {
@@ -370,7 +388,11 @@ io.on('connection', function(socket){
             }
         }
         if (verif) {
+			console.log(cartesSuppos);
             jSockets[idJoueurSuppos].emit('choixCarteSupposition',cartesSuppos );
+			for (r = 0; r < cartesSuppos.length; r++){
+				jSockets[idJoueurSuppos].emit('choixTextSupposition', cartesSuppos[r]);
+			}
         }
         else {
             jSockets[idJoueurActuel].emit('noCarteSupposition');
@@ -437,6 +459,7 @@ io.on('connection', function(socket){
 
 
         var cartesTemp = cartes.slice();
+		//var cartesTemp = cartes;
         //console.log(cartesTemp);
         var persoMilieu = randomInt(0, 5);
         cartesMilieu.push(cartesTemp[persoMilieu]); // perso random
@@ -519,46 +542,58 @@ io.on('connection', function(socket){
 
     socket.on('tourTermine', function (newNumCase) {
         joueurs[idJoueurActuel].numCase[0] = newNumCase;
+		console.log(newNumCase);
         io.sockets.emit('waitTurn', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] }); // fin de tour
 		jSockets[idJoueurActuel].emit('waitTurnTab', joueurs[idJoueurActuel].numCase[0]);
         do {
             idJoueurActuel = (idJoueurActuel + 1) % nbJoueurs;
         } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a été éliminé après une fausse accusation
         console.log("joueur tour : " + idJoueurActuel);
-       
+              console.log(joueurs[idJoueurActuel].numCase[0]);
+	   for(i=0;i<joueurs.length;i++){
+		   console.log(joueurs[i].numCase[0]);
+	   }
         var case_rac = [];
         if (joueurs[idJoueurActuel].moved == true) {
             joueurs[idJoueurActuel].moved = false;
             io.sockets.emit('tourChange', { idJoueur: idJoueurActuel, idCase: getNomCase(joueurs[idJoueurActuel].numCase[0]) });
         } else if (joueurs[idJoueurActuel].numCase[0] == "14.3") { // salle de bain -> chambre
             case_rac.push(cases[82]);
+			console.log('SDB!!!');
             io.sockets.emit('caseRac', cases[82].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase:  case_rac});
         } else if (joueurs[idJoueurActuel].numCase[0] == "7.8") { // salle à manger -> cuisine
             case_rac.push(cases[81]);
+			console.log('SALLEAMANGER!!!');
             io.sockets.emit('caseRac', cases[81].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "11.9") { // cuisine -> salle à manger et garage
-            case_rac.push(cases[80]);
+            console.log('CUISINE!!!');
+			case_rac.push(cases[80]);
             io.sockets.emit('caseRac', cases[80].nom);
             case_rac.push(cases[76]);
             io.sockets.emit('caseRac', cases[76].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "12.0") { // chambre -> salle de bain, salon
-            case_rac.push(cases[84]);
+			console.log('CHAMBRE!!!');
+			case_rac.push(cases[84]);
             io.sockets.emit('caseRac', cases[84].nom);
             case_rac.push(cases[77]);
             io.sockets.emit('caseRac', cases[77].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "2.0") { // garage -> cuisine
             case_rac.push(cases[81]);
+			console.log('GARAGE!!!');
             io.sockets.emit('caseRac', cases[81].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "3.9") { // salon -> chambre
             case_rac.push(cases[82]);
+			console.log('SALON!!!');
             io.sockets.emit('caseRac', cases[82].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else { // salle sans raccourcis ou dans le couloir
+			console.log('Salle normale');
+			console.log(joueurs[idJoueurActuel].numCase[0]);
             io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
         }
 
