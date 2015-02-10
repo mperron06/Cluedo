@@ -550,13 +550,12 @@ io.on('connection', function(socket){
     socket.on('tourTermine', function (newNumCase) {
         joueurs[idJoueurActuel].numCase[0] = newNumCase;
 		console.log(newNumCase);
-        io.sockets.emit('waitTurn', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] }); // fin de tour
+		jSockets[idJoueurActuel].emit('waitTurn', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] }); // fin de tour
 		jSockets[idJoueurActuel].emit('waitTurnTab', joueurs[idJoueurActuel].numCase[0]);
         do {
             idJoueurActuel = (idJoueurActuel + 1) % nbJoueurs;
         } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a été éliminé après une fausse accusation
-        console.log("joueur tour : " + idJoueurActuel);
-              console.log(joueurs[idJoueurActuel].numCase[0]);
+        console.log("joueur tour : " + idJoueurActuel+" et case actu "+joueurs[idJoueurActuel].numCase[0]);
 	   for(i=0;i<joueurs.length;i++){
 		   console.log(joueurs[i].numCase[0]);
 	   }
