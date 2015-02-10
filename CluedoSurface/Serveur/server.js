@@ -318,7 +318,13 @@ io.on('connection', function(socket){
 		console.log(perso);
 		console.log(arme);
 		console.log(lieu);
-        tableSocket.emit('showSupposition', { perso: perso, arme: arme, lieu: lieu });
+		tableSocket.emit('showSupposition', { perso: perso, arme: arme, lieu: lieu });
+        // move si perso d'un joueur
+		for (i = 0; i < nbJoueurs; i++) {
+		    if (joueurs[i].persoName == perso) {
+		        joueurs[i].moved = true;
+		    }
+		}
         var verif = false;
         var idJoueurSuppos;
         var cartesSuppos = [];
