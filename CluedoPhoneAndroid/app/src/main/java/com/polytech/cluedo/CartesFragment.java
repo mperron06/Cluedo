@@ -1,12 +1,13 @@
 package com.polytech.cluedo;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 
 /**
@@ -14,57 +15,59 @@ import android.view.ViewGroup;
  * Activities that contain this fragment must implement the
  * {@link CartesFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CartesFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class CartesFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CartesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CartesFragment newInstance(String param1, String param2) {
-        CartesFragment fragment = new CartesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public CartesFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.fragment_cartes, container, false);
+
+        LinearLayout linearLayout1 = (LinearLayout) view.findViewById(R.id.gallery);
+        ImageView[] mImages = new ImageView[Remote.my_cards_all.size()];
+
+        for(int x=0; x<Remote.my_cards_all.size() ;x++) {
+            //ImageView image = new ImageView(MainActivity.this);
+            String temp = Remote.my_cards_all.get(x).toLowerCase();
+            final String name= temp.replace(" ", "");
+            mImages[x] = new ImageView(this.getActivity());
+            mImages[x].setImageResource((getResources().getIdentifier(name, "drawable", getActivity().getPackageName())));
+            //image.setBackgroundResource(R.drawable.ic_launcher);
+            mImages[x].setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    ImageView im=(ImageView) view.findViewById(R.id.selected);
+                    im.setImageResource((view.getResources().getIdentifier(name, "drawable", getActivity().getPackageName())));
+                }
+            });
+            if(x==0){
+                ImageView im=(ImageView) view.findViewById(R.id.selected);
+                im.setImageResource((getResources().getIdentifier(name, "drawable", getActivity().getPackageName())));
+            }
+            linearLayout1.addView(mImages[x]);
+        }
+        /**ImageView[] mImages = new ImageView[Remote.my_cards.getCartes().length];
+
+        for(int x=0;x<Remote.my_cards.getCartes().length ;x++) {
+            //ImageView image = new ImageView(MainActivity.this);
+            mImages[x] = new ImageView(this.getActivity());
+            mImages[x].setImageResource((getResources().getIdentifier(Remote.my_cards.getNom((long) x).toLowerCase(), "drawable", getActivity().getPackageName())));
+            //image.setBackgroundResource(R.drawable.ic_launcher);
+            linearLayout1.addView(mImages[x]);
+            mImages[x].setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    ImageView im=(ImageView) v.findViewById(R.id.selected);
+                    im.setImageResource((getResources().getIdentifier(Remote.my_cards.getNom(x).toLowerCase(), "drawable", getActivity().getPackageName())));
+                    //v.getId() will give you the image id
+
+                }
+            });
+        }*/
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cartes, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -73,7 +76,7 @@ public class CartesFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
+/*
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -83,7 +86,7 @@ public class CartesFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }
+    }*/
 
     @Override
     public void onDetach() {
@@ -105,5 +108,4 @@ public class CartesFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
-
 }

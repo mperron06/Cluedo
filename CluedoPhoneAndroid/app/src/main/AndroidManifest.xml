@@ -70,6 +70,14 @@
             android:name=".WaitingSuppositionActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".ReceiveNoCardActivity"
+            android:label="@string/title_activity_receive_no_card" >
+        </activity>
+        <activity
+            android:name=".WaitShortCutActivity"
+            android:label="@string/title_activity_wait_short_cut" >
+        </activity>
     </application>
 
 </manifest>

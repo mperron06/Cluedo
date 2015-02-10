@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#003314"
-    android:keepScreenOn="true" >
+    android:keepScreenOn="true">
 
     <LinearLayout
         android:id="@+id/header"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="#003314"
         >
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_gravity="left"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:src="@drawable/picture_profil" />
 
         <LinearLayout
             android:id="@+id/texteProfil"
             android:orientation="vertical"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/activity_vertical_margin"
-            android:layout_weight="1"
+            android:layout_weight="5"
             android:layout_gravity="center_vertical"
             >
             <TextView
@@ -40,7 +41,7 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/persoText"
@@ -48,8 +49,19 @@
                 android:layout_weight="1"
                 android:textSize="14dp"
                 android:textColor="#ffffff"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            >
+            <ProgressBar
+                style="@style/GenericProgressIndicator"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -58,32 +70,59 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/activity_vertical_margin"
         android:layout_weight="1"
         android:background="#ffffff"
         android:layout_gravity="center_vertical"
         >
-
-        <TextView android:text="En Attente"
-            android:textSize="22dp"
-            android:layout_weight="1"
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:background="@drawable/dotted"/>
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/activity_vertical_margin"
-            android:layout_weight="5"
+            android:padding="2dp"
             android:background="#ffffff"
             android:layout_gravity="center_vertical"
             android:id='@+id/fragment_container'>
+            <TabHost
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tabHost"
+                android:layout_gravity="center_horizontal">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical" > <!-- TabWidget used to creat tabs -->
 
+                    <TabWidget android:id="@android:id/tabs"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+                    </TabWidget> <!-- container of tabs -->
+
+
+                    <FrameLayout
+                        android:id="@android:id/tabcontent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+                        <!-- tab1 -->
+                        <fragment android:name="com.polytech.cluedo.CartesFragment"
+                            android:id="@+id/onglet1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="match_parent"
+                            tools:layout="@layout/fragment_cartes" />
+                        <!-- tab2 -->
+                        <fragment android:name="com.polytech.cluedo.FeuilleFragment"
+                            android:id="@+id/onglet2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="match_parent"
+                            tools:layout="@layout/fragment_feuille" />
+                        <!-- tab3 -->
+                        <fragment android:name="com.polytech.cluedo.HistoriqueFragment"
+                            android:id="@+id/onglet3"
+                            android:layout_width="fill_parent"
+                            android:layout_height="match_parent"
+                            tools:layout="@layout/fragment_historique" />
+                    </FrameLayout>
+                </LinearLayout>
+            </TabHost>
         </LinearLayout>
 
     </LinearLayout>

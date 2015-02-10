@@ -1,11 +1,12 @@
 package com.polytech.cluedo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 
@@ -14,12 +15,11 @@ public class AccusedActivity extends Activity {
     private TextView perso_editText;
     private ImageView profil_picture;
 
-    private RadioButton persoRadio;
     private ImageView persoView;
-    private RadioButton armeoRadio;
     private ImageView armeView;
-    private RadioButton pieceoRadio;
     private ImageView pieceView;
+
+    private String temp="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +31,42 @@ public class AccusedActivity extends Activity {
         perso_editText = (TextView) findViewById(R.id.persoText);
         profil_picture = (ImageView) findViewById(R.id.imageView1);
 
-        persoRadio = (RadioButton) findViewById(R.id.persoRadio);
         persoView = (ImageView) findViewById(R.id.persoView);
-        armeoRadio = (RadioButton) findViewById(R.id.armeRadio);
         armeView = (ImageView) findViewById(R.id.armeView);
-        pieceoRadio = (RadioButton) findViewById(R.id.pieceRadio);
         pieceView = (ImageView) findViewById(R.id.pieceView);
 
         pseudo_editText.setText(Remote.mon_pseudo);
         perso_editText.setText("personnage : " + Remote.mon_perso);
-        profil_picture.setImageResource((getResources().getIdentifier(Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
+        profil_picture.setImageResource((getResources().getIdentifier("profil_"+Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
+
+        System.out.println(Remote.my_accused);
+
+        if(Remote.my_accused.size()==3){
+            temp = Remote.my_accused.get(0).toLowerCase().replace(" ","");
+            System.out.println(temp);
+            persoView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
+            temp = Remote.my_accused.get(1).toLowerCase().replace(" ","");
+            System.out.println(temp);
+            armeView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
+            temp = Remote.my_accused.get(2).toLowerCase().replace(" ","");
+            System.out.println(temp);
+            pieceView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
+        } else  if(Remote.my_accused.size()==2){
+            temp = Remote.my_accused.get(0).toLowerCase().replace(" ","");
+            System.out.println(temp);
+            persoView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
+            temp = Remote.my_accused.get(1).toLowerCase().replace(" ","");
+            System.out.println(temp);
+            armeView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
+            pieceView.setVisibility(View.GONE);
+        } else {
+            System.out.println(Remote.my_accused.get(0).toLowerCase().replace(" ",""));
+            temp = Remote.my_accused.get(0).toLowerCase().replace(" ","");
+            System.out.println(temp);
+            persoView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
+            armeView.setVisibility(View.GONE);
+            pieceView.setVisibility(View.GONE);
+        }
     }
 
 
@@ -64,5 +90,34 @@ public class AccusedActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        // Do Nothing
+    }
+
+    public void validerChoix1(View v) {
+        Remote.card_send = Remote.my_accused.get(0).toString();
+
+        Remote.emit_choix_carte();
+
+        Intent intent = new Intent(Remote.context, ProfilActivity.class);
+        Remote.context.startActivity(intent);
+    }
+    public void validerChoix2(View v) {
+        Remote.card_send = Remote.my_accused.get(1).toString();
+
+        Remote.emit_choix_carte();
+
+        Intent intent = new Intent(Remote.context, ProfilActivity.class);
+        Remote.context.startActivity(intent);
+    }
+    public void validerChoix3(View v) {
+        Remote.card_send = Remote.my_accused.get(2).toString();
+
+        Remote.emit_choix_carte();
+
+        Intent intent = new Intent(Remote.context, ProfilActivity.class);
+        Remote.context.startActivity(intent);
     }
 }

@@ -23,9 +23,9 @@ public class WaitingMoveActivity extends Activity {
         perso_editText = (TextView) findViewById(R.id.persoText);
         profil_picture = (ImageView) findViewById(R.id.imageView1);
 
-        pseudo_editText.setText(Remote.mon_pseudo);
-        perso_editText.setText("personnage : " + Remote.mon_perso);
-        profil_picture.setImageResource((getResources().getIdentifier(Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
+        //pseudo_editText.setText(Remote.mon_pseudo);
+        //perso_editText.setText("personnage : " + Remote.mon_perso);
+        //profil_picture.setImageResource((getResources().getIdentifier("profil_"+Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
 
         // renommer le personnage accusé
 
@@ -53,5 +53,9 @@ public class WaitingMoveActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        // Do Nothing
     }
 }

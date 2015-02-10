@@ -8,7 +8,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:keepScreenOn="true"
-    tools:context=".LoginActivity" >
+    tools:context=".LoginActivity"
+    android:id="@+id/log">
 
     <ImageView
         android:id="@+id/imageView1"
@@ -122,7 +123,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:hint="@string/enterYourPerso"
-            android:inputType="phone" />
+            android:inputType="text" />
     </LinearLayout>
 
     <LinearLayout
@@ -139,7 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="@string/connection"
+            android:text="Jouer"
             android:textSize="20sp"
             android:textColor="@drawable/button_text_color"
             android:background="@drawable/connection_button" />

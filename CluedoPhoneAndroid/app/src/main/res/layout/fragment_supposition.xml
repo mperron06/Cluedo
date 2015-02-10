@@ -1,9 +1,84 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.polytech.cluedo.SuppositionFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fcf="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragsupposition"
+    tools:context="com.polytech.cluedo.SuppositionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:layout_gravity="center"
+        android:gravity="center">
 
+        <LinearLayout
+            android:id="@+id/gallery_relative_layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="2dp">
+
+
+            <ScrollView
+                android:id="@+id/perso"
+                android:layout_width="100dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingRight="2dp"
+                >
+                <LinearLayout
+                    android:id="@+id/gallery_perso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                    <!-- Persos dans la salle -->
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/arme"
+                android:layout_width="100dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                >
+                <LinearLayout
+                    android:id="@+id/gallery_arme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                    <!-- Armes dans la salle -->
+                </LinearLayout>
+            </ScrollView>
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingLeft="2dp"
+                >
+                <ImageView
+                    android:id="@+id/lieu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/picture_profil" />
+                </LinearLayout>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/supposeButton"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="10dp"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:onClick="suppose"
+            android:text="Supposition"
+            android:textColor="@drawable/button_text_color"
+            android:background="@drawable/connection_button" />
+    </LinearLayout>
 </FrameLayout>

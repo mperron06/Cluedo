@@ -27,8 +27,8 @@ public class WaitingDiceActivity extends Activity {
 
         pseudo_editText.setText(Remote.mon_pseudo);
         perso_editText.setText("personnage : "+Remote.mon_perso);
-        profil_picture.setImageResource((getResources().getIdentifier( Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
-        num_de_editText.setText(Remote.valeur_de);
+        profil_picture.setImageResource((getResources().getIdentifier("profil_"+Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
+        num_de_editText.setText(""+Remote.valeur_de);
     }
 
 
@@ -52,5 +52,9 @@ public class WaitingDiceActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        // Do Nothing
     }
 }

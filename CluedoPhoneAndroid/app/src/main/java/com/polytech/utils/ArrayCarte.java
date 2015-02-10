@@ -30,4 +30,11 @@ public class ArrayCarte {
 	public int size() {
 		return this.cartes.length;
 	}
+    public Carte[] getCartes() {
+        return cartes;
+    }
+
+    public String getNom(long id_carte) {
+        return cartes[(int) id_carte].getNom();
+    }
 }

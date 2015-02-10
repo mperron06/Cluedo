@@ -27,7 +27,7 @@ public class MovedActivity extends Activity {
 
         pseudo_editText.setText(Remote.mon_pseudo);
         perso_editText.setText("personnage : " + Remote.mon_perso);
-        profil_picture.setImageResource((getResources().getIdentifier(Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
+        profil_picture.setImageResource((getResources().getIdentifier("profil_"+Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
 
     }
 
@@ -62,5 +62,9 @@ public class MovedActivity extends Activity {
     public void move(View view) {
         // raccourcis ou lancé de dé
         Remote.emit_not_suppose();
+    }
+    @Override
+    public void onBackPressed() {
+        // Do Nothing
     }
 }

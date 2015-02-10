@@ -25,7 +25,7 @@ public class WaitingLogActivity extends Activity {
 
         pseudo_editText.setText(Remote.mon_pseudo);
         perso_editText.setText("personnage : "+Remote.mon_perso);
-        profil_picture.setImageResource((getResources().getIdentifier( Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
+        profil_picture.setImageResource((getResources().getIdentifier("profil_"+Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
 
     }
 
@@ -33,4 +33,5 @@ public class WaitingLogActivity extends Activity {
     public void onBackPressed() {
         // Do Nothing
     }
+
 }

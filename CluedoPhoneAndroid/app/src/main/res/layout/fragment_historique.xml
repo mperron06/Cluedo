@@ -1,9 +1,56 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.polytech.cluedo.HistoriqueFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fraghistorique"
+    tools:context="com.polytech.cluedo.HistoriqueFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <!-- TODO: Update blank fragment layout -->
+            <TableLayout
+                android:id="@+id/historique_tab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TableRow>
+                    <TextView
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:text="Personnage"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:text="Arme"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:text="Pièce"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

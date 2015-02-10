@@ -54,4 +54,19 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_move">MoveActivity</string>
 
+    <string-array name="perso_array">
+        <item>leblanc</item>
+        <item>moutarde</item>
+        <item>USA</item>
+        <item>Indonesia</item>
+        <item>Brazil</item>
+        <item>Pakistan</item>
+        <item>Nigeria</item>
+        <item>Bangladesh</item>
+        <item>Russia</item>
+    </string-array>
+
+    <string name="title_activity_receive_no_card">ReceiveNoCardActivity</string>
+    <string name="title_activity_wait_short_cut">WaitShortCutActivity</string>
+
 </resources>

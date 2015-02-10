@@ -11,8 +11,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="#003314"
         >
 
@@ -91,8 +91,8 @@
                 android:text="Vous êtes accusé. Merci de choisir la carte à envoyer."
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
+            <LinearLayout
+                android:id="@+id/linearGroup"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
@@ -101,75 +101,57 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     >
-                    <RadioButton
-                        android:id="@+id/persoRadio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
 
                     <ImageView
                         android:id="@+id/persoView"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_gravity="left"
-                        android:src="@drawable/picture_profil" />
+                        android:src="@drawable/picture_profil"
+                        android:onClick="validerChoix1" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     >
-                    <RadioButton
-                        android:id="@+id/armeRadio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
 
                     <ImageView
                         android:id="@+id/armeView"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_gravity="left"
-                        android:src="@drawable/picture_profil" />
+                        android:src="@drawable/picture_profil"
+                        android:onClick="validerChoix2" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     >
-                    <RadioButton
-                        android:id="@+id/pieceRadio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
 
                     <ImageView
                         android:id="@+id/pieceView"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_gravity="left"
-                        android:src="@drawable/picture_profil" />
+                        android:src="@drawable/picture_profil"
+                        android:onClick="validerChoix3"/>
                 </LinearLayout>
+            </LinearLayout>
 
-                <Button
-                    android:id="@+id/validerRadioButton"
-                    android:layout_width="138dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="20dp"
-                    android:paddingLeft="20dip"
-                    android:paddingRight="20dip"
-                    android:textColor="@drawable/button_text_color"
-                    android:background="@drawable/connection_button"
-                    android:onClick="valider"
-                    android:text="Valider" />
-            </RadioGroup>
-    </LinearLayout>
+        </LinearLayout>
 
 </LinearLayout>
