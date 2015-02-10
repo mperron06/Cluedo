@@ -240,14 +240,18 @@ io.on('connection', function(socket){
     var myId;
     var name;
 
-    console.log("nouveau client");
+    socket.on('addTable', function () {
 
-    socket.on('test', function (s) {
-        console.log("Message recu : " + s);
-        io.sockets.emit('test', s);
+        if (termine == true) {
+            init();
+        }
+
+        console.log("Table Connectee");
+
+        tableSocket = socket;
+
+        console.log(nbJoueurs);
     });
-
-    /***** FIN EMIT ANDROID *****/
 
     socket.on('addPlayer', function (playerName, persoName) {
 
@@ -306,6 +310,77 @@ io.on('connection', function(socket){
         }
     });
 
+    /** si bouton 'lancement partie' et non pas préciser le nombre de joueurs' */
+    socket.on('lancementDebutPartie', function () {
+
+        console.log("début");
+
+        var cartesTemp = cartes.slice();
+        var persoMilieu = randomInt(0, 5);
+        cartesMilieu.push(cartesTemp[persoMilieu]); // perso random
+
+        var armeMilieu = randomInt(6, 11);
+        cartesMilieu.push(cartesTemp[armeMilieu]); // arme random
+
+        var pieceMilieu = randomInt(12, 20);
+        cartesMilieu.push(cartesTemp[pieceMilieu]); // piece random
+
+        console.log("Meurtrier : " + cartesMilieu);
+
+        cartesTemp.splice(persoMilieu, 1); // on le supprime de la liste des cartes
+        cartesTemp.splice(armeMilieu, 1);// on le supprime de la liste des cartes
+        cartesTemp.splice(pieceMilieu, 1);// on le supprime de la liste des cartes
+
+        var cartesShuffle = cartesTemp;
+        cartesShuffle.shuffle();     // on mélange le tableau
+        cartesShuffle.join();
+        var moduloNbCartesByPerso = (cartesShuffle.length / nbJoueurs) % nbJoueurs;
+        var nbCartesByPerso;
+        if (moduloNbCartesByPerso != 0) {
+            nbCartesByPerso = (cartesShuffle.length / nbJoueurs) - (moduloNbCartesByPerso);
+        }
+        if (moduloNbCartesByPerso == 0) {
+            nbCartesByPerso = cartesShuffle.length / nbJoueurs;
+        }
+        var nbResteCartes = cartesShuffle.length - nbCartesByPerso * nbJoueurs;
+        var i;
+        for (i = 0; i < nbJoueurs; i++) {
+            joueurs[i].cartes = cartesShuffle.slice(nbCartesByPerso * i, (nbCartesByPerso * i) + nbCartesByPerso);
+        }
+        if (nbResteCartes > 0) {
+            for (i = 0; i < nbResteCartes; i++) {
+                joueurs[i].cartes.push(cartesShuffle[cartesShuffle.length - (i + 1)]);
+            }
+        }
+        for (i = 0; i < nbJoueurs; i++) {
+            jSockets[i].emit('myCardsTab', joueurs[i].cartes);
+            var j;
+            for (j = 0; j < joueurs[i].cartes.length; j++) {
+                io.sockets.emit('myCards', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
+                if (joueurs[i].cartes[j].type == "perso") {
+                    io.sockets.emit('myCardsPerso', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
+                } else if (joueurs[i].cartes[j].type == "arme") {
+                    io.sockets.emit('myCardsArme', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
+                } else {
+                    io.sockets.emit('myCardsPiece', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
+                }
+            }
+        }
+
+        console.log("Lancement début de partie");
+        io.sockets.emit('joueursPrets', nbJoueurs); /* mettre écran poser les pions */
+    });
+
+    /** Pions dans le hall */
+    socket.on('lancementPionsPrets', function () {
+        console.log(nbJoueurs);
+
+        idJoueurDepart = randomInt(0, nbJoueurs - 1);
+        console.log(idJoueurDepart);
+        idJoueurActuel = idJoueurDepart;
+        io.sockets.emit('debutPartie', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
+
+    });
 
     socket.on('lanceDe', function (value) {
         var val = parseInt(value);
@@ -418,140 +493,113 @@ io.on('connection', function(socket){
         jSockets[idJoueurActuel].emit('envoiCarteSupposition',nomCarte);
 	});
 
-	socket.on('newGame', function () {
-	    init();
-	    io.sockets.emit('startNewGame', null);
-	    tableSocket.emit('beginNewGame', null);
+    /* Changement de tour avec ancien appel dans une piece */
+	socket.on('nextTourChange', function (prochainJoueur, newNumCase) {
+	    joueurs[idJoueurActuel].numCase[0] = newNumCase;
+	    console.log(prochainJoueur);
+	    joueurs[idJoueurActuel].moved = false;
+	    jSockets[idJoueurActuel].emit('tourChange', joueurs[idJoueurActuel].numCase[0]);
 	});
 
+    /* Changement de tour avec possibilité de prendre un raccourci */
+	socket.on('nextTourRaccourci', function (prochainJoueur, newNumCase) {
+	    joueurs[idJoueurActuel].numCase[0] = newNumCase;
+	    console.log(prochainJoueur);
+	    jSockets[idJoueurActuel].emit('tourRaccourci', joueurs[idJoueurActuel].numCase[0]);
+	});
 
+    /* Changement de tour avec lancé de dé */
+	socket.on('nextTourLanceDe', function (prochainJoueur, newNumCase) {
+	    joueurs[idJoueurActuel].numCase[0] = newNumCase;
+	    console.log(prochainJoueur);
+	    jSockets[idJoueurActuel].emit('tourLancerDe', null);
+	});
 
-    /***** FIN EMIT ANDROID *****/
+	socket.on('newPionSupposition', function (idNewPion) { // envoie des pions un à la fois
+	    console.log(idNewPion);
+	    console.log(cartes);
+	    console.log(cartes[idNewPion]);
+	    console.log(cartes[idNewPion].nom);
+	    if (cartes[idNewPion].type == "perso") {
+	        jSockets[idJoueurActuel].emit('addPersoSupposition', cartes[idNewPion].nom);
+	    } else if (cartes[idNewPion].type == "arme") {
+	        jSockets[idJoueurActuel].emit('addArmeSupposition', cartes[idNewPion].nom);
+	    }
+	});
+    /* Choix de la supposition si dans une pièce */
+	socket.on('tourChoixSupposition', function (newNumCase) {
+	    tableSocket.emit("retourTourChoixSupposition", null);
+	    joueurs[idJoueurActuel].numCase[0] = newNumCase;
+	    console.log("-----------------> Case actuelle " + joueurs[idJoueurActuel].numCase[0]);
+	    jSockets[idJoueurActuel].emit('tourSupposition', getNomCase(joueurs[idJoueurActuel].numCase[0]));
+	});
 
+    /* Demande des déplacements de l'accusation */
+	socket.on('tourAttenteDeplacement', function (arg) {
+	    console.log(arg);
+	    jSockets[idJoueurActuel].emit('attenteDeplacement', null);
+	});
 
-    /***** EMIT TABLE *****/
+    /* Attente de la supposition */
+	socket.on('tourAttenteSupposition', function (arg) {
+	    console.log(arg);
+	    jSockets[idJoueurActuel].emit('attenteSupposition', null);
+	});
 
-    socket.on('addTable', function () {
+    /* Choix de l'accusation si dans une pièce */
+	socket.on('tourChoixAccusation', function (newNumCase) {
+	    joueurs[idJoueurActuel].numCase[0] = newNumCase;
+	    console.log("-----------------> Case actuelle " + joueurs[idJoueurActuel].numCase[0]);
+	    jSockets[idJoueurActuel].emit('tourAccusation', getNomCase(joueurs[idJoueurActuel].numCase[0]));
+	});
 
-        if (termine == true) {
-            init();
-        }
+    /* Choix de la carte d'accusationn */
+	socket.on('tourChoixCarteAccusation', function (arg) {
+	    console.log(arg);
+	    // COMMENT FAIRE................???????????????,
+	    io.sockets.emit('choixCarteAccusation', null);
+	});
 
-        console.log("Table Connectee");
+    /* Attente de l'accusation */
+	socket.on('tourAttenteAccusation', function (arg) {
+	    console.log(arg);
+	    jSockets[idJoueurActuel].emit('attenteAccusation', null);
+	});
 
-        tableSocket = socket;
+    /* Reception de la carte de l'accusation */
+	socket.on('tourReceptionCarte', function (pseudo, nomCarteRecu) {
+	    console.log("idJoueurActuel " + idJoueurActuel + " pseudo de joueur envoye " + pseudo + " et carte recu " + nomCarteRecu);
+	    jSockets[idJoueurActuel].emit('receptionCarteAccusation', { pseudo: pseudo, cartes: nomCarteRecu }); //envoie de la carte
+	});
 
-        console.log(nbJoueurs);
+	socket.on('notSuppose', function () { // tel / tablette
+	    var case_rac = [];
+	    if (joueurs[idJoueurActuel].numCase[0] == "14.3") { // salle de bain -> chambre
+	        case_rac.push(cases[82 - 1]);
+	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+	    } else if (joueurs[idJoueurActuel].numCase[0] == "7.8") { // salle à manger -> cuisine
+	        case_rac.push(cases[81 - 1]);
+	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+	    } else if (joueurs[idJoueurActuel].numCase[0] == "11.9") { // cuisine -> salle à manger et garage
+	        case_rac.push(cases[80 - 1]);
+	        case_rac.push(cases[76 - 1]);
+	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+	    } else if (joueurs[idJoueurActuel].numCase[0] == "12.0") { // chambre -> salle de bain, salon
+	        case_rac.push(cases[84 - 1]);
+	        case_rac.push(cases[77 - 1]);
+	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+	    } else if (joueurs[idJoueurActuel].numCase[0] == "2.0") { // garage -> cuisine
+	        case_rac.push(cases[81 - 1]);
+	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+	    } else if (joueurs[idJoueurActuel].numCase[0] == "3.9") { // salon -> chambre
+	        case_rac.push(cases[82 - 1]);
+	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
+	    } else { // salle sans raccourcis ou dans le couloir
+	        io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
+	        jSockets[idJoueurActuel].emit('tourLancerDeTab', joueurs[idJoueurActuel].numCase[0]);
+	    }
 
-        /*if (nbJoueurs == nbMaxJoueurs) {
-            //io.sockets.emit('choixPions', joueurs);
-            console.log("joueurs prets");
-            io.sockets.emit('joueursPrets', nbJoueurs);
-        }*/
-    });
-
-    /*socket.on('numJoueur', function (s) {
-        console.log("Nombre joueurs maximum : " + s);
-        nbMaxJoueurs = s;
-        //io.sockets.emit('serveurPret', "hello");
-    });*/
-
-    socket.on('newObject', function (object_tag) {
-        var i;
-        for (i = 0; i < nbCartes; i++) {
-            if (object_tag == cartes[i].tag) {
-                io.sockets.emit('interObject', {idJoueur: joueurs[idJoueurActuel].persoName, idCarte: cartes[i]} );
-            }
-        }
-    });
-
-    /** si bouton 'lancement partie' et non pas préciser le nombre de joueurs' */
-    socket.on('lancementDebutPartie', function () {
-
-        console.log("début");
-
-
-        var cartesTemp = cartes.slice();
-		//var cartesTemp = cartes;
-        //console.log(cartesTemp);
-        var persoMilieu = randomInt(0, 5);
-        cartesMilieu.push(cartesTemp[persoMilieu]); // perso random
-
-        var armeMilieu = randomInt(6, 11);
-        cartesMilieu.push(cartesTemp[armeMilieu]); // arme random
-
-        var pieceMilieu = randomInt(12, 20);
-        cartesMilieu.push(cartesTemp[pieceMilieu]); // piece random
-		
-		cartesTemp.splice(persoMilieu, 1); // on le supprime de la liste des cartes
-        cartesTemp.splice(armeMilieu, 1);// on le supprime de la liste des cartes
-        cartesTemp.splice(pieceMilieu, 1);// on le supprime de la liste des cartes
-        //console.log(cartesTemp);
-		console.log('securite');
-
-        var cartesShuffle = cartesTemp;
-        cartesShuffle.shuffle();     // on mélange le tableau
-        cartesShuffle.join();
-        console.log(cartesShuffle);
-		console.log(nbJoueurs);
-        var moduloNbCartesByPerso = (cartesShuffle.length / nbJoueurs) % nbJoueurs;
-		console.log(moduloNbCartesByPerso);
-        var nbCartesByPerso;
-		if (moduloNbCartesByPerso != 0) {
-			nbCartesByPerso = (cartesShuffle.length / nbJoueurs) - (moduloNbCartesByPerso);
-		}
-		if (moduloNbCartesByPerso == 0) {
-			nbCartesByPerso = cartesShuffle.length / nbJoueurs;
-		}
-        var nbResteCartes = cartesShuffle.length - nbCartesByPerso * nbJoueurs;
-        console.log(cartesShuffle.length);
-        console.log(nbCartesByPerso);
-        console.log(nbResteCartes);
-        var i;
-        for (i = 0; i < nbJoueurs; i++) {
-            joueurs[i].cartes = cartesShuffle.slice(nbCartesByPerso * i, (nbCartesByPerso * i)+nbCartesByPerso);
-            console.log(joueurs[i].cartes);
-        }
-        if (nbResteCartes > 0) {
-            console.log('ici');
-            for (i = 0; i < nbResteCartes; i++) {
-                joueurs[i].cartes.push(cartesShuffle[cartesShuffle.length - (i + 1)]);
-                console.log(joueurs[i].cartes);
-            }
-        }
-        for (i = 0; i < nbJoueurs; i++) {
-			jSockets[i].emit('myCardsTab', joueurs[i].cartes);
-            var j;
-            for (j = 0; j < joueurs[i].cartes.length; j++) {
-			console.log(joueurs[i].cartes[j].nom);
-                io.sockets.emit('myCards', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
-                if (joueurs[i].cartes[j].type == "perso") {
-                    io.sockets.emit('myCardsPerso', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
-                } else if (joueurs[i].cartes[j].type == "arme") {
-                    io.sockets.emit('myCardsArme', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
-                } else {
-                    io.sockets.emit('myCardsPiece', { idJoueur: i, cartes: joueurs[i].cartes[j].nom });
-                }
-            }
-        }
-
-        
-        console.log("Lancement début de partie");
-        io.sockets.emit('joueursPrets', nbJoueurs); /* mettre écran poser les pions */
-    });
-
-    /** Pions dans le hall */
-    socket.on('lancementPionsPrets', function () {
-        console.log(nbJoueurs);
-        
-        idJoueurDepart = randomInt(0, nbJoueurs-1);
-        console.log(idJoueurDepart);
-        idJoueurActuel = idJoueurDepart;
-        io.sockets.emit('debutPartie', {idJoueur:idJoueurActuel, idCase:joueurs[idJoueurActuel].numCase[0]}); 
-
-    });
-
-
+	});
 
     socket.on('tourTermine', function (newNumCase) {
         console.log("-----------------> Tour termine Case actuelle " + joueurs[idJoueurActuel].numCase[0]);        
@@ -616,121 +664,18 @@ io.on('connection', function(socket){
 
     });
 
-    socket.on('notSuppose', function () { // tel / tablette
-        var case_rac = [];
-        if (joueurs[idJoueurActuel].numCase[0] == "14.3") { // salle de bain -> chambre
-            case_rac.push(cases[82-1]);
-            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
-        } else if (joueurs[idJoueurActuel].numCase[0] == "7.8") { // salle à manger -> cuisine
-            case_rac.push(cases[81-1]);
-            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
-        } else if (joueurs[idJoueurActuel].numCase[0] == "11.9") { // cuisine -> salle à manger et garage
-            case_rac.push(cases[80-1]);
-            case_rac.push(cases[76-1]);
-            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
-        } else if (joueurs[idJoueurActuel].numCase[0] == "12.0") { // chambre -> salle de bain, salon
-            case_rac.push(cases[84-1]);
-            case_rac.push(cases[77-1]);
-            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
-        } else if (joueurs[idJoueurActuel].numCase[0] == "2.0") { // garage -> cuisine
-            case_rac.push(cases[81-1]);
-            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
-        } else if (joueurs[idJoueurActuel].numCase[0] == "3.9") { // salon -> chambre
-            case_rac.push(cases[82-1]);
-            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
-        } else { // salle sans raccourcis ou dans le couloir
-            io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
-			jSockets[idJoueurActuel].emit('tourLancerDeTab', joueurs[idJoueurActuel].numCase[0]);
-        }
-
-    });
-
-    /* Changement de tour avec ancien appel dans une piece */
-    socket.on('nextTourChange', function (prochainJoueur, newNumCase) {
-        joueurs[idJoueurActuel].numCase[0] = newNumCase;
-        console.log(prochainJoueur);
-        joueurs[idJoueurActuel].moved = false;
-        jSockets[idJoueurActuel].emit('tourChange', joueurs[idJoueurActuel].numCase[0] );
-    });
-
-    /* Changement de tour avec possibilité de prendre un raccourci */
-    socket.on('nextTourRaccourci', function (prochainJoueur, newNumCase) {
-        joueurs[idJoueurActuel].numCase[0] = newNumCase;
-        console.log(prochainJoueur);
-        jSockets[idJoueurActuel].emit('tourRaccourci', joueurs[idJoueurActuel].numCase[0] );
-    });
-
-    /* Changement de tour avec lancé de dé */
-    socket.on('nextTourLanceDe', function (prochainJoueur, newNumCase) {
-        joueurs[idJoueurActuel].numCase[0] = newNumCase;
-        console.log(prochainJoueur);
-        jSockets[idJoueurActuel].emit('tourLancerDe', null);
-    });
-
-    socket.on('newPionSupposition', function (idNewPion) { // envoie des pions un à la fois
-        console.log(idNewPion);
-        console.log(cartes);
-        console.log(cartes[idNewPion]);
-        console.log(cartes[idNewPion].nom);
-        if (cartes[idNewPion].type == "perso") {
-            jSockets[idJoueurActuel].emit('addPersoSupposition', cartes[idNewPion].nom );
-        } else if (cartes[idNewPion].type == "arme") {
-            jSockets[idJoueurActuel].emit('addArmeSupposition', cartes[idNewPion].nom );
-        }
-    });
-    /* Choix de la supposition si dans une pièce */
-    socket.on('tourChoixSupposition', function (newNumCase) {
-        tableSocket.emit("retourTourChoixSupposition", null);
-        joueurs[idJoueurActuel].numCase[0] = newNumCase;
-        console.log("-----------------> Case actuelle " + joueurs[idJoueurActuel].numCase[0]);
-        jSockets[idJoueurActuel].emit('tourSupposition', getNomCase(joueurs[idJoueurActuel].numCase[0]));
-    });
-
-    /* Choix de l'accusation si dans une pièce */
-    socket.on('tourChoixAccusation', function (newNumCase) {
-        joueurs[idJoueurActuel].numCase[0] = newNumCase;
-        console.log("-----------------> Case actuelle "+joueurs[idJoueurActuel].numCase[0]);
-        jSockets[idJoueurActuel].emit('tourAccusation',  getNomCase(joueurs[idJoueurActuel].numCase[0]));
-    });
-
-    /* Demande des déplacements de l'accusation */
-    socket.on('tourAttenteDeplacement', function (arg) {
-        console.log(arg);
-        jSockets[idJoueurActuel].emit('attenteDeplacement', null);
-    });
-
-    /* Attente de la supposition */
-    socket.on('tourAttenteSupposition', function (arg) {
-        console.log(arg);
-        jSockets[idJoueurActuel].emit('attenteSupposition', null);
-    });
-
-    /* Attente de l'accusation */
-    socket.on('tourAttenteAccusation', function (arg) {
-        console.log(arg);
-        jSockets[idJoueurActuel].emit('attenteAccusation', null);
-    });
-
-    /* Choix de la carte d'accusationn */
-    socket.on('tourChoixCarteAccusation', function (arg) {
-        console.log(arg);
-        // COMMENT FAIRE................???????????????,
-        io.sockets.emit('choixCarteAccusation', null);
-    });
-
-    /* Reception de la carte de l'accusation */
-    socket.on('tourReceptionCarte', function (pseudo, nomCarteRecu) {
-        console.log("idJoueurActuel " + idJoueurActuel + " pseudo de joueur envoye " + pseudo + " et carte recu " + nomCarteRecu);
-        jSockets[idJoueurActuel].emit('receptionCarteAccusation', { pseudo: pseudo, cartes: nomCarteRecu }); //envoie de la carte
-    });
-
     /* Reception de la carte de l'accusation */
     socket.on('tourFinJeu', function (perso, arme, lieu) {
         console.log(arg);
-        io.sockets.emit('partieTerminee', {pseudo: idJoueurActuel, perso: perso, arme: arme, lieu: lieu}); //affichage du vainqueur et des accusés
+        io.sockets.emit('partieTerminee', { pseudo: idJoueurActuel, perso: perso, arme: arme, lieu: lieu }); //affichage du vainqueur et des accusés
     });
 
-    /***** EMIT TABLE *****/
+    socket.on('newGame', function () {
+        init();
+        io.sockets.emit('startNewGame', null);
+        tableSocket.emit('beginNewGame', null);
+    });
+
 
     socket.on('reconnect', function (arg) {
 
