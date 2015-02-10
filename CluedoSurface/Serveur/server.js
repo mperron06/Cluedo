@@ -708,6 +708,7 @@ io.on('connection', function(socket){
 
     /* Reception de la carte de l'accusation */
     socket.on('tourReceptionCarte', function (pseudo, nomCarteRecu) {
+        console.log("idJoueurActuel " + idJoueurActuel + " pseudo de joueur envoye " + pseudo + " et carte recu " + nomCarteRecu);
         jSockets[idJoueurActuel].emit('receptionCarteAccusation', { pseudo: pseudo, cartes: nomCarteRecu }); //envoie de la carte
     });
 
