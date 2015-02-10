@@ -180,6 +180,9 @@
     <Resource Include="Resources\dices\5.png" />
     <Resource Include="Resources\bg.jpg" />
     <Resource Include="Resources\pieces\entree.png" />
+    <Content Include="Resources\armePose.wav" />
+    <Content Include="Resources\lanceSupposition.wav" />
+    <Content Include="Resources\personnagePose.wav" />
     <Content Include="Resources\start.wav" />
     <Resource Include="Resources\pieces\toChambre.png" />
     <Resource Include="Resources\pieces\toSalon.png" />

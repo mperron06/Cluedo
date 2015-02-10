@@ -8,7 +8,7 @@ using Cluedo.Properties;
 
 namespace Cluedo
 {
-    public enum EnumSound { START }
+    public enum EnumSound { START, LANCESUPPOSITION, POSERARME, POSERPERSONNAGE }
     public static class Sounds
     {
         private static SoundPlayer sp = new SoundPlayer();
@@ -18,8 +18,10 @@ namespace Cluedo
             bool isLoop = false;
             switch (es)
             {
-                //case EnumSound.CRAYON: sp.Stream = Resources.crayon; break;
                 case EnumSound.START: sp.Stream = Resources.start; break;
+                case EnumSound.LANCESUPPOSITION: sp.Stream = Resources.lanceSupposition; break;
+                case EnumSound.POSERPERSONNAGE: sp.Stream = Resources.personnagePose; break;
+                case EnumSound.POSERARME: sp.Stream = Resources.armePose; break;
                 default: return;
             }
 

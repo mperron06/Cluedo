@@ -48,6 +48,8 @@ namespace Cluedo
         public static void tourChoixSupposition(String idCase)
         {
             socket.Emit("tourChoixSupposition", idCase);
+
+            Console.WriteLine("envoyer le id de la salle " + idCase);
         }
 
         public static void tourChoixAccusation(String idCase)
@@ -94,31 +96,6 @@ namespace Cluedo
                 socket.Emit("addTable", null);
             });
 
-            /**
-             * Recois la connexion d'un nouveau joueur
-             *  @param  data['id_joueur']: identifiant du joueur
-             *          data['pseudo']: pseudo du joueur
-             */
-           /* socket.On("nouveauJoueur", (data) =>
-            {
-                Console.WriteLine("recv [socket].[nouveauJoueur] event");
-
-                NouveauJoueur nouveauJoueur = data.Json.GetFirstArgAs<NouveauJoueur>();
-                int idJoueur = nouveauJoueur.IdJoueur + 1;
-                string pseudoJoueur = nouveauJoueur.PseudoJoueur;
-
-                Application surface = System.Windows.Application.Current;
-                surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
-                {
-                    SurfaceWindow1.getInstance().NbJoueurs += 1;
-                    SurfaceWindow1.getInstance().setPseudoJoueur(pseudoJoueur, idJoueur);
-                    SurfaceWindow1.getInstance().broadcastInstruction("(attend d'autre joueurs)");
-
-                    if (SurfaceWindow1.getInstance().NbJoueurs == 2)
-                        SurfaceWindow1.getInstance().afficherBtnLancerPartie();
-                });
-            });*/
-
 
             socket.On("nouveauJoueur", (data) =>
             {
@@ -153,7 +130,7 @@ namespace Cluedo
                     MainWindowCluedo.lancementSupposition = false;
 
                     //carte
-                    Uri personne = new Uri("Resources/personCard/" + supposition.perso.ToLower()+".jpg", UriKind.Relative);
+                    Uri personne = new Uri("Resources/personCard/" + supposition.perso.ToLower()+".png", UriKind.Relative);
                     Uri arme = new Uri("Resources/armCard/" + supposition.arme.ToLower()+".png", UriKind.Relative);
                     Uri lieu = new Uri("Resources/pieceCard/" + supposition.lieu.ToLower()+".png", UriKind.Relative);
                     MainWindowCluedo.getInstance().suppoPerson1.Source = new BitmapImage(personne);
@@ -172,7 +149,10 @@ namespace Cluedo
                 surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
                 {
                     MainWindowCluedo.lancementSupposition = true;
+
                     MainWindowCluedo.tagListEnvoye = false;
+
+                    Sounds.Play(EnumSound.LANCESUPPOSITION);
                 });
             });
 

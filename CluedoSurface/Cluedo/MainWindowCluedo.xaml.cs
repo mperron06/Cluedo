@@ -171,7 +171,7 @@ namespace Cluedo
 
             Rectangle zoneCase = getRoomCaseFromName(idCase);
 
-            if (joueurActuel.Equals(joueurCourant))
+            if (joueurCourant.Equals(joueurActuel))
             {
                 //get possible cases to go
                 List<String> tab = seDeplacer(list, de);
@@ -218,7 +218,9 @@ namespace Cluedo
                             positionCorrect = true;
                             //4. if position correct send current position 
 
-                            SocketIO.tourChoixSupposition(idCase);
+                            //envoyer le id au lieu de nom de la salle
+                            //SocketIO.tourChoixSupposition(idCase);
+                            SocketIO.tourChoixSupposition(doorList[0]);
                         }
                     }
                 }
@@ -293,15 +295,16 @@ namespace Cluedo
 
         private void verifyJoueurPret(object sender, TagVisualizerEventArgs e)
         {
+
+            string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
+            string tag = "0x" + Convert.ToString(e.TagVisualization.VisualizedTag.Value, 16);
+            Rectangle zoneCase = getRoomCaseFromName(idCase);
+
+            string joueurActuel = getJoueurFromTag(tag);
+            string joueurCourant = this.jouerCourant1.Content.ToString();
             //c'est la deuxième fois qu'il entre dans hall pour faire accusation
             if (joueurPret)
             {
-                string idCase = ((TagVisualizer)e.OriginalSource).DataContext.ToString();
-                string tag = "0x" + Convert.ToString(e.TagVisualization.VisualizedTag.Value, 16);
-                Rectangle zoneCase = getRoomCaseFromName(idCase);
-
-                string joueurActuel = getJoueurFromTag(tag);
-                string joueurCourant = this.jouerCourant1.Content.ToString();
                 if (joueurActuel.Equals(joueurCourant))
                 {
                     zoneCase.Opacity = 0.5;
@@ -316,19 +319,29 @@ namespace Cluedo
             }
             else {
 
-                nbJoueurs++;
+                /*nbJoueurs++;
                 if (joueurs.Count == nbJoueurs)
                 {
                     Console.WriteLine("joueurs sont prets!");
                     SocketIO.lancementPionsPrets();
 
                     joueurPret = true;
+                }*/
+
+               
+                for (int i = 0; i < joueurs.Count; i++) {
+                    if (joueurs[i].Equals(joueurActuel)) {
+                        nbJoueurs++;
+                        if (nbJoueurs == joueurs.Count)
+                        {
+                            Console.WriteLine("joueurs sont prets!");
+                            SocketIO.lancementPionsPrets();
+
+                            joueurPret = true;
+                        }
+                    }
                 }
-                //SocketIO.lancementPionsPrets();
             }
-
-
-           
         }
 
         private void entrerDansPiece(object sender, TagVisualizerEventArgs e)
@@ -347,6 +360,15 @@ namespace Cluedo
             }
             //entrain de faire supposition, ne verifie plus si joueur est entré dans une salle correcte
             else {
+                //emit de son
+                if (tagPersonne(tag))
+                {
+                    Sounds.Play(EnumSound.POSERPERSONNAGE);
+                }
+                else {
+                    Sounds.Play(EnumSound.POSERARME);
+                }
+
                 //si la liste est déjà envoyé, après, il faut juste envoyer ce qui est ajouté de nouveau
                 Console.WriteLine("lancement supposition " + lancementSupposition);
                 if (tagListEnvoye)
@@ -397,6 +419,42 @@ namespace Cluedo
 
             }
         }
+
+        private bool tagPersonne(string tag)
+        {
+            switch (tag)
+            {
+                case "0x3":
+                    return true;
+                case "0x6":
+                    return true;
+                case "0x10":
+                    //Console.WriteLine("return 2");
+                    return true;
+                case "0x11":
+                    return true;
+                case "0x12":
+                    return true;
+                case "0x13":
+                    return true;
+                case "0x14":
+                    return false;
+                case "0x15":
+                    return false;
+                case "0x16":
+                    return false;
+                case "0x21":
+                    return false;
+                case "0x22":
+                    return false;
+                case "0x25":
+                    return false;
+                default:
+                    return true;
+
+            }
+        }
+
 
         private ArrayList getTagsDansPiece(string idcase){
              switch (idcase)
