@@ -78,6 +78,15 @@ namespace Cluedo
 
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
+            DoubleAnimation da = new DoubleAnimation();
+            da.From = 0;
+            da.To = 360;
+            da.Duration = new Duration(TimeSpan.FromSeconds(5));
+            da.RepeatBehavior = RepeatBehavior.Forever;
+            rotateTransform1.BeginAnimation(RotateTransform.AngleProperty, da);
+            rotateTransform2.BeginAnimation(RotateTransform.AngleProperty, da);
+            rotateTransform3.BeginAnimation(RotateTransform.AngleProperty, da);
+            rotateTransform4.BeginAnimation(RotateTransform.AngleProperty, da);
             //jouerImage1.Source = new BitmapImage(new Uri("Resources/personHead/leblanc.jpg", UriKind.Relative));/////////////////////////////////////////////////
         }
 
@@ -92,6 +101,7 @@ namespace Cluedo
         {
             String[] list;
             String salleName = getSalleFromCase(idCaseCourant);
+            Console.WriteLine("idCaseCourant " + idCaseCourant + " sallename: " + salleName);
             if (salleName != null)
             {
                 list = getDoors(salleName);
@@ -116,6 +126,7 @@ namespace Cluedo
 
             if (joueurCourant.Equals(joueurActuel))
             {
+                Console.WriteLine("longeur du list: " + list.Count());
                 List<String> tab = seDeplacer(list, de);
 
                 Boolean positionCorrect = false;
@@ -182,6 +193,9 @@ namespace Cluedo
                     {
                         //cuisine->garage
                         tab.Add("2.0");
+
+                        //cusine->salleamanger
+                        tab.Add("7.8");
                     }
                     if (salleName.Equals("GARAGE"))
                     {
@@ -197,7 +211,19 @@ namespace Cluedo
                     {
                         //chambre->salon
                         tab.Add("3.9");
+
+                        //chambre->salle de bain
+                        tab.Add("14.3");
                     }
+                    if (salleName.Equals("SALLEAMANGER")) { 
+                        //salleamanger->cusine
+                        tab.Add("11.9");
+                    }
+                    if (salleName.Equals("SALLEDEBAIN")) {
+                        //salledebain->chambre
+                        tab.Add("12.0");
+                    }
+
                 }
 
 
@@ -270,7 +296,7 @@ namespace Cluedo
                 case "6.0":
                     return "SALLEDEJEUX";
                 case "7.8":
-                    return "SALLEAMANGE";
+                    return "SALLEAMANGER";
                 case "11.9":
                     return "CUISINE";
                 case "12.0":

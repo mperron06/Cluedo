@@ -34,7 +34,7 @@
 
         <Grid Grid.Row="2">
             <Grid.RenderTransform>
-                <RotateTransform CenterX="420" CenterY="70" Angle="180"></RotateTransform>
+                <RotateTransform CenterX="850" CenterY="170" Angle="180"></RotateTransform>
             </Grid.RenderTransform>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
