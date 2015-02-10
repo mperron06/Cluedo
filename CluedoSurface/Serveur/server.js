@@ -415,16 +415,15 @@ io.on('connection', function(socket){
 	
 	socket.on('receptionChoixCarteSupposition', function (nomCarte) {
         jSockets[idJoueurActuel].emit('envoiCarteSupposition',nomCarte);
-    });
-    //envoi d'une demande de confirmation aupres du joueur qui a emis la supposition
-    //sa reponse = tourTermine, tour suivant 
+	});
+
+	socket.on('newGame', function () {
+	    init();
+	    io.sockets.emit('startNewGame', null);
+	    tableSocket.emit('beginNewGame', null);
+	});
 
 
-    socket.on('accusation', function (perso, arme, lieu) {
-        var idCase = joueurs[idJoueurActuel].numCase;
-        //changement du moved pour l'accusé
-        
-    });
 
     /***** FIN EMIT ANDROID *****/
 
@@ -725,9 +724,9 @@ io.on('connection', function(socket){
     });
 
     /* Reception de la carte de l'accusation */
-    socket.on('tourFinJeu', function (arg) {
+    socket.on('tourFinJeu', function (perso, arme, lieu) {
         console.log(arg);
-        io.sockets.emit('partieTerminee', arg); //affichage du vainqueur et des accusés
+        io.sockets.emit('partieTerminee', {pseudo: idJoueurActuel, perso: perso, arme: arme, lieu: lieu}); //affichage du vainqueur et des accusés
     });
 
     /***** EMIT TABLE *****/
