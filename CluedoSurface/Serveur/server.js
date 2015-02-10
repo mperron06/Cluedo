@@ -310,7 +310,7 @@ io.on('connection', function(socket){
     socket.on('lanceDe', function (value) {
         var val = parseInt(value);
         console.log(val);
-		console.log(joueurs[idJoueurActuel].numCase[0]);
+		console.log("case actuelle"+joueurs[idJoueurActuel].numCase[0]);
         tableSocket.emit('choixMouvement', { idJoueur: joueurs[idJoueurActuel].persoName, idCase: joueurs[idJoueurActuel].numCase[0], value: val });
     });
 
@@ -548,9 +548,11 @@ io.on('connection', function(socket){
 
 
     socket.on('tourTermine', function (newNumCase) {
-        console.log("-----------------> Case actuelle " + joueurs[idJoueurActuel].numCase[0]);
-        joueurs[idJoueurActuel].numCase[0] = newNumCase;
-		console.log(newNumCase);
+        console.log("-----------------> Tour termine Case actuelle " + joueurs[idJoueurActuel].numCase[0]);        
+        console.log(newNumCase);
+        if(newNumCase){
+            joueurs[idJoueurActuel].numCase[0] = newNumCase;
+        }
 		jSockets[idJoueurActuel].emit('waitTurn', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] }); // fin de tour
 		jSockets[idJoueurActuel].emit('waitTurnTab', joueurs[idJoueurActuel].numCase[0]);
         do {
@@ -571,6 +573,7 @@ io.on('connection', function(socket){
             io.sockets.emit('caseRac', cases[82].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase:  case_rac});
         } else if (joueurs[idJoueurActuel].numCase[0] == "7.8") { // salle à manger -> cuisine
+            console.log(cases);
             case_rac.push(cases[81]);
 			console.log('SALLEAMANGER!!!');
             io.sockets.emit('caseRac', cases[81].nom);
