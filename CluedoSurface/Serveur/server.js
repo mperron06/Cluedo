@@ -322,6 +322,7 @@ io.on('connection', function(socket){
         var verif = false;
         var idJoueurSuppos;
         var cartesSuppos = [];
+        var cartesSuppos_phone = [];
         if (nbJoueurs - (idJoueurActuel + 1) != 0){
 			console.log('premier if');
             for (i = idJoueurActuel + 1; i < nbJoueurs; i++) {
@@ -331,12 +332,14 @@ io.on('connection', function(socket){
 			console.log('if 1');
                         verif = true;
                         cartesSuppos.push({ card: perso });
+                        cartesSuppos_phone.push(perso);
                         //jSockets[idJoueurSuppos].emit('choixTextSupposition', perso);
                     }
                     if (joueurs[i].cartes[j].nom.toLowerCase().replace(/ /g,"") == arme.toLowerCase().replace(/ /g,"")) {
 			console.log('if 2');
                         verif = true;
                         cartesSuppos.push({ card: arme });
+                        cartesSuppos_phone.push(arme);
                         //jSockets[idJoueurSuppos].emit('choixTextSupposition', arme);
                     }
 					console.log(joueurs[i].cartes[j].nom.toLowerCase().replace(" ",""));
@@ -345,6 +348,7 @@ io.on('connection', function(socket){
 			console.log('if 3');
                         verif = true;
                         cartesSuppos.push({ card: lieu });
+                        cartesSuppos_phone.push(lieu);
                         //jSockets[idJoueurSuppos].emit('choixTextSupposition', lieu);
                     }
                 }
@@ -364,12 +368,14 @@ io.on('connection', function(socket){
 			console.log('if 1');
                         verif = true;
                         cartesSuppos.push({ card: perso });
+                        cartesSuppos_phone.push( perso );
                         //jSockets[idJoueurSuppos].emit('choixTextSupposition', perso);
                     }
                     if (joueurs[i].cartes[j].nom.toLowerCase().replace(/ /g,"") == arme.toLowerCase().replace(/ /g,"")) {
 			console.log('if 2');
                         verif = true;
                         cartesSuppos.push({ card: arme });
+                        cartesSuppos_phone.push( arme );
                         //jSockets[idJoueurSuppos].emit('choixTextSupposition', arme);
                     }
 					console.log(joueurs[i].cartes[j].nom.toLowerCase().replace(" ",""));
@@ -378,6 +384,7 @@ io.on('connection', function(socket){
 			console.log('if 3');
                         verif = true;
                         cartesSuppos.push({ card: lieu });
+                        cartesSuppos_phone.push( lieu );
                         //jSockets[idJoueurSuppos].emit('choixTextSupposition', lieu);
                     }
                 }
@@ -391,7 +398,7 @@ io.on('connection', function(socket){
 			console.log(cartesSuppos);
             jSockets[idJoueurSuppos].emit('choixCarteSupposition',cartesSuppos );
 			for (r = 0; r < cartesSuppos.length; r++){
-				jSockets[idJoueurSuppos].emit('choixTextSupposition', cartesSuppos[r]);
+				jSockets[idJoueurSuppos].emit('choixTextSupposition', cartesSuppos_phone[r]);
 			}
         }
         else {
