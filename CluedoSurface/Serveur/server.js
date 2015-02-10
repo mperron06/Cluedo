@@ -602,7 +602,7 @@ io.on('connection', function(socket){
         } else { // salle sans raccourcis ou dans le couloir
 			console.log('Salle normale');
 			console.log(joueurs[idJoueurActuel].numCase[0]);
-            io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
+			io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase:  getNomCase(joueurs[idJoueurActuel].numCase[0]) });
         }
 
     });
@@ -674,14 +674,14 @@ io.on('connection', function(socket){
         tableSocket.emit("retourTourChoixSupposition", null);
         joueurs[idJoueurActuel].numCase[0] = newNumCase;
         console.log("-----------------> Case actuelle " + joueurs[idJoueurActuel].numCase[0]);
-        jSockets[idJoueurActuel].emit('tourSupposition', joueurs[idJoueurActuel].numCase[0] );
+        jSockets[idJoueurActuel].emit('tourSupposition', getNomCase(joueurs[idJoueurActuel].numCase[0]));
     });
 
     /* Choix de l'accusation si dans une pièce */
     socket.on('tourChoixAccusation', function (newNumCase) {
         joueurs[idJoueurActuel].numCase[0] = newNumCase;
         console.log("-----------------> Case actuelle "+joueurs[idJoueurActuel].numCase[0]);
-        jSockets[idJoueurActuel].emit('tourAccusation', joueurs[idJoueurActuel].numCase[0]);
+        jSockets[idJoueurActuel].emit('tourAccusation',  getNomCase(joueurs[idJoueurActuel].numCase[0]));
     });
 
     /* Demande des déplacements de l'accusation */
