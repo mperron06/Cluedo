@@ -603,6 +603,7 @@ io.on('connection', function(socket){
 			console.log('Salle normale');
 			console.log(joueurs[idJoueurActuel].numCase[0]);
 			io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase:  getNomCase(joueurs[idJoueurActuel].numCase[0]) });
+			jSockets[idJoueurActuel].emit('tourLancerDeTab', getNomCase(joueurs[idJoueurActuel].numCase[0]));
         }
 
     });
@@ -631,7 +632,7 @@ io.on('connection', function(socket){
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else { // salle sans raccourcis ou dans le couloir
             io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
-			jSockets[idJoueurActuel].emit('tourLanceDeTab', joueurs[idJoueurActuel].numCase[0]);
+			jSockets[idJoueurActuel].emit('tourLancerDeTab', joueurs[idJoueurActuel].numCase[0]);
         }
 
     });
