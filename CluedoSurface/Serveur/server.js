@@ -568,39 +568,38 @@ io.on('connection', function(socket){
             joueurs[idJoueurActuel].moved = false;
             io.sockets.emit('tourChange', { idJoueur: idJoueurActuel, idCase: getNomCase(joueurs[idJoueurActuel].numCase[0]) });
         } else if (joueurs[idJoueurActuel].numCase[0] == "14.3") { // salle de bain -> chambre
-            case_rac.push(cases[82]);
+            case_rac.push(cases[82-1]);
 			console.log('SDB!!!');
-            io.sockets.emit('caseRac', cases[82].nom);
+            io.sockets.emit('caseRac', cases[82-1].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase:  case_rac});
         } else if (joueurs[idJoueurActuel].numCase[0] == "7.8") { // salle à manger -> cuisine
-            console.log(cases);
-            case_rac.push(cases[81]);
+            case_rac.push(cases[81-1]);
 			console.log('SALLEAMANGER!!!');
-            io.sockets.emit('caseRac', cases[81].nom);
+            io.sockets.emit('caseRac', cases[81-1].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "11.9") { // cuisine -> salle à manger et garage
             console.log('CUISINE!!!');
-			case_rac.push(cases[80]);
-            io.sockets.emit('caseRac', cases[80].nom);
-            case_rac.push(cases[76]);
-            io.sockets.emit('caseRac', cases[76].nom);
+			case_rac.push(cases[80-1]);
+            io.sockets.emit('caseRac', cases[80-1].nom);
+            case_rac.push(cases[76-1]);
+            io.sockets.emit('caseRac', cases[76-1].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "12.0") { // chambre -> salle de bain, salon
 			console.log('CHAMBRE!!!');
-			case_rac.push(cases[84]);
-            io.sockets.emit('caseRac', cases[84].nom);
-            case_rac.push(cases[77]);
-            io.sockets.emit('caseRac', cases[77].nom);
+			case_rac.push(cases[84-1]);
+            io.sockets.emit('caseRac', cases[84-1].nom);
+            case_rac.push(cases[77-1]);
+            io.sockets.emit('caseRac', cases[77-1].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "2.0") { // garage -> cuisine
-            case_rac.push(cases[81]);
+            case_rac.push(cases[81-1]);
 			console.log('GARAGE!!!');
-            io.sockets.emit('caseRac', cases[81].nom);
+            io.sockets.emit('caseRac', cases[81-1].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "3.9") { // salon -> chambre
-            case_rac.push(cases[82]);
+            case_rac.push(cases[82-1]);
 			console.log('SALON!!!');
-            io.sockets.emit('caseRac', cases[82].nom);
+            io.sockets.emit('caseRac', cases[82-1].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else { // salle sans raccourcis ou dans le couloir
 			console.log('Salle normale');
@@ -614,24 +613,24 @@ io.on('connection', function(socket){
     socket.on('notSuppose', function () { // tel / tablette
         var case_rac = [];
         if (joueurs[idJoueurActuel].numCase[0] == "14.3") { // salle de bain -> chambre
-            case_rac.push(cases[82]);
+            case_rac.push(cases[82-1]);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "7.8") { // salle à manger -> cuisine
-            case_rac.push(cases[81]);
+            case_rac.push(cases[81-1]);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "11.9") { // cuisine -> salle à manger et garage
-            case_rac.push(cases[80]);
-            case_rac.push(cases[76]);
+            case_rac.push(cases[80-1]);
+            case_rac.push(cases[76-1]);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "12.0") { // chambre -> salle de bain, salon
-            case_rac.push(cases[84]);
-            case_rac.push(cases[77]);
+            case_rac.push(cases[84-1]);
+            case_rac.push(cases[77-1]);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "2.0") { // garage -> cuisine
-            case_rac.push(cases[81]);
+            case_rac.push(cases[81-1]);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "3.9") { // salon -> chambre
-            case_rac.push(cases[82]);
+            case_rac.push(cases[82-1]);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else { // salle sans raccourcis ou dans le couloir
             io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
