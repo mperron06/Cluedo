@@ -323,6 +323,7 @@ io.on('connection', function(socket){
 		for (i = 0; i < nbJoueurs; i++) {
 		    if (joueurs[i].persoName == perso) {
 		        joueurs[i].moved = true;
+		        joueurs[i].numCase[0] = joueurs[idJoueurActuel].numCase[0];
 		    }
 		}
         var verif = false;
