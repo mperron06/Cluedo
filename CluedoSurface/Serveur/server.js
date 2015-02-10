@@ -548,6 +548,7 @@ io.on('connection', function(socket){
 
 
     socket.on('tourTermine', function (newNumCase) {
+        console.log("-----------------> Case actuelle " + joueurs[idJoueurActuel].numCase[0]);
         joueurs[idJoueurActuel].numCase[0] = newNumCase;
 		console.log(newNumCase);
 		jSockets[idJoueurActuel].emit('waitTurn', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] }); // fin de tour
@@ -555,6 +556,7 @@ io.on('connection', function(socket){
         do {
             idJoueurActuel = (idJoueurActuel + 1) % nbJoueurs;
         } while (!joueurs[idJoueurActuel].inline); // on saute si le joueur suivant a été éliminé après une fausse accusation
+        console.log("-----------------> Case actuelle " + joueurs[idJoueurActuel].numCase[0]);
         console.log("joueur tour : " + idJoueurActuel+" et case actu "+joueurs[idJoueurActuel].numCase[0]);
 	   for(i=0;i<joueurs.length;i++){
 		   console.log(joueurs[i].numCase[0]);
@@ -671,12 +673,14 @@ io.on('connection', function(socket){
     socket.on('tourChoixSupposition', function (newNumCase) {
         tableSocket.emit("retourTourChoixSupposition", null);
         joueurs[idJoueurActuel].numCase[0] = newNumCase;
+        console.log("-----------------> Case actuelle " + joueurs[idJoueurActuel].numCase[0]);
         jSockets[idJoueurActuel].emit('tourSupposition', joueurs[idJoueurActuel].numCase[0] );
     });
 
     /* Choix de l'accusation si dans une pièce */
     socket.on('tourChoixAccusation', function (newNumCase) {
         joueurs[idJoueurActuel].numCase[0] = newNumCase;
+        console.log("-----------------> Case actuelle "+joueurs[idJoueurActuel].numCase[0]);
         jSockets[idJoueurActuel].emit('tourAccusation', joueurs[idJoueurActuel].numCase[0]);
     });
 
