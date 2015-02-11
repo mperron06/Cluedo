@@ -480,13 +480,15 @@ io.on('connection', function(socket){
         }
         if (verif) {
 			console.log(cartesSuppos);
-            jSockets[idJoueurSuppos].emit('choixCarteSupposition',cartesSuppos );
+			jSockets[idJoueurSuppos].emit('choixCarteSupposition', cartesSuppos);
+			tableSocket.emit("carteEnvoye", jSockets[idJoueurSuppos].nom);
 			for (r = 0; r < cartesSuppos.length; r++){
 				jSockets[idJoueurSuppos].emit('choixTextSupposition', cartesSuppos_phone[r]);
 			}
         }
         else {
             jSockets[idJoueurActuel].emit('noCarteSupposition');
+            tableSocket.emit("carteNonEnvoye", null);
             jSockets[idJoueurActuel].emit('receptionCarteAccusation', { pseudo: "", cartes: "" }); //pas de carte
         }
     });
@@ -687,9 +689,9 @@ io.on('connection', function(socket){
         if ((perso.toLowerCase().replace(/ /g, "") == cartesMilieu[0].nom.toLowerCase().replace(/ /g, "")) && (arme.toLowerCase().replace(/ /g, "") == cartesMilieu[1].nom.toLowerCase().replace(/ /g, "")) 
             && (lieu.toLowerCase().replace(/ /g, "") == cartesMilieu[2].nom.toLowerCase().replace(/ /g, ""))) {
 
-            io.sockets.emit('partieTermineeGagnee', { pseudo: idJoueurActuel, perso: cartesMilieu[0].nom, arme: cartesMilieu[1].nom, lieu: cartesMilieu[2].nom }); //affichage du vainqueur et des accusés
+            io.sockets.emit('partieTermineeGagnee', { pseudo: joueurs[idJoueurActuel].name, perso: cartesMilieu[0].nom, arme: cartesMilieu[1].nom, lieu: cartesMilieu[2].nom }); //affichage du vainqueur et des accusés
         } else {
-            io.sockets.emit('partieTermineePerdue', { pseudo: idJoueurActuel, perso: cartesMilieu[0].nom, arme: cartesMilieu[1].nom, lieu: cartesMilieu[2].nom }); //affichage du vainqueur et des accusés
+            io.sockets.emit('partieTermineePerdue', { pseudo: joueurs[idJoueurActuel].name, perso: cartesMilieu[0].nom, arme: cartesMilieu[1].nom, lieu: cartesMilieu[2].nom }); //affichage du vainqueur et des accusés
         }
     });
 
