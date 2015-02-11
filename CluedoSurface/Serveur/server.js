@@ -390,6 +390,16 @@ io.on('connection', function(socket){
 		console.log("case actuelle"+joueurs[idJoueurActuel].numCase[0]);
         tableSocket.emit('choixMouvement', { idJoueur: joueurs[idJoueurActuel].persoName, idCase: joueurs[idJoueurActuel].numCase[0], value: val });
     });
+	socket.on('validationCase', function (newNumCase) {
+	    if (newNumCase == "NON") {
+	        jSockets[idJoueurActuel].emit('wrongNewCase', null);
+	    } else {
+	        jSockets[idJoueurActuel].emit('validerNewCase', null);
+	    }
+	});
+	socket.on('validationCase', function () {
+	    tableSocket.emit('validerCaseTable', null);
+	});
 
     socket.on('supposition', function (perso, arme, lieu) {
 		console.log(perso);
@@ -481,7 +491,8 @@ io.on('connection', function(socket){
         if (verif) {
 			console.log(cartesSuppos);
 			jSockets[idJoueurSuppos].emit('choixCarteSupposition', cartesSuppos);
-			tableSocket.emit("carteEnvoye", jSockets[idJoueurSuppos].nom);
+			tableSocket.emit("carteEnvoye", joueurs[idJoueurSuppos].name);
+			console.log("carte envoye par : " + joueurs[idJoueurSuppos].name);
 			for (r = 0; r < cartesSuppos.length; r++){
 				jSockets[idJoueurSuppos].emit('choixTextSupposition', cartesSuppos_phone[r]);
 			}
@@ -533,7 +544,7 @@ io.on('connection', function(socket){
     /* Choix de la supposition si dans une pièce */
 	socket.on('tourChoixSupposition', function (newNumCase) {
 	    tableSocket.emit("retourTourChoixSupposition", null);
-	    joueurs[idJoueurActuel].numCase[0] = newNumCase;
+	    //joueurs[idJoueurActuel].numCase[0] = newNumCase;
 	    console.log("-----------------> Case actuelle " + joueurs[idJoueurActuel].numCase[0]);
 	    jSockets[idJoueurActuel].emit('tourSupposition', getNomCase(joueurs[idJoueurActuel].numCase[0]));
 	});
@@ -618,6 +629,7 @@ io.on('connection', function(socket){
 	    }
 
 	});
+
 
     socket.on('tourTermine', function (newNumCase) {
         console.log("-----------------> Tour termine Case actuelle " + joueurs[idJoueurActuel].numCase[0]);        
