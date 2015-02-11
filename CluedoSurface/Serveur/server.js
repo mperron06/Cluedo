@@ -390,6 +390,9 @@ io.on('connection', function(socket){
 		console.log("case actuelle"+joueurs[idJoueurActuel].numCase[0]);
         tableSocket.emit('choixMouvement', { idJoueur: joueurs[idJoueurActuel].persoName, idCase: joueurs[idJoueurActuel].numCase[0], value: val });
     });
+    socket.on('movedSupposition', function () {
+        tableSocket.emit('movedSuppositionTurn', null);
+    });
 
     socket.on('supposition', function (perso, arme, lieu) {
 		console.log(perso);
