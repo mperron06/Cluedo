@@ -177,16 +177,16 @@ function init() {
     cases.push({ id: 76, num: "2.0", nom: "Garage", type: "piece" });
     cases.push({ id: 77, num: "3.9", nom: "Salon", type: "piece" });
     cases.push({ id: 78, num: "6.0", nom: "Salle de jeux", type: "piece" });
-    cases.push({ id: 80, num: "7.8", nom: "Salle a manger", type: "piece" });
-    cases.push({ id: 81, num: "11.9", nom: "Cuisine", type: "piece" });
-    cases.push({ id: 82, num: "12.0", nom: "Chambre", type: "piece" });
-    cases.push({ id: 83, num: "13.5", nom: "Bureau", type: "piece" });
-    cases.push({ id: 84, num: "14.3", nom: "Salle de bain", type: "piece" });
+    cases.push({ id: 79, num: "7.8", nom: "Salle a manger", type: "piece" });
+    cases.push({ id: 80, num: "11.9", nom: "Cuisine", type: "piece" });
+    cases.push({ id: 81, num: "12.0", nom: "Chambre", type: "piece" });
+    cases.push({ id: 82, num: "13.5", nom: "Bureau", type: "piece" });
+    cases.push({ id: 83, num: "14.3", nom: "Salle de bains", type: "piece" });
 
-    cases.push({ id: 85, num: "5.5", nom: "Hall", type: "hall" });
-    cases.push({ id: 86, num: "6.3", nom: "Hall", type: "hall" });
-    cases.push({ id: 87, num: "6.6", nom: "Hall", type: "hall" });
-    cases.push({ id: 88, num: "7.5", nom: "Hall", type: "hall" });
+    cases.push({ id: 84, num: "5.5", nom: "Hall", type: "hall" });
+    cases.push({ id: 85, num: "6.3", nom: "Hall", type: "hall" });
+    cases.push({ id: 86, num: "6.6", nom: "Hall", type: "hall" });
+    cases.push({ id: 87, num: "7.5", nom: "Hall", type: "hall" });
 
     nbCases = cases.length;
 
@@ -325,11 +325,13 @@ io.on('connection', function(socket){
         var pieceMilieu = randomInt(12, 20);
         cartesMilieu.push(cartesTemp[pieceMilieu]); // piece random
 
-        console.log("Meurtrier : " + cartesMilieu);
+        console.log("Meurtrier : " + cartesMilieu[0].nom + " " + cartesMilieu[1].nom + " " + cartesMilieu[2].nom + " ");
 
         cartesTemp.splice(persoMilieu, 1); // on le supprime de la liste des cartes
-        cartesTemp.splice(armeMilieu, 1);// on le supprime de la liste des cartes
-        cartesTemp.splice(pieceMilieu, 1);// on le supprime de la liste des cartes
+        cartesTemp.splice(armeMilieu - 1, 1);// on le supprime de la liste des cartes - persoMilieu
+        cartesTemp.splice(pieceMilieu - 2, 1);// on le supprime de la liste des cartes - persoMilieu - pieceMilieu
+
+        console.log(cartesTemp);
 
         var cartesShuffle = cartesTemp;
         cartesShuffle.shuffle();     // on mélange le tableau
@@ -396,7 +398,7 @@ io.on('connection', function(socket){
 		tableSocket.emit('showSupposition', { perso: perso, arme: arme, lieu: lieu });
         // move si perso d'un joueur
 		for (i = 0; i < nbJoueurs; i++) {
-		    if (joueurs[i].persoName == perso) {
+		    if ((joueurs[i].persoName == perso) && (joueurs[i].persoName != joueurs[idJoueurActuel].persoName)) {
 		        joueurs[i].moved = true;
 		        joueurs[i].numCase[0] = joueurs[idJoueurActuel].numCase[0];
 		    }
@@ -550,7 +552,7 @@ io.on('connection', function(socket){
 	socket.on('tourChoixAccusation', function (newNumCase) {
 	    joueurs[idJoueurActuel].numCase[0] = newNumCase;
 	    console.log("-----------------> Case actuelle " + joueurs[idJoueurActuel].numCase[0]);
-	    jSockets[idJoueurActuel].emit('tourAccusation', getNomCase(joueurs[idJoueurActuel].numCase[0]));
+	    jSockets[idJoueurActuel].emit('tourAccusation', { perso: cartesMilieu[0].nom, arme: cartesMilieu[1].nom, lieu: cartesMilieu[2].nom });
 	});
 
     /* Choix de la carte d'accusationn */
@@ -574,29 +576,43 @@ io.on('connection', function(socket){
 
 	socket.on('notSuppose', function () { // tel / tablette
 	    var case_rac = [];
-	    if (joueurs[idJoueurActuel].numCase[0] == "14.3") { // salle de bain -> chambre
-	        case_rac.push(cases[82 - 1]);
+	    if (joueurs[idJoueurActuel].numCase[0] == "14.3") { // salle de bains -> chambre
+	        case_rac.push(cases[81]);
+	        console.log('SDB!!!');
+	        jSockets[idJoueurActuel].emit('caseRac', cases[81].nom);
 	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
 	    } else if (joueurs[idJoueurActuel].numCase[0] == "7.8") { // salle à manger -> cuisine
-	        case_rac.push(cases[81 - 1]);
+	        case_rac.push(cases[80]);
+	        console.log('SALLEAMANGER!!!');
+	        jSockets[idJoueurActuel].emit('caseRac', cases[80].nom);
 	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
 	    } else if (joueurs[idJoueurActuel].numCase[0] == "11.9") { // cuisine -> salle à manger et garage
-	        case_rac.push(cases[80 - 1]);
-	        case_rac.push(cases[76 - 1]);
+	        console.log('CUISINE!!!');
+	        case_rac.push(cases[79]);
+	        jSockets[idJoueurActuel].emit('caseRac', cases[79].nom);
+	        case_rac.push(cases[76]);
+	        jSockets[idJoueurActuel].emit('caseRac', cases[76].nom);
 	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
-	    } else if (joueurs[idJoueurActuel].numCase[0] == "12.0") { // chambre -> salle de bain, salon
-	        case_rac.push(cases[84 - 1]);
-	        case_rac.push(cases[77 - 1]);
+	    } else if (joueurs[idJoueurActuel].numCase[0] == "12.0") { // chambre -> salle de bains, salon
+	        console.log('CHAMBRE!!!');
+	        case_rac.push(cases[83]);
+	        jSockets[idJoueurActuel].emit('caseRac', cases[83].nom);
+	        case_rac.push(cases[77]);
+	        jSockets[idJoueurActuel].emit('caseRac', cases[77].nom);
 	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
 	    } else if (joueurs[idJoueurActuel].numCase[0] == "2.0") { // garage -> cuisine
-	        case_rac.push(cases[81 - 1]);
+	        case_rac.push(cases[80]);
+	        console.log('GARAGE!!!');
+	        jSockets[idJoueurActuel].emit('caseRac', cases[80].nom);
 	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
 	    } else if (joueurs[idJoueurActuel].numCase[0] == "3.9") { // salon -> chambre
-	        case_rac.push(cases[82 - 1]);
+	        case_rac.push(cases[81]);
+	        console.log('SALON!!!');
+	        jSockets[idJoueurActuel].emit('caseRac', cases[81].nom);
 	        io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
 	    } else { // salle sans raccourcis ou dans le couloir
-	        io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase: joueurs[idJoueurActuel].numCase[0] });
-	        jSockets[idJoueurActuel].emit('tourLancerDeTab', joueurs[idJoueurActuel].numCase[0]);
+	        io.sockets.emit('tourLancerDe', { idJoueur: idJoueurActuel, idCase: getNomCase(joueurs[idJoueurActuel].numCase[0]) });
+	        jSockets[idJoueurActuel].emit('tourLancerDeTab', getNomCase(joueurs[idJoueurActuel].numCase[0]));
 	    }
 
 	});
@@ -621,39 +637,39 @@ io.on('connection', function(socket){
         if (joueurs[idJoueurActuel].moved == true) {
             joueurs[idJoueurActuel].moved = false;
             io.sockets.emit('tourChange', { idJoueur: idJoueurActuel, idCase: getNomCase(joueurs[idJoueurActuel].numCase[0]) });
-        } else if (joueurs[idJoueurActuel].numCase[0] == "14.3") { // salle de bain -> chambre
-            case_rac.push(cases[82-1]);
-			console.log('SDB!!!');
-            io.sockets.emit('caseRac', cases[82-1].nom);
-            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase:  case_rac});
+        } else if (joueurs[idJoueurActuel].numCase[0] == "14.3") { // salle de bains -> chambre
+            case_rac.push(cases[81]);
+            console.log('SDB!!!');
+            jSockets[idJoueurActuel].emit('caseRac', cases[81].nom);
+            io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "7.8") { // salle à manger -> cuisine
-            case_rac.push(cases[81-1]);
-			console.log('SALLEAMANGER!!!');
-            io.sockets.emit('caseRac', cases[81-1].nom);
+            case_rac.push(cases[80]);
+            console.log('SALLEAMANGER!!!');
+            jSockets[idJoueurActuel].emit('caseRac', cases[80].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "11.9") { // cuisine -> salle à manger et garage
             console.log('CUISINE!!!');
-			case_rac.push(cases[80-1]);
-            io.sockets.emit('caseRac', cases[80-1].nom);
-            case_rac.push(cases[76-1]);
-            io.sockets.emit('caseRac', cases[76-1].nom);
+            case_rac.push(cases[79]);
+            jSockets[idJoueurActuel].emit('caseRac', cases[79].nom);
+            case_rac.push(cases[76]);
+            jSockets[idJoueurActuel].emit('caseRac', cases[76].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
-        } else if (joueurs[idJoueurActuel].numCase[0] == "12.0") { // chambre -> salle de bain, salon
-			console.log('CHAMBRE!!!');
-			case_rac.push(cases[84-1]);
-            io.sockets.emit('caseRac', cases[84-1].nom);
-            case_rac.push(cases[77-1]);
-            io.sockets.emit('caseRac', cases[77-1].nom);
+        } else if (joueurs[idJoueurActuel].numCase[0] == "12.0") { // chambre -> salle de bains, salon
+            console.log('CHAMBRE!!!');
+            case_rac.push(cases[83]);
+            jSockets[idJoueurActuel].emit('caseRac', cases[83].nom);
+            case_rac.push(cases[77]);
+            jSockets[idJoueurActuel].emit('caseRac', cases[77].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "2.0") { // garage -> cuisine
-            case_rac.push(cases[81-1]);
-			console.log('GARAGE!!!');
-            io.sockets.emit('caseRac', cases[81-1].nom);
+            case_rac.push(cases[80]);
+            console.log('GARAGE!!!');
+            jSockets[idJoueurActuel].emit('caseRac', cases[80].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else if (joueurs[idJoueurActuel].numCase[0] == "3.9") { // salon -> chambre
-            case_rac.push(cases[82-1]);
-			console.log('SALON!!!');
-            io.sockets.emit('caseRac', cases[82-1].nom);
+            case_rac.push(cases[81]);
+            console.log('SALON!!!');
+            jSockets[idJoueurActuel].emit('caseRac', cases[81].nom);
             io.sockets.emit('tourRaccourci', { idJoueur: idJoueurActuel, idCase: case_rac });
         } else { // salle sans raccourcis ou dans le couloir
 			console.log('Salle normale');
@@ -666,8 +682,15 @@ io.on('connection', function(socket){
 
     /* Reception de la carte de l'accusation */
     socket.on('tourFinJeu', function (perso, arme, lieu) {
-        console.log(arg);
-        io.sockets.emit('partieTerminee', { pseudo: idJoueurActuel, perso: perso, arme: arme, lieu: lieu }); //affichage du vainqueur et des accusés
+        console.log("accusation recu : " + perso + " " + arme + " " + lieu);
+        console.log("Meurtre : " + cartesMilieu.nom[0] + " " + cartesMilieu.nom[1] + " " + cartesMilieu.nom[2]);
+        if ((perso.toLowerCase().replace(/ /g, "") == cartesMilieu[0].nom.toLowerCase().replace(/ /g, "")) && (arme.toLowerCase().replace(/ /g, "") == cartesMilieu[1].nom.toLowerCase().replace(/ /g, "")) 
+            && (lieu.toLowerCase().replace(/ /g, "") == cartesMilieu[2].nom.toLowerCase().replace(/ /g, ""))) {
+
+            io.sockets.emit('partieTermineeGagnee', { pseudo: idJoueurActuel, perso: cartesMilieu[0].nom, arme: cartesMilieu[1].nom, lieu: cartesMilieu[2].nom }); //affichage du vainqueur et des accusés
+        } else {
+            io.sockets.emit('partieTermineePerdue', { pseudo: idJoueurActuel, perso: cartesMilieu[0].nom, arme: cartesMilieu[1].nom, lieu: cartesMilieu[2].nom }); //affichage du vainqueur et des accusés
+        }
     });
 
     socket.on('newGame', function () {
