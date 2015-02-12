@@ -40,6 +40,7 @@ var nbAssociations;
 
 var termine;
 
+var nbFermer;
 /* fonction random */
 function randomInt(mini, maxi) {
     var nb = mini + (maxi + 1 - mini) * Math.random();
@@ -81,6 +82,7 @@ function init() {
     jSockets = [];
 
     nbJoueurs = 0;
+    nbFermer = 0;
 
     partieEnCours = false;
 
@@ -674,9 +676,12 @@ io.on('connection', function(socket){
     });
 
     socket.on('newGame', function () {
-        init();
         io.sockets.emit('startNewGame', null);
         tableSocket.emit('beginNewGame', null);
+        nbFermer++;
+        if (nbFermer == nbJoueurs) {
+            init();
+        }
     });
 
 
