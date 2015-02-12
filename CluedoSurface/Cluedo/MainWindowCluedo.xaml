@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:s="http://schemas.microsoft.com/surface/2008"
         Title="MainWindowCluedo" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="430" Width="835">
-    <Grid>
+    <Grid Name="globalGrid">
         <Grid.Background>
             <ImageBrush ImageSource="Resources/bg.jpg"></ImageBrush>
         </Grid.Background>
@@ -16,6 +16,125 @@
                 <!--Setter Property="Stroke" Value="Yellow"></-->
                 <Setter Property="StrokeThickness" Value="1"></Setter>
             </Style>
+            <Storyboard x:Key="showQueryCanvas1">
+                <DoubleAnimation Storyboard.TargetName="queryCanvas1"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0.2" To="1" Duration="0:0:2.5">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas1"
+                        Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
+                        From="70" To="0" Duration="0:0:2" >
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas1"
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
+                        From="0" To="1" Duration="0:0:2" 
+                        AccelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas1"
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
+                        From="0" To="1" Duration="0:0:2" 
+                        AccelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas1"
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
+                        To="0.98" BeginTime="0:0:2" Duration="0:0:0.05" 
+                        DecelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas1"
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
+                        To="0.98" BeginTime="0:0:2" Duration="0:0:0.05" 
+                        DecelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas1"
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
+                        To="1" BeginTime="0:0:2.05" Duration="0:0:0.2"  
+                        AccelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas1"              
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
+                        To="1" BeginTime="0:0:2.05" Duration="0:0:0.2" 
+                        AccelerationRatio="1">
+                </DoubleAnimation>
+            </Storyboard>
+            <!--added-->
+            <Storyboard x:Key="closeQueryCanvas1">
+                <DoubleAnimation Storyboard.TargetName="tableauAffiche1" 
+                       Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
+                       To="360" Duration="0:0:1.5" >
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="tableauAffiche1" 
+                       Storyboard.TargetProperty="Opacity"
+                       To="0" Duration="0:0:3">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="tableauAffiche1" 
+                       Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
+                       To="0" Duration="0:0:1.5" AccelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="tableauAffiche1"
+                       Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
+                       To="0" Duration="0:0:1.5" AccelerationRatio="1">
+                </DoubleAnimation>
+            </Storyboard>
+
+            <Storyboard x:Key="showQueryCanvas2">
+                <DoubleAnimation Storyboard.TargetName="queryCanvas2"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0.2" To="1" Duration="0:0:2.5">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas2"
+                        Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
+                        From="70" To="0" Duration="0:0:2" >
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas2"
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
+                        From="0" To="1" Duration="0:0:2" 
+                        AccelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas2"
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
+                        From="0" To="1" Duration="0:0:2" 
+                        AccelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas2"
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
+                        To="0.98" BeginTime="0:0:2" Duration="0:0:0.05" 
+                        DecelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas2"
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
+                        To="0.98" BeginTime="0:0:2" Duration="0:0:0.05" 
+                        DecelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas2"
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
+                        To="1" BeginTime="0:0:2.05" Duration="0:0:0.2"  
+                        AccelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="queryCanvas2"              
+                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
+                        To="1" BeginTime="0:0:2.05" Duration="0:0:0.2" 
+                        AccelerationRatio="1">
+                </DoubleAnimation>
+            </Storyboard>
+            <!--added-->
+            <Storyboard x:Key="closeQueryCanvas2">
+                <DoubleAnimation Storyboard.TargetName="tableauAffiche2" 
+                       Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
+                       To="360" Duration="0:0:1.5" >
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="tableauAffiche2" 
+                       Storyboard.TargetProperty="Opacity"
+                       To="0" Duration="0:0:3">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="tableauAffiche2" 
+                       Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
+                       To="0" Duration="0:0:1.5" AccelerationRatio="1">
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="tableauAffiche2"
+                       Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
+                       To="0" Duration="0:0:1.5" AccelerationRatio="1">
+                </DoubleAnimation>
+            </Storyboard>
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"></RowDefinition>
@@ -353,6 +472,13 @@
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x11" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x12" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
                 <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x13" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x14" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x15" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x16" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x21" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x22" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
+                <s:TagVisualizationDefinition Source="InitPion.xaml" Value="0x25" OrientationOffsetFromTag="0" PhysicalCenterOffsetFromTag="0,0"/>
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
         <!--Zone de case-->
@@ -1743,6 +1869,8 @@
         <Polyline Stretch="Fill" Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="3" Stroke="Red" StrokeThickness="6" Points="0 0 40 0 40 20 60 20"></Polyline>
         <!--Path Grid.Row="17" Grid.Column="7" Grid.ColumnSpan="3" Data="m0,20 h20 v-20 h40" Style="{StaticResource MurContourStyle}"></-->
         <Polyline Stretch="Fill" Grid.Row="17" Grid.Column="7" Grid.ColumnSpan="3" Points="0 20 20 20 20 0 60 0" Stroke="Red" StrokeThickness="6"></Polyline>
+
+
         <!--zone d'annoces à gauche-->
         <Grid Grid.Row="2" Grid.Column="0" Grid.RowSpan="16">
             <Grid.ColumnDefinitions>
@@ -1750,7 +1878,54 @@
                 <ColumnDefinition Width="8*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" Name="queryCanvas1" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform></ScaleTransform>
+                        <RotateTransform></RotateTransform>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+                <!--window affiché-->
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/frame.png" Opacity="0.8"></ImageBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="Résultat" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,90,30,0"></Label>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition ></RowDefinition>
+                        <RowDefinition ></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Name="winnerName1" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" FontSize="28" Margin="30,0,0,0"></Label>
+                    <Image Name="winnerImage1" Grid.Row="0" Grid.Column="1" Margin="0,0,20,5" Width="80" Height="80"></Image>
+                    <TextBlock Name="guessResult1" FontSize="26" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="40,0,40,0" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="rightPerson1"  Grid.Column="0" Width="90" Height="200" HorizontalAlignment="Right" VerticalAlignment="Top"></Image>
+                    <Image Name="rightArm1"   Grid.Column="1" Width="90" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+                    <Image Name="rightPiece1"  Grid.Column="2" Width="90" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" Name="tableauAffiche1" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform></ScaleTransform>
+                        <RotateTransform></RotateTransform>
+                    </TransformGroup>
+                </Grid.RenderTransform>
                 <Grid.Background>
                     <ImageBrush ImageSource="Resources/frame.png" Opacity="0.4"></ImageBrush>
                 </Grid.Background>
@@ -1769,16 +1944,16 @@
                         <ColumnDefinition Width="1.5*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Name="jouerCourant1" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="Pervenche" FontSize="28" Margin="40,0,0,0"></Label>
-                    <Image Name="jouerImage1" Grid.Row="0" Grid.Column="1" Margin="-10,0,20,5" Width="80" Height="80" Source="Resources/personHead/olive.jpg"></Image><!--fill with jouer image-->
+                    <Label Name="jouerCourant1" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="" FontSize="28" Margin="30,0,0,0"></Label>
+                    <Image Name="jouerImage1" Grid.Row="0" Grid.Column="1" Margin="0,0,20,5" Width="80" Height="80" ></Image>
                     <Label Content="lance le dé:" FontSize="24" Grid.Row="1" Grid.Column="0" FontFamily="Algerian" Foreground="OrangeRed" Margin="60,0,-10,0"></Label>
-                    <Image Name="points1" Grid.Row="1" Grid.Column="1" Margin="10,0,10,5" Width="100" Height="80" Source="Resources/dices/12.png"></Image><!--fill with dé points image-->
+                    <Image Name="points1" Grid.Row="1" Grid.Column="1" Margin="15,0,10,5" Width="100" Height="80" ></Image>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition><!--lignes de cartes-->
-                        <RowDefinition Height="2*"></RowDefinition><!--ligne d'affichage(qui a montré une carte au joueur courant)-->
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -1789,7 +1964,7 @@
                     <Image Name="suppoPerson1" Source="Resources/guessCard/person.png" Grid.Row="1" Grid.Column="0" Width="90" Height="200" HorizontalAlignment="Right" VerticalAlignment="Top"></Image>
                     <Image Name="suppoArm1" Source="Resources/guessCard/arm.png" Grid.Row="1" Grid.Column="1" Width="90" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
                     <Image Name="suppoPiece1" Source="Resources/guessCard/piece.png" Grid.Row="1" Grid.Column="2" Width="90" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
-                    <Label Name="suppositionResponse1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="18" VerticalAlignment="Top" Margin="40,0,0,0"></Label><!--added-->
+                    <Label Name="suppositionResponse1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="18" VerticalAlignment="Top"></Label>
                 </Grid>
             </Grid>
         </Grid>
@@ -1804,39 +1979,86 @@
                 <ColumnDefinition Width="8*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1">
+            <!--added-->
+            <Grid Grid.Column="1" Name="queryCanvas2" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform></ScaleTransform>
+                        <RotateTransform></RotateTransform>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+                <!--window affiché-->
                 <Grid.Background>
-                    <ImageBrush ImageSource="Resources/frame.png" Opacity="0.4"></ImageBrush>
+                    <ImageBrush ImageSource="Resources/frame.png" Opacity="0.8"></ImageBrush>
                 </Grid.Background>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Content="   Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,70,30,0"></Label>
+                <Label Content="Résultat" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,90,30,0"></Label>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition ></RowDefinition>
+                        <RowDefinition ></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.5*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Name="jouerCourant2" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="Pervenche" FontSize="28" Margin="40,0,0,0"></Label>
-                    <Image Name="jouerImage2" Grid.Row="0" Grid.Column="1" Margin="-10,0,20,5" Width="80" Height="80" Source="Resources/personHead/olive.jpg"></Image>
+                    <Label Name="winnerName2" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" FontSize="28" Margin="30,0,0,0"></Label>
+                    <Image Name="winnerImage2" Grid.Row="0" Grid.Column="1" Margin="0,0,20,5" Width="80" Height="80"></Image>
+                    <TextBlock Name="guessResult2" FontSize="26" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="40,0,40,0" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="rightPerson2"  Grid.Column="0" Width="90" Height="200" HorizontalAlignment="Right" VerticalAlignment="Top"></Image>
+                    <Image Name="rightArm2"   Grid.Column="1" Width="90" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+                    <Image Name="rightPiece2"  Grid.Column="2" Width="90" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
+                </Grid>
+            </Grid>
+            <!--added-->
+            <Grid Grid.Column="1" Name="tableauAffiche2" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform></ScaleTransform>
+                        <RotateTransform></RotateTransform>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/frame.png" Opacity="0.4"></ImageBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="   Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,70,30,0"></Label>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Name="jouerCourant2" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="..." FontSize="28" Margin="40,20,0,0"></Label>
+                    <Image Name="jouerImage2" Grid.Row="0" Grid.Column="1" Margin="0,0,20,5" Width="80" Height="80"></Image>
                     <!--fill with jouer image-->
-                    <Label Content="lance le dé:" FontSize="24" Grid.Row="1" Grid.Column="0" FontFamily="Algerian" Foreground="OrangeRed" Margin="60,0,-10,0"></Label>
-                    <Image Name="points2" Grid.Row="1" Grid.Column="1" Margin="10,0,10,5" Width="100" Height="80" Source="Resources/dices/12.png"></Image>
+                    <Label Content="lance le dé:" FontSize="24" Grid.Row="1" Grid.Column="0" FontFamily="Algerian" Foreground="OrangeRed" Margin="70,0,-10,0"></Label>
+                    <Image Name="points2" Grid.Row="1" Grid.Column="1" Margin="-20,0,10,5" Width="100" Height="80"></Image>
                     <!--fill with dé points image-->
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="2*"></RowDefinition>
-                        <!--lignes de cartes-->
                         <RowDefinition Height="2*"></RowDefinition>
-                        <!--ligne d'affichage(qui a montré une carte au joueur courant)-->
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -1847,8 +2069,7 @@
                     <Image Name="suppoPerson2" Source="Resources/guessCard/person.png" Grid.Row="1" Grid.Column="0" Width="90" Height="200" HorizontalAlignment="Right" VerticalAlignment="Top"></Image>
                     <Image Name="suppoArm2" Source="Resources/guessCard/arm.png" Grid.Row="1" Grid.Column="1" Width="90" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
                     <Image Name="suppoPiece2" Source="Resources/guessCard/piece.png" Grid.Row="1" Grid.Column="2" Width="90" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
-                    <Label Name="suppositionResponse2" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="18" VerticalAlignment="Top" Margin="40,0,0,0"></Label>
-                
+                    <Label Name="suppositionResponse2" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="18" VerticalAlignment="Top"></Label>
                 </Grid>
             </Grid>
         </Grid>

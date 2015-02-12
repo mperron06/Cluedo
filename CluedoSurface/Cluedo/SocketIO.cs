@@ -37,12 +37,22 @@ public class QuiAEnvoyeLaCarte
     public string nameJoueur { get; set; }
 }
 
+public class Accusation
+{
+    public string pseudo { get; set; }
+    public string perso { get; set; }
+    public string arme { get; set; }
+    public string lieu { get; set; }
+
+}
+
 namespace Cluedo
 {
     class SocketIO
     {
         // Socket permettant d'échanger avec le serveur
         static Client socket;
+         
 
         public static void ForcerDebutPartie()
         {
@@ -95,6 +105,8 @@ namespace Cluedo
         {
             Console.WriteLine("Starting SocketIO");
 
+            int nomJouerDeconnecte = 0;
+
             // Initialisation du socket client vers le serveur
             socket = new Client("http://localhost:8080"); // url to nodejs 
 
@@ -143,9 +155,9 @@ namespace Cluedo
                     MainWindowCluedo.lancementSupposition = false;
 
                     //carte
-                    Uri personne = new Uri("Resources/personCard/" + supposition.perso.ToLower()+".png", UriKind.Relative);
-                    Uri arme = new Uri("Resources/armCard/" + supposition.arme.ToLower()+".png", UriKind.Relative);
-                    Uri lieu = new Uri("Resources/pieceCard/" + supposition.lieu.ToLower()+".png", UriKind.Relative);
+                    Uri personne = new Uri("Resources/personCard/" + supposition.perso.ToLower().Replace(" ", String.Empty) + ".png", UriKind.Relative);
+                    Uri arme = new Uri("Resources/armCard/" + supposition.arme.ToLower().Replace(" ", String.Empty) + ".png", UriKind.Relative);
+                    Uri lieu = new Uri("Resources/pieceCard/" + supposition.lieu.ToLower().Replace(" ", String.Empty) + ".png", UriKind.Relative);
                     MainWindowCluedo.getInstance().suppoPerson1.Source = new BitmapImage(personne);
                     MainWindowCluedo.getInstance().suppoArm1.Source = new BitmapImage(arme);
                     MainWindowCluedo.getInstance().suppoPiece1.Source = new BitmapImage(lieu);
@@ -208,6 +220,60 @@ namespace Cluedo
                     }
                 });
             });
+
+
+            socket.On("finPartieGagnee", (data) =>
+            {
+                Application surface = System.Windows.Application.Current;
+                surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
+                {
+                    Accusation acc = data.Json.GetFirstArgAs<Accusation>();
+
+                    Uri personne = new Uri("Resources/personCard/" + acc.perso.ToLower().Replace(" ", String.Empty) + ".png", UriKind.Relative);
+                    Uri arme = new Uri("Resources/armCard/" + acc.arme.ToLower().Replace(" ", String.Empty) + ".png", UriKind.Relative);
+                    Uri lieu = new Uri("Resources/pieceCard/" + acc.lieu.ToLower().Replace(" ", String.Empty) + ".png", UriKind.Relative);
+                    //MainWindowCluedo.getInstance() = new BitmapImage(personne);
+                    //MainWindowCluedo.getInstance() = new BitmapImage(arme);
+                    //MainWindowCluedo.getInstance() = new BitmapImage(lieu);
+
+                    MainWindowCluedo.getInstance().finPartie(true, acc.pseudo, acc.perso.ToLower() , acc.arme.ToLower(), acc.lieu.ToLower());
+                });
+            });
+
+            socket.On("finPartiePerdue", (data) =>
+            {
+                Application surface = System.Windows.Application.Current;
+                surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
+                {
+                    Accusation acc = data.Json.GetFirstArgAs<Accusation>();
+
+                    Uri personne = new Uri("Resources/personCard/" + acc.perso.ToLower().Replace(" ", String.Empty) + ".png", UriKind.Relative);
+                    Uri arme = new Uri("Resources/armCard/" + acc.arme.ToLower().Replace(" ", String.Empty) + ".png", UriKind.Relative);
+                    Uri lieu = new Uri("Resources/pieceCard/" + acc.lieu.ToLower().Replace(" ", String.Empty) + ".png", UriKind.Relative);
+                    //MainWindowCluedo.getInstance() = new BitmapImage(personne);
+                    //MainWindowCluedo.getInstance() = new BitmapImage(arme);
+                    //MainWindowCluedo.getInstance() = new BitmapImage(lieu);
+
+                    MainWindowCluedo.getInstance().finPartie(false, acc.pseudo, acc.perso.ToLower(), acc.arme.ToLower(), acc.lieu.ToLower());
+
+                });
+            });
+
+            socket.On("beginNewGame", (data) =>
+            {
+                Application surface = System.Windows.Application.Current;
+                surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
+                {
+                    Console.WriteLine("begin new game");
+
+                    nomJouerDeconnecte++;
+                    if (nomJouerDeconnecte == MainWindowCluedo.joueurs.Count)
+                    {
+                        MainWindowCluedo.getInstance().goToStartPage();
+                    }
+                });
+            });
+
 
             // make the socket.io connection
             socket.Connect();

@@ -24,6 +24,7 @@ using Gma.QrCodeNet.Encoding.Windows.WPF;
 using System.IO;
 using System.Diagnostics;
 using System.Collections;
+using System.Windows.Media.Imaging;
 
 
 namespace Cluedo
@@ -91,6 +92,7 @@ namespace Cluedo
             rotateTransform3.BeginAnimation(RotateTransform.AngleProperty, da);
             rotateTransform4.BeginAnimation(RotateTransform.AngleProperty, da);
             //jouerImage1.Source = new BitmapImage(new Uri("Resources/personHead/leblanc.jpg", UriKind.Relative));/////////////////////////////////////////////////
+            
         }
 
         public static MainWindowCluedo getInstance()
@@ -298,13 +300,13 @@ namespace Cluedo
                 case "0x10":
                     return "Rose";
                 case "0x11":
-                    return "Olivier";
+                    return "Olive";
                 case "0x12":
                     return "Moutarde";
                 case "0x13":
                     return "Pervenche";
                 default :
-                    return null;
+                    return "Arme";
 
             }
         }
@@ -357,22 +359,25 @@ namespace Cluedo
             //c'est la deuxième fois qu'il entre dans hall pour faire accusation
             if (joueurPret)
             {
-                if (joueurActuel.Equals(joueurCourant))
-                {
-                    zoneCase.Opacity = 0.5;
-                    zoneCase.Fill = Brushes.Green;
-                    SocketIO.tourChoixAccusation(idCase);
-                }
-                else
-                {
-                   
-                    ArrayList al = new ArrayList();
-                    al.Add(getIdFromTag(tag));
-                    SocketIO.tagsDansPiece(al);
+                //au cas ou le joueur pose une arme au lieu de son personage
 
-                    /*zoneCase.Opacity = 0.5;
-                    zoneCase.Fill = Brushes.Orange;*/
-                }
+                    if (joueurActuel.Equals(joueurCourant))
+                    {
+                        zoneCase.Opacity = 0.5;
+                        zoneCase.Fill = Brushes.Green;
+                        SocketIO.tourChoixAccusation(idCase);
+                    }
+                    else
+                    {
+
+                        ArrayList al = new ArrayList();
+                        al.Add(getIdFromTag(tag));
+                        SocketIO.tagsDansPiece(al);
+
+                        /*zoneCase.Opacity = 0.5;
+                        zoneCase.Fill = Brushes.Orange;*/
+                    }
+
             }
             else {
 
@@ -923,6 +928,56 @@ namespace Cluedo
                     return new BitmapImage(new Uri("Resources/personHead/Pervenche.jpg", UriKind.Relative));
             }
             return null;
+        }
+
+        public void finPartie(bool gagne, string pseudo, string perso, string arme, string lieu)
+        {
+            Storyboard st1 = globalGrid.Resources["closeQueryCanvas1"] as Storyboard;
+            st1.Begin();
+            Storyboard st11 = globalGrid.Resources["showQueryCanvas1"] as Storyboard;
+            st11.Begin();
+            Storyboard st2 = globalGrid.Resources["closeQueryCanvas2"] as Storyboard;
+            st2.Begin();
+            Storyboard st22 = globalGrid.Resources["showQueryCanvas2"] as Storyboard;
+            st22.Begin();
+
+            Uri personneuri = new Uri("Resources/personCard/" + perso.Replace(" ", String.Empty) + ".png", UriKind.Relative);
+            Uri armeuri = new Uri("Resources/armCard/" + arme.Replace(" ", String.Empty) + ".png", UriKind.Relative);
+            Uri lieuuri = new Uri("Resources/pieceCard/" + lieu.Replace(" ", String.Empty) + ".png", UriKind.Relative);
+
+            Console.WriteLine("fin partie: " + perso + " " + arme + " " + lieu);
+
+            this.rightPerson1.Source = new BitmapImage(personneuri);
+            this.rightPerson2.Source = new BitmapImage(personneuri);
+
+            this.rightArm1.Source = new BitmapImage(armeuri);
+            this.rightArm2.Source = new BitmapImage(armeuri);
+
+            this.rightPiece1.Source = new BitmapImage(lieuuri);
+            this.rightPiece2.Source = new BitmapImage(lieuuri);
+
+            
+            this.winnerName1.Content = pseudo;
+            this.winnerName2.Content = pseudo;
+
+            if (gagne)
+            {
+                guessResult1.Text = " a gagné avec les supposition au desous:";
+                guessResult2.Text = " a gagné avec les supposition au desous:";
+            }
+            else {
+                guessResult1.Text = " a perdu. Le vrai résultat est:";
+                guessResult2.Text = " a perdu. Le vrai résultat est:";
+            }
+            
+        }
+
+        public void goToStartPage()
+        {
+            
+            Page1 startPage = new Page1();
+            startPage.Show();
+            this.Close();
         }
     }
 }
