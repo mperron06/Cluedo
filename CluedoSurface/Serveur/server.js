@@ -491,7 +491,7 @@ io.on('connection', function(socket){
         if (verif) {
 			console.log(cartesSuppos);
 			jSockets[idJoueurSuppos].emit('choixCarteSupposition', cartesSuppos);
-			tableSocket.emit("carteEnvoye", joueurs[idJoueurSuppos].name);
+			tableSocket.emit("carteEnvoye", {nameJoueur: joueurs[idJoueurSuppos].name});
 			console.log("carte envoye par : " + joueurs[idJoueurSuppos].name);
 			for (r = 0; r < cartesSuppos.length; r++){
 				jSockets[idJoueurSuppos].emit('choixTextSupposition', cartesSuppos_phone[r]);
