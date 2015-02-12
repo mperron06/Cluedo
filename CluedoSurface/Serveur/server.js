@@ -390,7 +390,7 @@ io.on('connection', function(socket){
 		console.log("case actuelle"+joueurs[idJoueurActuel].numCase[0]);
         tableSocket.emit('choixMouvement', { idJoueur: joueurs[idJoueurActuel].persoName, idCase: joueurs[idJoueurActuel].numCase[0], value: val });
     });
-	socket.on('validationCase', function (newNumCase) {
+	socket.on('validationCaseTable', function (newNumCase) {
 	    if (newNumCase == "NON") {
 	        jSockets[idJoueurActuel].emit('wrongNewCase', null);
 	    } else {
