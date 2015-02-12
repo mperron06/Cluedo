@@ -544,7 +544,9 @@ io.on('connection', function(socket){
     /* Choix de la supposition si dans une pièce */
 	socket.on('tourChoixSupposition', function (newNumCase) {
 	    tableSocket.emit("retourTourChoixSupposition", null);
-	    //joueurs[idJoueurActuel].numCase[0] = newNumCase;
+		if(newNumCase){
+			joueurs[idJoueurActuel].numCase[0] = newNumCase;
+		}
 	    console.log("-----------------> Case actuelle " + joueurs[idJoueurActuel].numCase[0]);
 	    jSockets[idJoueurActuel].emit('tourSupposition', getNomCase(joueurs[idJoueurActuel].numCase[0]));
 	});

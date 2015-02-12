@@ -4,7 +4,8 @@
       xmlns:s="http://schemas.microsoft.com/surface/2008"
     xmlns:q="clr-namespace:Gma.QrCodeNet.Encoding.Windows.WPF;assembly=Gma.QrCodeNet.Encoding"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
-	Title="Page1"  Height="371" Width="835">
+	Title="Page1"  Height="371" Width="835"
+                 Loaded="Window_Loaded">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -22,12 +23,15 @@
             <RowDefinition Height="3*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Name="myGrid0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock TextWrapping="Wrap" FontSize="40"  FontFamily="Old English Text MT" Foreground="RosyBrown" HorizontalAlignment="Center" Text="Choisissez chacun un personnage, puis lancez la partie" Margin="50,70"></TextBlock>
+            <TextBlock Name="toto" TextWrapping="Wrap" FontSize="40"  FontFamily="Old English Text MT" Foreground="RosyBrown" HorizontalAlignment="Center" Text="Choisissez chacun un personnage, puis lancez la partie" Margin="50,70"></TextBlock>
+            <Canvas Name="canvas1" Grid.Row="0" Grid.Column="0" Margin="0,40,0,10">
+                <TextBlock Name="toto1" Foreground="Yellow" FontSize="20">Instruction: Dans la fenêtre rouge, traîner vers la gauche pour trouver des règles, puis drag-and-drop une des images dans "KNOW THE RULES".</TextBlock>
+            </Canvas>
             <Image Grid.Row="0" Grid.Column="1" Source="Resources/icon2.png" HorizontalAlignment="Left" Margin="20,60"></Image>
             <TextBlock Text="Cluedo" Grid.Row="0" Grid.Column="1" Margin="200, 40, 30, 10" FontFamily="Tahoma" FontSize="128" FontWeight="ExtraBold" Foreground="White"></TextBlock>
         </Grid>
@@ -41,6 +45,9 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock TextWrapping="Wrap" FontSize="40"  FontFamily="Old English Text MT" Foreground="RosyBrown" HorizontalAlignment="Center" Text="Choisissez chacun un personnage, puis lancez la partie" Margin="50,70"></TextBlock>
+            <Canvas Name="canvas2" Grid.Row="0" Grid.Column="0" Margin="0,40,0,10">
+                <TextBlock Name="toto2" Foreground="Yellow" FontSize="20">Instruction: Dans la fenêtre rouge, traîner vers la gauche pour trouver des règles, puis drag-and-drop une des images dans "KNOW THE RULES".</TextBlock>
+            </Canvas>
             <Image Grid.Row="0" Grid.Column="1" Source="Resources/icon2.png" HorizontalAlignment="Left" Margin="20,60"></Image>
             <TextBlock Text="Cluedo" Grid.Row="0" Grid.Column="1" Margin="200, 40, 30, 10" FontFamily="Tahoma" FontSize="128" FontWeight="ExtraBold" Foreground="White"></TextBlock>
         </Grid>

@@ -32,6 +32,11 @@ public class Supposition
     public string lieu{ get; set; }
 }
 
+public class QuiAEnvoyeLaCarte
+{
+    public string nameJoueur { get; set; }
+}
+
 namespace Cluedo
 {
     class SocketIO
@@ -60,6 +65,10 @@ namespace Cluedo
         public static void tourTermine(String idCase)
         {
             socket.Emit("tourTermine", idCase);
+        }
+
+        public static void ValidationCase(String cmd) {
+            socket.Emit("validationCaseTable", cmd);
         }
 
         public static void tagsDansPiece(ArrayList tags) {
@@ -118,6 +127,10 @@ namespace Cluedo
                     ChoixMovement mouvement = data.Json.GetFirstArgAs<ChoixMovement>();
                     MainWindowCluedo.getInstance().choixMouvement(mouvement.idJoueur, mouvement.idCase, mouvement.value);
                     Console.WriteLine("Test: " + mouvement.idJoueur + " " + mouvement.idCase + " " + mouvement.value);
+
+
+                    //
+                    MainWindowCluedo.getInstance().suppReponse("");
                 });
             });
 
@@ -156,6 +169,45 @@ namespace Cluedo
                 });
             });
 
+            socket.On("carteEnvoye", (data) =>
+            {
+                Application surface = System.Windows.Application.Current;
+                surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
+                {
+                    QuiAEnvoyeLaCarte quiEnvoie = data.Json.GetFirstArgAs<QuiAEnvoyeLaCarte>();
+                    string str = quiEnvoie.nameJoueur + " a envoyé une carte";
+                    MainWindowCluedo.getInstance().suppReponse(str);
+                });
+            });
+
+            socket.On("carteNonEnvoye", (data) =>
+            {
+                Application surface = System.Windows.Application.Current;
+                surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
+                {
+                    string str = "Aucune carte reçu";
+                    MainWindowCluedo.getInstance().suppReponse(str);
+                });
+            });
+
+            socket.On("validerCaseTable", (data) =>
+            {
+                Application surface = System.Windows.Application.Current;
+                surface.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (Action)delegate
+                {
+                    if (MainWindowCluedo.dansUneSalle)
+                    {
+                        tourChoixSupposition(MainWindowCluedo.idCasePoseTemporaire);
+
+                        Console.WriteLine("idCasePoseTemporaire envoyé: " + MainWindowCluedo.idCasePoseTemporaire);
+                    }
+                    else {
+                        tourTermine(MainWindowCluedo.idCasePoseTemporaire);
+
+                        Console.WriteLine("idCasePoseTemporaire envoyé: " + MainWindowCluedo.idCasePoseTemporaire);
+                    }
+                });
+            });
 
             // make the socket.io connection
             socket.Connect();

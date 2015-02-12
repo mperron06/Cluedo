@@ -23,7 +23,7 @@ using Gma.QrCodeNet.Encoding;
 using Gma.QrCodeNet.Encoding.Windows.WPF;
 using System.IO;
 using System.Diagnostics;
-
+using System.Windows.Media.Animation;
 namespace Cluedo
 {
     /// <summary>
@@ -59,6 +59,25 @@ namespace Cluedo
             // Lance socketIO
             SocketIO.Execute();
             //IsConnectToServeur = true;*/
+
+            
+        }
+
+        private void BeginAnimation()
+        {
+
+            DoubleAnimation doubleAnimation = new DoubleAnimation();
+            doubleAnimation.From = -toto1.ActualWidth;
+            doubleAnimation.To = canvas1.ActualWidth;
+            doubleAnimation.RepeatBehavior = RepeatBehavior.Forever;
+            doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(15));
+            toto1.BeginAnimation(Canvas.RightProperty, doubleAnimation);
+            toto2.BeginAnimation(Canvas.RightProperty, doubleAnimation);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            BeginAnimation();
         }
         
        public static Page1 getInstance()

@@ -39,6 +39,9 @@ namespace Cluedo
         public int de = 0;
         public Boolean joueurPret = false;
 
+        public static string idCasePoseTemporaire;
+        public static bool dansUneSalle = false;
+
         //sortir de hall, 7, en haut 4 souis
         //public string idCaseCourant = "2.0";  
         //public string idCaseCourant = "3.5";
@@ -139,14 +142,23 @@ namespace Cluedo
 
                         positionCorrect = true;
 
-                        SocketIO.tourTermine(idCase);
-
+                        //SocketIO.tourTermine(idCase);
+                        SocketIO.ValidationCase(idCase);
+                        idCasePoseTemporaire = idCase;
+                        dansUneSalle = false;
+                        Console.WriteLine("idCasePoseTemporaire: " + idCasePoseTemporaire);
                     }
                 }
                 if (!positionCorrect)
                 {
                     zoneCase.Opacity = 0.5;
                     zoneCase.Fill = Brushes.Red;
+
+                    SocketIO.ValidationCase("NON");
+                    idCasePoseTemporaire = idCase;
+                    dansUneSalle = false;
+
+                    Console.WriteLine("idCasePoseTemporaire: " + idCasePoseTemporaire);
                 }
             }
             else {
@@ -245,8 +257,15 @@ namespace Cluedo
                             //4. if position correct send current position 
 
                             //envoyer le id au lieu de nom de la salle
-                            //SocketIO.tourChoixSupposition(idCase);
-                            SocketIO.tourChoixSupposition(doorList[0]);
+                            
+                            //SocketIO.tourChoixSupposition(doorList[0]);
+
+                            SocketIO.ValidationCase(doorList[0]);
+
+                            idCasePoseTemporaire = doorList[0];
+                            dansUneSalle = true;
+
+                            Console.WriteLine("idCasePoseTemporaire: " + idCasePoseTemporaire);
                         }
                     }
                 }
@@ -254,6 +273,13 @@ namespace Cluedo
                 {
                     zoneCase.Opacity = 0.5;
                     zoneCase.Fill = Brushes.Red;
+
+                    SocketIO.ValidationCase("NON");
+
+                    idCasePoseTemporaire = doorList[0];
+                    dansUneSalle = true;
+
+                    Console.WriteLine("idCasePoseTemporaire: " + idCasePoseTemporaire);
                 }
             }
             else {
@@ -339,8 +365,13 @@ namespace Cluedo
                 }
                 else
                 {
-                    zoneCase.Opacity = 0.5;
-                    zoneCase.Fill = Brushes.Orange;
+                   
+                    ArrayList al = new ArrayList();
+                    al.Add(getIdFromTag(tag));
+                    SocketIO.tagsDansPiece(al);
+
+                    /*zoneCase.Opacity = 0.5;
+                    zoneCase.Fill = Brushes.Orange;*/
                 }
             }
             else {
@@ -869,6 +900,11 @@ namespace Cluedo
             Uri ude = new Uri("Resources/dices/"+de+".png", UriKind.Relative);
             points1.Source = new BitmapImage(ude);
             points2.Source = new BitmapImage(ude);
+        }
+
+        public void suppReponse(string reponse) {
+            this.suppositionResponse1.Content = reponse;
+            this.suppositionResponse2.Content = reponse;
         }
 
         private BitmapImage getJoueurImage(string nomJoueur) {

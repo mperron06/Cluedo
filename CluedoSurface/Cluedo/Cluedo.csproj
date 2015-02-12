@@ -189,7 +189,6 @@
     <Resource Include="Resources\pieces\entree.png" />
     <Resource Include="Resources\pieces\garage.png" />
     <Resource Include="Resources\pieces\rectangle.png" />
-    <Resource Include="Resources\pieces\salleDeBain.png" />
     <Resource Include="Resources\pieces\salleDeJeux.png" />
     <Resource Include="Resources\pieces\salleManger.png" />
     <Resource Include="Resources\pieces\salon.png" />
@@ -197,6 +196,7 @@
     <Resource Include="Resources\pieces\toCuisine.png" />
     <Resource Include="Resources\pieces\toGarage.png" />
     <Resource Include="Resources\pieces\toSalon.png" />
+    <Resource Include="Resources\pieces\salleDeBain.png" />
     <Content Include="Resources\start.wav" />
     <Resource Include="Resources\plateau.png" />
     <Resource Include="Resources\castle.jpg" />

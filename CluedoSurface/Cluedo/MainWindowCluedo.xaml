@@ -70,12 +70,6 @@
         <Rectangle Name="NGARAGE" Grid.Row="15" Grid.RowSpan="4" Grid.Column="1" Stroke="Red" StrokeThickness="6">
         </Rectangle>
         
-        <Label Content="GARAGE" Foreground="Yellow"  Grid.Row="15" Grid.RowSpan="4" Grid.Column="1">
-            <Label.RenderTransform>
-                <RotateTransform CenterX="55" CenterY="50" Angle="270">
-                </RotateTransform>
-            </Label.RenderTransform>
-        </Label>
         <!--à remplacer par une image de garage-->
         <s:TagVisualizer Grid.Column="1" Grid.Row="15" Grid.RowSpan="4"  VisualizationAdded="entrerDansPiece" VisualizationRemoved="sortirDePiece" Panel.ZIndex="10000" DataContext="GARAGE" >
             <s:TagVisualizer.Definitions>
@@ -115,11 +109,6 @@
         </Rectangle>
         
         <Line Stretch="Fill" HorizontalAlignment="Left" Grid.Row="15" Grid.Column="10" X1="0" Y1="0" X2="0" Y2="20" Style="{StaticResource MurContourStyle}"></Line>
-        <Label Content="SALON" Foreground="Yellow" Grid.Row="14" Grid.RowSpan="5" Grid.Column="10">
-            <Label.RenderTransform>
-                <RotateTransform CenterX="10" CenterY="60" Angle="90"></RotateTransform>
-            </Label.RenderTransform>
-        </Label>
         <!--à remplacer par une image de salon-->
         <s:TagVisualizer Grid.Column="10" Grid.Row="14" Grid.RowSpan="5"  VisualizationAdded="entrerDansPiece" VisualizationRemoved="sortirDePiece" Panel.ZIndex="10000" DataContext="SALON" >
             <s:TagVisualizer.Definitions>
@@ -149,11 +138,7 @@
         </Rectangle>
         
         <Line Stretch="Fill" HorizontalAlignment="Right" Grid.Row="12" X1="110" Y1="0" X2="110" Y2="20" Grid.Column="1" Style="{StaticResource MurContourStyle}"></Line>
-        <Label Content="SALLE DE JEUX" Foreground="Yellow" Grid.Row="9" Grid.RowSpan="6" Grid.Column="1">
-            <Label.RenderTransform>
-                <RotateTransform CenterX="80" CenterY="75" Angle="270"></RotateTransform>
-            </Label.RenderTransform>
-        </Label>
+
         <!--à remplacer par une image de salle de jeux-->
         <s:TagVisualizer Grid.Column="1" Grid.Row="9" Grid.RowSpan="6"  VisualizationAdded="entrerDansPiece" VisualizationRemoved="sortirDePiece"  Panel.ZIndex="10000" DataContext="SALLEDEJEUX" >
             <s:TagVisualizer.Definitions>
@@ -178,12 +163,7 @@
                 <ImageBrush ImageSource="Resources/pieces/chambre.png"></ImageBrush>
             </Path.Fill>
         </Path>
-        <Label Content="CHAMBRE" Foreground="Yellow" Grid.Row="3" Grid.Column="1" Grid.RowSpan="6">
-            <Label.RenderTransform>
-                <RotateTransform CenterX="55" CenterY="50" Angle="270">
-                </RotateTransform>
-            </Label.RenderTransform>
-        </Label>
+
         <Image Source="Resources/pieces/toSalon.png" Grid.Row="3" Grid.RowSpan="2" Grid.Column="1" Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,15,0,0">
             <Image.RenderTransform>
                 <RotateTransform x:Name="rotateTransform1" CenterX="30" CenterY="30"></RotateTransform>
@@ -302,11 +282,6 @@
 
         <Line Grid.Row="8" Grid.Column="10" X1="60" Y1="0" X2="150" Y2="0" Style="{StaticResource MurContourStyle}" VerticalAlignment="Bottom"></Line>
         <Line Stretch="Fill" HorizontalAlignment="Left" Grid.Row="7" Grid.Column="10" X1="0" Y1="0" X2="0" Y2="20" Style="{StaticResource MurContourStyle}"></Line>
-        <Label Content="CUISINE" Foreground="Yellow" Grid.Row="2" Grid.Column="10" Grid.RowSpan="7">
-            <Label.RenderTransform>
-                <RotateTransform CenterX="0" CenterY="30" Angle="90"></RotateTransform>
-            </Label.RenderTransform>
-        </Label>
         <!--à remplacer par une image de cuisine-->
         <Rectangle Name="NSALLEAMANGER1" Grid.Row="9" Grid.Column="9" Grid.RowSpan="5" Grid.ColumnSpan="2" Stroke="Red" StrokeThickness="6">
             <Rectangle.Fill>
@@ -318,11 +293,6 @@
 
         <Line Grid.Row="9" Grid.Column="9" Grid.ColumnSpan="2" X1="100" Y1="0" X2="190" Y2="0" Style="{StaticResource MurContourStyle}" VerticalAlignment="Top"></Line>
         <Line HorizontalAlignment="Left" Stretch="Fill" Grid.Row="11" Grid.Column="9" X1="0" Y1="0" X2="0" Y2="20" Style="{StaticResource MurContourStyle}"></Line>
-        <TextBlock Text="SALLE A MANGER" TextWrapping="Wrap" FontSize="16" Foreground="Yellow" Grid.Row="9" Grid.Column="9" Grid.RowSpan="6" Grid.ColumnSpan="2" Margin="0,13,74,6" >
-            <TextBlock.RenderTransform>
-                <RotateTransform CenterX="20" CenterY="35" Angle="90"></RotateTransform>
-            </TextBlock.RenderTransform>
-        </TextBlock>
         <!--à remplacer par une image de salle à manger-->
         <s:TagVisualizer Grid.Column="9" Grid.Row="9" Grid.RowSpan="5" Grid.ColumnSpan="2" VisualizationAdded="entrerDansPiece" VisualizationRemoved="sortirDePiece"  Panel.ZIndex="10000" DataContext="SALLEAMANGER" >
             <s:TagVisualizer.Definitions>
@@ -351,11 +321,6 @@
         <Path Grid.Row="17" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="8" Stroke="Red" StrokeThickness="6" Data="M0,0 v60 h160 v-60" Stretch="Fill"></Path>
         <!--end-->
         <Line Grid.Row="18" Grid.Column="5" Grid.ColumnSpan="2" Style="{StaticResource MurContourStyle}" X1="0" Y1="0" X2="40" Y2="0" Stretch="Fill" VerticalAlignment="Top"></Line>
-        <Label Grid.Row="18" Foreground="Yellow" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="3" Content="ENTREE">
-            <Label.RenderTransform>
-                <RotateTransform CenterX="40" CenterY="15" Angle="180"></RotateTransform>
-            </Label.RenderTransform>
-        </Label>
 
         <s:TagVisualizer Grid.Column="5" Grid.Row="18" Grid.RowSpan="2" Grid.ColumnSpan="3" VisualizationAdded="entrerDansPiece" VisualizationRemoved="sortirDePiece"  Panel.ZIndex="10000" DataContext="ENTREE" >
             <s:TagVisualizer.Definitions>
@@ -1790,29 +1755,30 @@
                     <ImageBrush ImageSource="Resources/frame.png" Opacity="0.4"></ImageBrush>
                 </Grid.Background>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1.5*"></RowDefinition>
-                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="2*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Label Content="   Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,70,30,0"></Label>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Name="jouerCourant1" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="..." FontSize="28" Margin="40,20,0,0"></Label>
-                    <Image Name="jouerImage1" Grid.Row="0" Grid.Column="1" Margin="0,0,20,5" Width="80" Height="80"></Image><!--fill with jouer image-->
-                    <Label Content="lance le dé:" FontSize="24" Grid.Row="1" Grid.Column="0" FontFamily="Algerian" Foreground="OrangeRed" Margin="70,0,-10,0"></Label>
-                    <Image Name="points1" Grid.Row="1" Grid.Column="1" Margin="20,0,10,5" Width="100" Height="80"></Image><!--fill with dé points image-->
+                    <Label Name="jouerCourant1" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="Pervenche" FontSize="28" Margin="40,0,0,0"></Label>
+                    <Image Name="jouerImage1" Grid.Row="0" Grid.Column="1" Margin="-10,0,20,5" Width="80" Height="80" Source="Resources/personHead/olive.jpg"></Image><!--fill with jouer image-->
+                    <Label Content="lance le dé:" FontSize="24" Grid.Row="1" Grid.Column="0" FontFamily="Algerian" Foreground="OrangeRed" Margin="60,0,-10,0"></Label>
+                    <Image Name="points1" Grid.Row="1" Grid.Column="1" Margin="10,0,10,5" Width="100" Height="80" Source="Resources/dices/12.png"></Image><!--fill with dé points image-->
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition><!--lignes de cartes-->
+                        <RowDefinition Height="2*"></RowDefinition><!--ligne d'affichage(qui a montré une carte au joueur courant)-->
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -1823,6 +1789,7 @@
                     <Image Name="suppoPerson1" Source="Resources/guessCard/person.png" Grid.Row="1" Grid.Column="0" Width="90" Height="200" HorizontalAlignment="Right" VerticalAlignment="Top"></Image>
                     <Image Name="suppoArm1" Source="Resources/guessCard/arm.png" Grid.Row="1" Grid.Column="1" Width="90" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
                     <Image Name="suppoPiece1" Source="Resources/guessCard/piece.png" Grid.Row="1" Grid.Column="2" Width="90" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
+                    <Label Name="suppositionResponse1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="18" VerticalAlignment="Top" Margin="40,0,0,0"></Label><!--added-->
                 </Grid>
             </Grid>
         </Grid>
@@ -1842,31 +1809,34 @@
                     <ImageBrush ImageSource="Resources/frame.png" Opacity="0.4"></ImageBrush>
                 </Grid.Background>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1.5*"></RowDefinition>
-                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="2*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Label Content="   Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,70,30,0"></Label>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Name="jouerCourant2" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="..." FontSize="28" Margin="40,20,0,0"></Label>
-                    <Image Name="jouerImage2" Grid.Row="0" Grid.Column="1" Margin="0,0,20,5" Width="80" Height="80"></Image>
+                    <Label Name="jouerCourant2" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="Pervenche" FontSize="28" Margin="40,0,0,0"></Label>
+                    <Image Name="jouerImage2" Grid.Row="0" Grid.Column="1" Margin="-10,0,20,5" Width="80" Height="80" Source="Resources/personHead/olive.jpg"></Image>
                     <!--fill with jouer image-->
-                    <Label Content="lance le dé:" FontSize="24" Grid.Row="1" Grid.Column="0" FontFamily="Algerian" Foreground="OrangeRed" Margin="70,0,-10,0"></Label>
-                    <Image Name="points2" Grid.Row="1" Grid.Column="1" Margin="-20,0,10,5" Width="100" Height="80"></Image>
+                    <Label Content="lance le dé:" FontSize="24" Grid.Row="1" Grid.Column="0" FontFamily="Algerian" Foreground="OrangeRed" Margin="60,0,-10,0"></Label>
+                    <Image Name="points2" Grid.Row="1" Grid.Column="1" Margin="10,0,10,5" Width="100" Height="80" Source="Resources/dices/12.png"></Image>
                     <!--fill with dé points image-->
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <!--lignes de cartes-->
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <!--ligne d'affichage(qui a montré une carte au joueur courant)-->
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -1877,27 +1847,9 @@
                     <Image Name="suppoPerson2" Source="Resources/guessCard/person.png" Grid.Row="1" Grid.Column="0" Width="90" Height="200" HorizontalAlignment="Right" VerticalAlignment="Top"></Image>
                     <Image Name="suppoArm2" Source="Resources/guessCard/arm.png" Grid.Row="1" Grid.Column="1" Width="90" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
                     <Image Name="suppoPiece2" Source="Resources/guessCard/piece.png" Grid.Row="1" Grid.Column="2" Width="90" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
+                    <Label Name="suppositionResponse2" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="18" VerticalAlignment="Top" Margin="40,0,0,0"></Label>
+                
                 </Grid>
-                <!--Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </>
-            <Grid Grid.Column="1">
-                <Grid.Background>
-                    <ImageBrush ImageSource="Resources/frame.png" Opacity="0.4"></ImageBrush>
-                </Grid.Background>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="4*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Label Content="   Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown"></Label>
-                <Label Name="jouerCourant2" Grid.Row="1" Foreground="OrangeRed" FontWeight="Bold" Content="Violet" FontSize="32" Margin="40,0,0,0"></Label>
-                <Label Content="Lance le dé:" FontSize="25" Grid.Row="1" FontFamily="Algerian" Foreground="OrangeRed" Margin="60,50,0,0"></Label>
-                <Label Name="points2" Content="3" BorderBrush="HotPink" BorderThickness="2" Foreground="Red" FontSize="30" Grid.Row="1" Height="15" Width="60" Margin="180,50,0,0"></Label>
-                <Label Content="Pose des suppositions:" FontFamily="Algerian" FontSize="25" Grid.Row="2" Foreground="Orange" Margin="60,0,0,0" VerticalAlignment="Top"></Label>
-            </Grid-->
             </Grid>
         </Grid>
     </Grid>
