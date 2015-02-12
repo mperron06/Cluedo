@@ -661,7 +661,7 @@ io.on('connection', function(socket){
     /* Reception de la carte de l'accusation */
     socket.on('tourFinJeu', function (perso, arme, lieu) {
         //console.log("accusation recu : " + perso + " " + arme + " " + lieu);
-        //console.log("Meurtre : " + cartesMilieu.nom[0] + " " + cartesMilieu.nom[1] + " " + cartesMilieu.nom[2]);
+        //console.log("Meurtre : " + cartesMilieu[0].nom + " " + cartesMilieu[1].nom + " " + cartesMilieu[2].nom);
         tableSocket.emit('meurtrierDevoile', null);
         if ((perso.toLowerCase().replace(/ /g, "") == cartesMilieu[0].nom.toLowerCase().replace(/ /g, "")) && (arme.toLowerCase().replace(/ /g, "") == cartesMilieu[1].nom.toLowerCase().replace(/ /g, "")) 
             && (lieu.toLowerCase().replace(/ /g, "") == cartesMilieu[2].nom.toLowerCase().replace(/ /g, ""))) {
