@@ -573,7 +573,6 @@ io.on('connection', function(socket){
     /* Choix de la carte d'accusationn */
 	socket.on('tourChoixCarteAccusation', function (arg) {
 	    console.log(arg);
-	    // COMMENT FAIRE................???????????????,
 	    io.sockets.emit('choixCarteAccusation', null);
 	});
 
@@ -700,11 +699,13 @@ io.on('connection', function(socket){
     socket.on('tourFinJeu', function (perso, arme, lieu) {
         console.log("accusation recu : " + perso + " " + arme + " " + lieu);
         console.log("Meurtre : " + cartesMilieu.nom[0] + " " + cartesMilieu.nom[1] + " " + cartesMilieu.nom[2]);
+        tableSocket.emit('meurtrierDevoile', null);
         if ((perso.toLowerCase().replace(/ /g, "") == cartesMilieu[0].nom.toLowerCase().replace(/ /g, "")) && (arme.toLowerCase().replace(/ /g, "") == cartesMilieu[1].nom.toLowerCase().replace(/ /g, "")) 
             && (lieu.toLowerCase().replace(/ /g, "") == cartesMilieu[2].nom.toLowerCase().replace(/ /g, ""))) {
-
+            tableSocket.emit('finPartieGagnee', { pseudo: joueurs[idJoueurActuel].name, perso: cartesMilieu[0].nom, arme: cartesMilieu[1].nom, lieu: cartesMilieu[2].nom });
             io.sockets.emit('partieTermineeGagnee', { pseudo: joueurs[idJoueurActuel].name, perso: cartesMilieu[0].nom, arme: cartesMilieu[1].nom, lieu: cartesMilieu[2].nom }); //affichage du vainqueur et des accusés
         } else {
+            tableSocket.emit('finPartiePerdue', { pseudo: joueurs[idJoueurActuel].name, perso: cartesMilieu[0].nom, arme: cartesMilieu[1].nom, lieu: cartesMilieu[2].nom });
             io.sockets.emit('partieTermineePerdue', { pseudo: joueurs[idJoueurActuel].name, perso: cartesMilieu[0].nom, arme: cartesMilieu[1].nom, lieu: cartesMilieu[2].nom }); //affichage du vainqueur et des accusés
         }
     });
