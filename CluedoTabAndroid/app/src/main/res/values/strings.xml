@@ -3,6 +3,9 @@
 
     <string name="app_name">Cluedo</string>
     <string name="action_settings">Settings</string>
+    <string name="keyPseudo">a</string>
+    <string name="keyPersoName">b</string>
+    <string name="preference_file_key">com.polytech.cluedo.PREFERENCE_FILE_KEY</string>
 
     <!-- LoginActivity -->
     <string name="pseudo">Pseudo</string>
@@ -14,6 +17,7 @@
     <string name="ipMissed">Adresse IP manquante</string>
     <string name="qR">QR</string>
     <string name="connection">Connexion</string>
+    <string name="regex">idJoueur":</string>
 
     <!-- WaitingActivity -->
     <string name="waitingForPlayers">Attente de joueurs…</string>
@@ -51,5 +55,12 @@
     <string name="title_activity_receive_card">ReceiveCardActivity</string>
     <string name="title_activity_end_game">EndGameActivity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_pions">PionsActivity</string>
+    <string name="title_activity_global">GlobalActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_enquete">EnqueteActivity</string>
+    <string name="title_activity_wainting_pions">WaintingPionsActivity</string>
+    <string name="title_activity_choose_card">ChooseCardActivity</string>
 
 </resources>
