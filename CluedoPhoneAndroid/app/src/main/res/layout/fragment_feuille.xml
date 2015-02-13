@@ -11,12 +11,348 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
+
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-                <!-- TODO: Update blank fragment layout -->
+                <TableLayout
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content">
+                    <TableRow>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_1"
+                            android:layout_weight="1"
+                            android:layout_column="1"
+                            android:textStyle="bold"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_1"
+                            android:layout_weight="4"
+                            android:textStyle="bold"
+                            android:inputType="text" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:textStyle="bold"
+                            android:text="SUSPECTS"/>
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Olive"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_2"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Moutarde"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_3"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Pervenche"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_4"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Violet"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_5"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Rose"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_6"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Leblanc"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_7"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:textStyle="bold"
+                            android:text="ARMES"/>
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Cle anglaise"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_8"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Chandelier"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_9"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Poignard"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_10"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Revolver"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_11"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Barre de fer"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_12"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Corde"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_13"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:textStyle="bold"
+                            android:text="PIECES"/>
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Salle de bains"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_14"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Bureau"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_15"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Salle a  manger"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_16"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Salle de jeux"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_17"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Garage"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_18"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Chambre"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_19"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Salon"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_20"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Cuisine"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_21"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_21"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView style="@style/frag1Col"
+                            android:text="Entree"/>
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/first_22"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="text" />
+                        <EditText style="@style/frag1Col2"
+                            android:id="@+id/second_22"
+                            android:layout_weight="4"
+                            android:inputType="text" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+            <!--
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
                 <TableLayout
                     android:layout_width="380dp"
                     android:layout_height="wrap_content">
@@ -206,7 +542,7 @@
                     </TableRow>
                     <TableRow>
                         <TextView style="@style/frag1Col"
-                            android:text="ClÃ© anglaise"/>
+                            android:text="Cle anglaise"/>
                         <EditText style="@style/frag1Col2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -571,7 +907,7 @@
                             android:inputType="text" />
                     </TableRow>
                 </TableLayout>
-            </LinearLayout>
+            </LinearLayout>-->
 
         </HorizontalScrollView>
     </ScrollView>

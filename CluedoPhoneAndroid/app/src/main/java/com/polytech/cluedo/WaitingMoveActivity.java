@@ -1,10 +1,12 @@
 package com.polytech.cluedo;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -23,13 +25,25 @@ public class WaitingMoveActivity extends Activity {
         perso_editText = (TextView) findViewById(R.id.persoText);
         profil_picture = (ImageView) findViewById(R.id.imageView1);
 
-        //pseudo_editText.setText(Remote.mon_pseudo);
-        //perso_editText.setText("personnage : " + Remote.mon_perso);
-        //profil_picture.setImageResource((getResources().getIdentifier("profil_"+Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
+        pseudo_editText.setText(Remote.mon_pseudo);
+        perso_editText.setText("personnage : " + Remote.mon_perso);
+        profil_picture.setImageResource((getResources().getIdentifier("profil_"+Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
 
-        // renommer le personnage accusé
-
-        // renommer l'arme accusé
+        LinearLayout layoutActivity = (LinearLayout) findViewById(R.id.headActivity);
+        String perso_temp = Remote.mon_perso.toLowerCase();
+        if (perso_temp.equals("leblanc")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        } else if (perso_temp.equals("moutarde")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FFFF00"));
+        } else if (perso_temp.equals("olive")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#00FF00"));
+        } else if (perso_temp.equals("pervenche")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#0000FF"));
+        } else if (perso_temp.equals("rose")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FF00FF"));
+        } else { //violet
+            layoutActivity.setBackgroundColor(Color.parseColor("#7F00FF"));
+        }
     }
 
 

@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:s="http://schemas.microsoft.com/surface/2008"
-        Title="MainWindowCluedo" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="430" Width="835">
+                 Title="MainWindowCluedo" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="430" Width="835">
     <Grid Name="globalGrid">
         <Grid.Background>
             <ImageBrush ImageSource="Resources/bg.jpg"></ImageBrush>
@@ -1927,14 +1927,14 @@
                     </TransformGroup>
                 </Grid.RenderTransform>
                 <Grid.Background>
-                    <ImageBrush ImageSource="Resources/frame.png" Opacity="0.4"></ImageBrush>
+                    <ImageBrush ImageSource="Resources/frame.png" Opacity="1"></ImageBrush>
                 </Grid.Background>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="2*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Content="   Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,70,30,0"></Label>
+                <Label Content="   Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="Black" Margin="30,70,30,0"></Label>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -1944,10 +1944,10 @@
                         <ColumnDefinition Width="1.5*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Name="jouerCourant1" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="" FontSize="28" Margin="30,0,0,0"></Label>
-                    <Image Name="jouerImage1" Grid.Row="0" Grid.Column="1" Margin="0,0,20,5" Width="80" Height="80" ></Image>
+                    <Label Name="jouerCourant1" Grid.Row="0" Grid.Column="0" Foreground="OrangeRed" FontWeight="Bold" Content="..." FontSize="28" Margin="40,0,0,0"></Label>
+                    <Image Name="jouerImage1" Grid.Row="0" Grid.Column="1" Margin="0,0,20,5" Width="80" Height="80" HorizontalAlignment="Left" ></Image>
                     <Label Content="lance le dé:" FontSize="24" Grid.Row="1" Grid.Column="0" FontFamily="Algerian" Foreground="OrangeRed" Margin="60,0,-10,0"></Label>
-                    <Image Name="points1" Grid.Row="1" Grid.Column="1" Margin="15,0,10,5" Width="100" Height="80" ></Image>
+                    <Image Name="points1" Grid.Row="1" Grid.Column="1" Margin="10,0,10,5" Width="100" Height="80" HorizontalAlignment="Left"></Image>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
@@ -1964,7 +1964,7 @@
                     <Image Name="suppoPerson1" Source="Resources/guessCard/person.png" Grid.Row="1" Grid.Column="0" Width="90" Height="200" HorizontalAlignment="Right" VerticalAlignment="Top"></Image>
                     <Image Name="suppoArm1" Source="Resources/guessCard/arm.png" Grid.Row="1" Grid.Column="1" Width="90" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
                     <Image Name="suppoPiece1" Source="Resources/guessCard/piece.png" Grid.Row="1" Grid.Column="2" Width="90" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
-                    <Label Name="suppositionResponse1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="18" VerticalAlignment="Top"></Label>
+                    <Label Name="suppositionResponse1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Top" Foreground="White" Margin="40,0,0,0"></Label>
                 </Grid>
             </Grid>
         </Grid>
@@ -1996,7 +1996,7 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Content="Résultat" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,90,30,0"></Label>
+                <Label Content="Résultat" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,120,30,0"></Label>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition ></RowDefinition>
@@ -2030,14 +2030,14 @@
                     </TransformGroup>
                 </Grid.RenderTransform>
                 <Grid.Background>
-                    <ImageBrush ImageSource="Resources/frame.png" Opacity="0.4"></ImageBrush>
+                    <ImageBrush ImageSource="Resources/frame.png" Opacity="1"></ImageBrush>
                 </Grid.Background>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*"></RowDefinition>
                     <RowDefinition Height="1.5*"></RowDefinition>
                     <RowDefinition Height="2*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Content="   Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="RosyBrown" Margin="30,70,30,0"></Label>
+                <Label Content="   Tableau d'Annonces" FontFamily="Old English Text MT" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="38" Foreground="Black" Margin="30,70,30,0"></Label>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
@@ -2069,7 +2069,7 @@
                     <Image Name="suppoPerson2" Source="Resources/guessCard/person.png" Grid.Row="1" Grid.Column="0" Width="90" Height="200" HorizontalAlignment="Right" VerticalAlignment="Top"></Image>
                     <Image Name="suppoArm2" Source="Resources/guessCard/arm.png" Grid.Row="1" Grid.Column="1" Width="90" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
                     <Image Name="suppoPiece2" Source="Resources/guessCard/piece.png" Grid.Row="1" Grid.Column="2" Width="90" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"></Image>
-                    <Label Name="suppositionResponse2" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="18" VerticalAlignment="Top"></Label>
+                    <Label Name="suppositionResponse2" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Top" Foreground="White" Margin="40,0,0,0"></Label>
                 </Grid>
             </Grid>
         </Grid>

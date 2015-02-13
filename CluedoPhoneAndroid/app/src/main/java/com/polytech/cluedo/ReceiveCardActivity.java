@@ -1,11 +1,13 @@
 package com.polytech.cluedo;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,8 +44,23 @@ public class ReceiveCardActivity extends Activity {
         carte_pseudo.setText(Remote.pseudo_card_send);
         carte_text.setText(Remote.card_send);
         String temp = Remote.card_send.replace(" ", "").toLowerCase();
-        System.out.println(temp);
         carte_image.setImageResource((getResources().getIdentifier(temp, "drawable", getPackageName())));
+
+        LinearLayout layoutActivity = (LinearLayout) findViewById(R.id.headActivity);
+        String perso_temp = Remote.mon_perso.toLowerCase();
+        if (perso_temp.equals("leblanc")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        } else if (perso_temp.equals("moutarde")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FFFF00"));
+        } else if (perso_temp.equals("olive")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#00FF00"));
+        } else if (perso_temp.equals("pervenche")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#0000FF"));
+        } else if (perso_temp.equals("rose")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FF00FF"));
+        } else { //violet
+            layoutActivity.setBackgroundColor(Color.parseColor("#7F00FF"));
+        }
 
     }
 

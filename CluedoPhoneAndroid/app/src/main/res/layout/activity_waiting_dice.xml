@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/headActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#003314"
     android:keepScreenOn="true" >
 
     <LinearLayout
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:padding="10dp"
         android:background="#003314"
         >
 
@@ -88,6 +89,19 @@
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"/>
+
+
+        <Button
+            android:id="@+id/validerButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:textColor="@drawable/button_text_color"
+            android:background="@drawable/connection_button"
+            android:text="Valider  position" />
     </LinearLayout>
 
 </LinearLayout>

@@ -89,7 +89,8 @@
             android:layout_gravity="top"
             android:gravity="center"
             android:singleLine="true"
-            android:hint="@string/enterYourIP"
+            android:focusable="false"
+            android:hint="IP de la table"
             android:inputType="phone" />
 
         <com.polytech.custom.layout.SquareLayout
@@ -122,7 +123,8 @@
             android:layout_gravity="top"
             android:gravity="center"
             android:singleLine="true"
-            android:hint="@string/enterYourPerso"
+            android:focusable="false"
+            android:hint="Nom du personnage"
             android:inputType="text" />
     </LinearLayout>
 

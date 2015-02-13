@@ -3,9 +3,12 @@ package com.polytech.cluedo;
 import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 
 /**
@@ -63,7 +66,54 @@ public class FeuilleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feuille, container, false);
+        final View view = inflater.inflate(R.layout.fragment_feuille, container, false);
+        for(int i = 1; i<= 22; i++){
+            final int row = i-1;
+            int firstId = getResources().getIdentifier("first_" + i, "id", getActivity().getPackageName());
+            final EditText yourFirstEditText = (EditText) view.findViewById(firstId);
+            yourFirstEditText.setText(Remote.fiche_detaillee[0][row]);
+            int secondId = getResources().getIdentifier("second_" + i, "id", getActivity().getPackageName());
+            final EditText yourSecondEditText = (EditText) view.findViewById(secondId);
+            yourSecondEditText.setText(Remote.fiche_detaillee[1][row]);
+
+            yourFirstEditText.addTextChangedListener(new TextWatcher() {
+                public void afterTextChanged(Editable s) {
+                    // you can call or do what you want with your EditText here
+                    Remote.fiche_detaillee[0][row] = yourFirstEditText.getText().toString();
+                }
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    //yourFirstEditText.setText(Remote.fiche_detaillee[0][row]);
+                }
+                public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            });
+            yourSecondEditText.addTextChangedListener(new TextWatcher() {
+                public void afterTextChanged(Editable s) {
+                    // you can call or do what you want with your EditText here
+                    Remote.fiche_detaillee[1][row] = yourSecondEditText.getText().toString();
+                }
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    //yourSecondEditText.setText(Remote.fiche_detaillee[1][row]);
+                }
+                public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            });
+        }
+        /*
+        yourEditText = (EditText) findViewById(R.id.yourEditTextId);
+
+        yourEditText.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+
+                // you can call or do what you want with your EditText here
+                yourEditText. ...
+
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });*/
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

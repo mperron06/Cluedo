@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/headActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#003314"
     android:keepScreenOn="true" >
 
     <LinearLayout
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:padding="10dp"
         android:background="#003314"
         >
 
@@ -58,7 +59,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/activity_vertical_margin"
+        android:padding="10dp"
         android:layout_weight="1"
         android:background="#ffffff"
         android:layout_gravity="center_vertical"
@@ -78,7 +79,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/activity_vertical_margin"
+            android:padding="8dp"
             android:layout_weight="1"
             android:background="#ffffff"
             android:layout_gravity="center"
@@ -132,12 +133,12 @@
                     android:layout_weight="1"
                     android:layout_gravity="left"
                     android:src="@drawable/picture_profil" />
-                <TextView
+                <!--<TextView
                     android:id="@+id/persoAccuseText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="perso"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -154,12 +155,12 @@
                     android:layout_weight="1"
                     android:layout_gravity="left"
                     android:src="@drawable/picture_profil" />
-                <TextView
+                <!--<TextView
                     android:id="@+id/armeAccuseText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="arme"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -177,17 +178,17 @@
                     android:layout_weight="1"
                     android:layout_gravity="left"
                     android:src="@drawable/picture_profil" />
-                <TextView
+                <!--<TextView
                     android:id="@+id/pieceAccuseText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="piece"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge" />-->
             </LinearLayout>
         </GridLayout>
 
             <Button
-                android:id="@+id/validerRadioButton"
+                android:id="@+id/validerButton"
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -196,7 +197,6 @@
                 android:paddingRight="20dip"
                 android:textColor="@drawable/button_text_color"
                 android:background="@drawable/connection_button"
-                android:onClick="fermer"
                 android:text="Fermer" />
     </LinearLayout>
 

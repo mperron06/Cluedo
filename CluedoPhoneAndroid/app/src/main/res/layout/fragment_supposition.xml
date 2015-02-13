@@ -54,18 +54,20 @@
                     <!-- Armes dans la salle -->
                 </LinearLayout>
             </ScrollView>
-            <LinearLayout
+            <ScrollView
+                android:id="@+id/lieu"
                 android:layout_width="100dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:paddingLeft="2dp"
                 >
-                <ImageView
-                    android:id="@+id/lieu"
+                <LinearLayout
+                    android:id="@+id/gallery_lieu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/picture_profil" />
+                    android:orientation="vertical" >
+                    <!-- Armes dans la salle -->
                 </LinearLayout>
+            </ScrollView>
 
         </LinearLayout>
         <Button

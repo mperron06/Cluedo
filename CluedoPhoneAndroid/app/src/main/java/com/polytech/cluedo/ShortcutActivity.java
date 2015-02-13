@@ -2,12 +2,14 @@ package com.polytech.cluedo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -39,6 +41,22 @@ public class ShortcutActivity extends Activity {
         pseudo_editText.setText(Remote.mon_pseudo);
         perso_editText.setText("personnage : " + Remote.mon_perso);
         profil_picture.setImageResource((getResources().getIdentifier("profil_"+Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
+
+        LinearLayout layoutActivity = (LinearLayout) findViewById(R.id.headActivity);
+        String perso_temp = Remote.mon_perso.toLowerCase();
+        if (perso_temp.equals("leblanc")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        } else if (perso_temp.equals("moutarde")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FFFF00"));
+        } else if (perso_temp.equals("olive")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#00FF00"));
+        } else if (perso_temp.equals("pervenche")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#0000FF"));
+        } else if (perso_temp.equals("rose")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FF00FF"));
+        } else { //violet
+            layoutActivity.setBackgroundColor(Color.parseColor("#7F00FF"));
+        }
 
         moved = (RadioButton) findViewById(R.id.moved);
         shortcut = (RadioButton) findViewById(R.id.short_cut);
@@ -89,7 +107,6 @@ public class ShortcutActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                    System.out.println("Ici dans on click listener");
                 // get selected radio button from radioGroup
                 int selectedId = rg.getCheckedRadioButtonId();
 
@@ -101,11 +118,9 @@ public class ShortcutActivity extends Activity {
 
 
                 if(radioButton.getId() == R.id.none){
-                    System.out.println("1 if");
                     Intent intent = new Intent(Remote.context, DiceActivity.class);
                     Remote.context.startActivity(intent);
                 } else if(radioButton.getId() == R.id.moved){
-                    System.out.println("2 if");
                     // enregistrer le lieu et lancer la supposition
                     Remote.ma_supposition = new String[3];
                     Remote.ma_supposition[2] = moved.getText().toString();
@@ -116,7 +131,6 @@ public class ShortcutActivity extends Activity {
                     Intent intent = new Intent(Remote.context, WaitShortCutActivity.class);
                     Remote.context.startActivity(intent);
                 } else if(radioButton.getId() == R.id.short_cut){
-                    System.out.println("3 if");
                     Remote.ma_supposition = new String[3];
                     Remote.ma_supposition[2] = shortcut.getText().toString();
 
@@ -134,18 +148,15 @@ public class ShortcutActivity extends Activity {
     public void valider(View v) {
         System.out.println("valider button");
         if(radioButton.getId() == R.id.none){
-            System.out.println("1 if");
             Intent intent = new Intent(Remote.context, DiceActivity.class);
             Remote.context.startActivity(intent);
         } else if(radioButton.getId() == R.id.moved){
-            System.out.println("2 if");
             // enregistrer le lieu et lancer la supposition
             Remote.ma_supposition = new String[3];
             Remote.ma_supposition[2] = moved.getText().toString();
             Intent intent = new Intent(Remote.context, SuppositionActivity.class);
             Remote.context.startActivity(intent);
         } else if(radioButton.getId() == R.id.short_cut){
-            System.out.println("3 if");
             Remote.ma_supposition = new String[3];
             Remote.ma_supposition[2] = shortcut.getText().toString();
             Intent intent = new Intent(Remote.context, SuppositionActivity.class);

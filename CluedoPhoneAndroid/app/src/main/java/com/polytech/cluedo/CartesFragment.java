@@ -30,12 +30,10 @@ public class CartesFragment extends Fragment {
         ImageView[] mImages = new ImageView[Remote.my_cards_all.size()];
 
         for(int x=0; x<Remote.my_cards_all.size() ;x++) {
-            //ImageView image = new ImageView(MainActivity.this);
             String temp = Remote.my_cards_all.get(x).toLowerCase();
             final String name= temp.replace(" ", "");
             mImages[x] = new ImageView(this.getActivity());
             mImages[x].setImageResource((getResources().getIdentifier(name, "drawable", getActivity().getPackageName())));
-            //image.setBackgroundResource(R.drawable.ic_launcher);
             mImages[x].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     ImageView im=(ImageView) view.findViewById(R.id.selected);
@@ -48,23 +46,6 @@ public class CartesFragment extends Fragment {
             }
             linearLayout1.addView(mImages[x]);
         }
-        /**ImageView[] mImages = new ImageView[Remote.my_cards.getCartes().length];
-
-        for(int x=0;x<Remote.my_cards.getCartes().length ;x++) {
-            //ImageView image = new ImageView(MainActivity.this);
-            mImages[x] = new ImageView(this.getActivity());
-            mImages[x].setImageResource((getResources().getIdentifier(Remote.my_cards.getNom((long) x).toLowerCase(), "drawable", getActivity().getPackageName())));
-            //image.setBackgroundResource(R.drawable.ic_launcher);
-            linearLayout1.addView(mImages[x]);
-            mImages[x].setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    ImageView im=(ImageView) v.findViewById(R.id.selected);
-                    im.setImageResource((getResources().getIdentifier(Remote.my_cards.getNom(x).toLowerCase(), "drawable", getActivity().getPackageName())));
-                    //v.getId() will give you the image id
-
-                }
-            });
-        }*/
 
         // Inflate the layout for this fragment
         return view;
@@ -76,17 +57,6 @@ public class CartesFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-/*
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }*/
 
     @Override
     public void onDetach() {

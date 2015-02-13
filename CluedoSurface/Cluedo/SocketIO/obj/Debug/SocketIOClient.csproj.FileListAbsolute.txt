@@ -1,0 +1,7 @@
+C:\Users\user\Desktop\IHMMultiSupport\Projet\CluedoSurface\Cluedo\bin\debug\SocketIOClient.xml
+C:\Users\user\Desktop\IHMMultiSupport\Projet\CluedoSurface\Cluedo\bin\debug\SocketIOClient.dll
+C:\Users\user\Desktop\IHMMultiSupport\Projet\CluedoSurface\Cluedo\bin\debug\SocketIOClient.pdb
+C:\Users\user\Desktop\IHMMultiSupport\Projet\CluedoSurface\Cluedo\bin\debug\SocketIOClient.dll.CodeAnalysisLog.xml
+C:\Users\user\Desktop\IHMMultiSupport\Projet\CluedoSurface\Cluedo\bin\debug\SocketIOClient.dll.lastcodeanalysissucceeded
+C:\Users\user\Desktop\IHMMultiSupport\Projet\CluedoSurface\Cluedo\SocketIO\obj\Debug\SocketIOClient.dll
+C:\Users\user\Desktop\IHMMultiSupport\Projet\CluedoSurface\Cluedo\SocketIO\obj\Debug\SocketIOClient.pdb

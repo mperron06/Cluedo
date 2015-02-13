@@ -78,6 +78,10 @@
             android:name=".WaitShortCutActivity"
             android:label="@string/title_activity_wait_short_cut" >
         </activity>
+        <activity
+            android:name=".LostEndGameActivity"
+            android:label="@string/title_activity_lost_end_game" >
+        </activity>
     </application>
 
 </manifest>

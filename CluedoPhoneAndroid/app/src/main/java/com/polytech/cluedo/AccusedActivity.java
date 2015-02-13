@@ -2,12 +2,16 @@ package com.polytech.cluedo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 public class AccusedActivity extends Activity {
@@ -39,30 +43,38 @@ public class AccusedActivity extends Activity {
         perso_editText.setText("personnage : " + Remote.mon_perso);
         profil_picture.setImageResource((getResources().getIdentifier("profil_"+Remote.mon_perso.toLowerCase(), "drawable", getPackageName())));
 
-        System.out.println(Remote.my_accused);
+
+        LinearLayout layoutActivity = (LinearLayout) findViewById(R.id.headActivity);
+        String perso_temp = Remote.mon_perso.toLowerCase();
+        if (perso_temp.equals("leblanc")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        } else if (perso_temp.equals("moutarde")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FFFF00"));
+        } else if (perso_temp.equals("olive")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#00FF00"));
+        } else if (perso_temp.equals("pervenche")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#0000FF"));
+        } else if (perso_temp.equals("rose")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FF00FF"));
+        } else { //violet
+            layoutActivity.setBackgroundColor(Color.parseColor("#7F00FF"));
+        }
 
         if(Remote.my_accused.size()==3){
             temp = Remote.my_accused.get(0).toLowerCase().replace(" ","");
-            System.out.println(temp);
             persoView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
             temp = Remote.my_accused.get(1).toLowerCase().replace(" ","");
-            System.out.println(temp);
             armeView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
             temp = Remote.my_accused.get(2).toLowerCase().replace(" ","");
-            System.out.println(temp);
             pieceView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
         } else  if(Remote.my_accused.size()==2){
             temp = Remote.my_accused.get(0).toLowerCase().replace(" ","");
-            System.out.println(temp);
             persoView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
             temp = Remote.my_accused.get(1).toLowerCase().replace(" ","");
-            System.out.println(temp);
             armeView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
             pieceView.setVisibility(View.GONE);
         } else {
-            System.out.println(Remote.my_accused.get(0).toLowerCase().replace(" ",""));
             temp = Remote.my_accused.get(0).toLowerCase().replace(" ","");
-            System.out.println(temp);
             persoView.setImageResource(getResources().getIdentifier(temp, "drawable", getPackageName()));
             armeView.setVisibility(View.GONE);
             pieceView.setVisibility(View.GONE);
@@ -100,6 +112,7 @@ public class AccusedActivity extends Activity {
         Remote.card_send = Remote.my_accused.get(0).toString();
 
         Remote.emit_choix_carte();
+        Remote.my_accused = new ArrayList<String>();
 
         Intent intent = new Intent(Remote.context, ProfilActivity.class);
         Remote.context.startActivity(intent);
@@ -108,6 +121,7 @@ public class AccusedActivity extends Activity {
         Remote.card_send = Remote.my_accused.get(1).toString();
 
         Remote.emit_choix_carte();
+        Remote.my_accused = new ArrayList<String>();
 
         Intent intent = new Intent(Remote.context, ProfilActivity.class);
         Remote.context.startActivity(intent);
@@ -116,6 +130,7 @@ public class AccusedActivity extends Activity {
         Remote.card_send = Remote.my_accused.get(2).toString();
 
         Remote.emit_choix_carte();
+        Remote.my_accused = new ArrayList<String>();
 
         Intent intent = new Intent(Remote.context, ProfilActivity.class);
         Remote.context.startActivity(intent);

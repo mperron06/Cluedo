@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/headActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:keepScreenOn="true" >
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="10dp"
+        android:background="#003314"
+        >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_weight="2"
+            android:src="@drawable/picture_profil" />
+
+        <LinearLayout
+            android:id="@+id/texteProfil"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_vertical_margin"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            >
+            <TextView
+                android:id="@+id/pseudoText"
+                android:text="@string/pseudo"
+                android:layout_weight="1"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/persoText"
+                android:text="perso"
+                android:layout_weight="1"
+                android:textSize="14dp"
+                android:textColor="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bodyProfil"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_weight="1"
+        android:background="#ffffff"
+        android:layout_gravity="center_vertical"
+        >
+
+        <TextView android:text="FIN"
+            android:textSize="22dp"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:background="@drawable/dotted"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id='@+id/choice_container'>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0000"
+                android:textStyle="bold"
+                android:id="@+id/pseudo_perdant"
+                android:text="Pseudo"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0000"
+                android:textStyle="bold"
+                android:text=" a perdu."
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Le vrai meurtrier est :"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/activity_vertical_margin"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/persoView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:src="@drawable/picture_profil" />
+                <!--<TextView
+                    android:id="@+id/persoAccuseText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="perso"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/armeView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:src="@drawable/picture_profil" />
+                <!--<TextView
+                    android:id="@+id/armeAccuseText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="arme"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:padding="@dimen/activity_vertical_margin"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/pieceView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:src="@drawable/picture_profil" />
+                <!--<TextView
+                    android:id="@+id/pieceAccuseText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="piece"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />-->
+            </LinearLayout>
+        </GridLayout>
+
+        <Button
+            android:id="@+id/validerButton"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="20dp"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:textColor="@drawable/button_text_color"
+            android:background="@drawable/connection_button"
+            android:text="Fermer" />
+    </LinearLayout>
+
+</LinearLayout>

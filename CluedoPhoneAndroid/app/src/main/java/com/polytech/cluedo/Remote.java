@@ -29,6 +29,8 @@ public class Remote {
     private static final String MY_CARDS_PIECE = "myCardsPiece";
     private static final String CHOICE_CARTE_SUPPO = "choixTextSupposition";
     private static final String CASES_SHORTCUT = "caseRac";
+    private static final String WRONG_CASE= "wrongNewCase";
+    private static final String GOOD_CASE= "validerNewCase";
 
 
     /* ------ CHANGEMENT DE SCREEN ------ */
@@ -49,7 +51,8 @@ public class Remote {
     private static final String WAITING_ACCUSATION = "attenteAccusation";
     private static final String ACCUSED = "choixCarteSupposition";
     private static final String REICEVE_CARD = "receptionCarteAccusation";
-    private static final String END_GAME = "partieTerminee";
+    private static final String WIN_END_GAME = "partieTermineeGagnee";
+    private static final String LOST_END_GAME = "partieTermineePerdue";
 
     public static ArrayCase les_cases;
     public static String[] ma_supposition;
@@ -75,6 +78,8 @@ public class Remote {
     private static final String END_TURN = "tourTermine";
     private static final String EMIT_NEW_GAME="newGame";
     private static final String EMIT_END_GAME = "tourFinJeu";
+    private static final String EMIT_MOVED_SUPPOS = "tourChoixSupposition";
+    private static final String EMIT_VALID_CASE = "validationCase";
 
     // FIELDS
     private static final String FIELD_ID_JOUEUR = "idJoueur";
@@ -97,58 +102,83 @@ public class Remote {
     public static boolean mon_tour;
     public static int valeur_de;
     public static boolean accusation_turn;
+    public static boolean valider_case;
+
+    public static String[][] fiche_detaillee;
 
 
     final IOCallback ioCallback = new IOCallback() {
 
         @Override
         public void on(String event, IOAcknowledge ioAcknowledge, Object... objects) {
-            			/* ------ RECUP INFOS ------ */
+            /* ------ RECUP INFOS ------ */
             if (event.equals(MY_ID)) { // ID
                 mon_id = Long.parseLong(objects[0].toString());
                 System.out.println("my_id "+mon_id);
             }
             if (event.equals(CASES)) { // CASES
                 les_cases = new ArrayCase(objects[0].toString());
-                System.out.println(les_cases);
+                //System.out.println(les_cases);
             }
             if (event.equals(MY_CARDS_PERSO)){
                 id_joueur_actuel = JSONUtils.extractLong(FIELD_ID_JOUEUR, objects[0].toString());
-                if (mon_id == id_joueur_actuel) {
+                if ((mon_id == id_joueur_actuel) && (!my_cards_all.contains(objects[0].toString()))){
                     my_cards_all.add(JSONUtils.extractString("cartes", objects[0].toString()));
                     my_cards_perso.add(JSONUtils.extractString("cartes", objects[0].toString()));
                 }
             }
             if (event.equals(MY_CARDS_ARME)){
                 id_joueur_actuel = JSONUtils.extractLong(FIELD_ID_JOUEUR, objects[0].toString());
-                if (mon_id == id_joueur_actuel) {
+                if ((mon_id == id_joueur_actuel) && (!my_cards_all.contains(objects[0].toString()))){
                     my_cards_all.add(JSONUtils.extractString(FIELD_CARDS, objects[0].toString()));
                     my_cards_arme.add(JSONUtils.extractString(FIELD_CARDS, objects[0].toString()));
                 }
             }
             if (event.equals(MY_CARDS_PIECE)){
                 id_joueur_actuel = JSONUtils.extractLong(FIELD_ID_JOUEUR, objects[0].toString());
-                if (mon_id == id_joueur_actuel) {
+                if ((mon_id == id_joueur_actuel) && (!my_cards_all.contains(objects[0].toString()))){
                     my_cards_all.add(JSONUtils.extractString(FIELD_CARDS, objects[0].toString()));
                     my_cards_piece.add(JSONUtils.extractString(FIELD_CARDS, objects[0].toString()));
                 }
             }
             if( event.equals(CHOICE_CARTE_SUPPO)) {
-                System.out.println("carte reçu :"+objects[0].toString());
-                my_accused.add(objects[0].toString());
-                Intent intent = new Intent(context, AccusedActivity.class);
-                context.startActivity(intent);
+                if(!my_accused.contains(objects[0].toString())) {
+                    //System.out.println("carte reçu :" + objects[0].toString());
+                    my_accused.add(objects[0].toString());
+                    Intent intent = new Intent(context, AccusedActivity.class);
+                    context.startActivity(intent);
+                }
             }
             if( event.equals(CASES_SHORTCUT)) {
                 String temp = objects[0].toString().toLowerCase();
                 temp.replace(" ", "");
-                cases_shortcut.add(temp);
+                if(!cases_shortcut.contains(temp)) {
+                    //System.out.println("New case raccourcis : "+temp);
+                    cases_shortcut.add(temp);
+
+                    ma_supposition = new String[3];
+                    Intent intent = new Intent(context, ShortcutActivity.class);
+                    context.startActivity(intent);
+                }
+            }
+            if(event.equals((WRONG_CASE))){
+                valider_case = false;
+
+                Intent intent = new Intent(context, WaitingDiceActivity.class);
+                context.startActivity(intent);
+            }
+            if(event.equals(GOOD_CASE)){
+                valider_case = true;
+
+                Intent intent = new Intent(context, WaitingDiceActivity.class);
+                context.startActivity(intent);
             }
             /* ------ CHANGEMENT DE SCREEN ------ */
             if(event.equals(START_NEW_GAME)){
                 initAttributes();
-                Intent intent = new Intent(context, LoginActivity.class);
-                context.startActivity(intent);
+                System.out.println("NEW GAME");
+                //Intent intent = new Intent(context, LoginActivity.class);
+                //context.startActivity(intent);
             }
             if (event.equals(PLAYER_READY)){
                 initAttributes();
@@ -164,8 +194,8 @@ public class Remote {
 
                 if (mon_id == id_joueur_actuel) {
                     String case_actu = JSONUtils.extractString(FIELD_ID_CASE, objects[0].toString());
-                    System.out.println(case_actu);
-                    System.out.println(my_cards_all);
+                    //System.out.println(case_actu);
+                    //System.out.println(my_cards_all);
                     Intent intent = new Intent(context, DiceActivity.class);
                     context.startActivity(intent);
                 } else {
@@ -237,6 +267,9 @@ public class Remote {
             }
             if (event.equals(ACCUSATION_TURN)) { // DEBUT DE LA PARTIE
                 accusation_turn = true;
+                ma_supposition = new String[3];
+                ma_supposition[2] = "";
+
                 Intent intent = new Intent(context, SuppositionActivity.class);
                 context.startActivity(intent);
             }
@@ -260,9 +293,10 @@ public class Remote {
             if (event.equals(REICEVE_CARD)) { // DEBUT DE LA PARTIE
                 card_send = JSONUtils.extractString(FIELD_CARDS, objects[0].toString());
                 pseudo_card_send = JSONUtils.extractString("pseudo", objects[0].toString());
-                System.out.println("carte recu "+card_send+" et pseudo envoyé "+pseudo_card_send);
+                //System.out.println("carte recu "+card_send+" et pseudo envoyé "+pseudo_card_send);
+                perso_for_supposition = new ArrayList<String>();
+                arme_for_supposition = new ArrayList<String>();
                 if(pseudo_card_send != ""){
-                    System.out.println("Ici");
                     Intent intent = new Intent(context, ReceiveCardActivity.class);
                     context.startActivity(intent);
                 } else {
@@ -270,7 +304,7 @@ public class Remote {
                     context.startActivity(intent);
                 }
             }
-            if (event.equals(END_GAME)) { // FIN DE LA PARTIE
+            if (event.equals(WIN_END_GAME)) { // FIN DE LA PARTIE
                 //socket.disconnect();
                 accusations = new String[4];
                 accusations[0] = JSONUtils.extractString("pseudo", objects[0].toString());
@@ -279,6 +313,17 @@ public class Remote {
                 accusations[3] = JSONUtils.extractString("lieu", objects[0].toString());
 
                 Intent intent = new Intent(context, EndGameActivity.class);
+                context.startActivity(intent);
+            }
+            if (event.equals(LOST_END_GAME)) { // FIN DE LA PARTIE
+                //socket.disconnect();
+                accusations = new String[4];
+                accusations[0] = JSONUtils.extractString("pseudo", objects[0].toString());
+                accusations[1] = JSONUtils.extractString("perso", objects[0].toString());
+                accusations[2] = JSONUtils.extractString("arme", objects[0].toString());
+                accusations[3] = JSONUtils.extractString("lieu", objects[0].toString());
+
+                Intent intent = new Intent(context, LostEndGameActivity.class);
                 context.startActivity(intent);
             }
         }
@@ -366,6 +411,8 @@ public class Remote {
     public static void emit_new_game(){
         socket.emit(EMIT_NEW_GAME);
     }
+    public static void emit_moved_suppos(){ socket.emit(EMIT_MOVED_SUPPOS);}
+    public static void emit_valid_case(){ socket.emit(EMIT_VALID_CASE); };
 
 
     private void initAttributes() {
@@ -386,5 +433,7 @@ public class Remote {
         card_send ="";
         pseudo_card_send="";
         cases_shortcut = new ArrayList<String>();
+        fiche_detaillee = new String[2][22];
+        valider_case = false;
     }
 }

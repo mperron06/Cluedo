@@ -1,8 +1,10 @@
 package com.polytech.cluedo;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -40,7 +42,22 @@ public class SuppositionActivity extends Activity{
         // otherwise :
         myTabHost.addTab(myTabHost.newTabSpec("tab_inser").setIndicator("Cartes",getResources().getDrawable(android.R.drawable.ic_menu_edit)).setContent(R.id.onglet2));
         myTabHost.addTab(myTabHost.newTabSpec("tab_affiche").setIndicator("Feuille Enquête",getResources().getDrawable(android.R.drawable.ic_menu_view)).setContent(R.id.onglet3));
-        myTabHost.addTab(myTabHost.newTabSpec("tab_hist").setIndicator("Historique",getResources().getDrawable(android.R.drawable.ic_input_add)).setContent(R.id.onglet4));
+
+        LinearLayout layoutActivity = (LinearLayout) findViewById(R.id.headActivity);
+        String perso_temp = Remote.mon_perso.toLowerCase();
+        if (perso_temp.equals("leblanc")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        } else if (perso_temp.equals("moutarde")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FFFF00"));
+        } else if (perso_temp.equals("olive")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#00FF00"));
+        } else if (perso_temp.equals("pervenche")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#0000FF"));
+        } else if (perso_temp.equals("rose")){
+            layoutActivity.setBackgroundColor(Color.parseColor("#FF00FF"));
+        } else { //violet
+            layoutActivity.setBackgroundColor(Color.parseColor("#7F00FF"));
+        }
 
     }
     @Override
